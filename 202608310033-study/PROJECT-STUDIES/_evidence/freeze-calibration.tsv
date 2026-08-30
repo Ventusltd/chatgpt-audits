@@ -1,0 +1,15 @@
+
+ALL-BANDS	bess	143	570	343	878
+ALL-BANDS	solar	1003	234	99	412
+bess	1-5	6	200	157	300
+bess	100-250	13	732	500	1008
+bess	20-50	72	707	374	956
+bess	250+	12	471	381	1034
+bess	5-20	16	454	374	633
+bess	50-100	24	500	395	770
+solar	1-5	288	213	98	363
+solar	20-50	121	457	173	822
+solar	250+	1	792	792	792
+solar	5-20	584	218	97	384
+solar	50-100	9	566	330	1056
+technology	capacity_band	samples	median_days	p25	p75

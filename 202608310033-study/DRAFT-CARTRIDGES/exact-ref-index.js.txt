@@ -1,0 +1,257 @@
+/* ============================================================================
+ * DRAFT CARTRIDGE PATCH — NOT LIVE CODE — REVIEW BEFORE INSTALLING
+ * ----------------------------------------------------------------------------
+ * id            uk-gazetteer-flyto  (superseding generation)
+ * slot          replace-script  ->  202608291818-place-postcode-search.js
+ * parent        atlas/cartridges/202608301624-place-global-search-v9-5.js
+ *                 sha256 b6497b437de52f68151a1bb22ccd95133d15c243c58eb9df1912fb36f38bcfca
+ * spec          ./exact-ref-index.spec.md
+ *
+ * FORM: this is expressed as ANCHORED REPLACEMENT BLOCKS, not a whole file,
+ * because that is how this repository already compiles cartridges — see
+ * tools/v9_5/build_streaming_bridge.py compile_bridge(), which asserts
+ * source.count(anchor) == 1 for every marker and refuses to build on drift.
+ * A build script applies these to the pinned parent and re-hashes.
+ *
+ * PURPOSE: resolve ?repd_ref= WITHOUT booting DuckDB-WASM.
+ * Today receiveExactRepdDeepLink -> queryOfficialRepd -> runtime() -> import
+ * @duckdb/duckdb-wasm (35.7 MB, ~14.3 s at 20 Mbit) before the map can move.
+ * On a 1 GB phone that is the difference between a working sales link and a
+ * blank map. Free-text search still uses DuckDB, lazily, unchanged.
+ * ========================================================================== */
+
+
+/* ==========================================================================
+ * BLOCK 1 — new constants
+ * ANCHOR (must appear exactly once):
+ *   const DUCKDB_MODULE = 'https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.29.0/+esm';
+ * REPLACEMENT: the anchor line, followed by:
+ * ========================================================================== */
+
+  const REF_INDEX_URL = 'https://ventusltd.github.io/gridatlas/data/repd_ref_index_<<GEN>>.json';
+  const REF_INDEX_SHA256 = '<<REPLACE_64_HEX>>';
+  const REF_INDEX_ROWS = 11069;
+
+
+/* ==========================================================================
+ * BLOCK 2 — new state fields
+ * ANCHOR:
+ *     deep_link: { status: 'IDLE', repd_ref: null, resolved: false, mapped: false }
+ * REPLACEMENT:
+ * ========================================================================== */
+
+    deep_link: { status: 'IDLE', repd_ref: null, resolved: false, mapped: false },
+    ref_index: { url: REF_INDEX_URL, loaded: false, rows: 0, verified: false, ms: null },
+    duckdb_booted_for: null
+
+
+/* ==========================================================================
+ * BLOCK 3 — the index loader and the fast-path resolver
+ * ANCHOR:
+ *   async function runtime() {
+ * REPLACEMENT: the following block, THEN the anchor.
+ * ========================================================================== */
+
+  // ---- 2026xxxx exact-ref index lane ----------------------------------------
+  // A minimal repd_ref -> point map. Seven fields, ~1.05 MB raw / ~340 KB gzip
+  // for all 11,069 official records. It is NOT a search index: it answers
+  // exactly one question, "where is this ref", which is the only question a
+  // deep link asks. Free-text search remains the Parquet/DuckDB lane below.
+
+  let refIndexPromise = null;
+
+  async function loadRefIndex() {
+    refIndexPromise ||= (async () => {
+      const started = performance.now();
+      const response = await fetch(REF_INDEX_URL, { cache: 'force-cache' });
+      invariant(response.ok, `REPD ref index HTTP ${response.status}`);
+      const bytes = await response.arrayBuffer();
+      invariant(await sha256Hex(bytes) === REF_INDEX_SHA256, 'REPD ref index SHA-256 mismatch');
+      const payload = JSON.parse(new TextDecoder().decode(bytes));
+      invariant(payload?.schema === 'gridatlas.repd-ref-index.v1', 'REPD ref index schema mismatch');
+      invariant(payload?.generation === '202608290716', 'REPD ref index generation mismatch');
+      invariant(payload?.rows === REF_INDEX_ROWS, 'REPD ref index row closure mismatch');
+      // Same Parquet identity the search lane verifies, so the two lanes can
+      // never silently describe different universes.
+      invariant(payload?.parquet_sha256 === PARQUET_SHA256, 'REPD ref index Parquet identity mismatch');
+      invariant(payload?.records && typeof payload.records === 'object', 'REPD ref index records missing');
+      state.ref_index.loaded = true;
+      state.ref_index.verified = true;
+      state.ref_index.rows = payload.rows;
+      state.ref_index.ms = Math.round(performance.now() - started);
+      return payload.records;
+    })();
+    return refIndexPromise;
+  }
+
+  // Returns the same shape queryOfficialRepd() returns, so selectResult() and
+  // renderResults() need no change at all.
+  async function lookupExactRef(repdRef) {
+    const records = await loadRefIndex();
+    const row = records[String(repdRef)];
+    if (!row) return null;
+    // Index row order is fixed by the builder and asserted by its own test:
+    // [name, technology, status, capacity_mw, longitude, latitude]
+    const [name, technology, status, capacityMw, longitude, latitude] = row;
+    return {
+      repd_ref: String(repdRef),
+      name: String(name ?? ''),
+      address: '',
+      postcode: '',
+      county: '',
+      planning_authority: '',
+      technology: String(technology ?? ''),
+      status: String(status ?? ''),
+      capacity_mw: capacityMw == null ? null : Number(capacityMw),
+      longitude: longitude == null ? null : Number(longitude),
+      latitude: latitude == null ? null : Number(latitude),
+      score: 10000,
+      lane: 'REF_INDEX'
+    };
+  }
+
+
+/* ==========================================================================
+ * BLOCK 4 — the deep-link receiver, rewritten
+ * ANCHOR: the whole existing function, from
+ *   async function receiveExactRepdDeepLink(input, resultsEl) {
+ * to its closing brace. REPLACEMENT:
+ * ==========================================================================
+ *
+ * CHANGES vs the parent:
+ *  - resolves from the ref index first; DuckDB is never booted for a deep link
+ *  - splits the outcome into four classes instead of resolved/failed, so a
+ *    project with no safe map point is RESOLVED_NOT_MAPPED, not a failure
+ *    (28 spine projects have geometry_status=missing; see intelligence-chain
+ *    section 5.1)
+ *  - BUT keeps status === 'RESOLVED' for the mapped case, because
+ *    atman/202608301624-verify-v9-5-search.mjs waits on exactly that string
+ *    (line: deep_link?.status === 'RESOLVED'). The new information is carried
+ *    in a NEW resolution_class field, so the existing gate passes unchanged.
+ *  - falls back to the Parquet lane only if the index is unavailable, so a
+ *    stale cache or a CDN failure degrades rather than breaks
+ * ========================================================================== */
+
+  async function receiveExactRepdDeepLink(input, resultsEl) {
+    const repdRef = String(new URLSearchParams(window.location.search).get('repd_ref') || '').trim();
+    if (!repdRef) {
+      state.deep_link = { status: 'ABSENT', repd_ref: null, resolved: false, mapped: false };
+      document.body.dataset.gridatlasRepdDeepLink = 'absent';
+      return;
+    }
+
+    state.deep_link = { status: 'RECEIVING', repd_ref: repdRef, resolved: false, mapped: false };
+    try {
+      if (!/^[A-Za-z0-9-]{1,40}$/.test(repdRef)) {
+        state.deep_link = { status: 'MALFORMED', repd_ref: repdRef, resolved: false, mapped: false };
+        document.body.dataset.gridatlasRepdDeepLink = 'malformed';
+        return;
+      }
+
+      input.value = repdRef;
+
+      // FAST PATH: index first, DuckDB never touched.
+      let exact = null;
+      try {
+        exact = await lookupExactRef(repdRef);
+      } catch (indexError) {
+        state.failures.push({ phase: 'ref_index', message: String(indexError?.message || indexError) });
+      }
+
+      // FALLBACK: the original Parquet lane, only if the index failed.
+      if (!exact) {
+        const results = await queryOfficialRepd(repdRef);
+        state.duckdb_booted_for = 'deep_link_fallback';
+        exact = results.find(result => String(result.repd_ref) === repdRef) || null;
+        if (exact) renderResults(results, resultsEl);
+      }
+
+      if (!exact) {
+        state.deep_link = { status: 'NOT_FOUND', repd_ref: repdRef, resolved: false, mapped: false };
+        document.body.dataset.gridatlasRepdDeepLink = 'not-found';
+        return;
+      }
+
+      await waitForCapturedMap();
+      selectResult(exact);
+      invariant(state.last_selection?.repd_ref === repdRef, 'exact REPD selection was not retained');
+
+      const mapped = state.last_selection?.mapped === true;
+      document.body.dataset.gridatlasRepdRef = repdRef;
+      document.body.dataset.gridatlasRepdDeepLink = mapped ? 'resolved' : 'resolved-unmapped';
+      state.deep_link = {
+        // status keeps the parent vocabulary so the existing browser gate,
+        // which waits on the literal string 'RESOLVED', is unaffected.
+        status: mapped ? 'RESOLVED' : 'RESOLVED_NOT_MAPPED',
+        resolution_class: mapped ? 'RESOLVED_AND_MAPPED' : 'RESOLVED_NOT_MAPPED',
+        repd_ref: repdRef,
+        resolved: true,
+        mapped,
+        lane: exact.lane || 'PARQUET',
+        name: exact.name,
+        postcode: exact.postcode,
+        longitude: exact.longitude,
+        latitude: exact.latitude
+      };
+    } catch (error) {
+      const message = String(error?.message || error);
+      state.failures.push({ phase: 'exact_repd_deep_link', repd_ref: repdRef, message });
+      state.deep_link = { status: 'FAILED', repd_ref: repdRef, resolved: false, mapped: false, message };
+      document.body.dataset.gridatlasRepdDeepLink = 'failed';
+      console.error('[V9 EXACT REPD DEEP LINK]', error);
+    }
+  }
+
+
+/* ==========================================================================
+ * BLOCK 5 — build the index artefact (companion, runs at build time, not in
+ * the browser). Sketch only; the real one belongs in gridatlas/compiler/.
+ * ========================================================================== */
+/*
+  import duckdb, json, hashlib
+  con = duckdb.connect()
+  rows = con.execute("""
+      SELECT repd_ref, name, technology, status, capacity_mw, longitude, latitude
+      FROM read_parquet('data/repd_projects_202608290716.parquet')
+      ORDER BY TRY_CAST(repd_ref AS BIGINT)
+  """).fetchall()
+  assert len(rows) == 11069
+  records = {r[0]: [r[1], r[2], r[3], r[4], r[5], r[6]] for r in rows}
+  assert len(records) == 11069                      # repd_ref is unique
+  payload = {
+      "schema": "gridatlas.repd-ref-index.v1",
+      "generation": "202608290716",
+      "rows": 11069,
+      "parquet_sha256": "174040c37f3d63742d6fdd7af722a8cfdf3fb53de3ff85ff1142d22fdac4866b",
+      "records": records,
+  }
+  blob = json.dumps(payload, separators=(",", ":"), sort_keys=True).encode()
+  print(len(blob), hashlib.sha256(blob).hexdigest())
+*/
+
+
+/* ============================================================================
+ * KNOWN OPEN POINTS
+ * ----------------------------------------------------------------------------
+ * 1. The index must be regenerated whenever the REPD Parquet changes, and its
+ *    parquet_sha256 assertion makes that failure loud rather than silent. Good.
+ * 2. Array-of-values row form (not objects) is deliberate: it roughly halves
+ *    the JSON size versus repeating six keys 11,069 times. The order is
+ *    asserted by the builder test, not by a comment.
+ * 3. RESOLVED_NOT_MAPPED is a NEW outcome class. CHECKED against
+ *    atman/202608301624-verify-v9-5-search.mjs: that gate waits on
+ *    `deep_link?.status === 'RESOLVED'` and then asserts
+ *    `deep_link.repd_ref === '13599' && deep_link.mapped === true`. Beacon Fen
+ *    has coordinates, so keeping status === 'RESOLVED' for the mapped case
+ *    (see Block 4) means the gate passes byte-for-byte unchanged. Do NOT
+ *    rename that value.
+ * 4. The same gate asserts
+ *    `window.__GRIDATLAS_PLACE_SEARCH__.generation === EXPECTED_SEARCH_GENERATION`.
+ *    A superseding cartridge MUST bump `state.generation` AND the workflow must
+ *    pass the new value in EXPECTED_SEARCH_GENERATION, or the gate fails for the
+ *    right reason at the wrong time.
+ * 5. The gate also asserts the postcode popup contains
+ *    "Location only · postcodes.io · no project identity claimed" and that the
+ *    first result for "Beacon Fen" is data-repd-ref="13599". Neither is touched
+ *    by these blocks; keep it that way.
+ * ========================================================================== */

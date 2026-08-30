@@ -1,0 +1,387 @@
+/* ============================================================================
+ * DRAFT CARTRIDGE — NOT LIVE CODE — REVIEW BEFORE INSTALLING
+ * ----------------------------------------------------------------------------
+ * id            window-intelligence
+ * slot          replace-script  ->  202608292126-pre-snapped-config-adapter.js
+ * spec          ./window-intelligence.spec.md
+ * generation    <<REPLACE: 12-digit Europe/London stamp at build time>>
+ *
+ * WHY THIS SLOT: it is the only free script slot in the immutable shell, and it
+ * is the correct one — it runs AFTER ventus-corev8engine.js has defined
+ * window.initVentusMap and BEFORE the shell inline script calls it, which is
+ * the only moment the layer config can be extended.
+ *
+ * THEREFORE THIS CARTRIDGE MUST ALSO REPRODUCE THE PRE-SNAP REWRITE that the
+ * script it replaces performs (snap:false for layer ids 400/275/220/132/66).
+ * If it does not, the browser re-snaps 14,565 topology vertices at runtime and
+ * the 15 s layer budget is blown. See spec §3.
+ *
+ * FAIL-CLOSED CONTRACT: any failure to verify the window manifest, the window
+ * payloads, or the pre-snap closure adds NO layers, records the failure on
+ * window.__GRIDATLAS_WINDOW__.failures, still performs the pre-snap rewrite,
+ * and hands an unmodified config to the engine. The map must remain exactly as
+ * it is today.
+ * ========================================================================== */
+(() => {
+  'use strict';
+
+  /* ---------------------------------------------------------------- config */
+
+  const GENERATION = '<<REPLACE_GENERATION>>';
+
+  // Published by pipelinenews. One artefact per state, so toggling "Funding
+  // window" downloads only the funding-window projects, not the whole spine.
+  const WINDOW_BASE = '<<REPLACE: https://ventusltd.github.io/pipelinenews/releases/data/window/<gen>/>>';
+  const MANIFEST_URL = `${WINDOW_BASE}window-map-manifest.json`;
+  const MANIFEST_SHA256 = '<<REPLACE_64_HEX>>';
+
+  // Pre-snap closure inherited from 202608292126-pre-snapped-config-adapter.js.
+  const PRE_SNAPPED_LAYER_IDS = new Set(['400', '275', '220', '132', '66']);
+
+  // The new legend group is inserted FIRST, not appended. On a 768x1024 iPad the
+  // SCADA panel is capped at 38vh and the key grid is two-column; an appended
+  // twelfth group is below the fold. See intelligence-chain.md section 6.1 F4.
+  const GROUP_LABEL = 'Funding window';
+
+  const STATES = Object.freeze([
+    { id: 'win_funding',    label: 'Funding window',      colour: '#00ff88', state: 'FUNDING_WINDOW',    file: 'funding.geojson',    preload: false },
+    { id: 'win_procuring',  label: 'Procuring',           colour: '#ffae00', state: 'PROCURING',         file: 'procuring.geojson',  preload: false },
+    { id: 'win_consented',  label: 'Consented (no funding evidence)', colour: '#8888ff', state: 'CONSENTED', file: 'consented.geojson', preload: false },
+    { id: 'win_frozen',     label: 'Design frozen (estimated)', colour: '#888888', state: 'DESIGN_FROZEN', file: 'frozen.geojson',   preload: false },
+    { id: 'win_distressed', label: 'Distressed',          colour: '#ff2222', state: 'DISTRESSED',        file: 'distressed.geojson', preload: false }
+  ]);
+
+  // Radius is driven by window_score, not capacity. The product ranks by timing.
+  const SCORE_RADIUS = ['interpolate', ['linear'], ['coalesce', ['get', 'window_score'], 0],
+                        0, 5, 0.25, 7, 0.5, 10, 0.75, 14, 1, 19];
+
+  /* ----------------------------------------------------------------- state */
+
+  const state = {
+    schema: 'gridatlas.window-intelligence.v1',
+    generation: GENERATION,
+    applied: false,
+    manifest_verified: false,
+    pre_snap_applied: false,
+    pre_snap_changed_layer_ids: [],
+    layers_installed: [],
+    counts: {},          // layer id -> { projects, mw }
+    payload_sha256: {},  // file -> verified digest
+    last_selection: null,
+    failures: []
+  };
+  window.__GRIDATLAS_WINDOW__ = state;
+
+  const originalInit = window.initVentusMap;
+  if (typeof originalInit !== 'function') {
+    // Nothing we can do and nothing we may break. Record and stop.
+    state.failures.push({ phase: 'boot', message: 'V8 engine init function unavailable' });
+    return;
+  }
+
+  // NOTE: this cartridge loads in slot 4, AFTER streaming-parquet-bridge has already
+  // patched window.fetch. So this is the bridge's fetch, not the platform's. That is
+  // correct and deliberate: the bridge passes unknown paths straight through.
+  const upstreamFetch = window.fetch.bind(window);
+
+  function invariant(condition, message) {
+    if (!condition) throw new Error(message);
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? '')
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  async function sha256Hex(bytes) {
+    const digest = await crypto.subtle.digest('SHA-256', bytes);
+    return [...new Uint8Array(digest)].map(v => v.toString(16).padStart(2, '0')).join('');
+  }
+
+  /* -------------------------------------------------- manifest verification */
+
+  let manifestPromise = null;
+
+  async function getManifest() {
+    manifestPromise ||= (async () => {
+      const response = await upstreamFetch(MANIFEST_URL, { cache: 'no-store' });
+      invariant(response.ok, `window manifest HTTP ${response.status}`);
+      const bytes = await response.arrayBuffer();
+      invariant(await sha256Hex(bytes) === MANIFEST_SHA256, 'window manifest SHA-256 mismatch');
+      const manifest = JSON.parse(new TextDecoder().decode(bytes));
+      invariant(manifest?.schema === 'pipelinenews.window-map-manifest.v1', 'window manifest schema mismatch');
+      invariant(typeof manifest.generation === 'string' && /^\d{12}$/.test(manifest.generation),
+                'window manifest generation malformed');
+      // The window layer must never contradict the frozen spine it refines.
+      invariant(manifest.spine?.project_count === 7680, 'window manifest spine project count mismatch');
+      invariant(manifest.spine?.projects_sha256
+                === '24484ca837ac56520ba971fb2c2c1d29620e16a3c71bbaa5764e94c9b515ad52',
+                'window manifest spine identity mismatch');
+      // Every state file we intend to install must be declared with a digest.
+      for (const entry of STATES) {
+        const artefact = (manifest.artifacts || []).find(a => a.path === entry.file);
+        invariant(artefact, `window manifest missing artefact ${entry.file}`);
+        invariant(/^[a-f0-9]{64}$/.test(artefact.sha256 || ''), `bad digest for ${entry.file}`);
+      }
+      // Ranker weights are published so a reader can see why a project is ranked.
+      invariant(manifest.ranker?.schema === 'pipelinenews.window-ranker.v1', 'ranker contract missing');
+      state.manifest_verified = true;
+      return manifest;
+    })();
+    return manifestPromise;
+  }
+
+  /* ------------------------------------------------- verified payload fetch */
+  // The engine hydrates a layer with fetchAndParseGeoJSON(layer.url) and a 15 s
+  // timeout. We interpose only on our own URLs, verify the digest, and hand back
+  // a normal Response. Every other request is untouched.
+
+  async function servedWindowPayload(file, expectedSha256) {
+    const response = await upstreamFetch(`${WINDOW_BASE}${file}`, { cache: 'force-cache' });
+    invariant(response.ok, `window payload ${file} HTTP ${response.status}`);
+    const bytes = await response.arrayBuffer();
+    const digest = await sha256Hex(bytes);
+    invariant(digest === expectedSha256, `window payload ${file} SHA-256 mismatch`);
+    state.payload_sha256[file] = digest;
+    return new Response(bytes, {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/geo+json; charset=utf-8',
+        'X-GridAtlas-Window-Generation': GENERATION
+      }
+    });
+  }
+
+  function installPayloadInterceptor(manifest) {
+    const byUrl = new Map();
+    for (const entry of STATES) {
+      const artefact = manifest.artifacts.find(a => a.path === entry.file);
+      byUrl.set(new URL(entry.file, WINDOW_BASE).href, { file: entry.file, sha256: artefact.sha256 });
+    }
+    const previousFetch = window.fetch.bind(window);
+    window.fetch = async function gridAtlasWindowFetch(input, init = undefined) {
+      let href = '';
+      try { href = new URL(typeof input === 'string' ? input : input?.url, window.location.href).href; } catch {}
+      const target = byUrl.get(href);
+      if (!target) return previousFetch(input, init);
+      try {
+        return await servedWindowPayload(target.file, target.sha256);
+      } catch (error) {
+        state.failures.push({ phase: 'payload', file: target.file, message: String(error?.message || error) });
+        throw error;
+      }
+    };
+  }
+
+  /* ------------------------------------------------------------- config map */
+
+  function preSnap(config) {
+    const changed = [];
+    const rewritten = config.map(group => ({
+      ...group,
+      layers: group.layers.map(layer => {
+        if (!PRE_SNAPPED_LAYER_IDS.has(String(layer.id))) return layer;
+        invariant(layer.snap === true, `expected V8 snap=true for topology layer ${layer.id}`);
+        changed.push(String(layer.id));
+        return { ...layer, snap: false };
+      })
+    }));
+    const expected = [...PRE_SNAPPED_LAYER_IDS].sort();
+    invariant(JSON.stringify([...changed].sort()) === JSON.stringify(expected),
+              `pre-snapped layer closure mismatch: ${JSON.stringify(changed)}`);
+    state.pre_snap_applied = true;
+    state.pre_snap_changed_layer_ids = changed;
+    return rewritten;
+  }
+
+  function windowGroup() {
+    return {
+      group: GROUP_LABEL,
+      layers: STATES.map(entry => ({
+        id: entry.id,
+        label: entry.label,
+        color: entry.colour,
+        type: 'point',
+        radius: SCORE_RADIUS,
+        url: new URL(entry.file, WINDOW_BASE).href,
+        preload: entry.preload
+      }))
+    };
+  }
+
+  /* ------------------------------------------------------------- label meta */
+  // The engine's generic hydrate path calls updateUIState(id, 'OK') with no
+  // stats, so the legend reads "Funding window [OK]". Upgrade it to a count and
+  // a capacity total once the source is loaded. Purely a DOM write; if the
+  // elements are missing we do nothing.
+
+  function upgradeLabel(layerId) {
+    const map = window.__GRIDATLAS_V9_MAP__;
+    if (!map) return;
+    let features = [];
+    try { features = map.querySourceFeatures(`src-${layerId}`) || []; } catch { return; }
+    if (!features.length) return;
+    const seen = new Set();
+    let mw = 0;
+    for (const feature of features) {
+      const ref = feature.properties?.repd_ref;
+      if (ref && seen.has(ref)) continue;
+      if (ref) seen.add(ref);
+      mw += parseFloat(feature.properties?.capacity_mw) || 0;
+    }
+    const count = seen.size || features.length;
+    state.counts[layerId] = { projects: count, mw: Math.round(mw) };
+    const unit = mw >= 1000 ? `${(mw / 1000).toFixed(1)}GW` : `${Math.round(mw)}MW`;
+    for (const prefix of ['lbl-', 'fs-lbl-']) {
+      const span = document.getElementById(`${prefix}${layerId}`);
+      if (!span) continue;
+      const base = span.getAttribute('data-base-label') || span.innerText;
+      span.innerText = `${base} [${count} | ${unit}]`;
+    }
+  }
+
+  function watchLabels() {
+    const map = window.__GRIDATLAS_V9_MAP__;
+    if (!map || typeof map.on !== 'function') return;
+    map.on('sourcedata', event => {
+      if (!event?.sourceId || !event.isSourceLoaded) return;
+      const layerId = String(event.sourceId).replace(/^src-/, '');
+      if (!STATES.some(entry => entry.id === layerId)) return;
+      upgradeLabel(layerId);
+    });
+  }
+
+  /* ---------------------------------------------------------------- popup */
+
+  function evidenceLine(row) {
+    const kind = String(row.kind || '').replace(/_/g, ' ').toLowerCase();
+    const register = String(row.register || '');
+    const date = String(row.date || '');
+    return `<div style="color:#aaa;font-size:10px">• ${escapeHtml(kind)}${date ? ` ${escapeHtml(date)}` : ''}`
+         + `${register ? ` <span style="color:#555">(${escapeHtml(register)})</span>` : ''}</div>`;
+  }
+
+  function popupHtml(p) {
+    let proof = [];
+    try { proof = JSON.parse(p.proof_json || '[]'); } catch {}
+    const stateEntry = STATES.find(entry => entry.state === p.state);
+    const colour = stateEntry ? stateEntry.colour : '#00ffff';
+    const cap = Number.isFinite(parseFloat(p.capacity_mw))
+      ? `${parseFloat(p.capacity_mw).toLocaleString('en-GB')} MW` : '';
+    const where = [p.planning_authority, p.county].filter(Boolean).join(' · ');
+    const rank = (p.window_rank && p.window_total)
+      ? `rank ${escapeHtml(p.window_rank)} of ${escapeHtml(p.window_total)}` : '';
+    const entered = p.entered_state_at ? `Entered ${escapeHtml(p.entered_state_at)}` : '';
+
+    // The freeze estimate is OUR model, never a published fact. Say so, every time.
+    const freeze = p.freeze_estimate_at
+      ? `<div style="color:#ffae00;font-size:10px;margin-top:4px">Estimated design freeze `
+        + `${escapeHtml(p.freeze_estimate_at)} <span style="color:#555">`
+        + `(${escapeHtml(p.freeze_estimate_confidence || 'LOW')} confidence — derived by GridAtlas, not published)</span></div>`
+      : `<div style="color:#555;font-size:10px;margin-top:4px">No design-freeze estimate — calibration not published</div>`;
+
+    const grid = p.nearest_circuit_km
+      ? `<div style="color:#8888ff;font-size:10px;margin-top:4px">`
+        + `${escapeHtml(p.nearest_circuit_km)} km from ${escapeHtml(p.nearest_circuit_kv || '')} kV `
+        + `<span style="color:#555">(straight line, screening only — not a route or a connection)</span></div>`
+      : '';
+
+    return `<div style="font-family:monospace;background:#000;padding:8px 10px;border:1px solid ${colour};border-radius:4px;min-width:240px;max-width:320px">
+      <b style="color:${colour};font-size:13px">${escapeHtml(p.name || 'Unnamed project')}</b>
+      <span style="float:right;color:${colour};font-size:9px;letter-spacing:0.5px">${escapeHtml(String(p.state || '').replace(/_/g, ' '))}</span>
+      <div style="clear:both"></div>
+      <div style="color:#888;font-size:10px">${escapeHtml(p.technology || '')}${cap ? ` · <span style="color:#ffae00">${escapeHtml(cap)}</span>` : ''}</div>
+      <div style="color:#aaa;font-size:10px">${escapeHtml(where)}</div>
+      <div style="color:#555;font-size:9px">REPD ${escapeHtml(p.repd_ref || '')} · ${escapeHtml(entered)}${rank ? ` · ${escapeHtml(rank)}` : ''}</div>
+      ${proof.length ? `<div style="margin-top:6px;color:#00ffff;font-size:10px">Evidence on the record</div>${proof.map(evidenceLine).join('')}` : ''}
+      ${freeze}
+      ${grid}
+      <div style="color:#444;font-size:9px;margin-top:6px">Official registers only. No ownership is asserted.</div>
+    </div>`;
+  }
+
+  function bindPopups() {
+    const map = window.__GRIDATLAS_V9_MAP__;
+    if (!map || typeof map.on !== 'function') return;
+    const ourLayerIds = STATES.map(entry => `l-${entry.id}`);
+    map.on('click', event => {
+      let features = [];
+      try {
+        const present = ourLayerIds.filter(id => map.getLayer(id)
+          && map.getLayoutProperty(id, 'visibility') !== 'none');
+        if (!present.length) return;
+        features = map.queryRenderedFeatures(event.point, { layers: present });
+      } catch { return; }
+      if (!features.length) return;
+      const p = features[0].properties || {};
+      // Close the engine's popup first so two do not stack. The engine exposes
+      // this deliberately; if it is absent we simply proceed.
+      try { window._closePopupKeepShape?.(); } catch {}
+      state.last_selection = { repd_ref: p.repd_ref, state: p.state, window_rank: p.window_rank };
+      new window.maplibregl.Popup({ maxWidth: '340px' })
+        .setLngLat(event.lngLat)
+        .setHTML(popupHtml(p))
+        .addTo(map);
+    });
+  }
+
+  /* ------------------------------------------------------------------ init */
+
+  window.initVentusMap = function gridAtlasWindowInit(options) {
+    let config;
+    try {
+      config = preSnap(options.config);
+    } catch (error) {
+      // The pre-snap contract is inherited and non-negotiable. If it fails we
+      // must not silently continue: the topology would be snapped twice.
+      state.failures.push({ phase: 'pre-snap', message: String(error?.message || error) });
+      throw error;
+    }
+
+    // Layers are added optimistically; the manifest verification races the map
+    // load. If verification fails we remove the group before the engine builds
+    // the DOM — so we verify FIRST and only then extend the config.
+    return getManifest().then(manifest => {
+      installPayloadInterceptor(manifest);
+      const extended = [windowGroup(), ...config];
+      state.applied = true;
+      state.layers_installed = STATES.map(entry => entry.id);
+      const result = originalInit({ ...options, config: extended });
+      // Bind after the engine has constructed its map. The search cartridge's
+      // maplibregl.Map proxy exposes it on window.__GRIDATLAS_V9_MAP__.
+      const wait = setInterval(() => {
+        if (!window.__GRIDATLAS_V9_MAP__) return;
+        clearInterval(wait);
+        try { bindPopups(); watchLabels(); }
+        catch (error) { state.failures.push({ phase: 'bind', message: String(error?.message || error) }); }
+      }, 50);
+      setTimeout(() => clearInterval(wait), 60000);
+      return result;
+    }).catch(error => {
+      // FAIL CLOSED: no window layers, unmodified (but pre-snapped) config,
+      // product identical to today.
+      state.failures.push({ phase: 'manifest', message: String(error?.message || error) });
+      state.applied = false;
+      console.warn('[GRIDATLAS WINDOW] disabled:', error);
+      return originalInit({ ...options, config });
+    });
+  };
+})();
+
+/* ============================================================================
+ * KNOWN OPEN POINTS — resolve before installing (see spec section 6)
+ * ----------------------------------------------------------------------------
+ * 1. initVentusMap becomes async here. The shell calls it without awaiting, and
+ *    the engine's return value is unused today, so this is safe against the
+ *    current shell — but it is a behaviour change and must be proved in the
+ *    browser gate, not assumed.
+ * 2. If a synchronous init is required, the alternative is to fetch and verify
+ *    the manifest at cartridge parse time with a blocking top-level await in a
+ *    module cartridge. The composer injects cartridges as classic scripts, so
+ *    that would need a composer change. Prefer proving (1).
+ * 3. window.fetch is also patched by streaming-parquet-bridge, which loads
+ *    EARLIER in the shell. This cartridge chains onto whatever fetch exists at
+ *    its own load time (previousFetch) rather than nativeFetch, so both survive.
+ *    The gate must assert both bridges still function.
+ * ========================================================================== */
