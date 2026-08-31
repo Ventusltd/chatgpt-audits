@@ -1,0 +1,65 @@
+REVIEW STATUS: UNREVIEWED
+
+reason	Validate model controller and strict response renderer	﻿2026-08-31T02:33:48.3201342Z ##[group]Run set -euo pipefail
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3202615Z ^[[36;1mset -euo pipefail^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3203757Z ^[[36;1mtest -f "$BUILD_PROMPT"^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3204935Z ^[[36;1mtest -f "$RENDER_RESPONSE"^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3206177Z ^[[36;1mtest -f "$PROMPT_SCHEMA"^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3207584Z ^[[36;1mgrep -q '^model: openai/gpt-4.1$' "$PROMPT_SCHEMA"^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3209571Z ^[[36;1mgrep -q '^responseFormat: json_schema$' "$PROMPT_SCHEMA"^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3211460Z ^[[36;1mpython3 -m py_compile "$BUILD_PROMPT" "$RENDER_RESPONSE"^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3213599Z ^[[36;1mfind "$CONTROLLER_ROOT" -type d -name __pycache__ -prune -exec rm -rf {} +^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3215394Z ^[[36;1m^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3216588Z ^[[36;1mTEST_ROOT="$RUNNER_TEMP/202608310322-renderer-self-test"^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3218253Z ^[[36;1mrm -rf "$TEST_ROOT"^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3219354Z ^[[36;1mmkdir -p "$TEST_ROOT"^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3220586Z ^[[36;1mcat > "$TEST_ROOT/response.json" <<'JSON'^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3221927Z ^[[36;1m{^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3223139Z ^[[36;1m  "overall_assessment": "Synthetic renderer self-test.",^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3225598Z ^[[36;1m  "what_happened": [{"claim":"A test ran.","evidence":"Synthetic fixture.","classification":"observed"}],^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3229135Z ^[[36;1m  "good": [{"claim":"The fixture is bounded.","evidence":"Local temporary files only.","classification":"observed"}],^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3233241Z ^[[36;1m  "bad": [{"issue":"This is not production evidence.","evidence":"The payload is synthetic.","classification":"observed","impact":"It cannot support a product claim."}],^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3236308Z ^[[36;1m  "recommended_improvement": {^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3237517Z ^[[36;1m    "kind":"python",^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3238951Z ^[[36;1m    "name":"synthetic_test.py",^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3240293Z ^[[36;1m    "purpose":"Exercise the renderer.",^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3241714Z ^[[36;1m    "evidence_basis":"Local fixture.",^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3243238Z ^[[36;1m    "algorithm":"Parse and validate strict fields.",^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3244757Z ^[[36;1m    "inputs":["Synthetic JSON"],^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3246077Z ^[[36;1m    "outputs":["Rendered Markdown"],^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3247761Z ^[[36;1m    "rejection_conditions":["Missing required field"]^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3249294Z ^[[36;1m  },^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3250245Z ^[[36;1m  "deterministic_tests": [^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3251833Z ^[[36;1m    {"name":"parse","fixture":"Valid JSON","assertion":"Exit zero"},^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3253844Z ^[[36;1m    {"name":"schema","fixture":"Missing key","assertion":"Reject"},^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3256068Z ^[[36;1m    {"name":"boundary","fixture":"Temporary output","assertion":"No product path"}^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3258043Z ^[[36;1m  ],^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3259103Z ^[[36;1m  "do_not_change":["Product repositories"],^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3260826Z ^[[36;1m  "uncertainties":["None relevant to this synthetic fixture"]^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3262409Z ^[[36;1m}^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3263253Z ^[[36;1mJSON^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3264436Z ^[[36;1mprintf 'synthetic prompt\n' > "$TEST_ROOT/prompt.md"^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3266173Z ^[[36;1mpython3 "$RENDER_RESPONSE" \^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3267522Z ^[[36;1m  --response "$TEST_ROOT/response.json" \^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3269093Z ^[[36;1m  --prompt "$TEST_ROOT/prompt.md" \^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3270445Z ^[[36;1m  --output "$TEST_ROOT/rendered" \^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3271689Z ^[[36;1m  --sequence 1 \^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3272740Z ^[[36;1m  --model "$MODEL_ID"^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3274007Z ^[[36;1mtest -s "$TEST_ROOT/rendered/MODEL-REVIEW.md"^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3275582Z ^[[36;1mtest -s "$TEST_ROOT/rendered/MODEL-REVIEW.json"^[[0m
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3316525Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3318279Z env:
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3319648Z   CONTROLLER_ROOT: automation/202608310322-gpt-reasoning-timer
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3321670Z   BUILD_PROMPT: automation/202608310322-gpt-reasoning-timer/build_prompt.py
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3324203Z   RENDER_RESPONSE: automation/202608310322-gpt-reasoning-timer/render_response.py
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3326718Z   PROMPT_SCHEMA: automation/202608310322-gpt-reasoning-timer/architecture-review.prompt.yml
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3328898Z   MODEL_ID: openai/gpt-4.1
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3330212Z   MODEL_BRANCH: audit/202608310322-real-gpt-hourly-review
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3340492Z   GH_TOKEN: ***
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3341455Z   PYTHONDONTWRITEBYTECODE: 1
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.3342514Z ##[endgroup]
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.4319433Z usage: render_response.py [-h] --response RESPONSE --prompt PROMPT --output
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.4322586Z                           OUTPUT --sequence SEQUENCE --model MODEL --provider
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.4324374Z                           PROVIDER --runtime RUNTIME
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.4326538Z render_response.py: error: the following arguments are required: --provider, --runtime
+reason	Validate model controller and strict response renderer	2026-08-31T02:33:48.4388840Z ##[error]Process completed with exit code 2.
