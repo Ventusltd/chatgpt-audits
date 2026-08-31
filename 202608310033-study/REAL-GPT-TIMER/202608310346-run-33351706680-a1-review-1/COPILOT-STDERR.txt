@@ -1,0 +1,4 @@
+error: unknown option '--no-banner'
+(Did you mean --banner?)
+
+Try 'copilot --help' for more information.
