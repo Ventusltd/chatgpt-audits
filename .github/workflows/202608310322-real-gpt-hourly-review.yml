@@ -32,7 +32,7 @@ env:
   SYSTEM_PROMPT: automation/202608310322-gpt-reasoning-timer/copilot-system.txt
   RUNTIME_SOURCE: automation/202608310322-gpt-reasoning-timer/copilot-runtime-source.json
   MODEL_PROVIDER: github-copilot-cli-direct
-  MODEL_ID: gpt-5.4
+  MODEL_ID: gpt-5
   COPILOT_CLI_VERSION: 1.0.82
   MODEL_BRANCH: audit/202608310322-real-gpt-hourly-review
   GITHUB_TOKEN: ${{ github.token }}
