@@ -24,6 +24,7 @@ from zoneinfo import ZoneInfo
 
 LONDON = ZoneInfo("Europe/London")
 REVIEW_STATUS = "UNREVIEWED"
+MINIMUM_AI_CREDITS = 30
 TOKEN_PATTERNS = [
     re.compile(r"github_pat_[A-Za-z0-9_]{20,}"),
     re.compile(r"gh[pousr]_[A-Za-z0-9_]{20,}"),
@@ -151,7 +152,7 @@ def main() -> int:
         "--model",
         args.model,
         "--max-ai-credits",
-        "1",
+        str(MINIMUM_AI_CREDITS),
         "--yolo",
         "--available-tools=ask_user",
         "--deny-tool=read",
@@ -206,7 +207,7 @@ def main() -> int:
         "--model",
         args.model,
         "--max-ai-credits",
-        "1",
+        str(MINIMUM_AI_CREDITS),
         "--yolo",
         "--available-tools=ask_user",
         "--deny-tool=read",
@@ -216,8 +217,8 @@ def main() -> int:
         "--deny-tool=memory",
     ]
     report: Mapping[str, object] = {
-        "schema": "chatgpt-audits.direct-copilot-run.v1",
-        "generation": "202608310405",
+        "schema": "chatgpt-audits.direct-copilot-run.v2",
+        "generation": "202608310414",
         "review_status": REVIEW_STATUS,
         "classification": "observed",
         "provider": "github-copilot-cli",
@@ -235,7 +236,7 @@ def main() -> int:
         "model_tools_available": ["ask_user"],
         "ask_user_disabled": True,
         "explicit_denials": ["read", "write", "shell", "url", "memory"],
-        "max_ai_credits": 1,
+        "max_ai_credits": MINIMUM_AI_CREDITS,
         "command": command_record,
         "product_repository_writes": "FORBIDDEN",
         "product_workflow_dispatches": "FORBIDDEN",
