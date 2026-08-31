@@ -1,0 +1,160 @@
+{
+  "schema": "chatgpt-audits.five-hour-run-manifest.v1",
+  "generation": "202608310052",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "completed_at": "2026-08-31T06:09:52.526920Z",
+  "completed_at_london": "2026-08-31T07:09:52.527037+01:00",
+  "source_snapshot_sha256": "9aca3d5ad9e5d5ba5b02edfec44bea11065ece35616ab4ba69876ecd36bddf6f",
+  "source_failures": [],
+  "files": [
+    {
+      "path": "00-EXECUTIVE-SYNTHESIS.md",
+      "bytes": 1890,
+      "sha256": "f830805211498654c218ada4e66ccada1358c178e486e4145aaf54d91358b151"
+    },
+    {
+      "path": "01-REPOSITORY-INVENTORY.json",
+      "bytes": 227970,
+      "sha256": "7fd8d6b74f0c603ef86434e6d1b59ab085be403ee4c380ac6259e7c8317fb744"
+    },
+    {
+      "path": "01-REPOSITORY-INVENTORY.md",
+      "bytes": 1745,
+      "sha256": "32ee72e27a5f86e2b8860be1d54a82590ea0474e749fb7c9d093db7bbf0d7c7b"
+    },
+    {
+      "path": "02-PIPELINENEWS-ENGINE-AUDIT.json",
+      "bytes": 324947,
+      "sha256": "da6ef6bf34381748cef4ba0e4a40735522b01c8a4876acd1846a0cd3c2843496"
+    },
+    {
+      "path": "02-PIPELINENEWS-ENGINE-AUDIT.md",
+      "bytes": 4973,
+      "sha256": "d27d1205224017f01672eb2189f5e10937e4db8620720e98b0b4a9f14029368a"
+    },
+    {
+      "path": "03-EVENT-CONTRACT-CANDIDATE.json",
+      "bytes": 1965,
+      "sha256": "0d3279b674d0a24c348afe4c2cc1e6ea1388612c2863b669c4af7a7bb9b882e8"
+    },
+    {
+      "path": "03-FUNDING-AND-PROCUREMENT-SIGNALS.md",
+      "bytes": 1671,
+      "sha256": "609f214895b62a73d334a86ce922fef70ee1f73a3f24b970101b2c5e01f86897"
+    },
+    {
+      "path": "03-FUNDING-PROCUREMENT-EVIDENCE.json",
+      "bytes": 160680,
+      "sha256": "63d8a6e2931cd3aa90d0f88800954550c2a48922b0491717578a66d59eedb0de"
+    },
+    {
+      "path": "04-CLAUDE-CROSSCHECK-LEDGER.json",
+      "bytes": 22160,
+      "sha256": "9681e72ef7a3ac4ffa34ef55a996c4c68af34bcbcda1ea8631a3278abed94892"
+    },
+    {
+      "path": "04-SEAMS-AND-CLAUDE-CROSSCHECK.md",
+      "bytes": 2173,
+      "sha256": "fe6f33b1293a2af9541f905d6f18357c673293b7fac3a89d52947eac9023524d"
+    },
+    {
+      "path": "05-PIPELINENEWS-VNEXT.md",
+      "bytes": 805,
+      "sha256": "423e1c2be4dc20f4b7e04813f2fb75cf4ffc53154ca8237657d85bbaf7650c6f"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1425,
+      "sha256": "cf676d3bd08f6ff5ff2db665e4eab09044c28f27cd81c16103b5bced4584ed96"
+    },
+    {
+      "path": "REVIEW-QUEUE.md",
+      "bytes": 924,
+      "sha256": "7aee908fc91b9c385c5d621ae034f935ff56f7fde1de38635a94c00b9799cb07"
+    },
+    {
+      "path": "RUN-CONTEXT.json",
+      "bytes": 567,
+      "sha256": "6657697308037fe7b33d9d8f561dd3ac8d1ed8e2e6a96253ae85380986135a43"
+    },
+    {
+      "path": "SOURCE-SNAPSHOT.json",
+      "bytes": 11461,
+      "sha256": "9aca3d5ad9e5d5ba5b02edfec44bea11065ece35616ab4ba69876ecd36bddf6f"
+    },
+    {
+      "path": "checkpoint-01.json",
+      "bytes": 439,
+      "sha256": "27e4625bcc3d2b64b2497f75548145a5ebb6ae7e634df83e062a3f0245eeda03"
+    },
+    {
+      "path": "checkpoint-02.json",
+      "bytes": 431,
+      "sha256": "77387bdefd2f84ee291e0da180d82697721af21b31483c5c8bd8a376e9fc01dd"
+    },
+    {
+      "path": "checkpoint-03.json",
+      "bytes": 426,
+      "sha256": "96ef4044cc50c3216ed74579e5acecd0ed93c00dd92e6c866a41b95b7e4209e8"
+    },
+    {
+      "path": "checkpoint-04.json",
+      "bytes": 418,
+      "sha256": "871205dae3d46a28e18ba8a7ee22b0cfd3cfca6417151933e280a7227bfc12ac"
+    },
+    {
+      "path": "checkpoint-05.json",
+      "bytes": 454,
+      "sha256": "a50902253452875ffda4abdc5c77af5b30073af64dd81afe55b091e482a4b34a"
+    },
+    {
+      "path": "next-versions/202608310052-pipelinenews-intelligence-vnext/IMPLEMENTATION-BACKLOG.md",
+      "bytes": 2220,
+      "sha256": "df25eef9ffb5013b1f15f413a9ad728b1f66382eb5fe022dbc1a3d3926d73d8a"
+    },
+    {
+      "path": "next-versions/202608310052-pipelinenews-intelligence-vnext/MIGRATION-MAP.md",
+      "bytes": 1062,
+      "sha256": "6df2e6bcb050dbf3ffe69302c80c0313c7b714b56d3274fc4b2f2299412df339"
+    },
+    {
+      "path": "next-versions/202608310052-pipelinenews-intelligence-vnext/README.md",
+      "bytes": 1489,
+      "sha256": "12e8bd8b8341d07d6b5ddb717f2f37c8a43d632514a6e587f3c1a079b748f195"
+    },
+    {
+      "path": "next-versions/202608310052-pipelinenews-intelligence-vnext/architecture.vnext.json",
+      "bytes": 3339,
+      "sha256": "c056df518dd92bab9300f4d8c5f79b66dfca303579061d700f8009abc89893ca"
+    },
+    {
+      "path": "next-versions/202608310052-pipelinenews-intelligence-vnext/reference/state_machine.py",
+      "bytes": 3202,
+      "sha256": "1af0642134bb975b562080f4fd2679c7446dea08cb4a69df65ecd7b809283cd3"
+    },
+    {
+      "path": "next-versions/202608310052-pipelinenews-intelligence-vnext/reference/test_state_machine.py",
+      "bytes": 2168,
+      "sha256": "bb3f7d07bd88200468caf64b349ea006634e0483e2669cd2156b1f41010f17a2"
+    },
+    {
+      "path": "next-versions/202608310052-pipelinenews-intelligence-vnext/schemas/evidence-event.schema.json",
+      "bytes": 2377,
+      "sha256": "8d5eb79cb6b109f0d656455893d006597264af4a9e25795e073e2444155432cc"
+    },
+    {
+      "path": "next-versions/202608310052-pipelinenews-intelligence-vnext/schemas/project-intelligence-summary.schema.json",
+      "bytes": 1911,
+      "sha256": "575ec0ebcfcbfebb1f7a20dc820b94606260f6698298c384f6af2b33c2fc4b1f"
+    },
+    {
+      "path": "next-versions/202608310052-pipelinenews-intelligence-vnext/schemas/timing-transition.schema.json",
+      "bytes": 1664,
+      "sha256": "1640fc9f47f83449db4a6ca6eca5d14bf64170aab7a8f9fe00078ba56fc1fb0f"
+    }
+  ],
+  "total_files": 29,
+  "total_bytes": 786956,
+  "graduation_status": "HUMAN_REVIEW_REQUIRED"
+}
