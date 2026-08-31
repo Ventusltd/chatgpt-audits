@@ -6,6 +6,7 @@ on:
       - 202608310052 five-hour quarantined cross-repo study
       - 202608310116 overnight audit swarm
       - 202608310121 hourly audit watchdog
+      - 202608310322 real GPT hourly architecture reviewer
     types:
       - completed
   workflow_dispatch:
