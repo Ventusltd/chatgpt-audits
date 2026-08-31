@@ -156,7 +156,7 @@ jobs:
             echo "target_path=$TARGET_PATH"
           } >> "$GITHUB_OUTPUT"
 
-      - name: Build current evidence packet
+      - name: Build and materialise the current evidence prompt
         if: steps.allocate.outputs.created == 'true'
         env:
           SEQUENCE: ${{ steps.allocate.outputs.sequence }}
@@ -171,16 +171,39 @@ jobs:
           test -s "$TEMP_OUTPUT/EVIDENCE-PACKET.md"
           cp "$PROMPT_SCHEMA" "$TEMP_OUTPUT/PROMPT-SCHEMA.yml"
 
+          python3 - "$PROMPT_SCHEMA" "$TEMP_OUTPUT/EVIDENCE-PACKET.md" "$TEMP_OUTPUT/INFERENCE.prompt.yml" "$SEQUENCE" <<'PY'
+          from pathlib import Path
+          import sys
+
+          template_path = Path(sys.argv[1])
+          evidence_path = Path(sys.argv[2])
+          output_path = Path(sys.argv[3])
+          sequence = sys.argv[4]
+          template = template_path.read_text(encoding="utf-8")
+          evidence = evidence_path.read_text(encoding="utf-8")
+          placeholder = "      {{evidence_packet}}"
+          if template.count(placeholder) != 1 or template.count("{{sequence}}") != 1:
+              raise SystemExit("prompt template placeholders changed unexpectedly")
+          # Neutralise template-shaped tokens inside untrusted source excerpts.
+          evidence = evidence.replace("{{", "{ {").replace("}}", "} }")
+          indented = "\n".join("      " + line for line in evidence.splitlines())
+          rendered = template.replace("{{sequence}}", sequence).replace(placeholder, indented)
+          if "{{sequence}}" in rendered or "{{evidence_packet}}" in rendered:
+              raise SystemExit("unresolved prompt placeholder")
+          output_path.write_text(rendered, encoding="utf-8")
+          PY
+
+          test -s "$TEMP_OUTPUT/INFERENCE.prompt.yml"
+          grep -q '^model: openai/gpt-4.1$' "$TEMP_OUTPUT/INFERENCE.prompt.yml"
+          grep -q '^responseFormat: json_schema$' "$TEMP_OUTPUT/INFERENCE.prompt.yml"
+
       - name: Ask a real GPT model what happened, what is good or bad, and what to build next
         id: inference
         if: steps.allocate.outputs.created == 'true'
         uses: actions/ai-inference@b81b2afb8390ee6839b494a404766bef6493c7d9 # v1
         with:
-          prompt-file: ${{ env.PROMPT_SCHEMA }}
-          input: |
-            sequence: ${{ steps.allocate.outputs.sequence }}
-          file_input: |
-            evidence_packet: ${{ steps.allocate.outputs.temp_output }}/EVIDENCE-PACKET.md
+          prompt-file: ${{ steps.allocate.outputs.temp_output }}/INFERENCE.prompt.yml
+          model: ${{ env.MODEL_ID }}
           max-tokens: '2200'
           token: ${{ github.token }}
 
@@ -197,7 +220,7 @@ jobs:
           test -s "$RESPONSE_FILE"
           python3 "$RENDER_RESPONSE" \
             --response "$RESPONSE_FILE" \
-            --prompt "$TEMP_OUTPUT/EVIDENCE-PACKET.md" \
+            --prompt "$TEMP_OUTPUT/INFERENCE.prompt.yml" \
             --output "$TEMP_OUTPUT" \
             --sequence "$SEQUENCE" \
             --model "$MODEL_ID"
