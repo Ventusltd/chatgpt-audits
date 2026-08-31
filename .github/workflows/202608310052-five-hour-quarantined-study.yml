@@ -1,0 +1,283 @@
+name: 202608310052 five-hour quarantined cross-repo study
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/202608310052-five-hour-quarantined-study.yml
+  workflow_dispatch:
+    inputs:
+      checkpoint_minutes:
+        description: Minutes between the five evidence checkpoints
+        required: true
+        default: "60"
+        type: choice
+        options:
+          - "60"
+          - "30"
+          - "5"
+      complete_window:
+        description: Hold the run open until all five checkpoint intervals have elapsed
+        required: true
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: 202608310052-five-hour-quarantined-study
+  cancel-in-progress: false
+
+jobs:
+  study:
+    if: github.repository == 'Ventusltd/chatgpt-audits'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 330
+    env:
+      PROGRAMME_DIR: automation/202608310052-five-hour-study
+      PLAN: automation/202608310052-five-hour-study/study-plan.json
+      CONTROLLER: automation/202608310052-five-hour-study/run_study.py
+      VERIFIER: automation/202608310052-five-hour-study/verify_quarantine.py
+      CHECKPOINT_MINUTES: ${{ inputs.checkpoint_minutes || '60' }}
+      COMPLETE_WINDOW: ${{ inputs.complete_window || 'true' }}
+      PYTHONDONTWRITEBYTECODE: "1"
+      GIT_TERMINAL_PROMPT: "0"
+
+    steps:
+      - name: Checkout audit repository only
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+          token: ${{ github.token }}
+
+      - name: Validate the quarantined controller
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "Ventusltd/chatgpt-audits"
+          test -f "$PLAN"
+          test -f "$CONTROLLER"
+          test -f "$VERIFIER"
+          python3 --version
+          python3 -m json.tool "$PLAN" >/dev/null
+          python3 -m py_compile "$CONTROLLER" "$VERIFIER"
+          rm -rf "$PROGRAMME_DIR/__pycache__"
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          plan = json.loads(Path("automation/202608310052-five-hour-study/study-plan.json").read_text())
+          assert plan["generation"] == "202608310052"
+          assert plan["review_status"] == "UNREVIEWED"
+          assert plan["source_policy"]["write_boundary"] == "Ventusltd/chatgpt-audits only"
+          assert plan["source_policy"]["product_repo_writes"] == "FORBIDDEN"
+          assert len(plan["phases"]) == 5
+          assert plan["repositories"][0]["name"] == "pipelinenews"
+          PY
+
+      - name: Create run-specific audit branch and output root
+        run: |
+          set -euo pipefail
+          RUN_STAMP=$(TZ=Europe/London date +%Y%m%d%H%M)
+          QUARANTINE_BRANCH="audit/${RUN_STAMP}-five-hour-${GITHUB_RUN_ID}"
+          OUTPUT_ROOT="202608310033-study/AUTOMATION-RUNS/${RUN_STAMP}-github-run-${GITHUB_RUN_ID}"
+          SOURCE_ROOT="$RUNNER_TEMP/202608310052-source-snapshots"
+          SOURCE_MANIFEST="$GITHUB_WORKSPACE/$OUTPUT_ROOT/SOURCE-SNAPSHOT.json"
+          RUN_START_EPOCH=$(date +%s)
+
+          {
+            echo "RUN_STAMP=$RUN_STAMP"
+            echo "QUARANTINE_BRANCH=$QUARANTINE_BRANCH"
+            echo "OUTPUT_ROOT=$OUTPUT_ROOT"
+            echo "SOURCE_ROOT=$SOURCE_ROOT"
+            echo "SOURCE_MANIFEST=$SOURCE_MANIFEST"
+            echo "RUN_START_EPOCH=$RUN_START_EPOCH"
+          } >> "$GITHUB_ENV"
+
+          git config user.name "chatgpt-audits-quarantine"
+          git config user.email "actions@users.noreply.github.com"
+          git switch -c "$QUARANTINE_BRANCH"
+
+          python3 "$CONTROLLER" initialise \
+            --plan "$PLAN" \
+            --output-root "$OUTPUT_ROOT" \
+            --run-id "$GITHUB_RUN_ID" \
+            --run-attempt "$GITHUB_RUN_ATTEMPT" \
+            --event-name "$GITHUB_EVENT_NAME" \
+            --branch "$QUARANTINE_BRANCH"
+
+      - name: Snapshot whitelisted product repositories read-only
+        run: |
+          set -euo pipefail
+          mkdir -p "$SOURCE_ROOT"
+          python3 "$CONTROLLER" snapshot \
+            --plan "$PLAN" \
+            --source-root "$SOURCE_ROOT" \
+            --manifest "$SOURCE_MANIFEST"
+
+      - name: Run five hourly evidence checkpoints
+        run: |
+          set -euo pipefail
+
+          sleep_until() {
+            local target_epoch=$1
+            while true; do
+              local now remaining nap
+              now=$(date +%s)
+              remaining=$((target_epoch - now))
+              if [ "$remaining" -le 0 ]; then
+                break
+              fi
+              nap=300
+              if [ "$remaining" -lt "$nap" ]; then nap=$remaining; fi
+              echo "Heartbeat: next checkpoint in ${remaining}s; branch=${QUARANTINE_BRANCH}"
+              sleep "$nap"
+            done
+          }
+
+          commit_checkpoint() {
+            local phase=$1
+            local checkpoint_stamp
+            checkpoint_stamp=$(TZ=Europe/London date +%Y%m%d%H%M)
+
+            find "$OUTPUT_ROOT" -type d -name __pycache__ -prune -exec rm -rf {} + || true
+            find "$OUTPUT_ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+
+            python3 "$VERIFIER" \
+              --audit-root "$GITHUB_WORKSPACE" \
+              --output-root "$OUTPUT_ROOT" \
+              --source-root "$SOURCE_ROOT" \
+              --manifest "$SOURCE_MANIFEST" \
+              --plan "$PLAN" \
+              --phase "$phase"
+
+            git add -- "$OUTPUT_ROOT"
+            python3 - "$OUTPUT_ROOT" <<'PY'
+          import subprocess
+          import sys
+
+          allowed = sys.argv[1].rstrip("/") + "/"
+          names = subprocess.check_output(["git", "diff", "--cached", "--name-only", "-z"]).split(b"\0")
+          escaped = [name.decode("utf-8", "replace") for name in names if name and not name.decode("utf-8", "replace").startswith(allowed)]
+          if escaped:
+              raise SystemExit(f"staged path escaped quarantine: {escaped}")
+          PY
+
+            if git diff --cached --quiet; then
+              echo "No new checkpoint files for phase $phase"
+              return
+            fi
+            git commit -m "${checkpoint_stamp}-audit: UNREVIEWED checkpoint ${phase}/5"
+            if git ls-remote --exit-code --heads origin "$QUARANTINE_BRANCH" >/dev/null 2>&1; then
+              git push origin HEAD:"$QUARANTINE_BRANCH"
+            else
+              git push --set-upstream origin HEAD:"$QUARANTINE_BRANCH"
+            fi
+          }
+
+          for phase in 1 2 3 4 5; do
+            echo "Starting evidence checkpoint ${phase}/5"
+            python3 "$CONTROLLER" phase \
+              --phase "$phase" \
+              --plan "$PLAN" \
+              --source-root "$SOURCE_ROOT" \
+              --manifest "$SOURCE_MANIFEST" \
+              --audit-root "$GITHUB_WORKSPACE" \
+              --output-root "$OUTPUT_ROOT"
+
+            if [ "$phase" -eq 5 ]; then
+              REFERENCE="$OUTPUT_ROOT/next-versions/202608310052-pipelinenews-intelligence-vnext/reference"
+              PYTHONPATH="$REFERENCE" python3 -m unittest discover -s "$REFERENCE" -p 'test_*.py' -v
+            fi
+
+            commit_checkpoint "$phase"
+
+            if [ "$phase" -lt 5 ]; then
+              target=$((RUN_START_EPOCH + phase * CHECKPOINT_MINUTES * 60))
+              sleep_until "$target"
+            fi
+          done
+
+      - name: Hold the full five-hour study window
+        if: env.COMPLETE_WINDOW == 'true'
+        run: |
+          set -euo pipefail
+          target=$((RUN_START_EPOCH + 5 * CHECKPOINT_MINUTES * 60))
+          while true; do
+            now=$(date +%s)
+            remaining=$((target - now))
+            if [ "$remaining" -le 0 ]; then break; fi
+            nap=300
+            if [ "$remaining" -lt "$nap" ]; then nap=$remaining; fi
+            echo "Heartbeat: final synthesis opens in ${remaining}s; branch=${QUARANTINE_BRANCH}"
+            sleep "$nap"
+          done
+
+      - name: Finalise synthesis, manifest and human review queue
+        run: |
+          set -euo pipefail
+          python3 "$CONTROLLER" finalise \
+            --output-root "$OUTPUT_ROOT" \
+            --manifest "$SOURCE_MANIFEST"
+
+          find "$OUTPUT_ROOT" -type d -name __pycache__ -prune -exec rm -rf {} + || true
+          find "$OUTPUT_ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+
+          python3 "$VERIFIER" \
+            --audit-root "$GITHUB_WORKSPACE" \
+            --output-root "$OUTPUT_ROOT" \
+            --source-root "$SOURCE_ROOT" \
+            --manifest "$SOURCE_MANIFEST" \
+            --plan "$PLAN" \
+            --phase 6
+
+          git add -- "$OUTPUT_ROOT"
+          python3 - "$OUTPUT_ROOT" <<'PY'
+          import subprocess
+          import sys
+
+          allowed = sys.argv[1].rstrip("/") + "/"
+          names = subprocess.check_output(["git", "diff", "--cached", "--name-only", "-z"]).split(b"\0")
+          escaped = [name.decode("utf-8", "replace") for name in names if name and not name.decode("utf-8", "replace").startswith(allowed)]
+          if escaped:
+              raise SystemExit(f"staged path escaped quarantine: {escaped}")
+          PY
+
+          if ! git diff --cached --quiet; then
+            FINAL_STAMP=$(TZ=Europe/London date +%Y%m%d%H%M)
+            git commit -m "${FINAL_STAMP}-audit: UNREVIEWED five-hour synthesis"
+            git push origin HEAD:"$QUARANTINE_BRANCH"
+          fi
+
+      - name: Upload quarantined study artefact
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: 202608310052-five-hour-study-${{ github.run_id }}
+          path: ${{ env.OUTPUT_ROOT }}
+          if-no-files-found: warn
+          retention-days: 90
+          compression-level: 9
+
+      - name: Publish run summary
+        if: always()
+        run: |
+          {
+            echo "# Five-hour quarantined study"
+            echo
+            echo "- Review status: **UNREVIEWED**"
+            echo "- Audit repository only: \`${GITHUB_REPOSITORY}\`"
+            echo "- Quarantine branch: \`${QUARANTINE_BRANCH:-not-created}\`"
+            echo "- Output root: \`${OUTPUT_ROOT:-not-created}\`"
+            echo "- Source policy: whitelisted GitHub source snapshots only; no live data APIs"
+            echo "- Product repository writes or dispatches: **none by design**"
+            echo "- Highest priority: PipelineNews intelligence engine"
+            echo "- Checkpoint interval: ${CHECKPOINT_MINUTES} minutes"
+            echo "- Final status: see job result"
+          } >> "$GITHUB_STEP_SUMMARY"
