@@ -1,0 +1,50 @@
+{
+  "schema": "chatgpt-audits.failure-repair.v1",
+  "generation": "202608310122",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "inspected_at": "2026-08-31T02:34:16.313844Z",
+  "inspected_at_london": "2026-08-31T03:34:16.313844+01:00",
+  "workflow": {
+    "id": 33351058646,
+    "name": "202608310322 real GPT hourly architecture reviewer",
+    "path": ".github/workflows/202608310322-real-gpt-hourly-review.yml",
+    "event": "push",
+    "status": "completed",
+    "conclusion": "failure",
+    "run_attempt": 2,
+    "head_sha": "dec8f46a0ee401ff930699d92624e3d59d1ce8dc",
+    "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33351058646"
+  },
+  "diagnosis": [
+    {
+      "disease": "bytecode_boundary",
+      "classification": "inferred",
+      "evidence_excerpt": "le \"$BUILD_PROMPT\" \"$RENDER_RESPONSE\"^[[0m reason Validate model controller and strict response renderer 2026-08-31T02:34:04.9555031Z ^[[36;1mfind \"$CONTROLLER_ROOT\" -type d -name __pycache__ -prune -exec rm -rf {} +^[[0m reason Validate model controller and strict response renderer 2026-08-31T02:34:04.9556790Z ^[[36;1m^[[0m reason Validate model controller and strict response renderer 2026-08-31T02:34:04.9558092Z ^[[36;1mTEST_ROOT=\"$RUNNER_TEMP/202608310322-renderer-self-test\"^[[0m reason Validate model c"
+    },
+    {
+      "disease": "network_transient",
+      "classification": "inferred",
+      "evidence_excerpt": "-08-31T02:34:04.9552754Z ^[[36;1mpython3 -m py_compile \"$BUILD_PROMPT\" \"$RENDER_RESPONSE\"^[[0m reason Validate model controller and strict response renderer 2026-08-31T02:34:04.9555031Z ^[[36;1mfind \"$CONTROLLER_ROOT\" -type d -name __pycache__ -prune -exec rm -rf {} +^[[0m reason Validate model controller and strict response renderer 2026-08-31T02:34:04.9556790Z ^[[36;1m^[[0m reason Validate model controller and strict response renderer 2026-08-31T02:34:04.9558092Z ^[[36;1mTEST_ROOT=\"$RUNNER_TEMP/2"
+    },
+    {
+      "disease": "contract_assertion",
+      "classification": "inferred",
+      "evidence_excerpt": "08-31T02:34:04.9546246Z ^[[36;1mtest -f \"$RENDER_RESPONSE\"^[[0m reason Validate model controller and strict response renderer 2026-08-31T02:34:04.9547598Z ^[[36;1mtest -f \"$PROMPT_SCHEMA\"^[[0m reason Validate model controller and strict response renderer 2026-08-31T02:34:04.9549081Z ^[[36;1mgrep -q '^model: openai/gpt-4.1$' \"$PROMPT_SCHEMA\"^[[0m reason Validate model controller and strict response renderer 2026-08-31T02:34:04.9550879Z ^[[36;1mgrep -q '^responseFormat: json_schema$' \"$PROMPT_SCHEMA\"^[["
+    }
+  ],
+  "repair_action": {
+    "requested": true,
+    "endpoint": "/repos/Ventusltd/chatgpt-audits/actions/runs/33351058646/rerun-failed-jobs",
+    "http_status": 201,
+    "error": null,
+    "classification": "observed",
+    "reason": "GitHub-native bounded retry requested because the completed audit run is below attempt 3."
+  },
+  "source_policy": {
+    "write_boundary": "Ventusltd/chatgpt-audits",
+    "product_repo_writes": "FORBIDDEN",
+    "product_workflow_dispatches": "FORBIDDEN",
+    "automatic_source_patch": "FORBIDDEN"
+  }
+}
