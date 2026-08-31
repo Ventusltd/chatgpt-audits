@@ -1,0 +1,3241 @@
+{
+  "schema": "chatgpt-audits.hourly-watchdog.v1",
+  "generation": "202608310121",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "checked_at": "2026-08-31T00:48:54.644377Z",
+  "checked_at_london": "2026-08-31T01:48:54.644377+01:00",
+  "lookback_hours": 12,
+  "source_policy": {
+    "write_boundary": "Ventusltd/chatgpt-audits",
+    "audit_rerun_limit": 3,
+    "product_repository_actions": "READ_ONLY",
+    "absence_is_evidence": false
+  },
+  "timer_state": {
+    "five_hour": "RUNNING",
+    "swarm": "NOT_CURRENTLY_ACTIVE",
+    "classification": "observed"
+  },
+  "repositories": [
+    {
+      "repository": "Ventusltd/chatgpt-audits",
+      "classification": "observed",
+      "api_error": null,
+      "runs_examined": 35,
+      "active": [
+        {
+          "run_id": 33345677192,
+          "name": "202608310121 hourly audit watchdog",
+          "path": ".github/workflows/202608310121-hourly-audit-watchdog.yml",
+          "event": "push",
+          "head_sha": "8c5d61ba1d96bb15fc680b1c6c75f69df1d6e4eb",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:48:46Z",
+          "updated_at": "2026-08-31T00:48:51Z",
+          "age_minutes": 0.1,
+          "quiet_minutes": 0.1,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345677192"
+        },
+        {
+          "run_id": 33345676958,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "8c5d61ba1d96bb15fc680b1c6c75f69df1d6e4eb",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:48:45Z",
+          "updated_at": "2026-08-31T00:48:52Z",
+          "age_minutes": 0.2,
+          "quiet_minutes": 0.0,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345676958"
+        },
+        {
+          "run_id": 33343650645,
+          "name": "202608310052 five-hour quarantined cross-repo study",
+          "path": ".github/workflows/202608310052-five-hour-quarantined-study.yml",
+          "event": "push",
+          "head_sha": "f14c11f74959ea92dbf7f91e421225c0567c7e16",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_attempt": 2,
+          "created_at": "2026-08-31T00:07:58Z",
+          "updated_at": "2026-08-31T00:09:27Z",
+          "age_minutes": 40.9,
+          "quiet_minutes": 39.5,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33343650645"
+        }
+      ],
+      "failed": [
+        {
+          "run_id": 33345665216,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "4d08e8400a87bc436e55929c9fbef6a4576841c6",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:48:30Z",
+          "updated_at": "2026-08-31T00:48:50Z",
+          "age_minutes": 0.4,
+          "quiet_minutes": 0.1,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345665216",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99349179840,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:48:36Z",
+                "completed_at": "2026-08-31T00:48:49Z",
+                "failed_steps": [
+                  {
+                    "number": 2,
+                    "name": "Pull ghcr.io/actions/jekyll-build-pages:v1.0.13",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99349213592,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:48:49Z",
+                "completed_at": "2026-08-31T00:48:49Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99349213609,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:48:49Z",
+                "completed_at": "2026-08-31T00:48:49Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33345660796,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "45c254a6a7a6e169bede0aebca2641c81b2e6db8",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:48:24Z",
+          "updated_at": "2026-08-31T00:48:34Z",
+          "age_minutes": 0.5,
+          "quiet_minutes": 0.3,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345660796",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99349168583,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:48:31Z",
+                "completed_at": "2026-08-31T00:48:33Z",
+                "failed_steps": [
+                  {
+                    "number": 1,
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99349179297,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:48:33Z",
+                "completed_at": "2026-08-31T00:48:33Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99349179304,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:48:34Z",
+                "completed_at": "2026-08-31T00:48:33Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33345638408,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "1ca5272d8e243aabed4aff5a0119b0cbf45e9f00",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:47:56Z",
+          "updated_at": "2026-08-31T00:48:29Z",
+          "age_minutes": 1.0,
+          "quiet_minutes": 0.4,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345638408",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99349109530,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:48:03Z",
+                "completed_at": "2026-08-31T00:48:28Z",
+                "failed_steps": [
+                  {
+                    "number": 2,
+                    "name": "Pull ghcr.io/actions/jekyll-build-pages:v1.0.13",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99349167674,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:48:28Z",
+                "completed_at": "2026-08-31T00:48:28Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99349168162,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:48:28Z",
+                "completed_at": "2026-08-31T00:48:28Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33345633372,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "995f0f38e257a073f28649dd80214d3edb5bada2",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:47:49Z",
+          "updated_at": "2026-08-31T00:48:01Z",
+          "age_minutes": 1.1,
+          "quiet_minutes": 0.9,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345633372",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99349087604,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:47:54Z",
+                "completed_at": "2026-08-31T00:48:00Z",
+                "failed_steps": [
+                  {
+                    "number": 1,
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99349108426,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:48:01Z",
+                "completed_at": "2026-08-31T00:48:00Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99349108560,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:48:01Z",
+                "completed_at": "2026-08-31T00:48:00Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33345620831,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "6bae7f00d06b48efea4d12c6f3518eb9fd6604b6",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:47:34Z",
+          "updated_at": "2026-08-31T00:47:52Z",
+          "age_minutes": 1.3,
+          "quiet_minutes": 1.0,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345620831",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99349082533,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:47:49Z",
+                "completed_at": "2026-08-31T00:47:51Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99349087037,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:47:51Z",
+                "completed_at": "2026-08-31T00:47:51Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99349087073,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:47:51Z",
+                "completed_at": "2026-08-31T00:47:51Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33345588824,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "214c5d8522331b8b226ed7b906f29d18df4403fe",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:46:54Z",
+          "updated_at": "2026-08-31T00:47:50Z",
+          "age_minutes": 2.0,
+          "quiet_minutes": 1.1,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345588824",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99348966646,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:47:00Z",
+                "completed_at": "2026-08-31T00:47:48Z",
+                "failed_steps": [
+                  {
+                    "number": 4,
+                    "name": "Build with Jekyll",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99349082012,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:47:49Z",
+                "completed_at": "2026-08-31T00:47:49Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99349082273,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:47:49Z",
+                "completed_at": "2026-08-31T00:47:49Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33345579062,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "c0351254dfed27fb75cf77f8f71cac14339a2b8a",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:46:42Z",
+          "updated_at": "2026-08-31T00:46:58Z",
+          "age_minutes": 2.2,
+          "quiet_minutes": 1.9,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345579062",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99348934198,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:46:45Z",
+                "completed_at": "2026-08-31T00:46:57Z",
+                "failed_steps": [
+                  {
+                    "number": 2,
+                    "name": "Pull ghcr.io/actions/jekyll-build-pages:v1.0.13",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99348965941,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:46:57Z",
+                "completed_at": "2026-08-31T00:46:57Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99348966152,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:46:57Z",
+                "completed_at": "2026-08-31T00:46:57Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33345373225,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "213d9970f01dac41499eb4296be4fab43aaaf911",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:42:39Z",
+          "updated_at": "2026-08-31T00:43:43Z",
+          "age_minutes": 6.3,
+          "quiet_minutes": 5.2,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345373225",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99348366777,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:42:47Z",
+                "completed_at": "2026-08-31T00:43:42Z",
+                "failed_steps": [
+                  {
+                    "number": 5,
+                    "name": "Upload artifact",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99348499044,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:43:42Z",
+                "completed_at": "2026-08-31T00:43:42Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99348499359,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:43:43Z",
+                "completed_at": "2026-08-31T00:43:42Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33345364100,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "cb8bcb084fd790dfad29a3e3f39d71998f8864ed",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:42:28Z",
+          "updated_at": "2026-08-31T00:42:44Z",
+          "age_minutes": 6.4,
+          "quiet_minutes": 6.2,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345364100",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99348341112,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:42:35Z",
+                "completed_at": "2026-08-31T00:42:43Z",
+                "failed_steps": [
+                  {
+                    "number": 2,
+                    "name": "Pull ghcr.io/actions/jekyll-build-pages:v1.0.13",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99348366170,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:42:44Z",
+                "completed_at": "2026-08-31T00:42:43Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99348366324,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:42:44Z",
+                "completed_at": "2026-08-31T00:42:43Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33345356210,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "34145433766ebf67c5dbd90fe057437aaa0b53d5",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:42:18Z",
+          "updated_at": "2026-08-31T00:42:31Z",
+          "age_minutes": 6.6,
+          "quiet_minutes": 6.4,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345356210",
+          "jobs": {
+            "api_error": null,
+            "jobs": []
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33345324288,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "82af29d701279d6297deaf1ee0e66b9b0a9a9cd0",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:41:39Z",
+          "updated_at": "2026-08-31T00:42:33Z",
+          "age_minutes": 7.3,
+          "quiet_minutes": 6.4,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345324288",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99348255222,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:41:56Z",
+                "completed_at": "2026-08-31T00:42:32Z",
+                "failed_steps": [
+                  {
+                    "number": 4,
+                    "name": "Build with Jekyll",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99348340062,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:42:33Z",
+                "completed_at": "2026-08-31T00:42:32Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99348340407,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:42:33Z",
+                "completed_at": "2026-08-31T00:42:32Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33345303155,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "6c6141120369b6c8aa0e8c0e97f2125020b2c271",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:41:10Z",
+          "updated_at": "2026-08-31T00:41:54Z",
+          "age_minutes": 7.7,
+          "quiet_minutes": 7.0,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345303155",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99348168053,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:41:16Z",
+                "completed_at": "2026-08-31T00:41:53Z",
+                "failed_steps": [
+                  {
+                    "number": 4,
+                    "name": "Build with Jekyll",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99348254572,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:41:54Z",
+                "completed_at": "2026-08-31T00:41:53Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99348254789,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:41:54Z",
+                "completed_at": "2026-08-31T00:41:53Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33345276785,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "06ba75e0d8d98b262bb20b2cb046d3b862326456",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:40:37Z",
+          "updated_at": "2026-08-31T00:41:14Z",
+          "age_minutes": 8.3,
+          "quiet_minutes": 7.7,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345276785",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99348117883,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:40:53Z",
+                "completed_at": "2026-08-31T00:41:13Z",
+                "failed_steps": [
+                  {
+                    "number": 2,
+                    "name": "Pull ghcr.io/actions/jekyll-build-pages:v1.0.13",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99348167719,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:41:13Z",
+                "completed_at": "2026-08-31T00:41:13Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99348167913,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:41:14Z",
+                "completed_at": "2026-08-31T00:41:13Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33345253190,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "4f95fed6bb1aa7fdc881d6e2fa947d99c5de4244",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:40:08Z",
+          "updated_at": "2026-08-31T00:40:51Z",
+          "age_minutes": 8.8,
+          "quiet_minutes": 8.1,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345253190",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99348052951,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:40:24Z",
+                "completed_at": "2026-08-31T00:40:50Z",
+                "failed_steps": [
+                  {
+                    "number": 4,
+                    "name": "Build with Jekyll",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99348117591,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:40:51Z",
+                "completed_at": "2026-08-31T00:40:50Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99348117615,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:40:51Z",
+                "completed_at": "2026-08-31T00:40:50Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33345226117,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "8e61865c92f248eed10932d3ce5a5cf2b6c9a11e",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:39:36Z",
+          "updated_at": "2026-08-31T00:40:22Z",
+          "age_minutes": 9.3,
+          "quiet_minutes": 8.5,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345226117",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99347978669,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:39:53Z",
+                "completed_at": "2026-08-31T00:40:21Z",
+                "failed_steps": [
+                  {
+                    "number": 4,
+                    "name": "Build with Jekyll",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99348052200,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:40:22Z",
+                "completed_at": "2026-08-31T00:40:22Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99348052705,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:40:22Z",
+                "completed_at": "2026-08-31T00:40:22Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33345204663,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "3f4e45d913b33fbe77eeb29267e6930fe15edf6f",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:39:07Z",
+          "updated_at": "2026-08-31T00:39:50Z",
+          "age_minutes": 9.8,
+          "quiet_minutes": 9.1,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345204663",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99347894145,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:39:13Z",
+                "completed_at": "2026-08-31T00:39:49Z",
+                "failed_steps": [
+                  {
+                    "number": 4,
+                    "name": "Build with Jekyll",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99347978078,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:39:50Z",
+                "completed_at": "2026-08-31T00:39:50Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99347978209,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:39:50Z",
+                "completed_at": "2026-08-31T00:39:50Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33345176705,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "1a9c06dc29fa34d6018100fc94df7a508ef35f7e",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:38:33Z",
+          "updated_at": "2026-08-31T00:39:11Z",
+          "age_minutes": 10.4,
+          "quiet_minutes": 9.7,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345176705",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99347841018,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:38:50Z",
+                "completed_at": "2026-08-31T00:39:10Z",
+                "failed_steps": [
+                  {
+                    "number": 2,
+                    "name": "Pull ghcr.io/actions/jekyll-build-pages:v1.0.13",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99347893523,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:39:10Z",
+                "completed_at": "2026-08-31T00:39:10Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99347893680,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:39:11Z",
+                "completed_at": "2026-08-31T00:39:10Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33345150812,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "b40f56bc6bc7afc18ca01f0a84ce6c12e37d6fca",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:37:58Z",
+          "updated_at": "2026-08-31T00:38:48Z",
+          "age_minutes": 10.9,
+          "quiet_minutes": 10.1,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345150812",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99347737275,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:38:02Z",
+                "completed_at": "2026-08-31T00:38:47Z",
+                "failed_steps": [
+                  {
+                    "number": 4,
+                    "name": "Build with Jekyll",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99347840342,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:38:47Z",
+                "completed_at": "2026-08-31T00:38:47Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99347840510,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:38:47Z",
+                "completed_at": "2026-08-31T00:38:47Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33344398038,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "e1dbd23341adfba5ce32d8251e40c202cf78ac06",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:22:33Z",
+          "updated_at": "2026-08-31T00:23:18Z",
+          "age_minutes": 26.4,
+          "quiet_minutes": 25.6,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33344398038",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99345676641,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:22:37Z",
+                "completed_at": "2026-08-31T00:23:17Z",
+                "failed_steps": [
+                  {
+                    "number": 4,
+                    "name": "Build with Jekyll",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99345768015,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:23:17Z",
+                "completed_at": "2026-08-31T00:23:17Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99345768161,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:23:17Z",
+                "completed_at": "2026-08-31T00:23:17Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33343588277,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "2d4fa26227b8a0ec057428290e73a546f0ed9aa9",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:06:47Z",
+          "updated_at": "2026-08-31T00:08:00Z",
+          "age_minutes": 42.1,
+          "quiet_minutes": 40.9,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33343588277",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99343627221,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:07:49Z",
+                "completed_at": "2026-08-31T00:07:59Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33343576739,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "ceb851afb4e97a205dab7c9b1e876ff36b48330a",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:06:33Z",
+          "updated_at": "2026-08-31T00:06:52Z",
+          "age_minutes": 42.4,
+          "quiet_minutes": 42.0,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33343576739",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99343464938,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:06:37Z",
+                "completed_at": "2026-08-31T00:06:51Z",
+                "failed_steps": [
+                  {
+                    "number": 2,
+                    "name": "Pull ghcr.io/actions/jekyll-build-pages:v1.0.13",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99343503217,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:06:51Z",
+                "completed_at": "2026-08-31T00:06:51Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99343503341,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:06:51Z",
+                "completed_at": "2026-08-31T00:06:51Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33343567103,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "cba24852aa6fd9f1d45a50a389739778b26f69a2",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:06:20Z",
+          "updated_at": "2026-08-31T00:06:35Z",
+          "age_minutes": 42.6,
+          "quiet_minutes": 42.3,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33343567103",
+          "jobs": {
+            "api_error": null,
+            "jobs": []
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33343542535,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "be055b4e106094cdd4111b9b3d54b2fd2137b21c",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:05:50Z",
+          "updated_at": "2026-08-31T00:06:35Z",
+          "age_minutes": 43.1,
+          "quiet_minutes": 42.3,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33343542535",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99343369230,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:05:56Z",
+                "completed_at": "2026-08-31T00:06:34Z",
+                "failed_steps": [
+                  {
+                    "number": 4,
+                    "name": "Build with Jekyll",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99343464537,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:06:34Z",
+                "completed_at": "2026-08-31T00:06:34Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99343464656,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:06:34Z",
+                "completed_at": "2026-08-31T00:06:34Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        },
+        {
+          "run_id": 33343380554,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "81827d0fd697f7fc6a7a526bf2c437d5fa90889d",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-31T00:02:33Z",
+          "updated_at": "2026-08-31T00:03:12Z",
+          "age_minutes": 46.4,
+          "quiet_minutes": 45.7,
+          "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33343380554",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99342933217,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:02:36Z",
+                "completed_at": "2026-08-31T00:03:11Z",
+                "failed_steps": [
+                  {
+                    "number": 4,
+                    "name": "Build with Jekyll",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99343012440,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:03:11Z",
+                "completed_at": "2026-08-31T00:03:11Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99343012610,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-31T00:03:11Z",
+                "completed_at": "2026-08-31T00:03:11Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": true
+        }
+      ],
+      "stalled": [],
+      "reruns": []
+    },
+    {
+      "repository": "Ventusltd/pipelinenews",
+      "classification": "observed",
+      "api_error": null,
+      "runs_examined": 0,
+      "active": [],
+      "failed": [],
+      "stalled": [],
+      "reruns": []
+    },
+    {
+      "repository": "Ventusltd/companies",
+      "classification": "observed",
+      "api_error": null,
+      "runs_examined": 0,
+      "active": [],
+      "failed": [],
+      "stalled": [],
+      "reruns": []
+    },
+    {
+      "repository": "Ventusltd/gridatlas",
+      "classification": "observed",
+      "api_error": null,
+      "runs_examined": 59,
+      "active": [],
+      "failed": [
+        {
+          "run_id": 33342567098,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "1d802d102a0b0d97a6a14685794572ca76c16d59",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T23:43:36Z",
+          "updated_at": "2026-08-30T23:43:38Z",
+          "age_minutes": 65.3,
+          "quiet_minutes": 65.3,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33342567098",
+          "jobs": {
+            "api_error": null,
+            "jobs": []
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33342561688,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "1586d0394a148cc57fa0879e448ce53e5396d75c",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T23:43:27Z",
+          "updated_at": "2026-08-30T23:43:40Z",
+          "age_minutes": 65.5,
+          "quiet_minutes": 65.2,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33342561688",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99340722079,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T23:43:31Z",
+                "completed_at": "2026-08-30T23:43:39Z",
+                "failed_steps": [
+                  {
+                    "number": 2,
+                    "name": "Pull ghcr.io/actions/jekyll-build-pages:v1.0.13",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99340742823,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T23:43:40Z",
+                "completed_at": "2026-08-30T23:43:39Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99340742881,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T23:43:40Z",
+                "completed_at": "2026-08-30T23:43:39Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33342447338,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "cfadedfd417d7c9f6e1d0dfd44b0600de3e061a9",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T23:40:39Z",
+          "updated_at": "2026-08-30T23:40:42Z",
+          "age_minutes": 68.3,
+          "quiet_minutes": 68.2,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33342447338",
+          "jobs": {
+            "api_error": null,
+            "jobs": []
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33342439799,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "fa9cf4770d430a1b63d435685df8c30142c9b1b5",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T23:40:30Z",
+          "updated_at": "2026-08-30T23:40:44Z",
+          "age_minutes": 68.4,
+          "quiet_minutes": 68.2,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33342439799",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99340388808,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T23:40:34Z",
+                "completed_at": "2026-08-30T23:40:42Z",
+                "failed_steps": [
+                  {
+                    "number": 2,
+                    "name": "Pull ghcr.io/actions/jekyll-build-pages:v1.0.13",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99340413154,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T23:40:43Z",
+                "completed_at": "2026-08-30T23:40:43Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99340413510,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T23:40:43Z",
+                "completed_at": "2026-08-30T23:40:43Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33328370776,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "f6b33edd9b5fc250c9f804ec116cbfc3df3f3a91",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T18:32:41Z",
+          "updated_at": "2026-08-30T18:32:58Z",
+          "age_minutes": 376.2,
+          "quiet_minutes": 375.9,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33328370776",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99302439068,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T18:32:48Z",
+                "completed_at": "2026-08-30T18:32:57Z",
+                "failed_steps": [
+                  {
+                    "number": 2,
+                    "name": "Pull ghcr.io/actions/jekyll-build-pages:v1.0.13",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99302465168,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T18:32:58Z",
+                "completed_at": "2026-08-30T18:32:58Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99302465188,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T18:32:58Z",
+                "completed_at": "2026-08-30T18:32:58Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33328348625,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "bc1da527ae9e2781a52783791f8ebe8b48891006",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T18:32:12Z",
+          "updated_at": "2026-08-30T18:32:46Z",
+          "age_minutes": 376.7,
+          "quiet_minutes": 376.1,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33328348625",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99302422009,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T18:32:41Z",
+                "completed_at": "2026-08-30T18:32:44Z",
+                "failed_steps": [
+                  {
+                    "number": 1,
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99302422080,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T18:32:40Z",
+                "completed_at": "2026-08-30T18:32:45Z",
+                "failed_steps": [
+                  {
+                    "number": 2,
+                    "name": "Report Build Status",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33328062767,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "51e8e11f48d8d86b67831fa43e19a5543217bb91",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T18:26:13Z",
+          "updated_at": "2026-08-30T18:26:15Z",
+          "age_minutes": 382.7,
+          "quiet_minutes": 382.7,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33328062767",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99301625642,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T18:26:14Z",
+                "completed_at": "2026-08-30T18:26:15Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99301627825,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T18:26:15Z",
+                "completed_at": "2026-08-30T18:26:15Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99301627839,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T18:26:15Z",
+                "completed_at": "2026-08-30T18:26:15Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33327666102,
+          "name": "202608301321 Build, deploy and verify modular GridAtlas v9.5",
+          "path": ".github/workflows/202608301321-verify-live.yml",
+          "event": "push",
+          "head_sha": "1f75aabbfb3bae8cde6e94545aed953f4e57637c",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T18:17:58Z",
+          "updated_at": "2026-08-30T18:21:09Z",
+          "age_minutes": 390.9,
+          "quiet_minutes": 387.8,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33327666102",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99300570394,
+                "name": "build-deploy-verify",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T18:18:01Z",
+                "completed_at": "2026-08-30T18:21:08Z",
+                "failed_steps": [
+                  {
+                    "number": 10,
+                    "name": "Prove the existing search cartridge was not lost",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33327606684,
+          "name": "202608301321 Build, deploy and verify modular GridAtlas v9.5",
+          "path": ".github/workflows/202608301321-verify-live.yml",
+          "event": "push",
+          "head_sha": "aa651426cca2929be5b7506199696d900a8310ed",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T18:16:45Z",
+          "updated_at": "2026-08-30T18:17:44Z",
+          "age_minutes": 392.2,
+          "quiet_minutes": 391.2,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33327606684",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99300414159,
+                "name": "build-deploy-verify",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T18:16:48Z",
+                "completed_at": "2026-08-30T18:17:43Z",
+                "failed_steps": [
+                  {
+                    "number": 9,
+                    "name": "Prove A-road transport locally in Chromium",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33327581642,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "6b920cf587c12d95d6fdc94cb78613f58e18039a",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T18:16:15Z",
+          "updated_at": "2026-08-30T18:16:50Z",
+          "age_minutes": 392.7,
+          "quiet_minutes": 392.1,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33327581642",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99300352012,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T18:16:19Z",
+                "completed_at": "2026-08-30T18:16:49Z",
+                "failed_steps": [
+                  {
+                    "number": 3,
+                    "name": "Checkout",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99300423333,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T18:16:50Z",
+                "completed_at": "2026-08-30T18:16:49Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99300423716,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T18:16:50Z",
+                "completed_at": "2026-08-30T18:16:49Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33327360790,
+          "name": "202608301321 Build, deploy and verify modular GridAtlas v9.5",
+          "path": ".github/workflows/202608301321-verify-live.yml",
+          "event": "push",
+          "head_sha": "da8947e253cacb40e9f77a898b146c978c352a2d",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T18:11:45Z",
+          "updated_at": "2026-08-30T18:12:45Z",
+          "age_minutes": 397.2,
+          "quiet_minutes": 396.2,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33327360790",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99299769404,
+                "name": "build-deploy-verify",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T18:11:47Z",
+                "completed_at": "2026-08-30T18:12:44Z",
+                "failed_steps": [
+                  {
+                    "number": 9,
+                    "name": "Prove A-road transport locally in Chromium",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33320709530,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "bb88b8b5d3872095d41fa1663e0038ddaeebccac",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T15:49:13Z",
+          "updated_at": "2026-08-30T15:49:16Z",
+          "age_minutes": 539.7,
+          "quiet_minutes": 539.6,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33320709530",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99282062605,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T15:49:15Z",
+                "completed_at": "2026-08-30T15:49:15Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99282064833,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T15:49:16Z",
+                "completed_at": "2026-08-30T15:49:15Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99282064960,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T15:49:16Z",
+                "completed_at": "2026-08-30T15:49:15Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33320567458,
+          "name": "202608301321 Build, deploy and verify live Atlas composition",
+          "path": ".github/workflows/202608301321-verify-live.yml",
+          "event": "push",
+          "head_sha": "df146c64f5d602cead8109b079a6e40aa0185809",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T15:46:10Z",
+          "updated_at": "2026-08-30T15:46:23Z",
+          "age_minutes": 542.7,
+          "quiet_minutes": 542.5,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33320567458",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99281684927,
+                "name": "build-deploy-verify",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T15:46:14Z",
+                "completed_at": "2026-08-30T15:46:22Z",
+                "failed_steps": [
+                  {
+                    "number": 5,
+                    "name": "Compile v9.5 as one hashed cartridge",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33317013772,
+          "name": "202608301321 Verify live Atlas composition",
+          "path": ".github/workflows/202608301321-verify-live.yml",
+          "event": "push",
+          "head_sha": "bb8c28a56241cb63f23dd8d543b450e9af5aaba8",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T14:29:50Z",
+          "updated_at": "2026-08-30T14:30:53Z",
+          "age_minutes": 619.1,
+          "quiet_minutes": 618.0,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33317013772",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99272211179,
+                "name": "verify-live",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T14:29:53Z",
+                "completed_at": "2026-08-30T14:30:52Z",
+                "failed_steps": [
+                  {
+                    "number": 4,
+                    "name": "Run the five public acceptance tests",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33316814805,
+          "name": "202608301321 GridAtlas bounded scope loop",
+          "path": ".github/workflows/202608301321-scope-loop.yml",
+          "event": "workflow_dispatch",
+          "head_sha": "48a2b9e0aa0d26426134c8917a4c440b1e8a0d15",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T14:25:16Z",
+          "updated_at": "2026-08-30T14:25:30Z",
+          "age_minutes": 623.6,
+          "quiet_minutes": 623.4,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33316814805",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99271670248,
+                "name": "one-scope",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T14:25:21Z",
+                "completed_at": "2026-08-30T14:25:29Z",
+                "failed_steps": [
+                  {
+                    "number": 8,
+                    "name": "Commit the bounded scope",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33316762607,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "48a2b9e0aa0d26426134c8917a4c440b1e8a0d15",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T14:24:09Z",
+          "updated_at": "2026-08-30T14:24:12Z",
+          "age_minutes": 624.8,
+          "quiet_minutes": 624.7,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33316762607",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99271527413,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:24:10Z",
+                "completed_at": "2026-08-30T14:24:11Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99271530066,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:24:12Z",
+                "completed_at": "2026-08-30T14:24:11Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99271530111,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:24:12Z",
+                "completed_at": "2026-08-30T14:24:11Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33316705455,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "9a0e62fedd0a07c5ee19fc517c856b32e2d45c52",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T14:22:51Z",
+          "updated_at": "2026-08-30T14:22:54Z",
+          "age_minutes": 626.1,
+          "quiet_minutes": 626.0,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33316705455",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99271369298,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:22:53Z",
+                "completed_at": "2026-08-30T14:22:53Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99271371459,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:22:54Z",
+                "completed_at": "2026-08-30T14:22:53Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99271371463,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:22:54Z",
+                "completed_at": "2026-08-30T14:22:53Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33316646085,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "c201cc7f2a7bbbb1c1142141f40bedc80a029a94",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T14:21:34Z",
+          "updated_at": "2026-08-30T14:21:37Z",
+          "age_minutes": 627.3,
+          "quiet_minutes": 627.3,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33316646085",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99271211193,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:21:35Z",
+                "completed_at": "2026-08-30T14:21:36Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99271213452,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:21:36Z",
+                "completed_at": "2026-08-30T14:21:36Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99271213545,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:21:37Z",
+                "completed_at": "2026-08-30T14:21:36Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33316585103,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "e17e4fc233284f0c68467a4cf2b6567e7d2598d8",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T14:20:16Z",
+          "updated_at": "2026-08-30T14:20:19Z",
+          "age_minutes": 628.6,
+          "quiet_minutes": 628.6,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33316585103",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99271047850,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:20:17Z",
+                "completed_at": "2026-08-30T14:20:18Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99271050432,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:20:18Z",
+                "completed_at": "2026-08-30T14:20:18Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99271050492,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:20:18Z",
+                "completed_at": "2026-08-30T14:20:18Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33316523940,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "e5ad420a363a879cc84e33133a673ac165e16891",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T14:18:53Z",
+          "updated_at": "2026-08-30T14:18:56Z",
+          "age_minutes": 630.0,
+          "quiet_minutes": 630.0,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33316523940",
+          "jobs": {
+            "api_error": null,
+            "jobs": []
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33316508914,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "fc7a0b510dd59612e6ed120783b46c782eaa7db2",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T14:18:35Z",
+          "updated_at": "2026-08-30T14:18:58Z",
+          "age_minutes": 630.3,
+          "quiet_minutes": 629.9,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33316508914",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99270842913,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:18:42Z",
+                "completed_at": "2026-08-30T14:18:56Z",
+                "failed_steps": [
+                  {
+                    "number": 2,
+                    "name": "Pull ghcr.io/actions/jekyll-build-pages:v1.0.13",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99270880153,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:18:57Z",
+                "completed_at": "2026-08-30T14:18:57Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99270880258,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:18:57Z",
+                "completed_at": "2026-08-30T14:18:57Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33316508910,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "fc7a0b510dd59612e6ed120783b46c782eaa7db2",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T14:18:35Z",
+          "updated_at": "2026-08-30T14:18:37Z",
+          "age_minutes": 630.3,
+          "quiet_minutes": 630.3,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33316508910",
+          "jobs": {
+            "api_error": null,
+            "jobs": []
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33316499663,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "e587e8b05205f9dc47cb77e58bc0a726dd5f7d6e",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T14:18:23Z",
+          "updated_at": "2026-08-30T14:18:40Z",
+          "age_minutes": 630.5,
+          "quiet_minutes": 630.2,
+          "html_url": "https://github.com/Ventusltd/gridatlas/actions/runs/33316499663",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99270812671,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:18:27Z",
+                "completed_at": "2026-08-30T14:18:38Z",
+                "failed_steps": [
+                  {
+                    "number": 2,
+                    "name": "Pull ghcr.io/actions/jekyll-build-pages:v1.0.13",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99270842183,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:18:39Z",
+                "completed_at": "2026-08-30T14:18:39Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99270842413,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:18:39Z",
+                "completed_at": "2026-08-30T14:18:39Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        }
+      ],
+      "stalled": [],
+      "reruns": []
+    },
+    {
+      "repository": "Ventusltd/data-gridatlas",
+      "classification": "observed",
+      "api_error": null,
+      "runs_examined": 15,
+      "active": [],
+      "failed": [
+        {
+          "run_id": 33341883582,
+          "name": "Hourly watchdog b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+          "path": ".github/workflows/202608291507-watchdog-router.yml",
+          "event": "schedule",
+          "head_sha": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T23:28:00Z",
+          "updated_at": "2026-08-30T23:28:26Z",
+          "age_minutes": 80.9,
+          "quiet_minutes": 80.5,
+          "html_url": "https://github.com/Ventusltd/data-gridatlas/actions/runs/33341883582",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99338903414,
+                "name": "Probe consumer",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T23:28:14Z",
+                "completed_at": "2026-08-30T23:28:26Z",
+                "failed_steps": [
+                  {
+                    "number": 3,
+                    "name": "Run bounded public probe",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33335301216,
+          "name": "Hourly watchdog b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+          "path": ".github/workflows/202608291507-watchdog-router.yml",
+          "event": "schedule",
+          "head_sha": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T21:02:36Z",
+          "updated_at": "2026-08-30T21:02:59Z",
+          "age_minutes": 226.3,
+          "quiet_minutes": 225.9,
+          "html_url": "https://github.com/Ventusltd/data-gridatlas/actions/runs/33335301216",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99321038195,
+                "name": "Probe consumer",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T21:02:46Z",
+                "completed_at": "2026-08-30T21:02:58Z",
+                "failed_steps": [
+                  {
+                    "number": 3,
+                    "name": "Run bounded public probe",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33326921334,
+          "name": "202608301931 Layer fidelity, V8 origin vs V9 delivery",
+          "path": ".github/workflows/202608301931-layer-fidelity.yml",
+          "event": "push",
+          "head_sha": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T18:02:29Z",
+          "updated_at": "2026-08-30T18:36:14Z",
+          "age_minutes": 406.4,
+          "quiet_minutes": 372.7,
+          "html_url": "https://github.com/Ventusltd/data-gridatlas/actions/runs/33326921334",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99300524471,
+                "name": "browser",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T18:17:39Z",
+                "completed_at": "2026-08-30T18:36:13Z",
+                "failed_steps": [
+                  {
+                    "number": 5,
+                    "name": "Toggle every live layer and measure MapLibre readiness, heap and features",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33326870409,
+          "name": "Current integrity cfb0dbc3212b6da2906788289808d205ea21b83f",
+          "path": ".github/workflows/202608291507-current-integrity.yml",
+          "event": "push",
+          "head_sha": "cfb0dbc3212b6da2906788289808d205ea21b83f",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T18:01:28Z",
+          "updated_at": "2026-08-30T18:02:10Z",
+          "age_minutes": 407.4,
+          "quiet_minutes": 406.7,
+          "html_url": "https://github.com/Ventusltd/data-gridatlas/actions/runs/33326870409",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99298487655,
+                "name": "Lane 0 consumer",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T18:01:42Z",
+                "completed_at": "2026-08-30T18:02:09Z",
+                "failed_steps": [
+                  {
+                    "number": 5,
+                    "name": "Verify local Parquet, DuckDB, privacy, CORS and ranges",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33326870235,
+          "name": "Hourly watchdog cfb0dbc3212b6da2906788289808d205ea21b83f",
+          "path": ".github/workflows/202608291507-watchdog-router.yml",
+          "event": "push",
+          "head_sha": "cfb0dbc3212b6da2906788289808d205ea21b83f",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T18:01:28Z",
+          "updated_at": "2026-08-30T18:01:51Z",
+          "age_minutes": 407.4,
+          "quiet_minutes": 407.1,
+          "html_url": "https://github.com/Ventusltd/data-gridatlas/actions/runs/33326870235",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99298478478,
+                "name": "Probe consumer",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T18:01:38Z",
+                "completed_at": "2026-08-30T18:01:50Z",
+                "failed_steps": [
+                  {
+                    "number": 3,
+                    "name": "Run bounded public probe",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33326661920,
+          "name": "Automation contract guard cd14104231c39acba3f5bbbb57e842ad34f925fd",
+          "path": ".github/workflows/202608291507-contract-guard.yml",
+          "event": "push",
+          "head_sha": "cd14104231c39acba3f5bbbb57e842ad34f925fd",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T17:56:57Z",
+          "updated_at": "2026-08-30T17:57:05Z",
+          "age_minutes": 412.0,
+          "quiet_minutes": 411.8,
+          "html_url": "https://github.com/Ventusltd/data-gridatlas/actions/runs/33326661920",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99297902474,
+                "name": "Guard source, pins, permissions and immutable boundary",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T17:56:59Z",
+                "completed_at": "2026-08-30T17:57:04Z",
+                "failed_steps": [
+                  {
+                    "number": 3,
+                    "name": "Verify bounded read-only automation successor",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33326661915,
+          "name": "202608301931 Layer fidelity, V8 origin vs V9 delivery",
+          "path": ".github/workflows/202608301931-layer-fidelity.yml",
+          "event": "push",
+          "head_sha": "cd14104231c39acba3f5bbbb57e842ad34f925fd",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T17:56:57Z",
+          "updated_at": "2026-08-30T18:16:36Z",
+          "age_minutes": 412.0,
+          "quiet_minutes": 392.3,
+          "html_url": "https://github.com/Ventusltd/data-gridatlas/actions/runs/33326661915",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99297902278,
+                "name": "offline",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T17:57:01Z",
+                "completed_at": "2026-08-30T17:58:02Z",
+                "failed_steps": [
+                  {
+                    "number": 7,
+                    "name": "Judge fidelity and publish delivery-budget warnings",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              },
+              {
+                "job_id": 99298029092,
+                "name": "browser",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T17:58:05Z",
+                "completed_at": "2026-08-30T18:16:35Z",
+                "failed_steps": [
+                  {
+                    "number": 5,
+                    "name": "Toggle every live layer and measure MapLibre readiness, heap and features",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33325296260,
+          "name": "Hourly watchdog 587b7fb1b1f7e3a7a0f7836571284b92ef0111c8",
+          "path": ".github/workflows/202608291507-watchdog-router.yml",
+          "event": "schedule",
+          "head_sha": "587b7fb1b1f7e3a7a0f7836571284b92ef0111c8",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T17:27:12Z",
+          "updated_at": "2026-08-30T17:27:37Z",
+          "age_minutes": 441.7,
+          "quiet_minutes": 441.3,
+          "html_url": "https://github.com/Ventusltd/data-gridatlas/actions/runs/33325296260",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99294259629,
+                "name": "Probe consumer",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T17:27:23Z",
+                "completed_at": "2026-08-30T17:27:36Z",
+                "failed_steps": [
+                  {
+                    "number": 3,
+                    "name": "Run bounded public probe",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        }
+      ],
+      "stalled": [],
+      "reruns": []
+    },
+    {
+      "repository": "Ventusltd/globalgrid2050",
+      "classification": "observed",
+      "api_error": null,
+      "runs_examined": 9,
+      "active": [],
+      "failed": [
+        {
+          "run_id": 33321467672,
+          "name": "V9.6.1 Exact Commit Validation",
+          "path": ".github/workflows/v9-6-1-validate.yml",
+          "event": "push",
+          "head_sha": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T16:05:29Z",
+          "updated_at": "2026-08-30T16:06:28Z",
+          "age_minutes": 523.4,
+          "quiet_minutes": 522.4,
+          "html_url": "https://github.com/Ventusltd/globalgrid2050/actions/runs/33321467672",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99284064800,
+                "name": "validate",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T16:05:31Z",
+                "completed_at": "2026-08-30T16:06:27Z",
+                "failed_steps": [
+                  {
+                    "number": 6,
+                    "name": "Run V9.6.1 committed-byte gate",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33321467654,
+          "name": "V9.7 Exact Commit Validation",
+          "path": ".github/workflows/v9-7-validate.yml",
+          "event": "push",
+          "head_sha": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T16:05:29Z",
+          "updated_at": "2026-08-30T16:06:37Z",
+          "age_minutes": 523.4,
+          "quiet_minutes": 522.3,
+          "html_url": "https://github.com/Ventusltd/globalgrid2050/actions/runs/33321467654",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99284064797,
+                "name": "validate",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T16:05:31Z",
+                "completed_at": "2026-08-30T16:06:36Z",
+                "failed_steps": [
+                  {
+                    "number": 6,
+                    "name": "Run V9.7 committed-byte gate",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33321467653,
+          "name": "V9.6.2 Exact Commit Validation",
+          "path": ".github/workflows/v9-6-2-validate.yml",
+          "event": "push",
+          "head_sha": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T16:05:29Z",
+          "updated_at": "2026-08-30T16:06:29Z",
+          "age_minutes": 523.4,
+          "quiet_minutes": 522.4,
+          "html_url": "https://github.com/Ventusltd/globalgrid2050/actions/runs/33321467653",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99284064864,
+                "name": "validate",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T16:05:32Z",
+                "completed_at": "2026-08-30T16:06:27Z",
+                "failed_steps": [
+                  {
+                    "number": 6,
+                    "name": "Run V9.6.2 committed-byte gate",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33321467636,
+          "name": "V9.5.1 Exact Commit Validation",
+          "path": ".github/workflows/v9-5-1-validate.yml",
+          "event": "push",
+          "head_sha": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T16:05:29Z",
+          "updated_at": "2026-08-30T16:06:36Z",
+          "age_minutes": 523.4,
+          "quiet_minutes": 522.3,
+          "html_url": "https://github.com/Ventusltd/globalgrid2050/actions/runs/33321467636",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99284064801,
+                "name": "validate",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T16:05:31Z",
+                "completed_at": "2026-08-30T16:06:35Z",
+                "failed_steps": [
+                  {
+                    "number": 6,
+                    "name": "Run V9.5.1 committed-byte gate",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        }
+      ],
+      "stalled": [],
+      "reruns": []
+    },
+    {
+      "repository": "Ventusltd/spiders",
+      "classification": "observed",
+      "api_error": null,
+      "runs_examined": 0,
+      "active": [],
+      "failed": [],
+      "stalled": [],
+      "reruns": []
+    },
+    {
+      "repository": "Ventusltd/cvaa",
+      "classification": "observed",
+      "api_error": null,
+      "runs_examined": 42,
+      "active": [],
+      "failed": [
+        {
+          "run_id": 33325159504,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "67e6fcf473285e28c640ca1a062527eb24166a56",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T17:24:08Z",
+          "updated_at": "2026-08-30T17:24:43Z",
+          "age_minutes": 444.8,
+          "quiet_minutes": 444.2,
+          "html_url": "https://github.com/Ventusltd/cvaa/actions/runs/33325159504",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99293876177,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T17:24:12Z",
+                "completed_at": "2026-08-30T17:24:41Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99293943383,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T17:24:42Z",
+                "completed_at": "2026-08-30T17:24:42Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99293943405,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T17:24:42Z",
+                "completed_at": "2026-08-30T17:24:42Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33323686336,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "bc212ecfb2950f24524b43638f90810c215aa35b",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T16:52:50Z",
+          "updated_at": "2026-08-30T16:53:17Z",
+          "age_minutes": 476.1,
+          "quiet_minutes": 475.6,
+          "html_url": "https://github.com/Ventusltd/cvaa/actions/runs/33323686336",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99289962685,
+                "name": "build",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T16:52:54Z",
+                "completed_at": "2026-08-30T16:53:16Z",
+                "failed_steps": [
+                  {
+                    "number": 5,
+                    "name": "Upload artifact",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              },
+              {
+                "job_id": 99290008566,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T16:53:17Z",
+                "completed_at": "2026-08-30T16:53:16Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99290008642,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T16:53:17Z",
+                "completed_at": "2026-08-30T16:53:16Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33323654905,
+          "name": "202608301447 Self-test and lock",
+          "path": ".github/workflows/202608301447-selftest.yml",
+          "event": "push",
+          "head_sha": "d10ff379d7b76031029f55aa50f59e134533b572",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T16:52:06Z",
+          "updated_at": "2026-08-30T16:52:26Z",
+          "age_minutes": 476.8,
+          "quiet_minutes": 476.5,
+          "html_url": "https://github.com/Ventusltd/cvaa/actions/runs/33323654905",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99289875942,
+                "name": "repair-full-history-policy",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T16:52:09Z",
+                "completed_at": "2026-08-30T16:52:25Z",
+                "failed_steps": [
+                  {
+                    "number": 4,
+                    "name": "Apply the full-history policy once and commit it from CI",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33323609641,
+          "name": "202608301447 Self-test and lock",
+          "path": ".github/workflows/202608301447-selftest.yml",
+          "event": "push",
+          "head_sha": "cd5c81d7b240d3cbd80747f0e8c755cd256acb15",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T16:51:05Z",
+          "updated_at": "2026-08-30T16:51:26Z",
+          "age_minutes": 477.8,
+          "quiet_minutes": 477.5,
+          "html_url": "https://github.com/Ventusltd/cvaa/actions/runs/33323609641",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99289756777,
+                "name": "repair-full-history-policy",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T16:51:08Z",
+                "completed_at": "2026-08-30T16:51:25Z",
+                "failed_steps": [
+                  {
+                    "number": 4,
+                    "name": "Apply the full-history policy once and commit it from CI",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33323543717,
+          "name": "202608301447 Self-test and lock",
+          "path": ".github/workflows/202608301447-selftest.yml",
+          "event": "push",
+          "head_sha": "39ff64a26882fa6fdd758be669ae3cdc410b3a62",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T16:49:39Z",
+          "updated_at": "2026-08-30T16:50:00Z",
+          "age_minutes": 479.3,
+          "quiet_minutes": 478.9,
+          "html_url": "https://github.com/Ventusltd/cvaa/actions/runs/33323543717",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99289581933,
+                "name": "repair-full-history-policy",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T16:49:41Z",
+                "completed_at": "2026-08-30T16:49:59Z",
+                "failed_steps": [
+                  {
+                    "number": 4,
+                    "name": "Apply the full-history policy once and commit it from CI",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33322179310,
+          "name": "202608301447 Self-test and lock",
+          "path": ".github/workflows/202608301447-selftest.yml",
+          "event": "push",
+          "head_sha": "bfebd6e9ccf88a9ebc2f3b2f42de90260b64d3a5",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T16:20:29Z",
+          "updated_at": "2026-08-30T16:20:52Z",
+          "age_minutes": 508.4,
+          "quiet_minutes": 508.0,
+          "html_url": "https://github.com/Ventusltd/cvaa/actions/runs/33322179310",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99285962822,
+                "name": "selftest",
+                "status": "completed",
+                "conclusion": "failure",
+                "started_at": "2026-08-30T16:20:31Z",
+                "completed_at": "2026-08-30T16:20:51Z",
+                "failed_steps": [
+                  {
+                    "number": 5,
+                    "name": "Registry inoculates itself",
+                    "status": "completed",
+                    "conclusion": "failure"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33321586448,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "e381e4ca3996b0852584a9a60ccdb8498d7683e9",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T16:07:55Z",
+          "updated_at": "2026-08-30T16:08:34Z",
+          "age_minutes": 521.0,
+          "quiet_minutes": 520.3,
+          "html_url": "https://github.com/Ventusltd/cvaa/actions/runs/33321586448",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99284446768,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T16:08:30Z",
+                "completed_at": "2026-08-30T16:08:33Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99284446794,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T16:08:30Z",
+                "completed_at": "2026-08-30T16:08:32Z",
+                "failed_steps": [
+                  {
+                    "number": 1,
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33316611141,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "2758ee5fbfe611428edf0d84b4f87738c7ef2f04",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T14:20:47Z",
+          "updated_at": "2026-08-30T14:21:34Z",
+          "age_minutes": 628.1,
+          "quiet_minutes": 627.3,
+          "html_url": "https://github.com/Ventusltd/cvaa/actions/runs/33316611141",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99271176123,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:21:23Z",
+                "completed_at": "2026-08-30T14:21:33Z",
+                "failed_steps": [
+                  {
+                    "number": 2,
+                    "name": "Deploy to GitHub Pages",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33316584624,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "10ebaeb635a7227c6225da3d75b51828180b0963",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T14:20:15Z",
+          "updated_at": "2026-08-30T14:20:52Z",
+          "age_minutes": 628.7,
+          "quiet_minutes": 628.0,
+          "html_url": "https://github.com/Ventusltd/cvaa/actions/runs/33316584624",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99271101213,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:20:46Z",
+                "completed_at": "2026-08-30T14:20:51Z",
+                "failed_steps": [
+                  {
+                    "number": 2,
+                    "name": "Deploy to GitHub Pages",
+                    "status": "completed",
+                    "conclusion": "cancelled"
+                  }
+                ]
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        },
+        {
+          "run_id": 33316560669,
+          "name": "pages build and deployment",
+          "path": "dynamic/pages/pages-build-deployment",
+          "event": "dynamic",
+          "head_sha": "97b765500201a0616842be0712e094bac664c738",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "run_attempt": 1,
+          "created_at": "2026-08-30T14:19:44Z",
+          "updated_at": "2026-08-30T14:20:19Z",
+          "age_minutes": 629.2,
+          "quiet_minutes": 628.6,
+          "html_url": "https://github.com/Ventusltd/cvaa/actions/runs/33316560669",
+          "jobs": {
+            "api_error": null,
+            "jobs": [
+              {
+                "job_id": 99271039748,
+                "name": "report-build-status",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:20:16Z",
+                "completed_at": "2026-08-30T14:20:18Z",
+                "failed_steps": []
+              },
+              {
+                "job_id": 99271039749,
+                "name": "deploy",
+                "status": "completed",
+                "conclusion": "cancelled",
+                "started_at": "2026-08-30T14:20:14Z",
+                "completed_at": "2026-08-30T14:20:17Z",
+                "failed_steps": []
+              }
+            ]
+          },
+          "product_repository_mutation_allowed": false
+        }
+      ],
+      "stalled": [],
+      "reruns": []
+    },
+    {
+      "repository": "Ventusltd/data-centres-gb",
+      "classification": "observed",
+      "api_error": null,
+      "runs_examined": 0,
+      "active": [],
+      "failed": [],
+      "stalled": [],
+      "reruns": []
+    },
+    {
+      "repository": "Ventusltd/data-gb-electricity",
+      "classification": "observed",
+      "api_error": null,
+      "runs_examined": 0,
+      "active": [],
+      "failed": [],
+      "stalled": [],
+      "reruns": []
+    }
+  ],
+  "totals": {
+    "active_runs": 3,
+    "failed_runs": 69,
+    "stalled_runs": 0,
+    "reruns_requested": 0,
+    "api_errors": 0
+  }
+}
