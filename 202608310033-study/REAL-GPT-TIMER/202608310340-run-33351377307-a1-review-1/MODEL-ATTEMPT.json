@@ -1,0 +1,20 @@
+{
+  "schema": "chatgpt-audits.model-attempt.v1",
+  "generation": "202608310322",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "sequence": 1,
+  "provider": "github-copilot-cli",
+  "model": "gpt-5",
+  "runtime": "GitHub Copilot CLI 1.0.82.",
+  "inference_outcome": "failure",
+  "validated_review_created": false,
+  "provider_blocked_or_response_rejected": true,
+  "reason": "COPILOT_INFERENCE_UNAVAILABLE_OR_POLICY_BLOCKED",
+  "checked_at": "2026-08-31T02:40:10.993056Z",
+  "checked_at_london": "2026-08-31T03:40:10.993056+01:00",
+  "workflow_run_id": "33351377307",
+  "workflow_run_attempt": "1",
+  "product_repository_writes": "FORBIDDEN",
+  "product_workflow_dispatches": "FORBIDDEN"
+}
