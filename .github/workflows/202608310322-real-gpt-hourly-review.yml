@@ -24,14 +24,15 @@ env:
   ROOT: automation/202608310322-gpt-reasoning-timer
   BUILD_EVIDENCE: automation/202608310322-gpt-reasoning-timer/build_prompt.py
   ASSEMBLE_PROMPT: automation/202608310322-gpt-reasoning-timer/assemble_prompt.py
+  RUN_COPILOT: automation/202608310322-gpt-reasoning-timer/run_copilot.py
   RENDER_RESPONSE: automation/202608310322-gpt-reasoning-timer/render_response.py
   RECORD_ATTEMPT: automation/202608310322-gpt-reasoning-timer/record_attempt.py
   SELF_TEST: automation/202608310322-gpt-reasoning-timer/self_test.py
   RESPONSE_SCHEMA: automation/202608310322-gpt-reasoning-timer/response-schema.json
   SYSTEM_PROMPT: automation/202608310322-gpt-reasoning-timer/copilot-system.txt
   RUNTIME_SOURCE: automation/202608310322-gpt-reasoning-timer/copilot-runtime-source.json
-  MODEL_PROVIDER: github-copilot-cli
-  MODEL_ID: gpt-5
+  MODEL_PROVIDER: github-copilot-cli-direct
+  MODEL_ID: gpt-5.4
   COPILOT_CLI_VERSION: 1.0.82
   MODEL_BRANCH: audit/202608310322-real-gpt-hourly-review
   GITHUB_TOKEN: ${{ github.token }}
@@ -171,21 +172,29 @@ jobs:
             --output "$TEMP_OUTPUT/COPILOT-PROMPT.txt"
           test -s "$TEMP_OUTPUT/COPILOT-PROMPT.txt"
 
-      - name: Ask GitHub Copilot GPT for the hourly architecture judgement
+      - name: Ask GPT directly through isolated Copilot CLI and retain exact stderr
         id: inference
         if: steps.allocate.outputs.attempt == 'true'
-        continue-on-error: true
-        uses: actions/ai-inference@2c43c91ae16266ca159d311430343c67a5ffa222 # v3
-        with:
-          provider: copilot
-          prompt-file: ${{ steps.allocate.outputs.temp_output }}/COPILOT-PROMPT.txt
-          system-prompt-file: ${{ env.SYSTEM_PROMPT }}
-          model: ${{ env.MODEL_ID }}
-          token: ${{ github.token }}
-          copilot-cli-path: ${{ steps.runtime.outputs.path }}
         env:
-          COPILOT_GITHUB_TOKEN: ${{ github.token }}
-          GITHUB_TOKEN: ${{ github.token }}
+          TEMP_OUTPUT: ${{ steps.allocate.outputs.temp_output }}
+          COPILOT_PATH: ${{ steps.runtime.outputs.path }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 "$RUN_COPILOT" \
+            --cli "$COPILOT_PATH" \
+            --prompt "$TEMP_OUTPUT/COPILOT-PROMPT.txt" \
+            --system "$SYSTEM_PROMPT" \
+            --output "$TEMP_OUTPUT" \
+            --model "$MODEL_ID" \
+            --timeout-seconds 240
+          OUTCOME=$(python3 -c "import json; print(json.load(open('$TEMP_OUTPUT/COPILOT-RUN.json'))['outcome'])")
+          REASON=$(python3 -c "import json; print(json.load(open('$TEMP_OUTPUT/COPILOT-RUN.json'))['reason'])")
+          echo "outcome=$OUTCOME" >> "$GITHUB_OUTPUT"
+          echo "reason=$REASON" >> "$GITHUB_OUTPUT"
+          echo "response_file=$TEMP_OUTPUT/COPILOT-RESPONSE.txt" >> "$GITHUB_OUTPUT"
+          echo "stderr_file=$TEMP_OUTPUT/COPILOT-STDERR.txt" >> "$GITHUB_OUTPUT"
+          rm -rf "$TEMP_OUTPUT/copilot-isolated-runtime"
 
       - name: Validate response or retain provider block
         id: result
@@ -193,14 +202,15 @@ jobs:
         env:
           SEQUENCE: ${{ steps.allocate.outputs.sequence }}
           TEMP_OUTPUT: ${{ steps.allocate.outputs.temp_output }}
-          RESPONSE_FILE: ${{ steps.inference.outputs.response-file }}
-          INFERENCE_OUTCOME: ${{ steps.inference.outcome }}
+          RESPONSE_FILE: ${{ steps.inference.outputs.response_file }}
+          INFERENCE_OUTCOME: ${{ steps.inference.outputs.outcome }}
+          INFERENCE_REASON: ${{ steps.inference.outputs.reason }}
           RUNTIME_VERSION: ${{ steps.runtime.outputs.version }}
         shell: bash
         run: |
           set -u
           CREATED=false
-          REASON=COPILOT_INFERENCE_UNAVAILABLE_OR_POLICY_BLOCKED
+          REASON="$INFERENCE_REASON"
           if [ "$INFERENCE_OUTCOME" = success ] && [ -n "$RESPONSE_FILE" ] && [ -s "$RESPONSE_FILE" ]; then
             set +e
             python3 "$RENDER_RESPONSE" \
@@ -216,7 +226,6 @@ jobs:
             if [ "$CODE" -eq 0 ]; then
               CREATED=true
               REASON=
-              cp "$RESPONSE_FILE" "$TEMP_OUTPUT/COPILOT-RESPONSE.txt"
             else
               REASON=MODEL_RESPONSE_FAILED_STRICT_JSON_CONTRACT
               cp "$RESPONSE_FILE" "$TEMP_OUTPUT/COPILOT-RESPONSE-REJECTED.txt" || true
