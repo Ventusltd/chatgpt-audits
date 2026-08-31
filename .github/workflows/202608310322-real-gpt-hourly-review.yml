@@ -1,0 +1,272 @@
+name: 202608310322 real GPT hourly architecture reviewer
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/202608310322-real-gpt-hourly-review.yml
+      - automation/202608310322-gpt-reasoning-timer/**
+  workflow_dispatch:
+  schedule:
+    - cron: '34 3-6 31 8 *'
+
+permissions:
+  actions: read
+  contents: write
+  models: read
+
+concurrency:
+  group: 202608310322-real-gpt-hourly-architecture-reviewer
+  cancel-in-progress: false
+
+env:
+  CONTROLLER_ROOT: automation/202608310322-gpt-reasoning-timer
+  BUILD_PROMPT: automation/202608310322-gpt-reasoning-timer/build_prompt.py
+  RENDER_RESPONSE: automation/202608310322-gpt-reasoning-timer/render_response.py
+  PROMPT_SCHEMA: automation/202608310322-gpt-reasoning-timer/architecture-review.prompt.yml
+  MODEL_ID: openai/gpt-4.1
+  MODEL_BRANCH: audit/202608310322-real-gpt-hourly-review
+  GH_TOKEN: ${{ github.token }}
+  PYTHONDONTWRITEBYTECODE: '1'
+
+jobs:
+  reason:
+    if: github.repository == 'Ventusltd/chatgpt-audits'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout exact current audit main
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+          token: ${{ github.token }}
+
+      - name: Enforce the bounded five-hour model window
+        id: guard
+        shell: bash
+        run: |
+          set -euo pipefail
+          NOW=$(TZ=Europe/London date +%Y%m%d%H%M)
+          ACTIVE=false
+          case "$GITHUB_EVENT_NAME" in
+            push|workflow_dispatch)
+              if [[ "$NOW" > "202608310319" && "$NOW" < "202608310801" ]]; then
+                ACTIVE=true
+              fi
+              ;;
+            schedule)
+              if [[ "$NOW" > "202608310419" && "$NOW" < "202608310801" ]]; then
+                ACTIVE=true
+              fi
+              ;;
+          esac
+          echo "active=$ACTIVE" >> "$GITHUB_OUTPUT"
+          echo "checked_london=$NOW" >> "$GITHUB_OUTPUT"
+          if [ "$ACTIVE" != "true" ]; then
+            echo "Outside the bounded model-review window; inert by design."
+          fi
+
+      - name: Validate model controller and strict response renderer
+        if: steps.guard.outputs.active == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f "$BUILD_PROMPT"
+          test -f "$RENDER_RESPONSE"
+          test -f "$PROMPT_SCHEMA"
+          grep -q '^model: openai/gpt-4.1$' "$PROMPT_SCHEMA"
+          grep -q '^responseFormat: json_schema$' "$PROMPT_SCHEMA"
+          python3 -m py_compile "$BUILD_PROMPT" "$RENDER_RESPONSE"
+          find "$CONTROLLER_ROOT" -type d -name __pycache__ -prune -exec rm -rf {} +
+
+          TEST_ROOT="$RUNNER_TEMP/202608310322-renderer-self-test"
+          rm -rf "$TEST_ROOT"
+          mkdir -p "$TEST_ROOT"
+          cat > "$TEST_ROOT/response.json" <<'JSON'
+          {
+            "overall_assessment": "Synthetic renderer self-test.",
+            "what_happened": [{"claim":"A test ran.","evidence":"Synthetic fixture.","classification":"observed"}],
+            "good": [{"claim":"The fixture is bounded.","evidence":"Local temporary files only.","classification":"observed"}],
+            "bad": [{"issue":"This is not production evidence.","evidence":"The payload is synthetic.","classification":"observed","impact":"It cannot support a product claim."}],
+            "recommended_improvement": {
+              "kind":"python",
+              "name":"synthetic_test.py",
+              "purpose":"Exercise the renderer.",
+              "evidence_basis":"Local fixture.",
+              "algorithm":"Parse and validate strict fields.",
+              "inputs":["Synthetic JSON"],
+              "outputs":["Rendered Markdown"],
+              "rejection_conditions":["Missing required field"]
+            },
+            "deterministic_tests": [
+              {"name":"parse","fixture":"Valid JSON","assertion":"Exit zero"},
+              {"name":"schema","fixture":"Missing key","assertion":"Reject"},
+              {"name":"boundary","fixture":"Temporary output","assertion":"No product path"}
+            ],
+            "do_not_change":["Product repositories"],
+            "uncertainties":["None relevant to this synthetic fixture"]
+          }
+          JSON
+          printf 'synthetic prompt\n' > "$TEST_ROOT/prompt.md"
+          python3 "$RENDER_RESPONSE" \
+            --response "$TEST_ROOT/response.json" \
+            --prompt "$TEST_ROOT/prompt.md" \
+            --output "$TEST_ROOT/rendered" \
+            --sequence 1 \
+            --model "$MODEL_ID"
+          test -s "$TEST_ROOT/rendered/MODEL-REVIEW.md"
+          test -s "$TEST_ROOT/rendered/MODEL-REVIEW.json"
+
+      - name: Allocate one of exactly five persistent review slots
+        id: allocate
+        if: steps.guard.outputs.active == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --force origin "+refs/heads/${MODEL_BRANCH}:refs/remotes/origin/${MODEL_BRANCH}" || true
+          COUNT=0
+          if git show-ref --verify --quiet "refs/remotes/origin/${MODEL_BRANCH}"; then
+            COUNT=$(git ls-tree -r --name-only "origin/${MODEL_BRANCH}" \
+              | grep -c '/MODEL-REVIEW.json$' || true)
+          fi
+          if [ "$COUNT" -ge 5 ]; then
+            echo "created=false" >> "$GITHUB_OUTPUT"
+            echo "complete=true" >> "$GITHUB_OUTPUT"
+            echo "sequence=5" >> "$GITHUB_OUTPUT"
+            echo "Five real GPT reviews already exist; no sixth call will be made."
+            exit 0
+          fi
+
+          SEQUENCE=$((COUNT + 1))
+          STAMP=$(TZ=Europe/London date +%Y%m%d%H%M)
+          TEMP_OUTPUT="$RUNNER_TEMP/202608310322-real-gpt-${GITHUB_RUN_ID}-s${SEQUENCE}"
+          TARGET_PATH="202608310033-study/REAL-GPT-TIMER/${STAMP}-run-${GITHUB_RUN_ID}-review-${SEQUENCE}"
+          rm -rf "$TEMP_OUTPUT"
+          mkdir -p "$TEMP_OUTPUT"
+          {
+            echo "created=true"
+            echo "complete=false"
+            echo "sequence=$SEQUENCE"
+            echo "stamp=$STAMP"
+            echo "temp_output=$TEMP_OUTPUT"
+            echo "target_path=$TARGET_PATH"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Build current evidence packet
+        if: steps.allocate.outputs.created == 'true'
+        env:
+          SEQUENCE: ${{ steps.allocate.outputs.sequence }}
+          TEMP_OUTPUT: ${{ steps.allocate.outputs.temp_output }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 "$BUILD_PROMPT" \
+            --sequence "$SEQUENCE" \
+            --output "$TEMP_OUTPUT"
+          test -s "$TEMP_OUTPUT/EVIDENCE.json"
+          test -s "$TEMP_OUTPUT/EVIDENCE-PACKET.md"
+          cp "$PROMPT_SCHEMA" "$TEMP_OUTPUT/PROMPT-SCHEMA.yml"
+
+      - name: Ask a real GPT model what happened, what is good or bad, and what to build next
+        id: inference
+        if: steps.allocate.outputs.created == 'true'
+        uses: actions/ai-inference@b81b2afb8390ee6839b494a404766bef6493c7d9 # v1
+        with:
+          prompt-file: ${{ env.PROMPT_SCHEMA }}
+          input: |
+            sequence: ${{ steps.allocate.outputs.sequence }}
+          file_input: |
+            evidence_packet: ${{ steps.allocate.outputs.temp_output }}/EVIDENCE-PACKET.md
+          max-tokens: '2200'
+          token: ${{ github.token }}
+
+      - name: Validate and render the structured GPT response
+        if: steps.allocate.outputs.created == 'true'
+        env:
+          SEQUENCE: ${{ steps.allocate.outputs.sequence }}
+          TEMP_OUTPUT: ${{ steps.allocate.outputs.temp_output }}
+          RESPONSE_FILE: ${{ steps.inference.outputs.response-file }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$RESPONSE_FILE"
+          test -s "$RESPONSE_FILE"
+          python3 "$RENDER_RESPONSE" \
+            --response "$RESPONSE_FILE" \
+            --prompt "$TEMP_OUTPUT/EVIDENCE-PACKET.md" \
+            --output "$TEMP_OUTPUT" \
+            --sequence "$SEQUENCE" \
+            --model "$MODEL_ID"
+          test -s "$TEMP_OUTPUT/MODEL-REVIEW.md"
+          test -s "$TEMP_OUTPUT/MODEL-REVIEW.json"
+          test -s "$TEMP_OUTPUT/MODEL-METADATA.json"
+
+      - name: Commit only the timestamped GPT review to quarantine
+        if: steps.allocate.outputs.created == 'true'
+        env:
+          STAMP: ${{ steps.allocate.outputs.stamp }}
+          SEQUENCE: ${{ steps.allocate.outputs.sequence }}
+          TEMP_OUTPUT: ${{ steps.allocate.outputs.temp_output }}
+          TARGET_PATH: ${{ steps.allocate.outputs.target_path }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "chatgpt-audits-real-gpt-timer"
+          git config user.email "actions@users.noreply.github.com"
+          git fetch --force origin "+refs/heads/${MODEL_BRANCH}:refs/remotes/origin/${MODEL_BRANCH}" || true
+          if git show-ref --verify --quiet "refs/remotes/origin/${MODEL_BRANCH}"; then
+            git switch -C "$MODEL_BRANCH" "origin/$MODEL_BRANCH"
+          else
+            git switch -c "$MODEL_BRANCH"
+          fi
+
+          mkdir -p "$TARGET_PATH"
+          cp -a "$TEMP_OUTPUT"/. "$TARGET_PATH"/
+          find "$TARGET_PATH" -type d -name __pycache__ -prune -exec rm -rf {} + || true
+          find "$TARGET_PATH" -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+          git add -- "$TARGET_PATH"
+
+          ESCAPED=$(git diff --cached --name-only | grep -v "^${TARGET_PATH}/" || true)
+          if [ -n "$ESCAPED" ]; then
+            echo "Staged path escaped the real-GPT quarantine:" >&2
+            echo "$ESCAPED" >&2
+            exit 1
+          fi
+          test "$(git diff --cached --name-only | grep -c '/MODEL-REVIEW.json$')" -eq 1
+          git commit -m "${STAMP}-audit: UNREVIEWED real GPT architecture review ${SEQUENCE}/5"
+          git push origin "HEAD:${MODEL_BRANCH}"
+
+      - name: Upload complete GPT review packet
+        if: always() && steps.allocate.outputs.created == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: real-gpt-hourly-${{ github.run_id }}-${{ steps.allocate.outputs.sequence }}
+          path: ${{ steps.allocate.outputs.temp_output }}
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 9
+
+      - name: Publish operator summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "# Real GPT hourly architecture reviewer"
+            echo
+            echo "- Active window: ${{ steps.guard.outputs.active || 'false' }}"
+            echo "- London check: ${{ steps.guard.outputs.checked_london || 'not-run' }}"
+            echo "- Review created: ${{ steps.allocate.outputs.created || 'false' }}"
+            echo "- Sequence: ${{ steps.allocate.outputs.sequence || 'not-run' }}/5"
+            echo "- Model: \`${MODEL_ID}\`"
+            echo "- Official inference action: \`actions/ai-inference@b81b2afb8390ee6839b494a404766bef6493c7d9\`"
+            echo "- Persistent branch: \`${MODEL_BRANCH}\`"
+            echo "- Product writes or dispatches: **none**"
+            echo
+            if [ -f "${{ steps.allocate.outputs.temp_output }}/MODEL-REVIEW.md" ]; then
+              cat "${{ steps.allocate.outputs.temp_output }}/MODEL-REVIEW.md"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
