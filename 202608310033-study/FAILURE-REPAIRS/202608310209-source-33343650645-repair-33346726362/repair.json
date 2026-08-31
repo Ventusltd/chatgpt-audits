@@ -1,0 +1,55 @@
+{
+  "schema": "chatgpt-audits.failure-repair.v1",
+  "generation": "202608310122",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "inspected_at": "2026-08-31T01:09:45.901837Z",
+  "inspected_at_london": "2026-08-31T02:09:45.901837+01:00",
+  "workflow": {
+    "id": 33343650645,
+    "name": "202608310052 five-hour quarantined cross-repo study",
+    "path": ".github/workflows/202608310052-five-hour-quarantined-study.yml",
+    "event": "push",
+    "status": "completed",
+    "conclusion": "failure",
+    "run_attempt": 2,
+    "head_sha": "f14c11f74959ea92dbf7f91e421225c0567c7e16",
+    "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33343650645"
+  },
+  "diagnosis": [
+    {
+      "disease": "bytecode_boundary",
+      "classification": "inferred",
+      "evidence_excerpt": "evidence checkpoints 2026-08-31T00:09:48.2787466Z ^[[36;1m^[[0m study Run five hourly evidence checkpoints 2026-08-31T00:09:48.2787908Z ^[[36;1m find \"$OUTPUT_ROOT\" -type d -name __pycache__ -prune -exec rm -rf {} + || true^[[0m study Run five hourly evidence checkpoints 2026-08-31T00:09:48.2788511Z ^[[36;1m find \"$OUTPUT_ROOT\" -type f \\( -name '*.pyc' -o -name '*.pyo' \\) -delete^[[0m study Run five hourly evidence checkpoints 2026-08-31T00:09:48.2788989Z ^[[36;1m^[[0m study Run five hourly evidence chec"
+    },
+    {
+      "disease": "git_race",
+      "classification": "inferred",
+      "evidence_excerpt": "1:09:31.8032201Z ! [rejected] HEAD -> audit/202608310109-five-hour-33343650645 (fetch first) study Run five hourly evidence checkpoints 2026-08-31T01:09:31.8032975Z error: failed to push some refs to 'https://github.com/Ventusltd/chatgpt-audits' study Run five hourly evidence checkpoints 2026-08-31T01:09:31.8039107Z hint: Updates were rejected because the remote contains work that you do not study Run five hourly evidence checkpoints 2026-08-31T01:09:31.8039843Z hint: have locally. This is usually cau"
+    },
+    {
+      "disease": "network_transient",
+      "classification": "inferred",
+      "evidence_excerpt": "^[[0m study Run five hourly evidence checkpoints 2026-08-31T00:09:48.2804648Z ^[[36;1m --phase \"$phase\" \\^[[0m study Run five hourly evidence checkpoints 2026-08-31T00:09:48.2805031Z ^[[36;1m --plan \"$PLAN\" \\^[[0m study Run five hourly evidence checkpoints 2026-08-31T00:09:48.2805387Z ^[[36;1m --source-root \"$SOURCE_ROOT\" \\^[[0m study Run five hourly evidence checkpoints 2026-08-31T00:09:48.2805775Z ^[[36;1m --manifest \"$SOURCE_MANIFEST\" \\^[[0m study Run five hourly evidence checkpoints"
+    },
+    {
+      "disease": "quarantine_boundary",
+      "classification": "inferred",
+      "evidence_excerpt": "heckpoints 2026-08-31T00:09:48.2796380Z ^[[36;1mif escaped:^[[0m study Run five hourly evidence checkpoints 2026-08-31T00:09:48.2796774Z ^[[36;1m raise SystemExit(f\"staged path escaped quarantine: {escaped}\")^[[0m study Run five hourly evidence checkpoints 2026-08-31T00:09:48.2797255Z ^[[36;1mPY^[[0m study Run five hourly evidence checkpoints 2026-08-31T00:09:48.2797534Z ^[[36;1m^[[0m study Run five hourly evidence checkpoints 2026-08-31T00:09:48.2797864Z ^[[36;1m if git diff --cached --quiet; then^[[0m study"
+    }
+  ],
+  "repair_action": {
+    "requested": true,
+    "endpoint": "/repos/Ventusltd/chatgpt-audits/actions/runs/33343650645/rerun-failed-jobs",
+    "http_status": 201,
+    "error": null,
+    "classification": "observed",
+    "reason": "GitHub-native bounded retry requested because the completed audit run is below attempt 3."
+  },
+  "source_policy": {
+    "write_boundary": "Ventusltd/chatgpt-audits",
+    "product_repo_writes": "FORBIDDEN",
+    "product_workflow_dispatches": "FORBIDDEN",
+    "automatic_source_patch": "FORBIDDEN"
+  }
+}

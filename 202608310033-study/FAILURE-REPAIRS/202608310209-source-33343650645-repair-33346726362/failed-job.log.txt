@@ -1,0 +1,174 @@
+REVIEW STATUS: UNREVIEWED
+
+study	Run five hourly evidence checkpoints	﻿2026-08-31T00:09:48.2778171Z ##[group]Run set -euo pipefail
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2778721Z ^[[36;1mset -euo pipefail^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2779088Z ^[[36;1m^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2779414Z ^[[36;1msleep_until() {^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2779751Z ^[[36;1m  local target_epoch=$1^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2780124Z ^[[36;1m  while true; do^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2780480Z ^[[36;1m    local now remaining nap^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2780886Z ^[[36;1m    now=$(date +%s)^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2781259Z ^[[36;1m    remaining=$((target_epoch - now))^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2781659Z ^[[36;1m    if [ "$remaining" -le 0 ]; then^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2782343Z ^[[36;1m      break^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2782680Z ^[[36;1m    fi^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2782998Z ^[[36;1m    nap=300^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2783400Z ^[[36;1m    if [ "$remaining" -lt "$nap" ]; then nap=$remaining; fi^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2783971Z ^[[36;1m    echo "Heartbeat: next checkpoint in ${remaining}s; branch=${QUARANTINE_BRANCH}"^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2784542Z ^[[36;1m    sleep "$nap"^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2784907Z ^[[36;1m  done^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2785298Z ^[[36;1m}^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2785575Z ^[[36;1m^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2785881Z ^[[36;1mcommit_checkpoint() {^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2786239Z ^[[36;1m  local phase=$1^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2786595Z ^[[36;1m  local checkpoint_stamp^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2787040Z ^[[36;1m  checkpoint_stamp=$(TZ=Europe/London date +%Y%m%d%H%M)^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2787466Z ^[[36;1m^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2787908Z ^[[36;1m  find "$OUTPUT_ROOT" -type d -name __pycache__ -prune -exec rm -rf {} + || true^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2788511Z ^[[36;1m  find "$OUTPUT_ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2788989Z ^[[36;1m^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2789331Z ^[[36;1m  python3 "$VERIFIER" \^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2789706Z ^[[36;1m    --audit-root "$GITHUB_WORKSPACE" \^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2790118Z ^[[36;1m    --output-root "$OUTPUT_ROOT" \^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2790516Z ^[[36;1m    --source-root "$SOURCE_ROOT" \^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2790909Z ^[[36;1m    --manifest "$SOURCE_MANIFEST" \^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2791295Z ^[[36;1m    --plan "$PLAN" \^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2791650Z ^[[36;1m    --phase "$phase"^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2792218Z ^[[36;1m^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2792581Z ^[[36;1m  git add -- "$OUTPUT_ROOT"^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2792953Z ^[[36;1m  python3 - "$OUTPUT_ROOT" <<'PY'^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2793358Z ^[[36;1mimport subprocess^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2793683Z ^[[36;1mimport sys^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2793960Z ^[[36;1m^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2794312Z ^[[36;1mallowed = sys.argv[1].rstrip("/") + "/"^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2794878Z ^[[36;1mnames = subprocess.check_output(["git", "diff", "--cached", "--name-only", "-z"]).split(b"\0")^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2795762Z ^[[36;1mescaped = [name.decode("utf-8", "replace") for name in names if name and not name.decode("utf-8", "replace").startswith(allowed)]^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2796380Z ^[[36;1mif escaped:^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2796774Z ^[[36;1m    raise SystemExit(f"staged path escaped quarantine: {escaped}")^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2797255Z ^[[36;1mPY^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2797534Z ^[[36;1m^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2797864Z ^[[36;1m  if git diff --cached --quiet; then^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2798334Z ^[[36;1m    echo "No new checkpoint files for phase $phase"^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2798737Z ^[[36;1m    return^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2799085Z ^[[36;1m  fi^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2799512Z ^[[36;1m  git commit -m "${checkpoint_stamp}-audit: UNREVIEWED checkpoint ${phase}/5"^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2800183Z ^[[36;1m  if git ls-remote --exit-code --heads origin "$QUARANTINE_BRANCH" >/dev/null 2>&1; then^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2800933Z ^[[36;1m    git push origin HEAD:"$QUARANTINE_BRANCH"^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2801324Z ^[[36;1m  else^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2801833Z ^[[36;1m    git push --set-upstream origin HEAD:"$QUARANTINE_BRANCH"^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2802375Z ^[[36;1m  fi^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2802670Z ^[[36;1m}^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2803020Z ^[[36;1m^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2803439Z ^[[36;1mfor phase in 1 2 3 4 5; do^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2803850Z ^[[36;1m  echo "Starting evidence checkpoint ${phase}/5"^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2804266Z ^[[36;1m  python3 "$CONTROLLER" phase \^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2804648Z ^[[36;1m    --phase "$phase" \^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2805031Z ^[[36;1m    --plan "$PLAN" \^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2805387Z ^[[36;1m    --source-root "$SOURCE_ROOT" \^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2805775Z ^[[36;1m    --manifest "$SOURCE_MANIFEST" \^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2806232Z ^[[36;1m    --audit-root "$GITHUB_WORKSPACE" \^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2806607Z ^[[36;1m    --output-root "$OUTPUT_ROOT"^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2806988Z ^[[36;1m^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2807361Z ^[[36;1m  if [ "$phase" -eq 5 ]; then^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2807920Z ^[[36;1m    REFERENCE="$OUTPUT_ROOT/next-versions/202608310052-pipelinenews-intelligence-vnext/reference"^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2808655Z ^[[36;1m    PYTHONPATH="$REFERENCE" python3 -m unittest discover -s "$REFERENCE" -p 'test_*.py' -v^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2809198Z ^[[36;1m  fi^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2809497Z ^[[36;1m^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2809827Z ^[[36;1m  commit_checkpoint "$phase"^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2810179Z ^[[36;1m^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2810503Z ^[[36;1m  if [ "$phase" -lt 5 ]; then^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2810938Z ^[[36;1m    target=$((RUN_START_EPOCH + phase * CHECKPOINT_MINUTES * 60))^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2811398Z ^[[36;1m    sleep_until "$target"^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2812064Z ^[[36;1m  fi^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2812342Z ^[[36;1mdone^[[0m
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2839505Z shell: /usr/bin/bash -e {0}
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2839954Z env:
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2840321Z   PROGRAMME_DIR: automation/202608310052-five-hour-study
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2840818Z   PLAN: automation/202608310052-five-hour-study/study-plan.json
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2841429Z   CONTROLLER: automation/202608310052-five-hour-study/run_study.py
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2842124Z   VERIFIER: automation/202608310052-five-hour-study/verify_quarantine.py
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2842610Z   CHECKPOINT_MINUTES: 60
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2842953Z   COMPLETE_WINDOW: true
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2843270Z   PYTHONDONTWRITEBYTECODE: 1
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2843666Z   GIT_TERMINAL_PROMPT: 0
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2843995Z   RUN_STAMP: 202608310109
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2844384Z   QUARANTINE_BRANCH: audit/202608310109-five-hour-33343650645
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2844977Z   OUTPUT_ROOT: 202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2845536Z   SOURCE_ROOT: /home/runner/work/_temp/202608310052-source-snapshots
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2846405Z   SOURCE_MANIFEST: /home/runner/work/chatgpt-audits/chatgpt-audits/202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645/SOURCE-SNAPSHOT.json
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2847148Z   RUN_START_EPOCH: 1788134970
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2847480Z ##[endgroup]
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.2898938Z Starting evidence checkpoint 1/5
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:48.3387365Z [phase 1] start
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.1278349Z [phase 1] complete
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7378268Z {
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7378994Z   "status": "PASS",
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7379439Z   "phase": 1,
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7380503Z   "output_root": "202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645",
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7381189Z   "changed_paths": [
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7382321Z     "202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645/01-REPOSITORY-INVENTORY.json",
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7383359Z     "202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645/01-REPOSITORY-INVENTORY.md",
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7384252Z     "202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645/README.md",
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7385634Z     "202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645/RUN-CONTEXT.json",
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7386559Z     "202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645/SOURCE-SNAPSHOT.json",
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7387568Z     "202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645/checkpoint-01.json"
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7388403Z   ],
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7388774Z   "total_output_bytes": 243607,
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7389349Z   "source_snapshots_verified": 9
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7389810Z }
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7939236Z [audit/202608310109-five-hour-33343650645 ad7378c] 202608310109-audit: UNREVIEWED checkpoint 1/5
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7940558Z  6 files changed, 7019 insertions(+)
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7942342Z  create mode 100644 202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645/01-REPOSITORY-INVENTORY.json
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7943607Z  create mode 100644 202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645/01-REPOSITORY-INVENTORY.md
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7945067Z  create mode 100644 202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645/README.md
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7946368Z  create mode 100644 202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645/RUN-CONTEXT.json
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7947741Z  create mode 100644 202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645/SOURCE-SNAPSHOT.json
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:49.7949149Z  create mode 100644 202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645/checkpoint-01.json
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:51.2769116Z remote: 
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:51.2770582Z remote: Create a pull request for 'audit/202608310109-five-hour-33343650645' on GitHub by visiting:        
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:51.2772182Z remote:      https://github.com/Ventusltd/chatgpt-audits/pull/new/audit/202608310109-five-hour-33343650645        
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:51.2773252Z remote: 
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:51.2774022Z To https://github.com/Ventusltd/chatgpt-audits
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:51.2774962Z  * [new branch]      HEAD -> audit/202608310109-five-hour-33343650645
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:51.2821634Z branch 'audit/202608310109-five-hour-33343650645' set up to track 'origin/audit/202608310109-five-hour-33343650645'.
+study	Run five hourly evidence checkpoints	2026-08-31T00:09:51.2838327Z Heartbeat: next checkpoint in 3579s; branch=audit/202608310109-five-hour-33343650645
+study	Run five hourly evidence checkpoints	2026-08-31T00:14:51.2875995Z Heartbeat: next checkpoint in 3279s; branch=audit/202608310109-five-hour-33343650645
+study	Run five hourly evidence checkpoints	2026-08-31T00:19:51.2905266Z Heartbeat: next checkpoint in 2979s; branch=audit/202608310109-five-hour-33343650645
+study	Run five hourly evidence checkpoints	2026-08-31T00:24:51.2934444Z Heartbeat: next checkpoint in 2679s; branch=audit/202608310109-five-hour-33343650645
+study	Run five hourly evidence checkpoints	2026-08-31T00:29:51.2963987Z Heartbeat: next checkpoint in 2379s; branch=audit/202608310109-five-hour-33343650645
+study	Run five hourly evidence checkpoints	2026-08-31T00:34:51.2996529Z Heartbeat: next checkpoint in 2079s; branch=audit/202608310109-five-hour-33343650645
+study	Run five hourly evidence checkpoints	2026-08-31T00:39:51.3028197Z Heartbeat: next checkpoint in 1779s; branch=audit/202608310109-five-hour-33343650645
+study	Run five hourly evidence checkpoints	2026-08-31T00:44:51.3059033Z Heartbeat: next checkpoint in 1479s; branch=audit/202608310109-five-hour-33343650645
+study	Run five hourly evidence checkpoints	2026-08-31T00:49:51.3087411Z Heartbeat: next checkpoint in 1179s; branch=audit/202608310109-five-hour-33343650645
+study	Run five hourly evidence checkpoints	2026-08-31T00:54:51.3118231Z Heartbeat: next checkpoint in 879s; branch=audit/202608310109-five-hour-33343650645
+study	Run five hourly evidence checkpoints	2026-08-31T00:59:51.3145542Z Heartbeat: next checkpoint in 579s; branch=audit/202608310109-five-hour-33343650645
+study	Run five hourly evidence checkpoints	2026-08-31T01:04:51.3174559Z Heartbeat: next checkpoint in 279s; branch=audit/202608310109-five-hour-33343650645
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:30.3204041Z Starting evidence checkpoint 2/5
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:30.3700686Z [phase 2] start
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:30.6455469Z [phase 2] complete
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.0600481Z {
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.0601244Z   "status": "PASS",
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.0602342Z   "phase": 2,
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.0602854Z   "output_root": "202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645",
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.0603347Z   "changed_paths": [
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.0604399Z     "202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645/02-PIPELINENEWS-ENGINE-AUDIT.json",
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.0605212Z     "202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645/02-PIPELINENEWS-ENGINE-AUDIT.md",
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.0605980Z     "202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645/checkpoint-02.json"
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.0606675Z   ],
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.0606946Z   "total_output_bytes": 573958,
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.0607331Z   "source_snapshots_verified": 9
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.0607676Z }
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.1168714Z [audit/202608310109-five-hour-33343650645 eee65e2] 202608310209-audit: UNREVIEWED checkpoint 2/5
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.1169678Z  3 files changed, 10440 insertions(+)
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.1170354Z  create mode 100644 202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645/02-PIPELINENEWS-ENGINE-AUDIT.json
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.1171374Z  create mode 100644 202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645/02-PIPELINENEWS-ENGINE-AUDIT.md
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.1173069Z  create mode 100644 202608310033-study/AUTOMATION-RUNS/202608310109-github-run-33343650645/checkpoint-02.json
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.8031355Z To https://github.com/Ventusltd/chatgpt-audits
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.8032201Z  ! [rejected]        HEAD -> audit/202608310109-five-hour-33343650645 (fetch first)
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.8032975Z error: failed to push some refs to 'https://github.com/Ventusltd/chatgpt-audits'
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.8039107Z hint: Updates were rejected because the remote contains work that you do not
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.8039843Z hint: have locally. This is usually caused by another repository pushing to
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.8040398Z hint: the same ref. If you want to integrate the remote changes, use
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.8040867Z hint: 'git pull' before pushing again.
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.8041388Z hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+study	Run five hourly evidence checkpoints	2026-08-31T01:09:31.8055349Z ##[error]Process completed with exit code 1.
