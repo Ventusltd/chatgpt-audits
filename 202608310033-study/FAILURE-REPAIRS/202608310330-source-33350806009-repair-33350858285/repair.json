@@ -1,0 +1,45 @@
+{
+  "schema": "chatgpt-audits.failure-repair.v1",
+  "generation": "202608310122",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "inspected_at": "2026-08-31T02:30:07.267925Z",
+  "inspected_at_london": "2026-08-31T03:30:07.267925+01:00",
+  "workflow": {
+    "id": 33350806009,
+    "name": "202608310322 real GPT hourly architecture reviewer",
+    "path": ".github/workflows/202608310322-real-gpt-hourly-review.yml",
+    "event": "push",
+    "status": "completed",
+    "conclusion": "failure",
+    "run_attempt": 3,
+    "head_sha": "30c6060687d9c0a1f74d2ffc358bf45b4e2d7563",
+    "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33350806009"
+  },
+  "diagnosis": [
+    {
+      "disease": "network_transient",
+      "classification": "inferred",
+      "evidence_excerpt": "reason Ask a real GPT model what happened, what is good or bad, and what to build next \ufeff2026-08-31T02:29:55.5035410Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runn"
+    },
+    {
+      "disease": "contract_assertion",
+      "classification": "inferred",
+      "evidence_excerpt": "on/202608310322-gpt-reasoning-timer/render_response.py reason Ask a real GPT model what happened, what is good or bad, and what to build next 2026-08-31T02:29:55.5044270Z PROMPT_SCHEMA: automation/202608310322-gpt-reasoning-timer/architecture-review.prompt.yml reason Ask a real GPT model what happened, what is good or bad, and what to build next 2026-08-31T02:29:55.5044732Z MODEL_ID: openai/gpt-4.1 reason Ask a real GPT model what happened, what is good or bad, and what to build next 2026-08-31T02"
+    }
+  ],
+  "repair_action": {
+    "requested": false,
+    "endpoint": null,
+    "http_status": null,
+    "error": null,
+    "classification": "observed",
+    "reason": "No automatic retry: the run is not retry-eligible or has reached attempt 3."
+  },
+  "source_policy": {
+    "write_boundary": "Ventusltd/chatgpt-audits",
+    "product_repo_writes": "FORBIDDEN",
+    "product_workflow_dispatches": "FORBIDDEN",
+    "automatic_source_patch": "FORBIDDEN"
+  }
+}
