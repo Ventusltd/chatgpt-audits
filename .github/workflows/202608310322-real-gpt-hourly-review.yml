@@ -14,7 +14,7 @@ on:
 permissions:
   actions: read
   contents: write
-  models: read
+  copilot-requests: write
 
 concurrency:
   group: 202608310322-real-gpt-hourly-architecture-reviewer
@@ -24,10 +24,14 @@ env:
   CONTROLLER_ROOT: automation/202608310322-gpt-reasoning-timer
   BUILD_PROMPT: automation/202608310322-gpt-reasoning-timer/build_prompt.py
   RENDER_RESPONSE: automation/202608310322-gpt-reasoning-timer/render_response.py
-  PROMPT_SCHEMA: automation/202608310322-gpt-reasoning-timer/architecture-review.prompt.yml
-  MODEL_ID: openai/gpt-4.1
+  RESPONSE_SCHEMA: automation/202608310322-gpt-reasoning-timer/response-schema.json
+  SYSTEM_PROMPT: automation/202608310322-gpt-reasoning-timer/copilot-system.txt
+  RUNTIME_SOURCE: automation/202608310322-gpt-reasoning-timer/copilot-runtime-source.json
+  MODEL_ID: gpt-5
+  MODEL_PROVIDER: github-copilot-cli
+  COPILOT_CLI_VERSION: 1.0.82
   MODEL_BRANCH: audit/202608310322-real-gpt-hourly-review
-  GH_TOKEN: ${{ github.token }}
+  GITHUB_TOKEN: ${{ github.token }}
   PYTHONDONTWRITEBYTECODE: '1'
 
 jobs:
@@ -67,21 +71,40 @@ jobs:
           echo "active=$ACTIVE" >> "$GITHUB_OUTPUT"
           echo "checked_london=$NOW" >> "$GITHUB_OUTPUT"
           if [ "$ACTIVE" != "true" ]; then
-            echo "Outside the bounded model-review window; inert by design."
+            echo "Outside the bounded five-run model-review window; inert by design."
           fi
 
-      - name: Validate model controller and strict response renderer
+      - name: Validate controller, response contract and runtime source card
         if: steps.guard.outputs.active == 'true'
         shell: bash
         run: |
           set -euo pipefail
           test -f "$BUILD_PROMPT"
           test -f "$RENDER_RESPONSE"
-          test -f "$PROMPT_SCHEMA"
-          grep -q '^model: openai/gpt-4.1$' "$PROMPT_SCHEMA"
-          grep -q '^responseFormat: json_schema$' "$PROMPT_SCHEMA"
+          test -f "$RESPONSE_SCHEMA"
+          test -f "$SYSTEM_PROMPT"
+          test -f "$RUNTIME_SOURCE"
           python3 -m py_compile "$BUILD_PROMPT" "$RENDER_RESPONSE"
           find "$CONTROLLER_ROOT" -type d -name __pycache__ -prune -exec rm -rf {} +
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          schema = json.loads(Path("automation/202608310322-gpt-reasoning-timer/response-schema.json").read_text())
+          assert schema["type"] == "object"
+          assert schema["additionalProperties"] is False
+          assert set(schema["required"]) == {
+              "overall_assessment", "what_happened", "good", "bad",
+              "recommended_improvement", "deterministic_tests",
+              "do_not_change", "uncertainties"
+          }
+
+          source = json.loads(Path("automation/202608310322-gpt-reasoning-timer/copilot-runtime-source.json").read_text())
+          assert source["version"] == "1.0.82"
+          assert source["platform"] == "linux-x64"
+          assert source["sha256"] == "37fa67686a9e4ed8d46dcd6a9c80ab524dea840ecaa0a3f7edf8d09f961b97a9"
+          assert source["network_classification"] == "SUPERVISED_SOURCE_CARDED_RUNTIME_FETCH"
+          PY
 
           TEST_ROOT="$RUNNER_TEMP/202608310322-renderer-self-test"
           rm -rf "$TEST_ROOT"
@@ -111,15 +134,44 @@ jobs:
             "uncertainties":["None relevant to this synthetic fixture"]
           }
           JSON
-          printf 'synthetic prompt\n' > "$TEST_ROOT/prompt.md"
+          printf 'synthetic prompt\n' > "$TEST_ROOT/prompt.txt"
           python3 "$RENDER_RESPONSE" \
             --response "$TEST_ROOT/response.json" \
-            --prompt "$TEST_ROOT/prompt.md" \
+            --prompt "$TEST_ROOT/prompt.txt" \
             --output "$TEST_ROOT/rendered" \
             --sequence 1 \
-            --model "$MODEL_ID"
+            --model "$MODEL_ID" \
+            --provider "$MODEL_PROVIDER" \
+            --runtime "copilot-cli/${COPILOT_CLI_VERSION}"
           test -s "$TEST_ROOT/rendered/MODEL-REVIEW.md"
           test -s "$TEST_ROOT/rendered/MODEL-REVIEW.json"
+
+      - name: Install pinned Copilot CLI from its source-carded GitHub release
+        id: runtime
+        if: steps.guard.outputs.active == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          RUNTIME_ROOT="$RUNNER_TEMP/copilot-cli-${COPILOT_CLI_VERSION}"
+          ARCHIVE="$RUNNER_TEMP/copilot-linux-x64-${COPILOT_CLI_VERSION}.tar.gz"
+          URL=$(python3 -c "import json; print(json.load(open('$RUNTIME_SOURCE'))['asset_url'])")
+          EXPECTED=$(python3 -c "import json; print(json.load(open('$RUNTIME_SOURCE'))['sha256'])")
+          rm -rf "$RUNTIME_ROOT" "$ARCHIVE"
+          mkdir -p "$RUNTIME_ROOT"
+          curl --fail --location --silent --show-error \
+            --retry 4 --retry-all-errors --connect-timeout 20 --max-time 180 \
+            "$URL" --output "$ARCHIVE"
+          echo "$EXPECTED  $ARCHIVE" | sha256sum --check --strict
+          tar -xzf "$ARCHIVE" -C "$RUNTIME_ROOT"
+          COPILOT_PATH=$(find "$RUNTIME_ROOT" -type f -name copilot -print -quit)
+          test -n "$COPILOT_PATH"
+          chmod 0555 "$COPILOT_PATH"
+          ACTUAL_VERSION=$($COPILOT_PATH --version | head -n 1 | tr -d '\r')
+          echo "Pinned runtime reports: $ACTUAL_VERSION"
+          {
+            echo "path=$COPILOT_PATH"
+            echo "version=$ACTUAL_VERSION"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Allocate one of exactly five persistent review slots
         id: allocate
@@ -134,21 +186,21 @@ jobs:
               | grep -c '/MODEL-REVIEW.json$' || true)
           fi
           if [ "$COUNT" -ge 5 ]; then
-            echo "created=false" >> "$GITHUB_OUTPUT"
+            echo "attempt=false" >> "$GITHUB_OUTPUT"
             echo "complete=true" >> "$GITHUB_OUTPUT"
             echo "sequence=5" >> "$GITHUB_OUTPUT"
-            echo "Five real GPT reviews already exist; no sixth call will be made."
+            echo "Five validated GPT reviews already exist; no sixth model call will be made."
             exit 0
           fi
 
           SEQUENCE=$((COUNT + 1))
           STAMP=$(TZ=Europe/London date +%Y%m%d%H%M)
-          TEMP_OUTPUT="$RUNNER_TEMP/202608310322-real-gpt-${GITHUB_RUN_ID}-s${SEQUENCE}"
-          TARGET_PATH="202608310033-study/REAL-GPT-TIMER/${STAMP}-run-${GITHUB_RUN_ID}-review-${SEQUENCE}"
+          TEMP_OUTPUT="$RUNNER_TEMP/202608310322-real-gpt-${GITHUB_RUN_ID}-a${GITHUB_RUN_ATTEMPT}-s${SEQUENCE}"
+          TARGET_PATH="202608310033-study/REAL-GPT-TIMER/${STAMP}-run-${GITHUB_RUN_ID}-a${GITHUB_RUN_ATTEMPT}-review-${SEQUENCE}"
           rm -rf "$TEMP_OUTPUT"
           mkdir -p "$TEMP_OUTPUT"
           {
-            echo "created=true"
+            echo "attempt=true"
             echo "complete=false"
             echo "sequence=$SEQUENCE"
             echo "stamp=$STAMP"
@@ -156,8 +208,8 @@ jobs:
             echo "target_path=$TARGET_PATH"
           } >> "$GITHUB_OUTPUT"
 
-      - name: Build and materialise the current evidence prompt
-        if: steps.allocate.outputs.created == 'true'
+      - name: Build current evidence and a non-executable model prompt
+        if: steps.allocate.outputs.attempt == 'true'
         env:
           SEQUENCE: ${{ steps.allocate.outputs.sequence }}
           TEMP_OUTPUT: ${{ steps.allocate.outputs.temp_output }}
@@ -169,72 +221,185 @@ jobs:
             --output "$TEMP_OUTPUT"
           test -s "$TEMP_OUTPUT/EVIDENCE.json"
           test -s "$TEMP_OUTPUT/EVIDENCE-PACKET.md"
-          cp "$PROMPT_SCHEMA" "$TEMP_OUTPUT/PROMPT-SCHEMA.yml"
+          cp "$RESPONSE_SCHEMA" "$TEMP_OUTPUT/RESPONSE-SCHEMA.json"
+          cp "$SYSTEM_PROMPT" "$TEMP_OUTPUT/SYSTEM-PROMPT.txt"
+          cp "$RUNTIME_SOURCE" "$TEMP_OUTPUT/COPILOT-RUNTIME-SOURCE.json"
 
-          python3 - "$PROMPT_SCHEMA" "$TEMP_OUTPUT/EVIDENCE-PACKET.md" "$TEMP_OUTPUT/INFERENCE.prompt.yml" "$SEQUENCE" <<'PY'
+          PREVIOUS_REVIEW="$RUNNER_TEMP/previous-real-gpt-review.md"
+          : > "$PREVIOUS_REVIEW"
+          if git show-ref --verify --quiet "refs/remotes/origin/${MODEL_BRANCH}"; then
+            PREVIOUS_PATH=$(git ls-tree -r --name-only "origin/${MODEL_BRANCH}" \
+              | grep '/MODEL-REVIEW.md$' | sort -r | head -n 1 || true)
+            if [ -n "$PREVIOUS_PATH" ]; then
+              git show "origin/${MODEL_BRANCH}:${PREVIOUS_PATH}" \
+                | head -c 7000 > "$PREVIOUS_REVIEW"
+            fi
+          fi
+
+          python3 - "$TEMP_OUTPUT" "$SEQUENCE" "$PREVIOUS_REVIEW" <<'PY'
           from pathlib import Path
           import sys
 
-          template_path = Path(sys.argv[1])
-          evidence_path = Path(sys.argv[2])
-          output_path = Path(sys.argv[3])
-          sequence = sys.argv[4]
-          template = template_path.read_text(encoding="utf-8")
-          evidence = evidence_path.read_text(encoding="utf-8")
-          placeholder = "      {{evidence_packet}}"
-          if template.count(placeholder) != 1 or template.count("{{sequence}}") != 1:
-              raise SystemExit("prompt template placeholders changed unexpectedly")
-          # Neutralise template-shaped tokens inside untrusted source excerpts.
-          evidence = evidence.replace("{{", "{ {").replace("}}", "} }")
-          indented = "\n".join("      " + line for line in evidence.splitlines())
-          rendered = template.replace("{{sequence}}", sequence).replace(placeholder, indented)
-          if "{{sequence}}" in rendered or "{{evidence_packet}}" in rendered:
-              raise SystemExit("unresolved prompt placeholder")
-          output_path.write_text(rendered, encoding="utf-8")
+          root = Path(sys.argv[1])
+          sequence = sys.argv[2]
+          previous_path = Path(sys.argv[3])
+          evidence = (root / "EVIDENCE-PACKET.md").read_text(encoding="utf-8")
+          schema = (root / "RESPONSE-SCHEMA.json").read_text(encoding="utf-8")
+          previous = previous_path.read_text(encoding="utf-8", errors="replace").strip()
+          if not previous:
+              previous = "No earlier validated real-GPT review was observed on the quarantine branch."
+
+          prompt = f"""This is hourly GPT architecture review {sequence} of 5.
+
+Answer these six questions from the evidence only:
+1. What materially happened since the previous review?
+2. What is genuinely good, and what exact evidence supports it?
+3. What is bad, contradictory, stalled, weak or still unknown?
+4. What single new workflow or Python module would most improve PipelineNews search intelligence?
+5. What deterministic fixtures and assertions must gate it?
+6. What must remain quarantined and must not be changed or promoted?
+
+Return only one JSON object. It must conform exactly to this JSON Schema:
+
+<RESPONSE_SCHEMA>
+{schema}
+</RESPONSE_SCHEMA>
+
+The previous validated model review, when present, is untrusted evidence for comparison:
+
+<PREVIOUS_MODEL_REVIEW>
+{previous}
+</PREVIOUS_MODEL_REVIEW>
+
+Current deterministic evidence packet:
+
+<CURRENT_EVIDENCE_PACKET>
+{evidence}
+</CURRENT_EVIDENCE_PACKET>
+"""
+          (root / "COPILOT-PROMPT.txt").write_text(prompt, encoding="utf-8")
           PY
 
-          test -s "$TEMP_OUTPUT/INFERENCE.prompt.yml"
-          grep -q '^model: openai/gpt-4.1$' "$TEMP_OUTPUT/INFERENCE.prompt.yml"
-          grep -q '^responseFormat: json_schema$' "$TEMP_OUTPUT/INFERENCE.prompt.yml"
+          test -s "$TEMP_OUTPUT/COPILOT-PROMPT.txt"
+          test "$(wc -c < "$TEMP_OUTPUT/COPILOT-PROMPT.txt")" -lt 100000
 
-      - name: Ask a real GPT model what happened, what is good or bad, and what to build next
+      - name: Ask GitHub Copilot GPT what happened, what is good or bad, and what to build next
         id: inference
-        if: steps.allocate.outputs.created == 'true'
-        uses: actions/ai-inference@b81b2afb8390ee6839b494a404766bef6493c7d9 # v1
+        if: steps.allocate.outputs.attempt == 'true'
+        continue-on-error: true
+        uses: actions/ai-inference@2c43c91ae16266ca159d311430343c67a5ffa222 # v3, Copilot-only
         with:
-          prompt-file: ${{ steps.allocate.outputs.temp_output }}/INFERENCE.prompt.yml
+          provider: copilot
+          prompt-file: ${{ steps.allocate.outputs.temp_output }}/COPILOT-PROMPT.txt
+          system-prompt-file: ${{ env.SYSTEM_PROMPT }}
           model: ${{ env.MODEL_ID }}
-          max-tokens: '2200'
           token: ${{ github.token }}
+          copilot-cli-path: ${{ steps.runtime.outputs.path }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
 
-      - name: Validate and render the structured GPT response
-        if: steps.allocate.outputs.created == 'true'
+      - name: Validate the GPT response or retain an honest provider block
+        id: result
+        if: steps.allocate.outputs.attempt == 'true'
         env:
           SEQUENCE: ${{ steps.allocate.outputs.sequence }}
           TEMP_OUTPUT: ${{ steps.allocate.outputs.temp_output }}
           RESPONSE_FILE: ${{ steps.inference.outputs.response-file }}
+          INFERENCE_OUTCOME: ${{ steps.inference.outcome }}
+          RUNTIME_VERSION: ${{ steps.runtime.outputs.version }}
         shell: bash
         run: |
-          set -euo pipefail
-          test -n "$RESPONSE_FILE"
-          test -s "$RESPONSE_FILE"
-          python3 "$RENDER_RESPONSE" \
-            --response "$RESPONSE_FILE" \
-            --prompt "$TEMP_OUTPUT/INFERENCE.prompt.yml" \
-            --output "$TEMP_OUTPUT" \
-            --sequence "$SEQUENCE" \
-            --model "$MODEL_ID"
-          test -s "$TEMP_OUTPUT/MODEL-REVIEW.md"
-          test -s "$TEMP_OUTPUT/MODEL-REVIEW.json"
-          test -s "$TEMP_OUTPUT/MODEL-METADATA.json"
+          set -u
+          CREATED=false
+          BLOCKED=false
+          REASON=""
 
-      - name: Commit only the timestamped GPT review to quarantine
-        if: steps.allocate.outputs.created == 'true'
+          if [ "$INFERENCE_OUTCOME" = "success" ] && [ -n "$RESPONSE_FILE" ] && [ -s "$RESPONSE_FILE" ]; then
+            set +e
+            python3 "$RENDER_RESPONSE" \
+              --response "$RESPONSE_FILE" \
+              --prompt "$TEMP_OUTPUT/COPILOT-PROMPT.txt" \
+              --output "$TEMP_OUTPUT" \
+              --sequence "$SEQUENCE" \
+              --model "$MODEL_ID" \
+              --provider "$MODEL_PROVIDER" \
+              --runtime "$RUNTIME_VERSION"
+            CODE=$?
+            set -e
+            if [ "$CODE" -eq 0 ]; then
+              CREATED=true
+              cp "$RESPONSE_FILE" "$TEMP_OUTPUT/COPILOT-RESPONSE.txt"
+            else
+              BLOCKED=true
+              REASON="MODEL_RESPONSE_FAILED_STRICT_JSON_CONTRACT"
+              cp "$RESPONSE_FILE" "$TEMP_OUTPUT/COPILOT-RESPONSE-REJECTED.txt" || true
+            fi
+          else
+            BLOCKED=true
+            REASON="COPILOT_INFERENCE_UNAVAILABLE_OR_POLICY_BLOCKED"
+          fi
+
+          export CREATED BLOCKED REASON SEQUENCE INFERENCE_OUTCOME RUNTIME_VERSION
+          python3 - "$TEMP_OUTPUT" <<'PY'
+          from datetime import datetime, timezone
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          import json
+          import os
+          import sys
+
+          root = Path(sys.argv[1])
+          payload = {
+              "schema": "chatgpt-audits.model-attempt.v1",
+              "generation": "202608310322",
+              "review_status": "UNREVIEWED",
+              "classification": "observed",
+              "sequence": int(os.environ["SEQUENCE"]),
+              "provider": "github-copilot-cli",
+              "model": "gpt-5",
+              "runtime": os.environ.get("RUNTIME_VERSION"),
+              "inference_outcome": os.environ.get("INFERENCE_OUTCOME"),
+              "validated_review_created": os.environ.get("CREATED") == "true",
+              "provider_blocked": os.environ.get("BLOCKED") == "true",
+              "reason": os.environ.get("REASON") or None,
+              "checked_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+              "checked_at_london": datetime.now(ZoneInfo("Europe/London")).isoformat(),
+              "workflow_run_id": os.environ.get("GITHUB_RUN_ID"),
+              "workflow_run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT"),
+              "product_repository_writes": "FORBIDDEN",
+              "product_workflow_dispatches": "FORBIDDEN"
+          }
+          (root / "MODEL-ATTEMPT.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+          if payload["provider_blocked"]:
+              (root / "PROVIDER-BLOCKED.md").write_text(
+                  "# GPT provider attempt not graduated\n\n"
+                  "> **REVIEW STATUS: UNREVIEWED**  \n"
+                  "> Classification: `observed`  \n\n"
+                  f"- Provider: `github-copilot-cli`\n"
+                  f"- Model: `gpt-5`\n"
+                  f"- Sequence requested: `{payload['sequence']}/5`\n"
+                  f"- Inference outcome: `{payload['inference_outcome']}`\n"
+                  f"- Reason: `{payload['reason']}`\n\n"
+                  "No `MODEL-REVIEW.json` was created, so this does not consume one of the five validated review slots. "
+                  "Inspect the workflow log for the exact Copilot policy, entitlement or response-contract error.\n",
+                  encoding="utf-8"
+              )
+          PY
+
+          {
+            echo "created=$CREATED"
+            echo "blocked=$BLOCKED"
+            echo "reason=$REASON"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Commit only the timestamped GPT attempt to quarantine
+        if: steps.allocate.outputs.attempt == 'true'
         env:
           STAMP: ${{ steps.allocate.outputs.stamp }}
           SEQUENCE: ${{ steps.allocate.outputs.sequence }}
           TEMP_OUTPUT: ${{ steps.allocate.outputs.temp_output }}
           TARGET_PATH: ${{ steps.allocate.outputs.target_path }}
+          REVIEW_CREATED: ${{ steps.result.outputs.created }}
         shell: bash
         run: |
           set -euo pipefail
@@ -259,15 +424,21 @@ jobs:
             echo "$ESCAPED" >&2
             exit 1
           fi
-          test "$(git diff --cached --name-only | grep -c '/MODEL-REVIEW.json$')" -eq 1
-          git commit -m "${STAMP}-audit: UNREVIEWED real GPT architecture review ${SEQUENCE}/5"
+          if [ "$REVIEW_CREATED" = "true" ]; then
+            test "$(git diff --cached --name-only | grep -c '/MODEL-REVIEW.json$')" -eq 1
+            MESSAGE="${STAMP}-audit: UNREVIEWED real GPT architecture review ${SEQUENCE}/5"
+          else
+            test "$(git diff --cached --name-only | grep -c '/MODEL-REVIEW.json$' || true)" -eq 0
+            MESSAGE="${STAMP}-audit: UNREVIEWED GPT provider attempt for review ${SEQUENCE}/5"
+          fi
+          git commit -m "$MESSAGE"
           git push origin "HEAD:${MODEL_BRANCH}"
 
-      - name: Upload complete GPT review packet
-        if: always() && steps.allocate.outputs.created == 'true'
+      - name: Upload complete GPT attempt packet
+        if: always() && steps.allocate.outputs.attempt == 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: real-gpt-hourly-${{ github.run_id }}-${{ steps.allocate.outputs.sequence }}
+          name: real-gpt-hourly-${{ github.run_id }}-a${{ github.run_attempt }}-s${{ steps.allocate.outputs.sequence }}
           path: ${{ steps.allocate.outputs.temp_output }}
           if-no-files-found: error
           retention-days: 30
@@ -282,14 +453,21 @@ jobs:
             echo
             echo "- Active window: ${{ steps.guard.outputs.active || 'false' }}"
             echo "- London check: ${{ steps.guard.outputs.checked_london || 'not-run' }}"
-            echo "- Review created: ${{ steps.allocate.outputs.created || 'false' }}"
+            echo "- Model call attempted: ${{ steps.allocate.outputs.attempt || 'false' }}"
+            echo "- Validated review created: ${{ steps.result.outputs.created || 'false' }}"
+            echo "- Provider blocked/rejected: ${{ steps.result.outputs.blocked || 'false' }}"
+            echo "- Reason: \`${{ steps.result.outputs.reason || 'none' }}\`"
             echo "- Sequence: ${{ steps.allocate.outputs.sequence || 'not-run' }}/5"
+            echo "- Provider: \`${MODEL_PROVIDER}\`"
             echo "- Model: \`${MODEL_ID}\`"
-            echo "- Official inference action: \`actions/ai-inference@b81b2afb8390ee6839b494a404766bef6493c7d9\`"
+            echo "- Pinned Copilot CLI: \`${COPILOT_CLI_VERSION}\`"
+            echo "- Pinned inference action: \`actions/ai-inference@2c43c91ae16266ca159d311430343c67a5ffa222\`"
             echo "- Persistent branch: \`${MODEL_BRANCH}\`"
             echo "- Product writes or dispatches: **none**"
             echo
             if [ -f "${{ steps.allocate.outputs.temp_output }}/MODEL-REVIEW.md" ]; then
               cat "${{ steps.allocate.outputs.temp_output }}/MODEL-REVIEW.md"
+            elif [ -f "${{ steps.allocate.outputs.temp_output }}/PROVIDER-BLOCKED.md" ]; then
+              cat "${{ steps.allocate.outputs.temp_output }}/PROVIDER-BLOCKED.md"
             fi
           } >> "$GITHUB_STEP_SUMMARY"
