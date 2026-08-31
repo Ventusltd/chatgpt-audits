@@ -1,0 +1,53 @@
+{
+  "schema": "chatgpt-audits.direct-copilot-run.v1",
+  "generation": "202608310405",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "provider": "github-copilot-cli",
+  "model": "gpt-5.4",
+  "exit_code": 1,
+  "outcome": "failure",
+  "reason": "COPILOT_CLI_EXIT_1",
+  "stdout_bytes": 0,
+  "stderr_bytes": 137,
+  "started_at": "2026-08-31T02:45:08.251273Z",
+  "finished_at": "2026-08-31T02:45:09.936692Z",
+  "finished_at_london": "2026-08-31T03:45:09.936692+01:00",
+  "isolated_empty_workspace": true,
+  "fresh_copilot_home": true,
+  "model_tools_available": [
+    "ask_user"
+  ],
+  "ask_user_disabled": true,
+  "explicit_denials": [
+    "read",
+    "write",
+    "shell",
+    "url",
+    "memory"
+  ],
+  "max_ai_credits": 1,
+  "command": [
+    "copilot",
+    "-C",
+    "<EMPTY_WORKSPACE>",
+    "-p",
+    "<ASSEMBLED_PROMPT>",
+    "-s",
+    "--no-ask-user",
+    "--no-banner",
+    "--model",
+    "gpt-5.4",
+    "--max-ai-credits",
+    "1",
+    "--yolo",
+    "--available-tools=ask_user",
+    "--deny-tool=read",
+    "--deny-tool=write",
+    "--deny-tool=shell",
+    "--deny-tool=url",
+    "--deny-tool=memory"
+  ],
+  "product_repository_writes": "FORBIDDEN",
+  "product_workflow_dispatches": "FORBIDDEN"
+}
