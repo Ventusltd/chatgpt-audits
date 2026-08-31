@@ -1,0 +1,11 @@
+{
+  "schema": "chatgpt-audits.study-checkpoint.v1",
+  "generation": "202608310052",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "phase": 5,
+  "slug": "pipelinenews-vnext-quarantined-candidate",
+  "goal": "Generate an unreviewed modular architecture, schemas, reference state machine, tests and implementation backlog.",
+  "completed_at": "2026-08-31T05:09:52.509618Z",
+  "completed_at_london": "2026-08-31T06:09:52.509755+01:00"
+}

@@ -1,0 +1,106 @@
+{
+  "schema": "pipelinenews.intelligence-architecture.candidate.vnext",
+  "generation": "202608310052",
+  "review_status": "UNREVIEWED",
+  "classification": "inferred",
+  "status": "QUARANTINED_DRAFT",
+  "source_commits": {
+    "pipelinenews": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+    "companies": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+    "gridatlas": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+    "cvaa": "d2ebc01f6eab41f2a84b0c53c4cfae0d2625ec5e",
+    "spiders": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+    "data-gridatlas": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+    "globalgrid2050": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+    "data-centres-gb": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+    "data-gb-electricity": "7c492745c974f6b8610cb1209f996b1553abb498"
+  },
+  "modules": [
+    {
+      "name": "collectors",
+      "owns": [
+        "source-specific retrieval adapter",
+        "source card",
+        "raw response receipt"
+      ],
+      "must_not_own": [
+        "project identity conclusion",
+        "commercial timing conclusion",
+        "publication"
+      ]
+    },
+    {
+      "name": "evidence-ledger",
+      "owns": [
+        "append-only observed events",
+        "revision",
+        "retraction",
+        "contradiction",
+        "content digest"
+      ],
+      "must_not_own": [
+        "UI",
+        "ranking",
+        "project publication"
+      ]
+    },
+    {
+      "name": "identity-binder",
+      "owns": [
+        "company-project-planning relationships",
+        "binding status",
+        "validity interval",
+        "abstention"
+      ],
+      "must_not_own": [
+        "source collection",
+        "timing promotion"
+      ]
+    },
+    {
+      "name": "timing-state-machine",
+      "owns": [
+        "funding lane",
+        "procurement lane",
+        "dual-register gate",
+        "staleness",
+        "withheld/conflicted state"
+      ],
+      "must_not_own": [
+        "evidence mutation",
+        "public deployment"
+      ]
+    },
+    {
+      "name": "reviewed-read-model",
+      "owns": [
+        "human-reviewed summary",
+        "GridAtlas deep-link contract",
+        "PipelineNews presentation payload"
+      ],
+      "must_not_own": [
+        "raw Companies data",
+        "individual PII",
+        "unreviewed inference"
+      ]
+    }
+  ],
+  "repository_ownership": {
+    "companies": "compact factual company/project relationships and organisation-level register events",
+    "pipelinenews": "evidence ledger, identity bindings, timing state and reviewed read model",
+    "gridatlas": "consumer visualisation and exact project deep-link receiver",
+    "globalgrid2050": "catalogue/origin hub and domain topology",
+    "data-centres-gb": "demand-side site evidence and relationships",
+    "chatgpt-audits": "unreviewed design and test artefacts only"
+  },
+  "non_negotiable_rules": [
+    "News is evidence/corroboration, not the funding or procurement fact.",
+    "One register lane alone does not create a sales window.",
+    "Every inference cites immutable evidence IDs and a rule version.",
+    "Event time, observed time and calculated time are distinct.",
+    "Retractions and contradictions are first-class events.",
+    "Absence is not evidence.",
+    "Human review is required before a release candidate.",
+    "This audit candidate cannot publish."
+  ]
+}

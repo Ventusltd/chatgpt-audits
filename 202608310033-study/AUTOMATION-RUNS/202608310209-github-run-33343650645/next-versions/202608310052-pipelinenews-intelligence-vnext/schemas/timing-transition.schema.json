@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ventus:pipelinenews:timing-transition:vnext",
+  "title": "UNREVIEWED PipelineNews timing transition",
+  "review_status": "UNREVIEWED",
+  "classification": "inferred",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "transition_id",
+    "project_id",
+    "from_state",
+    "to_state",
+    "input_evidence_ids",
+    "classification",
+    "rule_version",
+    "calculated_at",
+    "review_status"
+  ],
+  "properties": {
+    "transition_id": {
+      "type": "string"
+    },
+    "project_id": {
+      "type": "string",
+      "pattern": "^GG2050-REPD-[0-9]+$"
+    },
+    "from_state": {
+      "$ref": "#/$defs/state"
+    },
+    "to_state": {
+      "$ref": "#/$defs/state"
+    },
+    "input_evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "classification": {
+      "const": "inferred"
+    },
+    "rule_version": {
+      "type": "string"
+    },
+    "calculated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "UNREVIEWED",
+        "HUMAN_REVIEWED",
+        "REJECTED"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "maxLength": 1000
+    }
+  },
+  "$defs": {
+    "state": {
+      "type": "string",
+      "enum": [
+        "DISCOVERED",
+        "IDENTITY_CANDIDATE",
+        "FUNDING_OBSERVED",
+        "PROCUREMENT_OBSERVED",
+        "CORROBORATED_WINDOW",
+        "HUMAN_REVIEWED",
+        "RELEASE_CANDIDATE",
+        "WITHHELD",
+        "CONFLICTED",
+        "STALE"
+      ]
+    }
+  }
+}
