@@ -1,0 +1,305 @@
+name: 202608310423 OpenAI Codex hourly architecture reviewer
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/202608310423-openai-codex-hourly-review.yml
+      - automation/202608310423-openai-codex-timer/**
+  workflow_dispatch:
+  schedule:
+    - cron: '46 3-6 31 8 *'
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: 202608310322-real-gpt-hourly-architecture-reviewer
+  cancel-in-progress: false
+
+env:
+  BUILD_EVIDENCE: automation/202608310322-gpt-reasoning-timer/build_prompt.py
+  ASSEMBLE_PROMPT: automation/202608310322-gpt-reasoning-timer/assemble_prompt.py
+  RENDER_RESPONSE: automation/202608310322-gpt-reasoning-timer/render_response.py
+  RECORD_ATTEMPT: automation/202608310322-gpt-reasoning-timer/record_attempt.py
+  RESPONSE_SCHEMA: automation/202608310322-gpt-reasoning-timer/response-schema.json
+  SOURCE_CARD: automation/202608310423-openai-codex-timer/source-card.json
+  MODEL_PROVIDER: openai-codex-action
+  MODEL_ID: gpt-5.6-luna
+  CODEX_VERSION: 0.151.0
+  MODEL_BRANCH: audit/202608310322-real-gpt-hourly-review
+  PYTHONDONTWRITEBYTECODE: '1'
+
+jobs:
+  reason:
+    if: github.repository == 'Ventusltd/chatgpt-audits'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+
+    steps:
+      - name: Checkout exact current audit main
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+          token: ${{ github.token }}
+
+      - name: Enforce the bounded five-run window
+        id: guard
+        shell: bash
+        run: |
+          set -euo pipefail
+          NOW=$(TZ=Europe/London date +%Y%m%d%H%M)
+          ACTIVE=false
+          case "$GITHUB_EVENT_NAME" in
+            push|workflow_dispatch)
+              if [[ "$NOW" > "202608310319" && "$NOW" < "202608310801" ]]; then ACTIVE=true; fi
+              ;;
+            schedule)
+              if [[ "$NOW" > "202608310419" && "$NOW" < "202608310801" ]]; then ACTIVE=true; fi
+              ;;
+          esac
+          echo "active=$ACTIVE" >> "$GITHUB_OUTPUT"
+          echo "checked_london=$NOW" >> "$GITHUB_OUTPUT"
+          if [ "$ACTIVE" != true ]; then
+            echo "Outside the bounded five-run model-review window; inert by design."
+          fi
+
+      - name: Validate official action source card and local contracts
+        if: steps.guard.outputs.active == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m py_compile "$BUILD_EVIDENCE" "$ASSEMBLE_PROMPT" "$RENDER_RESPONSE" "$RECORD_ATTEMPT"
+          find automation/202608310322-gpt-reasoning-timer -type d -name __pycache__ -prune -exec rm -rf {} +
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          card = json.loads(Path('automation/202608310423-openai-codex-timer/source-card.json').read_text())
+          assert card['action_commit'] == '86365089eb2b84e0a8fb0717b304f8bdcb13b20e'
+          assert card['codex_version'] == '0.151.0'
+          assert card['model'] == 'gpt-5.6-luna'
+          assert card['network_classification'] == 'SUPERVISED_SOURCE_CARDED_MODEL_CALL'
+          assert card['write_boundary'] == 'Ventusltd/chatgpt-audits quarantine branch only'
+
+          schema = json.loads(Path('automation/202608310322-gpt-reasoning-timer/response-schema.json').read_text())
+          assert schema['type'] == 'object'
+          assert schema['additionalProperties'] is False
+          PY
+
+      - name: Detect OpenAI API credential without exposing it
+        id: credential
+        if: steps.guard.outputs.active == 'true'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -n "$OPENAI_API_KEY" ]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+            echo "OpenAI API credential is configured."
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "OPENAI_API_KEY is not configured; no external model call will be made."
+          fi
+
+      - name: Allocate one of exactly five validated review slots
+        id: allocate
+        if: steps.guard.outputs.active == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --force origin "+refs/heads/${MODEL_BRANCH}:refs/remotes/origin/${MODEL_BRANCH}" || true
+          COUNT=0
+          if git show-ref --verify --quiet "refs/remotes/origin/${MODEL_BRANCH}"; then
+            COUNT=$(git ls-tree -r --name-only "origin/${MODEL_BRANCH}" | grep -c '/MODEL-REVIEW.json$' || true)
+          fi
+          if [ "$COUNT" -ge 5 ]; then
+            echo "attempt=false" >> "$GITHUB_OUTPUT"
+            echo "complete=true" >> "$GITHUB_OUTPUT"
+            echo "sequence=5" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          SEQUENCE=$((COUNT + 1))
+          STAMP=$(TZ=Europe/London date +%Y%m%d%H%M)
+          TEMP_OUTPUT="$RUNNER_TEMP/openai-codex-${GITHUB_RUN_ID}-a${GITHUB_RUN_ATTEMPT}-s${SEQUENCE}"
+          TARGET_PATH="202608310033-study/REAL-GPT-TIMER/${STAMP}-codex-run-${GITHUB_RUN_ID}-a${GITHUB_RUN_ATTEMPT}-review-${SEQUENCE}"
+          EMPTY_WORKSPACE="work/202608310423-openai-codex/${GITHUB_RUN_ID}"
+          rm -rf "$TEMP_OUTPUT" "$EMPTY_WORKSPACE"
+          mkdir -p "$TEMP_OUTPUT" "$EMPTY_WORKSPACE"
+          echo "attempt=true" >> "$GITHUB_OUTPUT"
+          echo "complete=false" >> "$GITHUB_OUTPUT"
+          echo "sequence=$SEQUENCE" >> "$GITHUB_OUTPUT"
+          echo "stamp=$STAMP" >> "$GITHUB_OUTPUT"
+          echo "temp_output=$TEMP_OUTPUT" >> "$GITHUB_OUTPUT"
+          echo "target_path=$TARGET_PATH" >> "$GITHUB_OUTPUT"
+          echo "empty_workspace=$EMPTY_WORKSPACE" >> "$GITHUB_OUTPUT"
+
+      - name: Build bounded evidence and Codex prompt
+        if: steps.allocate.outputs.attempt == 'true'
+        env:
+          SEQUENCE: ${{ steps.allocate.outputs.sequence }}
+          TEMP_OUTPUT: ${{ steps.allocate.outputs.temp_output }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 "$BUILD_EVIDENCE" --sequence "$SEQUENCE" --output "$TEMP_OUTPUT"
+          cp "$RESPONSE_SCHEMA" "$TEMP_OUTPUT/RESPONSE-SCHEMA.json"
+          cp "$SOURCE_CARD" "$TEMP_OUTPUT/OPENAI-CODEX-SOURCE-CARD.json"
+          PREVIOUS="$RUNNER_TEMP/previous-real-gpt-review.md"
+          : > "$PREVIOUS"
+          if git show-ref --verify --quiet "refs/remotes/origin/${MODEL_BRANCH}"; then
+            PREVIOUS_PATH=$(git ls-tree -r --name-only "origin/${MODEL_BRANCH}" | grep '/MODEL-REVIEW.md$' | sort -r | head -n 1 || true)
+            if [ -n "$PREVIOUS_PATH" ]; then
+              git show "origin/${MODEL_BRANCH}:${PREVIOUS_PATH}" | head -c 7000 > "$PREVIOUS"
+            fi
+          fi
+          python3 "$ASSEMBLE_PROMPT" \
+            --sequence "$SEQUENCE" \
+            --evidence "$TEMP_OUTPUT/EVIDENCE-PACKET.md" \
+            --schema "$TEMP_OUTPUT/RESPONSE-SCHEMA.json" \
+            --previous "$PREVIOUS" \
+            --output "$TEMP_OUTPUT/CODEX-PROMPT.txt"
+          test -s "$TEMP_OUTPUT/CODEX-PROMPT.txt"
+
+      - name: Run official OpenAI Codex Action in read-only quarantine
+        id: codex
+        if: steps.allocate.outputs.attempt == 'true' && steps.credential.outputs.available == 'true'
+        continue-on-error: true
+        uses: openai/codex-action@86365089eb2b84e0a8fb0717b304f8bdcb13b20e # v1, 2026-08-20
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt-file: ${{ steps.allocate.outputs.temp_output }}/CODEX-PROMPT.txt
+          output-file: ${{ steps.allocate.outputs.temp_output }}/CODEX-RESPONSE.txt
+          output-schema-file: ${{ env.RESPONSE_SCHEMA }}
+          working-directory: ${{ steps.allocate.outputs.empty_workspace }}
+          permission-profile: ':read-only'
+          safety-strategy: drop-sudo
+          codex-version: ${{ env.CODEX_VERSION }}
+          model: ${{ env.MODEL_ID }}
+          effort: high
+
+      - name: Validate model response or retain exact blocker
+        id: result
+        if: steps.allocate.outputs.attempt == 'true'
+        env:
+          SEQUENCE: ${{ steps.allocate.outputs.sequence }}
+          TEMP_OUTPUT: ${{ steps.allocate.outputs.temp_output }}
+          CREDENTIAL_AVAILABLE: ${{ steps.credential.outputs.available }}
+          CODEX_OUTCOME: ${{ steps.codex.outcome }}
+        shell: bash
+        run: |
+          set -u
+          CREATED=false
+          REASON=OPENAI_API_KEY_NOT_CONFIGURED
+          OUTCOME=skipped
+          RESPONSE_FILE="$TEMP_OUTPUT/CODEX-RESPONSE.txt"
+
+          if [ "$CREDENTIAL_AVAILABLE" = true ]; then
+            OUTCOME="$CODEX_OUTCOME"
+            REASON=OPENAI_CODEX_ACTION_FAILED
+            if [ "$CODEX_OUTCOME" = success ] && [ -s "$RESPONSE_FILE" ]; then
+              set +e
+              python3 "$RENDER_RESPONSE" \
+                --response "$RESPONSE_FILE" \
+                --prompt "$TEMP_OUTPUT/CODEX-PROMPT.txt" \
+                --output "$TEMP_OUTPUT" \
+                --sequence "$SEQUENCE" \
+                --model "$MODEL_ID" \
+                --provider "$MODEL_PROVIDER" \
+                --runtime "openai-codex-action/86365089-codex-${CODEX_VERSION}"
+              CODE=$?
+              set -e
+              if [ "$CODE" -eq 0 ]; then
+                CREATED=true
+                REASON=
+              else
+                REASON=MODEL_RESPONSE_FAILED_STRICT_JSON_CONTRACT
+                cp "$RESPONSE_FILE" "$TEMP_OUTPUT/CODEX-RESPONSE-REJECTED.txt" || true
+              fi
+            fi
+          fi
+
+          python3 "$RECORD_ATTEMPT" \
+            --output "$TEMP_OUTPUT" \
+            --sequence "$SEQUENCE" \
+            --provider "$MODEL_PROVIDER" \
+            --model "$MODEL_ID" \
+            --runtime "openai-codex-action/86365089-codex-${CODEX_VERSION}" \
+            --inference-outcome "$OUTCOME" \
+            --created "$CREATED" \
+            --reason "$REASON"
+          echo "created=$CREATED" >> "$GITHUB_OUTPUT"
+          echo "blocked=$([ "$CREATED" = true ] && echo false || echo true)" >> "$GITHUB_OUTPUT"
+          echo "reason=${REASON:-none}" >> "$GITHUB_OUTPUT"
+
+      - name: Commit only the timestamped Codex attempt to quarantine
+        if: steps.allocate.outputs.attempt == 'true'
+        env:
+          STAMP: ${{ steps.allocate.outputs.stamp }}
+          SEQUENCE: ${{ steps.allocate.outputs.sequence }}
+          TEMP_OUTPUT: ${{ steps.allocate.outputs.temp_output }}
+          TARGET_PATH: ${{ steps.allocate.outputs.target_path }}
+          REVIEW_CREATED: ${{ steps.result.outputs.created }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name chatgpt-audits-openai-codex-timer
+          git config user.email actions@users.noreply.github.com
+          git fetch --force origin "+refs/heads/${MODEL_BRANCH}:refs/remotes/origin/${MODEL_BRANCH}" || true
+          if git show-ref --verify --quiet "refs/remotes/origin/${MODEL_BRANCH}"; then
+            git switch -C "$MODEL_BRANCH" "origin/$MODEL_BRANCH"
+          else
+            git switch -c "$MODEL_BRANCH"
+          fi
+          mkdir -p "$TARGET_PATH"
+          cp -a "$TEMP_OUTPUT"/. "$TARGET_PATH"/
+          find "$TARGET_PATH" -type d -name __pycache__ -prune -exec rm -rf {} + || true
+          find "$TARGET_PATH" -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+          git add -- "$TARGET_PATH"
+          ESCAPED=$(git diff --cached --name-only | grep -v "^${TARGET_PATH}/" || true)
+          test -z "$ESCAPED"
+          if [ "$REVIEW_CREATED" = true ]; then
+            test "$(git diff --cached --name-only | grep -c '/MODEL-REVIEW.json$')" -eq 1
+            MESSAGE="${STAMP}-audit: UNREVIEWED OpenAI Codex architecture review ${SEQUENCE}/5"
+          else
+            test "$(git diff --cached --name-only | grep -c '/MODEL-REVIEW.json$' || true)" -eq 0
+            MESSAGE="${STAMP}-audit: UNREVIEWED OpenAI Codex provider attempt for review ${SEQUENCE}/5"
+          fi
+          git commit -m "$MESSAGE"
+          git push origin "HEAD:${MODEL_BRANCH}"
+
+      - name: Upload complete Codex attempt packet
+        if: always() && steps.allocate.outputs.attempt == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: openai-codex-hourly-${{ github.run_id }}-a${{ github.run_attempt }}-s${{ steps.allocate.outputs.sequence }}
+          path: ${{ steps.allocate.outputs.temp_output }}
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 9
+
+      - name: Publish operator summary
+        if: always()
+        shell: bash
+        run: |
+          echo "# OpenAI Codex hourly architecture reviewer" >> "$GITHUB_STEP_SUMMARY"
+          echo >> "$GITHUB_STEP_SUMMARY"
+          echo "- Active window: ${{ steps.guard.outputs.active || 'false' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- API credential configured: ${{ steps.credential.outputs.available || 'false' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Model call attempted: ${{ steps.codex.outcome != '' && 'true' || 'false' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Validated review created: ${{ steps.result.outputs.created || 'false' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Reason: \`${{ steps.result.outputs.reason || 'none' }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Sequence: ${{ steps.allocate.outputs.sequence || 'not-run' }}/5" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Provider/model: \`${MODEL_PROVIDER}/${MODEL_ID}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Action commit: \`86365089eb2b84e0a8fb0717b304f8bdcb13b20e\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Product writes or dispatches: **none**" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f "${{ steps.allocate.outputs.temp_output }}/MODEL-REVIEW.md" ]; then
+            cat "${{ steps.allocate.outputs.temp_output }}/MODEL-REVIEW.md" >> "$GITHUB_STEP_SUMMARY"
+          elif [ -f "${{ steps.allocate.outputs.temp_output }}/PROVIDER-BLOCKED.md" ]; then
+            cat "${{ steps.allocate.outputs.temp_output }}/PROVIDER-BLOCKED.md" >> "$GITHUB_STEP_SUMMARY"
+          fi
