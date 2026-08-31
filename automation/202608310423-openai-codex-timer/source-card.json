@@ -1,0 +1,22 @@
+{
+  "schema": "chatgpt-audits.external-model-runtime-source.v1",
+  "generation": "202608310423",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "provider": "OpenAI Responses API via official Codex GitHub Action",
+  "action_repository": "openai/codex-action",
+  "action_tag": "v1",
+  "action_commit": "86365089eb2b84e0a8fb0717b304f8bdcb13b20e",
+  "action_tag_object": "f367b1e9572fd064ea71ef925ca24ee0f01080af",
+  "codex_repository": "openai/codex",
+  "codex_version": "0.151.0",
+  "codex_release_tag": "rust-v0.151.0",
+  "codex_release_published_at": "2026-08-29T09:55:39Z",
+  "model": "gpt-5.6-luna",
+  "reasoning_effort": "high",
+  "credential": "GitHub Actions secret OPENAI_API_KEY; presence only is tested, value is never logged",
+  "network_classification": "SUPERVISED_SOURCE_CARDED_MODEL_CALL",
+  "write_boundary": "Ventusltd/chatgpt-audits quarantine branch only",
+  "product_repository_access": "NONE",
+  "output_status": "UNREVIEWED"
+}
