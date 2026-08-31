@@ -148,7 +148,6 @@ def main() -> int:
         combined,
         "-s",
         "--no-ask-user",
-        "--no-banner",
         "--model",
         args.model,
         "--max-ai-credits",
@@ -203,7 +202,6 @@ def main() -> int:
         "<ASSEMBLED_PROMPT>",
         "-s",
         "--no-ask-user",
-        "--no-banner",
         "--model",
         args.model,
         "--max-ai-credits",
@@ -217,8 +215,8 @@ def main() -> int:
         "--deny-tool=memory",
     ]
     report: Mapping[str, object] = {
-        "schema": "chatgpt-audits.direct-copilot-run.v2",
-        "generation": "202608310414",
+        "schema": "chatgpt-audits.direct-copilot-run.v3",
+        "generation": "202608310417",
         "review_status": REVIEW_STATUS,
         "classification": "observed",
         "provider": "github-copilot-cli",
