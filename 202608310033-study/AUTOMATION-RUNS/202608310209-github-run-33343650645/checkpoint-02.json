@@ -1,0 +1,11 @@
+{
+  "schema": "chatgpt-audits.study-checkpoint.v1",
+  "generation": "202608310052",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "phase": 2,
+  "slug": "pipelinenews-intelligence-engine",
+  "goal": "Decompose the current discovery runners, identity logic, evidence handling and publication gates.",
+  "completed_at": "2026-08-31T02:09:52.448279Z",
+  "completed_at_london": "2026-08-31T03:09:52.448402+01:00"
+}
