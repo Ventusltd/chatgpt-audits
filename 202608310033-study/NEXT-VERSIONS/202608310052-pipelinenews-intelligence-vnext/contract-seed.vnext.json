@@ -1,0 +1,57 @@
+{
+  "schema": "pipelinenews.intelligence-contract.seed.vnext",
+  "generation": "202608310052",
+  "review_status": "UNREVIEWED",
+  "classification": "inferred",
+  "status": "QUARANTINED_DRAFT",
+  "commercial_rule": {
+    "funding_lane": "requires at least one usable observed organisation-level Companies House event",
+    "procurement_lane": "requires at least one usable observed planning or procurement event",
+    "corroborated_window": "requires both lanes for the same reviewed project identity",
+    "one_signal_policy": "WITHHOLD",
+    "absence_policy": "UNKNOWN_NOT_NEGATIVE",
+    "news_policy": "CORROBORATION_ONLY",
+    "human_review_required": true
+  },
+  "states": [
+    "DISCOVERED",
+    "IDENTITY_CANDIDATE",
+    "FUNDING_OBSERVED",
+    "PROCUREMENT_OBSERVED",
+    "CORROBORATED_WINDOW",
+    "HUMAN_REVIEWED",
+    "RELEASE_CANDIDATE",
+    "WITHHELD",
+    "CONFLICTED",
+    "STALE"
+  ],
+  "identity_keys": {
+    "project": "gg_project_id",
+    "source_project": "repd_ref",
+    "company": "company_number",
+    "planning": "planning_application_ref"
+  },
+  "event_time_fields": [
+    "effective_at",
+    "observed_at",
+    "calculated_at"
+  ],
+  "required_provenance": [
+    "source_card_id",
+    "source_record_id",
+    "evidence_sha256",
+    "source_revision",
+    "input_evidence_ids",
+    "rule_version"
+  ],
+  "forbidden_public_fields": [
+    "director_name",
+    "individual_psc",
+    "date_of_birth",
+    "residential_address"
+  ],
+  "publication": {
+    "available_inside_chatgpt_audits": false,
+    "product_workflow_required": true
+  }
+}
