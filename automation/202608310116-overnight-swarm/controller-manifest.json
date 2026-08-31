@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-audits.overnight-controller-manifest.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "payload": {
+    "parts": [
+      "controller.part-00",
+      "controller.part-01",
+      "controller.part-02",
+      "controller.part-03",
+      "controller.part-04",
+      "controller.part-05",
+      "controller.part-06",
+      "controller.part-07"
+    ],
+    "base64_sha256": "de281b2350310749c38264e4a7f688b39c63544c43e74e13c79b8f765c53f739",
+    "archive_sha256": "81e733593b1f0e7815bbbd4701601fc31f54084a58c834618d3ea31e36a1e8fb"
+  },
+  "files": [
+    "aggregate.py",
+    "common.py",
+    "prepare.py",
+    "run_lane.py",
+    "verify.py"
+  ],
+  "file_sha256": {
+    "aggregate.py": "29eed8348d4b94e87888def94b7572964fe4cb72932e2d507f563836b2fca8f4",
+    "common.py": "9d42d90d8afea6b8d79418a8c99d08ee3d72a7f780564e5ff1f0fcba173ff164",
+    "prepare.py": "d6aeeda5123bd2bc090d2fff44891cf8070ef69cb2e1d88ce89e5722859034e2",
+    "run_lane.py": "d3bec602fe00f4f329de358c564ccb779bd5e9cfe4bfaf8e8806de2d4428e27e",
+    "verify.py": "7d7ee40a3db3b2c24030df086c78ab0bb177cc66c4cbb36c1273fc3c4aa2bc77"
+  }
+}
