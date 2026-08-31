@@ -16,7 +16,24 @@ from pathlib import Path
 from typing import Any, Iterator, Sequence
 
 REVIEW_STATUS = "UNREVIEWED"
-SKIP_DIRS = {".git", "__pycache__", ".pytest_cache", "node_modules"}
+SKIP_DIRS = {
+    ".git",
+    ".idea",
+    ".pytest_cache",
+    ".venv",
+    "__pycache__",
+    "node_modules",
+    "vendor",
+}
+FORBIDDEN_OUTPUT_DIRS = {
+    ".git",
+    ".idea",
+    ".pytest_cache",
+    ".venv",
+    "__pycache__",
+    "node_modules",
+    "vendor",
+}
 SECRET_PATTERNS = {
     "github_token": re.compile(r"\bgh[pousr]_[A-Za-z0-9_]{20,}\b"),
     "github_pat": re.compile(r"\bgithub_pat_[A-Za-z0-9_]{20,}\b"),
@@ -156,7 +173,7 @@ def verify(args: argparse.Namespace) -> int:
     total_bytes = 0
     for directory, dirnames, filenames in os.walk(output_root):
         for dirname in dirnames:
-            if dirname in {"__pycache__", ".pytest_cache", "node_modules"}:
+            if dirname in FORBIDDEN_OUTPUT_DIRS:
                 failures.append(f"forbidden generated directory in output: {Path(directory) / dirname}")
         for filename in filenames:
             if filename.endswith((".pyc", ".pyo")):
