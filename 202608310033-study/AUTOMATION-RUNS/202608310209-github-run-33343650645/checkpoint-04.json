@@ -1,0 +1,11 @@
+{
+  "schema": "chatgpt-audits.study-checkpoint.v1",
+  "generation": "202608310052",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "phase": 4,
+  "slug": "seam-and-claude-crosscheck",
+  "goal": "Re-prove high-impact claims from the copied Claude study against pinned product snapshots.",
+  "completed_at": "2026-08-31T04:09:52.618879Z",
+  "completed_at_london": "2026-08-31T05:09:52.619009+01:00"
+}

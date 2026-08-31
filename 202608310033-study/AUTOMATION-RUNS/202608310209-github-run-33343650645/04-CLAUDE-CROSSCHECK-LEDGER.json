@@ -1,0 +1,1108 @@
+{
+  "schema": "chatgpt-audits.claude-crosscheck-ledger.v1",
+  "generation": "202608310052",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "created_at": "2026-08-31T04:09:52.617853Z",
+  "source_note": "Claims were copied into chatgpt-audits and re-tested against pinned repository snapshots. No live product or external data source was queried.",
+  "claims": [
+    {
+      "claim_id": "CROSSCHECK-001",
+      "statement": "PipelineNews still emits the pre-move root GridAtlas release route.",
+      "classification": "observed",
+      "evidence": [
+        {
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "ui/atlas-v9-deep-links.js",
+          "line": 4,
+          "excerpt": "const BASE_URL = \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/\";"
+        }
+      ],
+      "note": "The copied study's producer-side string is present at the pinned commit."
+    },
+    {
+      "claim_id": "CROSSCHECK-002",
+      "statement": "GridAtlas declares `/gridatlas/atlas/` as its stable live route.",
+      "classification": "observed",
+      "evidence": [
+        {
+          "repository": "gridatlas",
+          "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+          "path": "state/live-set.json",
+          "line": 16,
+          "excerpt": "\"live_url\": \"https://ventusltd.github.io/gridatlas/atlas/\","
+        },
+        {
+          "repository": "gridatlas",
+          "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+          "path": "atlas/current.json",
+          "line": 6,
+          "excerpt": "\"live_route\": \"/gridatlas/atlas/\","
+        }
+      ],
+      "note": "Current selected pointer/composition files contain the stable route."
+    },
+    {
+      "claim_id": "CROSSCHECK-003",
+      "statement": "The `202608300453-atlas-v9` release moved from repository root to `atlas/releases/`.",
+      "classification": "observed",
+      "evidence": [
+        {
+          "repository": "gridatlas",
+          "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+          "tree_probes": {
+            "old": false,
+            "new": true
+          }
+        }
+      ],
+      "note": "The full Git tree probe records the old root path absent and the moved release path present."
+    },
+    {
+      "claim_id": "CROSSCHECK-004",
+      "statement": "A GridAtlas overnight study workflow can commit study/candidate output directly to product `main`.",
+      "classification": "observed",
+      "evidence": [
+        {
+          "repository": "gridatlas",
+          "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+          "path": ".github/workflows/202608310015-gridatlas-overnight-next-versions.yml",
+          "line": 211,
+          "excerpt": "if git push origin HEAD:main; then"
+        }
+      ],
+      "note": "This is an anti-pattern for the audit automation; the new workflow writes only to an audit branch."
+    },
+    {
+      "claim_id": "CROSSCHECK-005",
+      "statement": "Companies preserves a compact relationship-candidate and privacy boundary rather than publishing a company master dataset.",
+      "classification": "observed",
+      "evidence": [
+        {
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 5,
+          "excerpt": "The repository retains reviewed acquisition and accounts-extraction code. The current recovery checkpoint, `202608281337`, builds a key-only relationship-and-report candidate; it does not publish or overwrite a stable dataset."
+        }
+      ],
+      "note": "The boundary should be retained while adding a separate event-history contract."
+    },
+    {
+      "claim_id": "CROSSCHECK-006",
+      "statement": "Claude's `_build-plan` exists at the current GridAtlas commit.",
+      "classification": "not_observed_in_snapshot",
+      "evidence": [
+        {
+          "repository": "gridatlas",
+          "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+          "tree_probe": false
+        }
+      ],
+      "note": "A false tree probe means only that the named path was not observed at this commit; copied study material remains in chatgpt-audits."
+    }
+  ],
+  "copied_study_path_token_census": [
+    {
+      "token": "candidate/202608272155-compact",
+      "mentions": 2862
+    },
+    {
+      "token": "Ventusltd/companies",
+      "mentions": 2861
+    },
+    {
+      "token": "pipelinenews/data/projects/202608261927-project-partition-v9-1-*.json",
+      "mentions": 2859
+    },
+    {
+      "token": "_build-plan/window-intelligence.md",
+      "mentions": 2859
+    },
+    {
+      "token": "companies/build/python/202608262245-compile-companies-house.py",
+      "mentions": 105
+    },
+    {
+      "token": "atlas/current.json",
+      "mentions": 12
+    },
+    {
+      "token": "DATACENTRES-NEXT/",
+      "mentions": 12
+    },
+    {
+      "token": "tools/scope/loop.mjs",
+      "mentions": 11
+    },
+    {
+      "token": "DATACENTRES-NEXT/NEXT-VERSION-DATACENTRES.md",
+      "mentions": 8
+    },
+    {
+      "token": "2021/1818/01/DET",
+      "mentions": 8
+    },
+    {
+      "token": "/gridatlas/atlas/",
+      "mentions": 7
+    },
+    {
+      "token": "pipelinenews/ui/atlas-v9-deep-links.js",
+      "mentions": 7
+    },
+    {
+      "token": "atlas/releases/",
+      "mentions": 7
+    },
+    {
+      "token": "companies/state/atlas-v9-link-contract.json",
+      "mentions": 6
+    },
+    {
+      "token": "23/00532/FUL",
+      "mentions": 6
+    },
+    {
+      "token": "23/00254/FUL",
+      "mentions": 6
+    },
+    {
+      "token": "tools/202608301930-fidelity.py",
+      "mentions": 5
+    },
+    {
+      "token": "PROJECT-STUDIES/_RANKING.md",
+      "mentions": 5
+    },
+    {
+      "token": "@duckdb/duckdb-wasm@1.29.0",
+      "mentions": 4
+    },
+    {
+      "token": "state/live-set.json",
+      "mentions": 4
+    },
+    {
+      "token": "releases/current-v3.json",
+      "mentions": 4
+    },
+    {
+      "token": "atman/202608301624-verify-v9-5-search.mjs",
+      "mentions": 4
+    },
+    {
+      "token": "releases/current.json",
+      "mentions": 4
+    },
+    {
+      "token": "discoveryv1/modules/credibility.mjs",
+      "mentions": 4
+    },
+    {
+      "token": "22/03978/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "2025/1585/FPA",
+      "mentions": 4
+    },
+    {
+      "token": "19/0458/ECC",
+      "mentions": 4
+    },
+    {
+      "token": "20/01817/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "22/02042/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "24/0855/GPS",
+      "mentions": 4
+    },
+    {
+      "token": "CB/18/02801/FULL",
+      "mentions": 4
+    },
+    {
+      "token": "26/01099/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "6/2023/1802/MAJ",
+      "mentions": 4
+    },
+    {
+      "token": "26/00404/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "22/00487/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "PL/08017",
+      "mentions": 4
+    },
+    {
+      "token": "22/01832/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "PF/25/0091",
+      "mentions": 4
+    },
+    {
+      "token": "P/FUL/2021/02622",
+      "mentions": 4
+    },
+    {
+      "token": "23/02235/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "DM/23/02510/FPA",
+      "mentions": 4
+    },
+    {
+      "token": "MW.0018/24",
+      "mentions": 4
+    },
+    {
+      "token": "PL/2024/01599",
+      "mentions": 4
+    },
+    {
+      "token": "S/1427/14/FL",
+      "mentions": 4
+    },
+    {
+      "token": "23/01317/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "26/500678/FULL",
+      "mentions": 4
+    },
+    {
+      "token": "PA23/09532",
+      "mentions": 4
+    },
+    {
+      "token": "RU.25/0843",
+      "mentions": 4
+    },
+    {
+      "token": "2024/0795/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "3/24/1275/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "PL/2025/01404/PPFL",
+      "mentions": 4
+    },
+    {
+      "token": "WD/2021/0671/MAJ",
+      "mentions": 4
+    },
+    {
+      "token": "21/00271/FULL",
+      "mentions": 4
+    },
+    {
+      "token": "21/4490N",
+      "mentions": 4
+    },
+    {
+      "token": "25/04321/RENE",
+      "mentions": 4
+    },
+    {
+      "token": "23/00077/FULL",
+      "mentions": 4
+    },
+    {
+      "token": "23/01507/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "2024/4395/MAF",
+      "mentions": 4
+    },
+    {
+      "token": "25/1034/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "25/00100/FULEIA",
+      "mentions": 4
+    },
+    {
+      "token": "25/01836/FLM",
+      "mentions": 4
+    },
+    {
+      "token": "F/YR19/0810/F",
+      "mentions": 4
+    },
+    {
+      "token": "CB/22/00752/FULL",
+      "mentions": 4
+    },
+    {
+      "token": "24/00589/FULL",
+      "mentions": 4
+    },
+    {
+      "token": "22/00741/FP",
+      "mentions": 4
+    },
+    {
+      "token": "22/00303/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "22/03982/FULL",
+      "mentions": 4
+    },
+    {
+      "token": "0998/FUL/25",
+      "mentions": 4
+    },
+    {
+      "token": "P/2022/0541",
+      "mentions": 4
+    },
+    {
+      "token": "24/02548/FULL",
+      "mentions": 4
+    },
+    {
+      "token": "23/02598/FULL",
+      "mentions": 4
+    },
+    {
+      "token": "22/03563/FULL",
+      "mentions": 4
+    },
+    {
+      "token": "DM/1156/23/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "B03/2024/0551",
+      "mentions": 4
+    },
+    {
+      "token": "NK/2024/0599",
+      "mentions": 4
+    },
+    {
+      "token": "DC/25/1027/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "24/00935/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "25/02219/FULMAJ",
+      "mentions": 4
+    },
+    {
+      "token": "25/01535/MFA",
+      "mentions": 4
+    },
+    {
+      "token": "ZG2025/0762/EIA",
+      "mentions": 4
+    },
+    {
+      "token": "ZG2024/1323/SCN",
+      "mentions": 4
+    },
+    {
+      "token": "DM/25/02042/FPA",
+      "mentions": 4
+    },
+    {
+      "token": "25/00566/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "ZB25/01321/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "20/03528/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "DC/22/3313/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "22/05424/EIA",
+      "mentions": 4
+    },
+    {
+      "token": "RB2025/0029",
+      "mentions": 4
+    },
+    {
+      "token": "24/2616/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "DM/25/01964/FPA",
+      "mentions": 4
+    },
+    {
+      "token": "WL/2025/00667",
+      "mentions": 4
+    },
+    {
+      "token": "23/01717/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "24/02455/FP",
+      "mentions": 4
+    },
+    {
+      "token": "23/00046/MFULE",
+      "mentions": 4
+    },
+    {
+      "token": "DC/24/00429/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "ENQ/2024/1328",
+      "mentions": 4
+    },
+    {
+      "token": "22/00224/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "22/36478/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "24/03422/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "25/01030/MAF",
+      "mentions": 4
+    },
+    {
+      "token": "3PL/2020/1134/F",
+      "mentions": 4
+    },
+    {
+      "token": "21/01432/FM",
+      "mentions": 4
+    },
+    {
+      "token": "22/01978/FULM",
+      "mentions": 4
+    },
+    {
+      "token": "F/23/96527",
+      "mentions": 4
+    },
+    {
+      "token": "25/0542/FH",
+      "mentions": 4
+    },
+    {
+      "token": "25/01553/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "DM/25/01801/FPA",
+      "mentions": 4
+    },
+    {
+      "token": "DM/1145/19/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "19/02516/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "PL/2021/03061",
+      "mentions": 4
+    },
+    {
+      "token": "3/39/21/028",
+      "mentions": 4
+    },
+    {
+      "token": "22/01225/FULL",
+      "mentions": 4
+    },
+    {
+      "token": "1016/FUL/23",
+      "mentions": 4
+    },
+    {
+      "token": "22/01585/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "23/00760/STPLFE",
+      "mentions": 4
+    },
+    {
+      "token": "PA23/02629",
+      "mentions": 4
+    },
+    {
+      "token": "23/02250/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "P24/V2698/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "25/01554/FULM",
+      "mentions": 4
+    },
+    {
+      "token": "25/02539/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "P/FUL/2025/03066",
+      "mentions": 4
+    },
+    {
+      "token": "20/02221/ARC",
+      "mentions": 4
+    },
+    {
+      "token": "21/00605/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "21/03531/FULL",
+      "mentions": 4
+    },
+    {
+      "token": "B/21/0443",
+      "mentions": 4
+    },
+    {
+      "token": "23/02766/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "23/02705/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "W/22/1577",
+      "mentions": 4
+    },
+    {
+      "token": "25/P/2609/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "25/0125/IC",
+      "mentions": 4
+    },
+    {
+      "token": "P25/V1646/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "S23/2199",
+      "mentions": 4
+    },
+    {
+      "token": "H/2024/0180",
+      "mentions": 4
+    },
+    {
+      "token": "25/02739/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "SMD/2022/0160",
+      "mentions": 4
+    },
+    {
+      "token": "2022/0509",
+      "mentions": 4
+    },
+    {
+      "token": "WD/2024/2392/MEA",
+      "mentions": 4
+    },
+    {
+      "token": "20/01962/STPLF",
+      "mentions": 4
+    },
+    {
+      "token": "PA/2025/292",
+      "mentions": 4
+    },
+    {
+      "token": "23/36938/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "25/40571/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "F/YR25/0413/F",
+      "mentions": 4
+    },
+    {
+      "token": "DM/0108/24/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "24/03278/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "EPF/1216/25",
+      "mentions": 4
+    },
+    {
+      "token": "25/02389/FULM",
+      "mentions": 4
+    },
+    {
+      "token": "24/01565/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "APP/2019/0296",
+      "mentions": 4
+    },
+    {
+      "token": "DM/0455/25/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "AVA/2024/0877",
+      "mentions": 4
+    },
+    {
+      "token": "22/01329/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "23/00576/FULM",
+      "mentions": 4
+    },
+    {
+      "token": "PL/2023/08481",
+      "mentions": 4
+    },
+    {
+      "token": "W/24/01088/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "25/01702/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "26/0023",
+      "mentions": 4
+    },
+    {
+      "token": "22/00824/STPLF",
+      "mentions": 4
+    },
+    {
+      "token": "PL/2021/06112",
+      "mentions": 4
+    },
+    {
+      "token": "PL/2021/06100",
+      "mentions": 4
+    },
+    {
+      "token": "DC/22/01243",
+      "mentions": 4
+    },
+    {
+      "token": "DMOT/2025/0113",
+      "mentions": 4
+    },
+    {
+      "token": "DM/22/01769/FPA",
+      "mentions": 4
+    },
+    {
+      "token": "PA22/01511",
+      "mentions": 4
+    },
+    {
+      "token": "RB2022/1203",
+      "mentions": 4
+    },
+    {
+      "token": "25/00709",
+      "mentions": 4
+    },
+    {
+      "token": "22/01291/ESF",
+      "mentions": 4
+    },
+    {
+      "token": "23/01837/FULM",
+      "mentions": 4
+    },
+    {
+      "token": "24/1264/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "2023/2183/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "23/02482/FULM",
+      "mentions": 4
+    },
+    {
+      "token": "APP/2023/1234",
+      "mentions": 4
+    },
+    {
+      "token": "24/00295/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "24/00161/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "3/24/2245/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "PL/2025/0904/FMAJ",
+      "mentions": 4
+    },
+    {
+      "token": "PAP/2024/0586",
+      "mentions": 4
+    },
+    {
+      "token": "DC/25/2733/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "RB2025/0714",
+      "mentions": 4
+    },
+    {
+      "token": "25/02869/RENE",
+      "mentions": 4
+    },
+    {
+      "token": "DM/25/01881/FPA",
+      "mentions": 4
+    },
+    {
+      "token": "2024/0649/MAF",
+      "mentions": 4
+    },
+    {
+      "token": "1/0470/2025/FULM",
+      "mentions": 4
+    },
+    {
+      "token": "25/01028/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "21/00259/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "S.21/0465/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "23/01746/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "21/04505/STPLF",
+      "mentions": 4
+    },
+    {
+      "token": "21/02173/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "23/1021/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "24/00883/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "DNS/3253253",
+      "mentions": 4
+    },
+    {
+      "token": "R24/1166",
+      "mentions": 4
+    },
+    {
+      "token": "22/00358/FUL",
+      "mentions": 4
+    },
+    {
+      "token": "P/25/0018",
+      "mentions": 4
+    },
+    {
+      "token": "23/00537/FULM",
+      "mentions": 4
+    },
+    {
+      "token": "globalgrid2050/dist/repd_master.json",
+      "mentions": 3
+    },
+    {
+      "token": "data-gridatlas/tools/202608301930-fidelity.py",
+      "mentions": 3
+    },
+    {
+      "token": "atlas/cartridges/202608301624-place-global-search-v9-5.js",
+      "mentions": 3
+    },
+    {
+      "token": "/gridatlas/atlas/releases/202608300453-atlas-v9/",
+      "mentions": 3
+    },
+    {
+      "token": "gridatlas/state/live-set.json",
+      "mentions": 3
+    },
+    {
+      "token": "./atlas/",
+      "mentions": 3
+    },
+    {
+      "token": ".github/workflows/202608300415-advance-successor-to-exact-atlas.yml",
+      "mentions": 3
+    },
+    {
+      "token": "tools/scope/lib.mjs",
+      "mentions": 3
+    },
+    {
+      "token": "docs/milestones/202608300305-atlas-v9-federated-deep-links.md",
+      "mentions": 3
+    },
+    {
+      "token": "/company/{n}/charges",
+      "mentions": 3
+    },
+    {
+      "token": "/company/{n}/persons-with-significant-control",
+      "mentions": 3
+    },
+    {
+      "token": "attributionv1/modules/register-ingest.mjs",
+      "mentions": 3
+    },
+    {
+      "token": "attributionv1/modules/attribution-ledger.mjs",
+      "mentions": 3
+    },
+    {
+      "token": "discoveryv1/modules/capture-recapture.mjs",
+      "mentions": 3
+    },
+    {
+      "token": "pipelinenews/data/news-discovery/202608272130-sector-intelligence-contract.json",
+      "mentions": 3
+    },
+    {
+      "token": "CB/25/01098/FULL",
+      "mentions": 3
+    },
+    {
+      "token": "data-gridatlas/202608291237-data-gridatlas/data/manifest.json",
+      "mentions": 2
+    },
+    {
+      "token": "state/streaming-road-fix.json",
+      "mentions": 2
+    },
+    {
+      "token": "gridatlas/data/repd_projects_202608290716.parquet",
+      "mentions": 2
+    },
+    {
+      "token": "/dist/repd_master.json",
+      "mentions": 2
+    },
+    {
+      "token": "partitions/grid_substations.parquet",
+      "mentions": 2
+    },
+    {
+      "token": "derived/grid_{132,275,400}kv_snapped.parquet",
+      "mentions": 2
+    },
+    {
+      "token": "pmtiles://",
+      "mentions": 2
+    },
+    {
+      "token": "exports/202608281053-osm-data-centres.geojson",
+      "mentions": 2
+    },
+    {
+      "token": "DRAFT-CARTRIDGES/exact-ref-index.spec.md",
+      "mentions": 2
+    },
+    {
+      "token": "gridatlas/data/repd_v9_manifest_202608290716.json",
+      "mentions": 2
+    },
+    {
+      "token": "gridatlas/contracts/atlas-v9-deep-link-contract.v1.json",
+      "mentions": 2
+    },
+    {
+      "token": "gridatlas/atlas/current.json",
+      "mentions": 2
+    },
+    {
+      "token": "gridatlas/index.html",
+      "mentions": 2
+    },
+    {
+      "token": "pipelinenews/releases/current-v3.json",
+      "mentions": 2
+    },
+    {
+      "token": "releases/current-v5.json",
+      "mentions": 2
+    },
+    {
+      "token": ".github/workflows/",
+      "mentions": 2
+    },
+    {
+      "token": ".github/workflow-archive/202608301321-hostile-amnesia/",
+      "mentions": 2
+    },
+    {
+      "token": ".github/workflows/202608301321-verify-live.yml",
+      "mentions": 2
+    },
+    {
+      "token": "data/repd_browser_registry_202608290716.json",
+      "mentions": 2
+    },
+    {
+      "token": "spiders/docs/os/EXTERNAL_SOURCE_RULES.md",
+      "mentions": 2
+    },
+    {
+      "token": "data/current/",
+      "mentions": 2
+    },
+    {
+      "token": "gridatlas/data/window/",
+      "mentions": 2
+    },
+    {
+      "token": "build/python/202608271507-freeze-companies-house-plan.py",
+      "mentions": 2
+    },
+    {
+      "token": "/company/{n}/officers?items_per_page=1",
+      "mentions": 2
+    },
+    {
+      "token": "/company/{n}/filing-history?category=\u2026",
+      "mentions": 2
+    },
+    {
+      "token": "cvaa/consumer-workflow-template.yml",
+      "mentions": 2
+    },
+    {
+      "token": "gridatlas/cvaa.json",
+      "mentions": 2
+    },
+    {
+      "token": "atlas/${cartridge.path}",
+      "mentions": 2
+    },
+    {
+      "token": "\u2026/gridatlas/202608300453-atlas-v9/",
+      "mentions": 2
+    },
+    {
+      "token": "DRAFT-CARTRIDGES/",
+      "mentions": 2
+    },
+    {
+      "token": "attributionv1/*register*",
+      "mentions": 2
+    },
+    {
+      "token": "releases/javascript/202608262115-projects-v8-windowed.js",
+      "mentions": 2
+    },
+    {
+      "token": "cvaa/vaccines/202608301324-no-expiry-windows.md",
+      "mentions": 2
+    },
+    {
+      "token": "atman/*mobile-css*",
+      "mentions": 2
+    },
+    {
+      "token": "ci/*atlas-pointer*",
+      "mentions": 2
+    },
+    {
+      "token": "ci/*pages*",
+      "mentions": 2
+    },
+    {
+      "token": "spider_maya/v1",
+      "mentions": 2
+    },
+    {
+      "token": "attributionv1/modules/discrepancy-view.mjs",
+      "mentions": 2
+    },
+    {
+      "token": "pipelinenews/archive/202608261547-pipelinenews/attributionv1/modules/register-ingest.mjs",
+      "mentions": 2
+    }
+  ]
+}
