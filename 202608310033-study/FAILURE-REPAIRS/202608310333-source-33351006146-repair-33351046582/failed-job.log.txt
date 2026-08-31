@@ -1,0 +1,26 @@
+REVIEW STATUS: UNREVIEWED
+
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	﻿2026-08-31T02:33:25.0954914Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.0956979Z ##[group]Run actions/ai-inference@b81b2afb8390ee6839b494a404766bef6493c7d9
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.0957361Z with:
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.0957761Z   prompt-file: /home/runner/work/_temp/202608310322-real-gpt-33351006146-s1/INFERENCE.prompt.yml
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.0958222Z   model: openai/gpt-4.1
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.0958474Z   max-tokens: 2200
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.0961088Z   token: ***
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.0961365Z   endpoint: https://models.github.ai/inference
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.0961707Z   system-prompt: You are a helpful assistant
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.0962006Z   enable-github-mcp: false
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.0962255Z env:
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.0962530Z   CONTROLLER_ROOT: automation/202608310322-gpt-reasoning-timer
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.0963025Z   BUILD_PROMPT: automation/202608310322-gpt-reasoning-timer/build_prompt.py
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.0963537Z   RENDER_RESPONSE: automation/202608310322-gpt-reasoning-timer/render_response.py
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.0964430Z   PROMPT_SCHEMA: automation/202608310322-gpt-reasoning-timer/architecture-review.prompt.yml
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.0964906Z   MODEL_ID: openai/gpt-4.1
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.0965204Z   MODEL_BRANCH: audit/202608310322-real-gpt-hourly-review
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.0967751Z   GH_TOKEN: ***
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.0967990Z   PYTHONDONTWRITEBYTECODE: 1
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.0968246Z ##[endgroup]
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.1960273Z Using prompt YAML file format
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.2022135Z Running simple inference without tools
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.3908806Z ##[error]API error: Error: 410 GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:33:25.3953130Z ##[error]410 GitHub Models is temporarily unavailable as part of a scheduled retirement brownout.
