@@ -30,6 +30,7 @@ env:
   MODEL_ID: gpt-5.6-luna
   CODEX_VERSION: 0.151.0
   MODEL_BRANCH: audit/202608310322-real-gpt-hourly-review
+  GITHUB_TOKEN: ${{ github.token }}
   PYTHONDONTWRITEBYTECODE: '1'
 
 jobs:
@@ -291,7 +292,7 @@ jobs:
           echo >> "$GITHUB_STEP_SUMMARY"
           echo "- Active window: ${{ steps.guard.outputs.active || 'false' }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- API credential configured: ${{ steps.credential.outputs.available || 'false' }}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Model call attempted: ${{ steps.codex.outcome != '' && 'true' || 'false' }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Model call attempted: ${{ steps.credential.outputs.available == 'true' && 'true' || 'false' }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Validated review created: ${{ steps.result.outputs.created || 'false' }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Reason: \`${{ steps.result.outputs.reason || 'none' }}\`" >> "$GITHUB_STEP_SUMMARY"
           echo "- Sequence: ${{ steps.allocate.outputs.sequence || 'not-run' }}/5" >> "$GITHUB_STEP_SUMMARY"
