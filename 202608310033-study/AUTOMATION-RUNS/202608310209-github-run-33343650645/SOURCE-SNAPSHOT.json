@@ -1,0 +1,331 @@
+{
+  "schema": "chatgpt-audits.source-snapshot.v1",
+  "generation": "202608310052",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "created_at": "2026-08-31T01:10:07.913832Z",
+  "created_at_london": "2026-08-31T02:10:07.913976+01:00",
+  "plan_path": "study-plan.json",
+  "plan_sha256": "2a5ea0543f0043a54c2383df2dbb73e4806588ff88bd08820e73ae85dbd36177",
+  "source_root": "/home/runner/work/_temp/202608310052-source-snapshots",
+  "network_boundary": {
+    "allowed_network": [
+      "read-only Git clone of explicitly listed public Ventusltd repositories from github.com"
+    ],
+    "forbidden_network": [
+      "third-party websites",
+      "live APIs",
+      "scrapers",
+      "news feeds",
+      "planning portals",
+      "Companies House downloads",
+      "package registries"
+    ],
+    "write_boundary": "Ventusltd/chatgpt-audits only",
+    "product_repo_writes": "FORBIDDEN",
+    "output_status": "UNREVIEWED"
+  },
+  "required_failures": [],
+  "repositories": [
+    {
+      "name": "pipelinenews",
+      "repository": "Ventusltd/pipelinenews",
+      "required": true,
+      "priority": 100,
+      "status": "SNAPSHOT_READY",
+      "classification": "observed",
+      "snapshot_started_at": "2026-08-31T01:09:52.522081Z",
+      "snapshot_finished_at": "2026-08-31T01:09:53.658250Z",
+      "branch": "main",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "commit_date": "2026-08-30T12:45:12+01:00",
+      "commit_subject": "202608301244: retire duplicate workflows and stop notification storm [skip ci]",
+      "selected_sparse_paths": [
+        ".github",
+        "atman",
+        "automation",
+        "build",
+        "discovery",
+        "index",
+        "manifests",
+        "orchestration",
+        "state",
+        "ui"
+      ],
+      "full_tree_file_count": 1154,
+      "tree_probes": {
+        "ui/atlas-v9-deep-links.js": true,
+        "discovery/javascript/202608270844-live-news-runner.mjs": true,
+        "discovery/javascript/202608272130-sector-intelligence-runner.mjs": true
+      },
+      "snapshot_tree_sha256": "4b99c46a7d10dc58364bac93fc7ad1635692e8ea50945f76617897e2a088922f",
+      "snapshot_files": 226,
+      "snapshot_bytes": 3502578,
+      "source_remote_removed": true,
+      "source_git_metadata_removed": true,
+      "source_made_read_only": true,
+      "max_repository_files_scanned": 25000
+    },
+    {
+      "name": "companies",
+      "repository": "Ventusltd/companies",
+      "required": true,
+      "priority": 95,
+      "status": "SNAPSHOT_READY",
+      "classification": "observed",
+      "snapshot_started_at": "2026-08-31T01:09:53.658450Z",
+      "snapshot_finished_at": "2026-08-31T01:09:54.549668Z",
+      "branch": "main",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "commit_date": "2026-08-30T05:15:48+01:00",
+      "commit_subject": "202608300418: dispatch Companies exact Atlas contract sync",
+      "selected_sparse_paths": [
+        ".github",
+        "build",
+        "contracts",
+        "manifests",
+        "scripts",
+        "state",
+        "tests"
+      ],
+      "full_tree_file_count": 75,
+      "tree_probes": {
+        "README.md": true,
+        "state/atlas-v9-link-contract.json": true
+      },
+      "snapshot_tree_sha256": "9144869fa2b5b996bc7622b8db2b8f2d258798cf37b77d070eefe8d3abefeca7",
+      "snapshot_files": 75,
+      "snapshot_bytes": 950259,
+      "source_remote_removed": true,
+      "source_git_metadata_removed": true,
+      "source_made_read_only": true,
+      "max_repository_files_scanned": 25000
+    },
+    {
+      "name": "gridatlas",
+      "repository": "Ventusltd/gridatlas",
+      "required": true,
+      "priority": 90,
+      "status": "SNAPSHOT_READY",
+      "classification": "observed",
+      "snapshot_started_at": "2026-08-31T01:09:54.549781Z",
+      "snapshot_finished_at": "2026-08-31T01:09:55.461547Z",
+      "branch": "main",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "commit_date": "2026-08-31T00:59:10+01:00",
+      "commit_subject": "202608310050-gridatlas: install isolated next-version builders and source gate",
+      "selected_sparse_paths": [
+        ".github",
+        "atlas/cartridges",
+        "atlas/manifests",
+        "atman",
+        "compiler",
+        "contracts",
+        "docs",
+        "governance",
+        "machine-learning/schemas",
+        "nightly",
+        "orchestration",
+        "reports",
+        "scope-of-works",
+        "state",
+        "tools",
+        "ui"
+      ],
+      "full_tree_file_count": 293,
+      "tree_probes": {
+        "202608300453-atlas-v9/index.html": false,
+        "atlas/releases/202608300453-atlas-v9/index.html": true,
+        "_build-plan/summary.md": false,
+        ".github/workflows/202608310015-gridatlas-overnight-next-versions.yml": true,
+        "state/live-set.json": true,
+        "atlas/current.json": true
+      },
+      "snapshot_tree_sha256": "18d03e0a9e4ca4a66e3cbfb365cbdb1c721ea4240cc83fe585fd341bce645f7e",
+      "snapshot_files": 153,
+      "snapshot_bytes": 1227280,
+      "source_remote_removed": true,
+      "source_git_metadata_removed": true,
+      "source_made_read_only": true,
+      "max_repository_files_scanned": 25000
+    },
+    {
+      "name": "cvaa",
+      "repository": "Ventusltd/cvaa",
+      "required": false,
+      "priority": 80,
+      "status": "SNAPSHOT_READY",
+      "classification": "observed",
+      "snapshot_started_at": "2026-08-31T01:09:55.461670Z",
+      "snapshot_finished_at": "2026-08-31T01:09:56.251870Z",
+      "branch": "main",
+      "commit": "d2ebc01f6eab41f2a84b0c53c4cfae0d2625ec5e",
+      "commit_date": "2026-08-30T18:26:50+01:00",
+      "commit_subject": "202608301726: make full-history fleet audit permanent",
+      "selected_sparse_paths": [
+        "."
+      ],
+      "full_tree_file_count": 47,
+      "tree_probes": {
+        "README.md": true
+      },
+      "snapshot_tree_sha256": "4cc4edbe076e770cac6acb1ae5af0603a7a0b08716694a0846434df692607885",
+      "snapshot_files": 47,
+      "snapshot_bytes": 205030,
+      "source_remote_removed": true,
+      "source_git_metadata_removed": true,
+      "source_made_read_only": true,
+      "max_repository_files_scanned": 25000
+    },
+    {
+      "name": "spiders",
+      "repository": "Ventusltd/spiders",
+      "required": false,
+      "priority": 80,
+      "status": "SNAPSHOT_READY",
+      "classification": "observed",
+      "snapshot_started_at": "2026-08-31T01:09:56.251976Z",
+      "snapshot_finished_at": "2026-08-31T01:09:57.038597Z",
+      "branch": "main",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "commit_date": "2026-07-05T21:08:21+01:00",
+      "commit_subject": "Add Spider Printer registry smoke workflow",
+      "selected_sparse_paths": [
+        "."
+      ],
+      "full_tree_file_count": 51,
+      "tree_probes": {
+        "README.md": true
+      },
+      "snapshot_tree_sha256": "c81cc39efdc1542b5005e3dfa1d9b9674435e79651d150e11c5972981337f318",
+      "snapshot_files": 51,
+      "snapshot_bytes": 213357,
+      "source_remote_removed": true,
+      "source_git_metadata_removed": true,
+      "source_made_read_only": true,
+      "max_repository_files_scanned": 25000
+    },
+    {
+      "name": "data-gridatlas",
+      "repository": "Ventusltd/data-gridatlas",
+      "required": true,
+      "priority": 75,
+      "status": "SNAPSHOT_READY",
+      "classification": "observed",
+      "snapshot_started_at": "2026-08-31T01:09:57.038707Z",
+      "snapshot_finished_at": "2026-08-31T01:09:57.821636Z",
+      "branch": "main",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "commit_date": "2026-08-30T19:02:27+01:00",
+      "commit_subject": "202608301803: map quarantined metro source and pin CodeQL v4",
+      "selected_sparse_paths": [
+        ".github",
+        "contracts",
+        "schemas",
+        "state",
+        "tools"
+      ],
+      "full_tree_file_count": 132,
+      "tree_probes": {
+        "README.md": true
+      },
+      "snapshot_tree_sha256": "f1798a1af262c1235eb6d6264f3b1b48ae0bbe571b2efcd43abef758e4849902",
+      "snapshot_files": 30,
+      "snapshot_bytes": 364814,
+      "source_remote_removed": true,
+      "source_git_metadata_removed": true,
+      "source_made_read_only": true,
+      "max_repository_files_scanned": 25000
+    },
+    {
+      "name": "globalgrid2050",
+      "repository": "Ventusltd/globalgrid2050",
+      "required": true,
+      "priority": 70,
+      "status": "SNAPSHOT_READY",
+      "classification": "observed",
+      "snapshot_started_at": "2026-08-31T01:09:57.821712Z",
+      "snapshot_finished_at": "2026-08-31T01:10:06.281650Z",
+      "branch": "main",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "commit_date": "2026-08-30T17:05:26+01:00",
+      "commit_subject": "202608301702: publish current GridAtlas v9.5 homepage link",
+      "selected_sparse_paths": [
+        ".github",
+        "scripts"
+      ],
+      "full_tree_file_count": 3858,
+      "tree_probes": {
+        "index.html": true
+      },
+      "snapshot_tree_sha256": "bc54062b0fe997c514e945752fbe75098293dff047ef630b21ce0764f5a7868c",
+      "snapshot_files": 626,
+      "snapshot_bytes": 271766585,
+      "source_remote_removed": true,
+      "source_git_metadata_removed": true,
+      "source_made_read_only": true,
+      "max_repository_files_scanned": 25000
+    },
+    {
+      "name": "data-centres-gb",
+      "repository": "Ventusltd/data-centres-gb",
+      "required": false,
+      "priority": 65,
+      "status": "SNAPSHOT_READY",
+      "classification": "observed",
+      "snapshot_started_at": "2026-08-31T01:10:06.281967Z",
+      "snapshot_finished_at": "2026-08-31T01:10:07.078879Z",
+      "branch": "main",
+      "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+      "commit_date": "2026-08-28T19:45:43+01:00",
+      "commit_subject": "202608281944: freeze data-centre company federation contract",
+      "selected_sparse_paths": [
+        ".github",
+        "build",
+        "contracts",
+        "docs",
+        "manifests",
+        "tests"
+      ],
+      "full_tree_file_count": 32,
+      "tree_probes": {
+        "README.md": true
+      },
+      "snapshot_tree_sha256": "f7e7c7e45957cc640765743a31b0356ca65ce6abb608b2be7b401aa41394e772",
+      "snapshot_files": 27,
+      "snapshot_bytes": 219816,
+      "source_remote_removed": true,
+      "source_git_metadata_removed": true,
+      "source_made_read_only": true,
+      "max_repository_files_scanned": 25000
+    },
+    {
+      "name": "data-gb-electricity",
+      "repository": "Ventusltd/data-gb-electricity",
+      "required": false,
+      "priority": 55,
+      "status": "SNAPSHOT_READY",
+      "classification": "observed",
+      "snapshot_started_at": "2026-08-31T01:10:07.078976Z",
+      "snapshot_finished_at": "2026-08-31T01:10:07.913787Z",
+      "branch": "main",
+      "commit": "7c492745c974f6b8610cb1209f996b1553abb498",
+      "commit_date": "2026-06-29T22:34:49+01:00",
+      "commit_subject": "docs: point README to federation discipline manual",
+      "selected_sparse_paths": [
+        ".github"
+      ],
+      "full_tree_file_count": 472,
+      "tree_probes": {
+        "README.md": true
+      },
+      "snapshot_tree_sha256": "15a781665a6a7f0d5a00fd9e94ead9d8db42bf7aaa0c01a9cf9b02aa0c1f5340",
+      "snapshot_files": 10,
+      "snapshot_bytes": 61253,
+      "source_remote_removed": true,
+      "source_git_metadata_removed": true,
+      "source_made_read_only": true,
+      "max_repository_files_scanned": 25000
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "chatgpt-audits.run-context.v1",
+  "generation": "202608310052",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "run_id": "33343650645",
+  "run_attempt": "3",
+  "event_name": "push",
+  "quarantine_branch": "audit/202608310209-five-hour-33343650645",
+  "output_root": "202608310033-study/AUTOMATION-RUNS/202608310209-github-run-33343650645",
+  "started_at": "2026-08-31T01:09:52.442597Z",
+  "started_at_london": "2026-08-31T02:09:52.442604+01:00",
+  "plan_sha256": "2a5ea0543f0043a54c2383df2dbb73e4806588ff88bd08820e73ae85dbd36177"
+}
