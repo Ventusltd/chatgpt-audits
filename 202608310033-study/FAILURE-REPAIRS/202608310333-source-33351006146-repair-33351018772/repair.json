@@ -1,0 +1,40 @@
+{
+  "schema": "chatgpt-audits.failure-repair.v1",
+  "generation": "202608310122",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "inspected_at": "2026-08-31T02:33:11.222672Z",
+  "inspected_at_london": "2026-08-31T03:33:11.222672+01:00",
+  "workflow": {
+    "id": 33351006146,
+    "name": "202608310322 real GPT hourly architecture reviewer",
+    "path": ".github/workflows/202608310322-real-gpt-hourly-review.yml",
+    "event": "push",
+    "status": "completed",
+    "conclusion": "failure",
+    "run_attempt": 1,
+    "head_sha": "3ecfb2fa905fe7af4671f6346ee3024e8a8717b7",
+    "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33351006146"
+  },
+  "diagnosis": [
+    {
+      "disease": "contract_assertion",
+      "classification": "inferred",
+      "evidence_excerpt": "on/202608310322-gpt-reasoning-timer/render_response.py reason Ask a real GPT model what happened, what is good or bad, and what to build next 2026-08-31T02:32:56.6455189Z PROMPT_SCHEMA: automation/202608310322-gpt-reasoning-timer/architecture-review.prompt.yml reason Ask a real GPT model what happened, what is good or bad, and what to build next 2026-08-31T02:32:56.6455654Z MODEL_ID: openai/gpt-4.1 reason Ask a real GPT model what happened, what is good or bad, and what to build next 2026-08-31T02"
+    }
+  ],
+  "repair_action": {
+    "requested": true,
+    "endpoint": "/repos/Ventusltd/chatgpt-audits/actions/runs/33351006146/rerun-failed-jobs",
+    "http_status": 201,
+    "error": null,
+    "classification": "observed",
+    "reason": "GitHub-native bounded retry requested because the completed audit run is below attempt 3."
+  },
+  "source_policy": {
+    "write_boundary": "Ventusltd/chatgpt-audits",
+    "product_repo_writes": "FORBIDDEN",
+    "product_workflow_dispatches": "FORBIDDEN",
+    "automatic_source_patch": "FORBIDDEN"
+  }
+}
