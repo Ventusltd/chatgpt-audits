@@ -1,0 +1,252 @@
+{
+  "schema": "chatgpt-audits.real-gpt-evidence.v1",
+  "generation": "202608310322",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "sequence": 1,
+  "checked_at": "2026-08-31T02:56:12.494099Z",
+  "checked_at_london": "2026-08-31T03:56:12.494099+01:00",
+  "repository": "Ventusltd/chatgpt-audits",
+  "workflow_runs": [
+    {
+      "name": "202608310052 five-hour quarantined cross-repo study",
+      "classification": "not_observed_in_snapshot"
+    },
+    {
+      "name": "202608310116 overnight audit swarm",
+      "classification": "observed",
+      "run_id": 33345421184,
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "head_sha": "7b8ed24cacb6413ac047eae61534ded79825e853",
+      "created_at": "2026-08-31T00:43:38Z",
+      "updated_at": "2026-08-31T00:44:51Z",
+      "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33345421184"
+    },
+    {
+      "name": "202608310121 hourly audit watchdog",
+      "classification": "observed",
+      "run_id": 33346037879,
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "head_sha": "b277c3e3a1634ffbc3f304030835b5fe82ccadbb",
+      "created_at": "2026-08-31T00:56:11Z",
+      "updated_at": "2026-08-31T00:56:29Z",
+      "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33346037879"
+    },
+    {
+      "name": "202608310122 audit failure auto-repair",
+      "classification": "observed",
+      "run_id": 33352118645,
+      "status": "completed",
+      "conclusion": "skipped",
+      "attempt": 1,
+      "head_sha": "010e16f2e9cf6102e21f2e5a4da0c0f326f29511",
+      "created_at": "2026-08-31T02:54:22Z",
+      "updated_at": "2026-08-31T02:54:23Z",
+      "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33352118645"
+    },
+    {
+      "name": "202608310125 overnight Actions watchdog",
+      "classification": "observed",
+      "run_id": 33346726332,
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "head_sha": "b277c3e3a1634ffbc3f304030835b5fe82ccadbb",
+      "created_at": "2026-08-31T01:09:39Z",
+      "updated_at": "2026-08-31T01:09:52Z",
+      "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33346726332"
+    },
+    {
+      "name": "202608310209 hourly intelligence reasoning checkpoint",
+      "classification": "observed",
+      "run_id": 33347190824,
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "head_sha": "1b73e595d144f4f3fc7f74c67ed7efb41eb4b38d",
+      "created_at": "2026-08-31T01:18:31Z",
+      "updated_at": "2026-08-31T01:19:00Z",
+      "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33347190824"
+    },
+    {
+      "name": "202608310322 real GPT hourly architecture reviewer",
+      "classification": "observed",
+      "run_id": 33352202002,
+      "status": "in_progress",
+      "conclusion": null,
+      "attempt": 1,
+      "head_sha": "4f368383e453add86363520c3f70cfdbda407128",
+      "created_at": "2026-08-31T02:55:56Z",
+      "updated_at": "2026-08-31T02:56:01Z",
+      "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33352202002"
+    }
+  ],
+  "recent_failures": [
+    {
+      "name": ".github/workflows/202608310322-real-gpt-hourly-review.yml",
+      "run_id": 33351321929,
+      "status": "completed",
+      "conclusion": "failure",
+      "attempt": 1,
+      "head_sha": "551caf551ae159b0c49209fce0ff8ba9ea25792e",
+      "created_at": "2026-08-31T02:38:42Z",
+      "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33351321929"
+    },
+    {
+      "name": ".github/workflows/202608310322-real-gpt-hourly-review.yml",
+      "run_id": 33351300172,
+      "status": "completed",
+      "conclusion": "failure",
+      "attempt": 1,
+      "head_sha": "d00719a4ee44b0e98d0e9a531f72d18d61e031bc",
+      "created_at": "2026-08-31T02:38:16Z",
+      "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33351300172"
+    },
+    {
+      "name": ".github/workflows/202608310322-real-gpt-hourly-review.yml",
+      "run_id": 33351282289,
+      "status": "completed",
+      "conclusion": "failure",
+      "attempt": 1,
+      "head_sha": "6c3d5ae57706eff5ca48c0015425aba38d0d5231",
+      "created_at": "2026-08-31T02:37:55Z",
+      "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33351282289"
+    },
+    {
+      "name": ".github/workflows/202608310322-real-gpt-hourly-review.yml",
+      "run_id": 33351174917,
+      "status": "completed",
+      "conclusion": "failure",
+      "attempt": 1,
+      "head_sha": "89fe4904e7191ec3167f6616c1d6f5c3cfecf241",
+      "created_at": "2026-08-31T02:35:53Z",
+      "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33351174917"
+    },
+    {
+      "name": "202608310322 real GPT hourly architecture reviewer",
+      "run_id": 33351072699,
+      "status": "completed",
+      "conclusion": "failure",
+      "attempt": 3,
+      "head_sha": "5a709efc3bbd5fe90a061ccee7d597f109917791",
+      "created_at": "2026-08-31T02:34:03Z",
+      "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33351072699"
+    },
+    {
+      "name": "202608310322 real GPT hourly architecture reviewer",
+      "run_id": 33351058646,
+      "status": "completed",
+      "conclusion": "failure",
+      "attempt": 3,
+      "head_sha": "dec8f46a0ee401ff930699d92624e3d59d1ce8dc",
+      "created_at": "2026-08-31T02:33:46Z",
+      "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33351058646"
+    },
+    {
+      "name": "202608310322 real GPT hourly architecture reviewer",
+      "run_id": 33351046088,
+      "status": "completed",
+      "conclusion": "failure",
+      "attempt": 3,
+      "head_sha": "d1d121e336a8032ff12f4e847a16ccef07a65776",
+      "created_at": "2026-08-31T02:33:30Z",
+      "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33351046088"
+    },
+    {
+      "name": "202608310322 real GPT hourly architecture reviewer",
+      "run_id": 33351006146,
+      "status": "completed",
+      "conclusion": "failure",
+      "attempt": 3,
+      "head_sha": "3ecfb2fa905fe7af4671f6346ee3024e8a8717b7",
+      "created_at": "2026-08-31T02:32:45Z",
+      "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33351006146"
+    },
+    {
+      "name": "202608310322 real GPT hourly architecture reviewer",
+      "run_id": 33350806009,
+      "status": "completed",
+      "conclusion": "failure",
+      "attempt": 3,
+      "head_sha": "30c6060687d9c0a1f74d2ffc358bf45b4e2d7563",
+      "created_at": "2026-08-31T02:28:57Z",
+      "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33350806009"
+    },
+    {
+      "name": "202608310322 real GPT hourly architecture reviewer",
+      "run_id": 33350716053,
+      "status": "completed",
+      "conclusion": "failure",
+      "attempt": 3,
+      "head_sha": "368c5c69874c20c3b847ca06352834a2512480fc",
+      "created_at": "2026-08-31T02:27:13Z",
+      "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33350716053"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "logic",
+      "classification": "observed",
+      "branch": "audit/202608310209-hourly-logic-review",
+      "commit": "413dce7fbb6e1923c4d0b1cf9310158877a07884",
+      "path": "202608310033-study/LOGIC-TIMER/202608310218-run-33347190824/REVIEW.md",
+      "content_chars": 2900,
+      "truncated": false
+    },
+    {
+      "kind": "watchdog",
+      "classification": "observed",
+      "branch": "audit/hourly-watchdog-20260831",
+      "commit": "b1d1cc40aadf0d51fe071701862ce7499a1b6da7",
+      "path": "202608310033-study/WATCHDOG/202608310156-run-33346037879/WATCHDOG.md",
+      "content_chars": 3637,
+      "truncated": false
+    },
+    {
+      "kind": "swarm",
+      "classification": "observed",
+      "branch": "audit/202608310144-overnight-swarm-33345421184-a1",
+      "commit": "3a2fc48c34cc228bbf02aa39c334d3fbcaf48336",
+      "path": "202608310033-study/AUTOMATION-RUNS/202608310144-overnight-swarm-33345421184-a1/EXECUTIVE-SYNTHESIS.md",
+      "content_chars": 5023,
+      "truncated": false
+    },
+    {
+      "kind": "five_hour",
+      "classification": "observed",
+      "branch": "audit/202608310209-five-hour-33343650645",
+      "commit": "7f078031d258c091176d1e0615d8708502895f95",
+      "path": "202608310033-study/summary.md",
+      "content_chars": 6500,
+      "truncated": true
+    },
+    {
+      "kind": "five_hour",
+      "classification": "observed",
+      "branch": "audit/202608310209-five-hour-33343650645",
+      "commit": "7f078031d258c091176d1e0615d8708502895f95",
+      "path": "202608310033-study/HANDOFFS/202608310116-claude-company-repd-progress.md",
+      "content_chars": 2220,
+      "truncated": false
+    },
+    {
+      "kind": "five_hour",
+      "classification": "observed",
+      "branch": "audit/202608310209-five-hour-33343650645",
+      "commit": "7f078031d258c091176d1e0615d8708502895f95",
+      "path": "202608310033-study/AUTOMATION-RUNS/202608310209-github-run-33343650645/02-PIPELINENEWS-ENGINE-AUDIT.md",
+      "content_chars": 4963,
+      "truncated": false
+    }
+  ],
+  "source_policy": {
+    "repository_content": "UNTRUSTED_EVIDENCE",
+    "product_repository_writes": "FORBIDDEN",
+    "product_workflow_dispatches": "FORBIDDEN",
+    "output_status": "UNREVIEWED"
+  }
+}
