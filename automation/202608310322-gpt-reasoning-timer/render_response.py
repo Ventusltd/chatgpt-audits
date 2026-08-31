@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
-"""Validate and render a structured GitHub Models GPT response.
+"""Validate and render a structured GPT architecture review.
 
 REVIEW STATUS: UNREVIEWED.
+
+The renderer is provider-neutral. It accepts only the bounded JSON contract and
+records the exact provider/runtime supplied by the workflow. A model response
+that is prose, incomplete or schema-incompatible is rejected rather than being
+silently repaired.
 """
 
 from __future__ import annotations
@@ -67,27 +72,50 @@ def require_string_list(value: Any, field: str) -> list[str]:
     if not isinstance(value, list):
         raise ValueError(f"{field} must be an array")
     result = [require_string(item, f"{field}[]") for item in value]
+    if not result:
+        raise ValueError(f"{field} must not be empty")
     return result
 
 
-def validate_claim_rows(value: Any, field: str, issue_mode: bool = False) -> list[dict[str, str]]:
-    if not isinstance(value, list):
-        raise ValueError(f"{field} must be an array")
+def validate_claim_rows(
+    value: Any,
+    field: str,
+    *,
+    issue_mode: bool = False,
+) -> list[dict[str, str]]:
+    if not isinstance(value, list) or not value:
+        raise ValueError(f"{field} must be a non-empty array")
     rows: list[dict[str, str]] = []
     for index, row in enumerate(value):
         if not isinstance(row, dict):
             raise ValueError(f"{field}[{index}] must be an object")
         statement_key = "issue" if issue_mode else "claim"
-        classification = require_string(row.get("classification"), f"{field}[{index}].classification")
+        expected = {statement_key, "evidence", "classification"}
+        if issue_mode:
+            expected.add("impact")
+        if set(row) != expected:
+            raise ValueError(
+                f"{field}[{index}] keys must be exactly {sorted(expected)}; "
+                f"received {sorted(row)}"
+            )
+        classification = require_string(
+            row.get("classification"), f"{field}[{index}].classification"
+        )
         if classification not in CLASSIFICATIONS:
             raise ValueError(f"unsupported classification {classification!r}")
         item = {
-            statement_key: require_string(row.get(statement_key), f"{field}[{index}].{statement_key}"),
-            "evidence": require_string(row.get("evidence"), f"{field}[{index}].evidence"),
+            statement_key: require_string(
+                row.get(statement_key), f"{field}[{index}].{statement_key}"
+            ),
+            "evidence": require_string(
+                row.get("evidence"), f"{field}[{index}].evidence"
+            ),
             "classification": classification,
         }
         if issue_mode:
-            item["impact"] = require_string(row.get("impact"), f"{field}[{index}].impact")
+            item["impact"] = require_string(
+                row.get("impact"), f"{field}[{index}].impact"
+            )
         rows.append(item)
     return rows
 
@@ -95,36 +123,70 @@ def validate_claim_rows(value: Any, field: str, issue_mode: bool = False) -> lis
 def validate_improvement(value: Any) -> dict[str, Any]:
     if not isinstance(value, dict):
         raise ValueError("recommended_improvement must be an object")
+    expected = {
+        "kind",
+        "name",
+        "purpose",
+        "evidence_basis",
+        "algorithm",
+        "inputs",
+        "outputs",
+        "rejection_conditions",
+    }
+    if set(value) != expected:
+        raise ValueError(
+            "recommended_improvement keys must be exactly "
+            f"{sorted(expected)}; received {sorted(value)}"
+        )
     kind = require_string(value.get("kind"), "recommended_improvement.kind")
     if kind not in {"workflow", "python"}:
         raise ValueError("recommended_improvement.kind must be workflow or python")
     return {
         "kind": kind,
         "name": require_string(value.get("name"), "recommended_improvement.name"),
-        "purpose": require_string(value.get("purpose"), "recommended_improvement.purpose"),
+        "purpose": require_string(
+            value.get("purpose"), "recommended_improvement.purpose"
+        ),
         "evidence_basis": require_string(
             value.get("evidence_basis"), "recommended_improvement.evidence_basis"
         ),
-        "algorithm": require_string(value.get("algorithm"), "recommended_improvement.algorithm"),
-        "inputs": require_string_list(value.get("inputs"), "recommended_improvement.inputs"),
-        "outputs": require_string_list(value.get("outputs"), "recommended_improvement.outputs"),
+        "algorithm": require_string(
+            value.get("algorithm"), "recommended_improvement.algorithm"
+        ),
+        "inputs": require_string_list(
+            value.get("inputs"), "recommended_improvement.inputs"
+        ),
+        "outputs": require_string_list(
+            value.get("outputs"), "recommended_improvement.outputs"
+        ),
         "rejection_conditions": require_string_list(
-            value.get("rejection_conditions"), "recommended_improvement.rejection_conditions"
+            value.get("rejection_conditions"),
+            "recommended_improvement.rejection_conditions",
         ),
     }
 
 
 def validate_tests(value: Any) -> list[dict[str, str]]:
-    if not isinstance(value, list) or not value:
-        raise ValueError("deterministic_tests must be a non-empty array")
+    if not isinstance(value, list) or len(value) < 3:
+        raise ValueError("deterministic_tests must contain at least three tests")
     result = []
+    expected = {"name", "fixture", "assertion"}
     for index, row in enumerate(value):
         if not isinstance(row, dict):
             raise ValueError(f"deterministic_tests[{index}] must be an object")
+        if set(row) != expected:
+            raise ValueError(
+                f"deterministic_tests[{index}] keys must be exactly "
+                f"{sorted(expected)}; received {sorted(row)}"
+            )
         result.append(
             {
-                "name": require_string(row.get("name"), f"deterministic_tests[{index}].name"),
-                "fixture": require_string(row.get("fixture"), f"deterministic_tests[{index}].fixture"),
+                "name": require_string(
+                    row.get("name"), f"deterministic_tests[{index}].name"
+                ),
+                "fixture": require_string(
+                    row.get("fixture"), f"deterministic_tests[{index}].fixture"
+                ),
                 "assertion": require_string(
                     row.get("assertion"), f"deterministic_tests[{index}].assertion"
                 ),
@@ -141,14 +203,24 @@ def validate(payload: dict[str, Any]) -> dict[str, Any]:
     if extra:
         raise ValueError(f"unexpected response keys: {sorted(extra)}")
     return {
-        "overall_assessment": require_string(payload["overall_assessment"], "overall_assessment"),
-        "what_happened": validate_claim_rows(payload["what_happened"], "what_happened"),
+        "overall_assessment": require_string(
+            payload["overall_assessment"], "overall_assessment"
+        ),
+        "what_happened": validate_claim_rows(
+            payload["what_happened"], "what_happened"
+        ),
         "good": validate_claim_rows(payload["good"], "good"),
         "bad": validate_claim_rows(payload["bad"], "bad", issue_mode=True),
-        "recommended_improvement": validate_improvement(payload["recommended_improvement"]),
+        "recommended_improvement": validate_improvement(
+            payload["recommended_improvement"]
+        ),
         "deterministic_tests": validate_tests(payload["deterministic_tests"]),
-        "do_not_change": require_string_list(payload["do_not_change"], "do_not_change"),
-        "uncertainties": require_string_list(payload["uncertainties"], "uncertainties"),
+        "do_not_change": require_string_list(
+            payload["do_not_change"], "do_not_change"
+        ),
+        "uncertainties": require_string_list(
+            payload["uncertainties"], "uncertainties"
+        ),
     }
 
 
@@ -161,7 +233,13 @@ def bullet_claim(row: dict[str, str], issue_mode: bool = False) -> str:
     )
 
 
-def render_markdown(payload: dict[str, Any], sequence: int, model: str) -> str:
+def render_markdown(
+    payload: dict[str, Any],
+    sequence: int,
+    model: str,
+    provider: str,
+    runtime: str,
+) -> str:
     improvement = payload["recommended_improvement"]
     lines = [
         "# GPT hourly architecture review",
@@ -171,7 +249,9 @@ def render_markdown(payload: dict[str, Any], sequence: int, model: str) -> str:
         "> Nothing in this review is installed, promoted or published to a product repository.",
         "",
         f"Sequence: **{sequence}/5**  ",
-        f"Model: `{model}`",
+        f"Provider: `{provider}`  ",
+        f"Model: `{model}`  ",
+        f"Runtime: `{runtime}`",
         "",
         "## Overall assessment",
         "",
@@ -234,6 +314,8 @@ def main() -> int:
     parser.add_argument("--output", required=True)
     parser.add_argument("--sequence", required=True, type=int)
     parser.add_argument("--model", required=True)
+    parser.add_argument("--provider", required=True)
+    parser.add_argument("--runtime", required=True)
     args = parser.parse_args()
     if not 1 <= args.sequence <= 5:
         raise SystemExit("sequence must be between 1 and 5")
@@ -253,16 +335,25 @@ def main() -> int:
         json.dumps(validated, indent=2) + "\n", encoding="utf-8"
     )
     (output / "MODEL-REVIEW.md").write_text(
-        render_markdown(validated, args.sequence, args.model), encoding="utf-8"
+        render_markdown(
+            validated,
+            args.sequence,
+            args.model,
+            args.provider,
+            args.runtime,
+        ),
+        encoding="utf-8",
     )
     metadata = {
-        "schema": "chatgpt-audits.real-gpt-review-metadata.v1",
+        "schema": "chatgpt-audits.real-gpt-review-metadata.v2",
         "generation": "202608310322",
         "review_status": REVIEW_STATUS,
         "classification": "inferred",
         "sequence": args.sequence,
+        "provider": args.provider,
         "model": args.model,
-        "github_models_action_sha": "b81b2afb8390ee6839b494a404766bef6493c7d9",
+        "runtime": args.runtime,
+        "github_ai_inference_action_sha": "2c43c91ae16266ca159d311430343c67a5ffa222",
         "created_at": now.isoformat().replace("+00:00", "Z"),
         "created_at_london": now.astimezone(LONDON).isoformat(),
         "workflow_run_id": os.environ.get("GITHUB_RUN_ID"),
@@ -275,7 +366,16 @@ def main() -> int:
     (output / "MODEL-METADATA.json").write_text(
         json.dumps(metadata, indent=2) + "\n", encoding="utf-8"
     )
-    print(json.dumps({"sequence": args.sequence, "model": args.model, "validated": True}))
+    print(
+        json.dumps(
+            {
+                "sequence": args.sequence,
+                "provider": args.provider,
+                "model": args.model,
+                "validated": True,
+            }
+        )
+    )
     return 0
 
 
