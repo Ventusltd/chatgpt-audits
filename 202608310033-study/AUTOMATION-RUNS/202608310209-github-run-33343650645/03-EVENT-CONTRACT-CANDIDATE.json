@@ -1,0 +1,77 @@
+{
+  "schema": "pipelinenews.event-contract.candidate.v1",
+  "generation": "202608310052",
+  "review_status": "UNREVIEWED",
+  "classification": "inferred",
+  "status": "QUARANTINED_DRAFT",
+  "separation_rule": "Observed register events and inferred commercial windows are separate records joined only by evidence IDs.",
+  "observed_event": {
+    "required": [
+      "event_id",
+      "source_system",
+      "source_record_id",
+      "event_type",
+      "observed_at",
+      "effective_at",
+      "evidence_sha256",
+      "fact_status"
+    ],
+    "fact_status_allowed": [
+      "OBSERVED",
+      "REVISED",
+      "RETRACTED",
+      "CONTRADICTED"
+    ],
+    "event_type_candidates": [
+      "COMPANY_CHARGE_CREATED",
+      "COMPANY_CHARGE_SATISFIED",
+      "COMPANY_ALLOTMENT_FILED",
+      "COMPANY_ACCOUNTS_FILED",
+      "PLANNING_APPLICATION_STATUS",
+      "PLANNING_CONDITION_EVENT",
+      "PROCUREMENT_NOTICE_OBSERVED"
+    ]
+  },
+  "inferred_window": {
+    "required": [
+      "inference_id",
+      "project_id",
+      "inference_type",
+      "classification",
+      "rule_version",
+      "input_evidence_ids",
+      "calculated_at",
+      "review_status"
+    ],
+    "classification_constant": "inferred",
+    "inference_type_candidates": [
+      "FUNDING_WINDOW",
+      "PROCUREMENT_WINDOW",
+      "CORROBORATED_SALES_WINDOW"
+    ],
+    "may_publish_without_human_review": false
+  },
+  "identity_join": {
+    "project_key": "gg_project_id",
+    "project_source_key": "repd_ref",
+    "company_key": "company_number",
+    "planning_key": "planning_application_ref",
+    "relationship_required_fields": [
+      "relationship_type",
+      "evidence_ids",
+      "valid_from",
+      "valid_to",
+      "binding_status",
+      "review_status"
+    ]
+  },
+  "privacy": {
+    "forbidden_public_fields": [
+      "director_name",
+      "individual_psc",
+      "date_of_birth",
+      "residential_address"
+    ],
+    "company_number_is_an_organisation_identifier": true
+  }
+}

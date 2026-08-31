@@ -1,0 +1,11 @@
+{
+  "schema": "chatgpt-audits.study-checkpoint.v1",
+  "generation": "202608310052",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "phase": 3,
+  "slug": "funding-and-procurement-signals",
+  "goal": "Separate observed Companies House and planning facts from inferred commercial timing windows.",
+  "completed_at": "2026-08-31T03:09:52.516439Z",
+  "completed_at_london": "2026-08-31T04:09:52.516587+01:00"
+}

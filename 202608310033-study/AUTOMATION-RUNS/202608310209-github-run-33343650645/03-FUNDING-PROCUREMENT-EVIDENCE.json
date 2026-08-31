@@ -1,0 +1,3744 @@
+{
+  "schema": "chatgpt-audits.funding-procurement-evidence.v1",
+  "generation": "202608310052",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "created_at": "2026-08-31T03:09:52.513635Z",
+  "evidence": [
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "README.md",
+      "line": 5,
+      "excerpt": "The repository retains reviewed acquisition and accounts-extraction code. The current recovery checkpoint, `202608281337`, builds a key-only relationship-and-report candidate; it does not publish or overwrite a stable dataset."
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "README.md",
+      "line": 7,
+      "excerpt": "## Compact relationship candidate"
+    },
+    {
+      "classification": "observed",
+      "category": "funding_fact",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "README.md",
+      "line": 11,
+      "excerpt": "- `company-repd-relationships-v1.parquet`, containing only the Company number, REPD reference and evidence type for every candidate edge;"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "README.md",
+      "line": 11,
+      "excerpt": "- `company-repd-relationships-v1.parquet`, containing only the Company number, REPD reference and evidence type for every candidate edge;"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "README.md",
+      "line": 17,
+      "excerpt": "Publication is restricted to an immutable candidate branch. `main`, `data/current/`, Pages and releases remain unchanged. Historical workflows live under `.github/workflow-history/` as inert audit evidence; checkpoint `202608281337` is the sole active publication path."
+    },
+    {
+      "classification": "observed",
+      "category": "privacy_boundary",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "README.md",
+      "line": 26,
+      "excerpt": "- Director names, individual PSC records, dates of birth and residential addresses are excluded."
+    },
+    {
+      "classification": "observed",
+      "category": "privacy_boundary",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "README.md",
+      "line": 30,
+      "excerpt": "- No director, individual PSC, date-of-birth or residential-address field is produced; no public credit or bankability score is produced."
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "README.md",
+      "line": 30,
+      "excerpt": "- No director, individual PSC, date-of-birth or residential-address field is produced; no public credit or bankability score is produced."
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 1,
+      "excerpt": "name: 202608271507 Bounded Companies House Candidate"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 7,
+      "excerpt": "- .github/workflows/202608271507-bounded-companies-house-candidate.yml"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 11,
+      "excerpt": "- build/python/202608271507-verify-companies-house-candidate.py"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 13,
+      "excerpt": "- manifests/202608271507-bounded-companies-house-candidate.json"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 17,
+      "excerpt": "group: companies-house-candidate-202608271507"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 24,
+      "excerpt": "SOURCE_MANIFEST: manifests/202608271507-bounded-companies-house-candidate.json"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 242,
+      "excerpt": "python build/python/202608271507-verify-companies-house-candidate.py --seal --input work/raw-a --output work/candidate-a --plan work/plan/plan.json --receipts work/months --reports work/months --repd work/repd-source/data/projects --basic work/basic/raw --accounts work/accounts-\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 243,
+      "excerpt": "python build/python/202608271507-verify-companies-house-candidate.py --seal --input work/raw-b --output work/candidate-b --plan work/plan/plan.json --receipts work/months --reports work/months --repd work/repd-source/data/projects --basic work/basic/raw --accounts work/accounts-\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 244,
+      "excerpt": "diff -qr work/candidate-a work/candidate-b"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 245,
+      "excerpt": "- name: Independent candidate verification"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 246,
+      "excerpt": "run: python build/python/202608271507-verify-companies-house-candidate.py --verify --input work/candidate-a --report work/verification-v1.json"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 249,
+      "excerpt": "test \"$(jq -r '.deployment_state' work/candidate-a/manifest-v1.json)\" = \"not-authorised\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 250,
+      "excerpt": "test \"$(jq -r '.promotion_eligible' work/candidate-a/manifest-v1.json)\" = false"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 251,
+      "excerpt": "test \"$(jq -r '.coverage.partial_coverage' work/candidate-a/manifest-v1.json)\" = true"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 252,
+      "excerpt": "test ! -e work/candidate-a/data/current"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 253,
+      "excerpt": "test ! -e work/candidate-a/releases"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 256,
+      "excerpt": "name: companies-candidate-202608271507"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 258,
+      "excerpt": "work/candidate-a/"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 263,
+      "excerpt": "publish-candidate-branch:"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 276,
+      "excerpt": "name: companies-candidate-202608271507"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 278,
+      "excerpt": "- name: Commit only the immutable timestamped candidate branch"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 284,
+      "excerpt": "if git ls-remote --exit-code --heads origin \"refs/heads/candidate/$GENERATION\" >/dev/null 2>&1; then"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 285,
+      "excerpt": "echo \"Immutable candidate branch already exists\" >&2"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 289,
+      "excerpt": "cp -R staged/candidate-a/. \"data/candidates/$GENERATION/\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 295,
+      "excerpt": "*) echo \"Candidate commit escaped its boundary: $path\" >&2; exit 1 ;;"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 300,
+      "excerpt": "git commit -m \"data: quarantine Companies candidate $GENERATION\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+      "line": 301,
+      "excerpt": "git push origin \"HEAD:refs/heads/candidate/$GENERATION\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 1,
+      "excerpt": "name: 202608271547 Bounded Companies House Candidate"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 7,
+      "excerpt": "- .github/workflows/202608271547-bounded-companies-house-candidate.yml"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 11,
+      "excerpt": "- build/python/202608271547-verify-companies-house-candidate.py"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 13,
+      "excerpt": "- manifests/202608271547-bounded-companies-house-candidate.json"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 17,
+      "excerpt": "group: companies-house-candidate-202608271547"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 24,
+      "excerpt": "SOURCE_MANIFEST: manifests/202608271547-bounded-companies-house-candidate.json"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 233,
+      "excerpt": "python build/python/202608271547-verify-companies-house-candidate.py --seal --input work/raw-a --output work/candidate-a --plan work/plan/plan.json --receipts work/months --reports work/months --repd work/repd-source/data/projects --basic work/basic/raw --accounts work/accounts-\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 234,
+      "excerpt": "python build/python/202608271547-verify-companies-house-candidate.py --seal --input work/raw-b --output work/candidate-b --plan work/plan/plan.json --receipts work/months --reports work/months --repd work/repd-source/data/projects --basic work/basic/raw --accounts work/accounts-\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 235,
+      "excerpt": "diff -qr work/candidate-a work/candidate-b"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 238,
+      "excerpt": "python build/python/202608271547-verify-companies-house-candidate.py --verify --input work/candidate-a --report work/verification-v1.json"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 239,
+      "excerpt": "test \"$(jq -r '.deployment_state' work/candidate-a/manifest-v1.json)\" = \"not-authorised\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 240,
+      "excerpt": "test \"$(jq -r '.promotion_eligible' work/candidate-a/manifest-v1.json)\" = false"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 241,
+      "excerpt": "test \"$(jq -r '.analytical_dataset.format' work/candidate-a/manifest-v1.json)\" = parquet"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 242,
+      "excerpt": "test \"$(jq -r '.analytical_dataset.compression' work/candidate-a/manifest-v1.json)\" = zstd"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 243,
+      "excerpt": "test \"$(jq -r '.analytical_dataset.rows == .analytical_dataset.distinct_keys' work/candidate-a/manifest-v1.json)\" = true"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 244,
+      "excerpt": "test \"$(jq -r '.analytical_dataset.null_keys' work/candidate-a/manifest-v1.json)\" -eq 0"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 245,
+      "excerpt": "test \"$(jq -r '.analytical_dataset.duplicate_key_groups' work/candidate-a/manifest-v1.json)\" -eq 0"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 246,
+      "excerpt": "test \"$(jq -r '.data_discipline.owning_repository' work/candidate-a/manifest-v1.json)\" = Ventusltd/companies"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 247,
+      "excerpt": "test \"$(jq -r '.data_discipline.foreign_data_copied' work/candidate-a/manifest-v1.json)\" = false"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 248,
+      "excerpt": "test \"$(jq -r '.status' work/candidate-a/parquet-audit-v1.json)\" = PASS"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 252,
+      "excerpt": "name: companies-candidate-202608271547"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 254,
+      "excerpt": "work/candidate-a/"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 259,
+      "excerpt": "publish-candidate-branch:"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 272,
+      "excerpt": "name: companies-candidate-202608271547"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 274,
+      "excerpt": "- name: Commit only the immutable timestamped candidate branch"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 279,
+      "excerpt": "if git ls-remote --exit-code --heads origin \"refs/heads/candidate/$GENERATION\" >/dev/null 2>&1; then"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 280,
+      "excerpt": "echo \"Immutable candidate branch already exists\" >&2"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 284,
+      "excerpt": "cp -R staged/candidate-a/. \"data/candidates/$GENERATION/\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 290,
+      "excerpt": "*) echo \"Candidate commit escaped its boundary: $path\" >&2; exit 1 ;;"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 295,
+      "excerpt": "git commit -m \"data: quarantine Companies candidate $GENERATION\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+      "line": 296,
+      "excerpt": "git push origin \"HEAD:refs/heads/candidate/$GENERATION\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 1,
+      "excerpt": "name: 202608271634 Companies Candidate Semantics"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 7,
+      "excerpt": "group: companies-candidate-semantics-202608271634"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 14,
+      "excerpt": "SOURCE_MANIFEST: manifests/202608271634-companies-candidate-semantics.json"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 73,
+      "excerpt": "run: python -m py_compile build/python/202608271634-normalise-companies-candidate.py tests/test_202608271634_candidate_semantics.py"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 92,
+      "excerpt": "ref: candidate/202608271547"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 102,
+      "excerpt": "name: Freeze the same-repository parent candidate"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 113,
+      "excerpt": "*) echo \"Parent candidate escaped its immutable path: $path\" >&2; exit 1 ;;"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 121,
+      "excerpt": "python build/python/202608271634-normalise-companies-candidate.py \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 126,
+      "excerpt": "--source-manifest manifests/202608271547-bounded-companies-house-candidate.json"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 127,
+      "excerpt": "python build/python/202608271634-normalise-companies-candidate.py \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 132,
+      "excerpt": "--source-manifest manifests/202608271547-bounded-companies-house-candidate.json"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 136,
+      "excerpt": "python build/python/202608271634-normalise-companies-candidate.py \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 141,
+      "excerpt": "--source-manifest manifests/202608271547-bounded-companies-house-candidate.json \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 156,
+      "excerpt": "name: companies-candidate-semantics-202608271634"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 163,
+      "excerpt": "publish-candidate-branch:"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 176,
+      "excerpt": "name: companies-candidate-semantics-202608271634"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 184,
+      "excerpt": "if git ls-remote --exit-code --heads origin \"refs/heads/candidate/$GENERATION\" >/dev/null 2>&1; then"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 185,
+      "excerpt": "echo \"Immutable candidate branch already exists\" >&2"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 195,
+      "excerpt": "*) echo \"Semantics overlay escaped its candidate path: $path\" >&2; exit 1 ;;"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+      "line": 201,
+      "excerpt": "git push origin \"HEAD:refs/heads/candidate/$GENERATION\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 1,
+      "excerpt": "name: 202608272016 Bounded Companies House Candidate"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 7,
+      "excerpt": "- .github/workflows/202608272016-bounded-companies-house-candidate.yml"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 11,
+      "excerpt": "- build/python/202608272016-verify-companies-house-candidate.py"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 13,
+      "excerpt": "- manifests/202608272016-bounded-companies-house-candidate.json"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 17,
+      "excerpt": "group: companies-house-candidate-202608272016"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 24,
+      "excerpt": "SOURCE_MANIFEST: manifests/202608272016-bounded-companies-house-candidate.json"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 236,
+      "excerpt": "python build/python/202608272016-verify-companies-house-candidate.py --seal --input work/raw-a --output work/candidate-a --plan work/plan/plan.json --receipts work/months --reports work/months --repd work/repd-source/data/projects --basic work/basic/raw --accounts work/accounts-\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 237,
+      "excerpt": "python build/python/202608272016-verify-companies-house-candidate.py --seal --input work/raw-b --output work/candidate-b --plan work/plan/plan.json --receipts work/months --reports work/months --repd work/repd-source/data/projects --basic work/basic/raw --accounts work/accounts-\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 238,
+      "excerpt": "diff -qr work/candidate-a work/candidate-b"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 241,
+      "excerpt": "python build/python/202608272016-verify-companies-house-candidate.py --verify --input work/candidate-a --report work/verification-v1.json"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 242,
+      "excerpt": "test \"$(jq -r '.deployment_state' work/candidate-a/manifest-v1.json)\" = \"not-authorised\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 243,
+      "excerpt": "test \"$(jq -r '.promotion_eligible' work/candidate-a/manifest-v1.json)\" = false"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 244,
+      "excerpt": "test \"$(jq -r '.analytical_dataset.format' work/candidate-a/manifest-v1.json)\" = parquet"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 245,
+      "excerpt": "test \"$(jq -r '.analytical_dataset.compression' work/candidate-a/manifest-v1.json)\" = zstd"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 246,
+      "excerpt": "test \"$(jq -r '.analytical_dataset.rows == .analytical_dataset.distinct_keys' work/candidate-a/manifest-v1.json)\" = true"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 247,
+      "excerpt": "test \"$(jq -r '.analytical_dataset.null_keys' work/candidate-a/manifest-v1.json)\" -eq 0"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 248,
+      "excerpt": "test \"$(jq -r '.analytical_dataset.duplicate_key_groups' work/candidate-a/manifest-v1.json)\" -eq 0"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 249,
+      "excerpt": "test \"$(jq -r '.data_discipline.owning_repository' work/candidate-a/manifest-v1.json)\" = Ventusltd/companies"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 250,
+      "excerpt": "test \"$(jq -r '.data_discipline.foreign_data_copied' work/candidate-a/manifest-v1.json)\" = false"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 251,
+      "excerpt": "test \"$(jq -r '.data_discipline | has(\"licensing_posture\")' work/candidate-a/manifest-v1.json)\" = false"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 252,
+      "excerpt": "test \"$(jq -r '.usage_context' work/candidate-a/manifest-v1.json)\" = NON_COMMERCIAL_OPEN_SOURCE"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 253,
+      "excerpt": "test \"$(jq -r '.source_licence.name' work/candidate-a/manifest-v1.json)\" = \"Open Government Licence v3.0\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 254,
+      "excerpt": "test \"$(jq -r '.source_rights_are_distinct_from_usage_context' work/candidate-a/manifest-v1.json)\" = true"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 255,
+      "excerpt": "test \"$(jq -r '.status' work/candidate-a/parquet-audit-v1.json)\" = PASS"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 259,
+      "excerpt": "name: companies-candidate-202608272016"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 261,
+      "excerpt": "work/candidate-a/"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 266,
+      "excerpt": "publish-candidate-branch:"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 279,
+      "excerpt": "name: companies-candidate-202608272016"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 281,
+      "excerpt": "- name: Commit only the immutable timestamped candidate branch"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 286,
+      "excerpt": "if git ls-remote --exit-code --heads origin \"refs/heads/candidate/$GENERATION\" >/dev/null 2>&1; then"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 287,
+      "excerpt": "echo \"Immutable candidate branch already exists\" >&2"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 291,
+      "excerpt": "cp -R staged/candidate-a/. \"data/candidates/$GENERATION/\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 297,
+      "excerpt": "*) echo \"Candidate commit escaped its boundary: $path\" >&2; exit 1 ;;"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 302,
+      "excerpt": "git commit -m \"data: quarantine Companies candidate $GENERATION\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+      "line": 303,
+      "excerpt": "git push origin \"HEAD:refs/heads/candidate/$GENERATION\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+      "line": 1,
+      "excerpt": "name: 202608272035 Bounded Companies House Candidate"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+      "line": 7,
+      "excerpt": "- .github/workflows/202608272035-bounded-companies-house-candidate.yml"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+      "line": 11,
+      "excerpt": "- build/python/202608272035-verify-companies-house-candidate.py"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+      "line": 13,
+      "excerpt": "- manifests/202608272035-bounded-companies-house-candidate.json"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+      "line": 16,
+      "excerpt": "group: companies-house-candidate-202608272035"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+      "line": 24,
+      "excerpt": "SOURCE_MANIFEST: manifests/202608272035-bounded-companies-house-candidate.json"
+    },
+    {
+      "classification": "observed",
+      "category": "procurement_fact",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+      "line": 224,
+      "excerpt": "test \"$(jq -r '.source_dataset' work/repd-source/data/manifests/202608261927-build-manifest-v9-1.json)\" = \"DESNZ Renewable Energy Planning Database Q2 2026\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+      "line": 264,
+      "excerpt": "python build/python/202608272035-verify-companies-house-candidate.py --seal --input work/raw-a --output work/candidate-a --plan work/plan/plan.json --receipts work/months --reports work/months --repd work/repd-source/data/projects --basic work/basic/raw --accounts work/accounts-\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+      "line": 265,
+      "excerpt": "python build/python/202608272035-verify-companies-house-candidate.py --seal --input work/raw-b --output work/candidate-b --plan work/plan/plan.json --receipts work/months --reports work/months --repd work/repd-source/data/projects --basic work/basic/raw --accounts work/accounts-\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+      "line": 266,
+      "excerpt": "diff -qr work/candidate-a work/candidate-b"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+      "line": 269,
+      "excerpt": "python build/python/202608272035-verify-companies-house-candidate.py --verify --input work/candidate-a --report work/verification-v1.json"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+      "line": 270,
+      "excerpt": "test \"$(jq -r '.inputs.generation_source_commit' work/candidate-a/manifest-v1.json)\" = \"${{ needs.source-boundary.outputs.source_sha }}\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+      "line": 271,
+      "excerpt": "test \"$(jq -r '.deployment_state' work/candidate-a/manifest-v1.json)\" = not-authorised"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+      "line": 272,
+      "excerpt": "test \"$(jq -r '.promotion_eligible' work/candidate-a/manifest-v1.json)\" = false"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+      "line": 273,
+      "excerpt": "test \"$(jq -r '.usage_context' work/candidate-a/manifest-v1.json)\" = NON_COMMERCIAL_OPEN_SOURCE"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+      "line": 274,
+      "excerpt": "test \"$(jq -r '.source_rights_are_distinct_from_usage_context' work/candidate-a/manifest-v1.json)\" = true"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+      "line": 275,
+      "excerpt": "test \"$(jq -r '.source_licences.repd.licence.name' work/candidate-a/manifest-v1.json)\" = \"Open Government Licence v3.0\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+      "line": 276,
+      "excerpt": "test \"$(jq -r '.data_discipline.foreign_repository_files_committed' work/candidate-a/manifest-v1.json)\" = false"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+      "line": 277,
+      "excerpt": "test \"$(jq -r '.data_discipline.foreign_data_materialised' work/candidate-a/manifest-v1.json)\" = true"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/DEPLOYMENT_POLICY.md",
+      "line": 5,
+      "excerpt": "Dedicated GitHub Actions workflows may compile, validate and browser-test immutable candidates without deploying them. Those workflows must mark their candidate manifest `deployment: not-authorised`, keep browser evidence as a normal workflow artifact, and must not stage a publi\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/DEPLOYMENT_POLICY.md",
+      "line": 7,
+      "excerpt": "The Pages staging gate must fail closed on candidate manifests and exclude every release output declared by `build/*-v8-fast-site-manifest.json` unless a separate, valid owner-authorisation record exists at `build/authorisations/<generation>-v8-fast-pages-authorisation.json`. Th\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/DEPLOYMENT_POLICY.md",
+      "line": 9,
+      "excerpt": "An authorisation record uses schema `pipelinenews.v8.fast-pages-authorisation.v1` and binds the candidate manifest hash, source commit, build run, cache identity and exact output closure to one owner-triggered GitHub Actions run. It authorises only the scope `github-pages-immuta\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/DEPLOYMENT_POLICY.md",
+      "line": 11,
+      "excerpt": "`.github/workflows/authorise-v8-fast-pages.yml` is the bounded owner-authorisation path for generation `202608271524`. It removes the superseded `202608271329` authorisation at the source boundary, then may add only the new immutable authorisation record in a one-parent commit a\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/DEPLOYMENT_POLICY.md",
+      "line": 13,
+      "excerpt": "The `202608271524` release is progressive. Its owner-authorisation permits the production gate to publish the complete hash-bound predecessor chain `202608270055` \u2192 `202608270844` \u2192 `202608271329` \u2192 `202608271524`. A predecessor may enter that chain only when a newer candidate i\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/DEPLOYMENT_POLICY.md",
+      "line": 15,
+      "excerpt": "For this promotion, `releases/`, `data/` and `archive/` are frozen at the green `202608271524` candidate-output commit. Live verification must hash all nineteen outputs across the four-generation progressive chain, the five declared runtime assets, all sixteen pinned detail part\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/DEPLOYMENT_POLICY.md",
+      "line": 19,
+      "excerpt": "ChatGPT may design and commit source modules, compilers, tests and non-deploying candidate workflows. It must not perform deployment work outside `.github/workflows/pages.yml`."
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/DEPLOYMENT_POLICY.md",
+      "line": 27,
+      "excerpt": "3. browser-test the staged modular release and any authorised direct candidate;"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/DEPLOYMENT_POLICY.md",
+      "line": 29,
+      "excerpt": "5. compare every governed live byte with its committed SHA-256, including candidate runtime dependencies;"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/DEPLOYMENT_POLICY.md",
+      "line": 30,
+      "excerpt": "6. browser-test the live release and authorised direct candidate;"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291310-atlas-v9-deep-link-successor.yml",
+      "line": 288,
+      "excerpt": "candidate=\"http://127.0.0.1:4173/releases/$RELEASE_ID/\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291310-atlas-v9-deep-link-successor.yml",
+      "line": 290,
+      "excerpt": "if curl --fail --silent --show-error \"$candidate\" >/dev/null; then break; fi"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291310-atlas-v9-deep-link-successor.yml",
+      "line": 293,
+      "excerpt": "curl --fail --silent --show-error \"$candidate\" >/dev/null"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291310-atlas-v9-deep-link-successor.yml",
+      "line": 295,
+      "excerpt": "--candidate \"$candidate\" \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291310-atlas-v9-deep-link-successor.yml",
+      "line": 317,
+      "excerpt": "candidate=\"http://127.0.0.1:4173/work/202608291310-ci/release-a/releases/$RELEASE_ID/\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291310-atlas-v9-deep-link-successor.yml",
+      "line": 318,
+      "excerpt": "for url in \"$baseline\" \"$candidate\"; do"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291310-atlas-v9-deep-link-successor.yml",
+      "line": 327,
+      "excerpt": "--candidate \"$candidate\" \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291310-atlas-v9-deep-link-successor.yml",
+      "line": 533,
+      "excerpt": "--candidate \"https://ventusltd.github.io/pipelinenews/releases/$RELEASE_ID/\" \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291310-atlas-v9-deep-link-successor.yml",
+      "line": 560,
+      "excerpt": "--candidate \"http://127.0.0.1:4173/releases/$RELEASE_ID/\" \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291310-atlas-v9-deep-link-successor.yml",
+      "line": 692,
+      "excerpt": "--candidate \"https://ventusltd.github.io/pipelinenews/releases/$RELEASE_ID/\" \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291310-atlas-v9-deep-link-successor.yml",
+      "line": 713,
+      "excerpt": "candidate=\"http://127.0.0.1:4173/releases/$RELEASE_ID/\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291310-atlas-v9-deep-link-successor.yml",
+      "line": 714,
+      "excerpt": "for url in \"$baseline\" \"$candidate\"; do"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291310-atlas-v9-deep-link-successor.yml",
+      "line": 723,
+      "excerpt": "--candidate \"$candidate\" \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 326,
+      "excerpt": "candidate=\"http://127.0.0.1:4173/releases/$RELEASE_ID/\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 328,
+      "excerpt": "if curl --fail --silent --show-error \"$candidate\" >/dev/null; then break; fi"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 331,
+      "excerpt": "curl --fail --silent --show-error \"$candidate\" >/dev/null"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 333,
+      "excerpt": "--candidate \"$candidate\" \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 355,
+      "excerpt": "candidate=\"http://127.0.0.1:4173/work/202608291447-ci/release-a/releases/$RELEASE_ID/\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 356,
+      "excerpt": "for url in \"$baseline\" \"$candidate\"; do"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 365,
+      "excerpt": "--candidate \"$candidate\" \\"
+    },
+    {
+      "classification": "observed",
+      "category": "identity_key",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 551,
+      "excerpt": "golden.get(\"repd_ref\") != \"16135\""
+    },
+    {
+      "classification": "observed",
+      "category": "identity_key",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 554,
+      "excerpt": "or golden_pipeline.get(\"repd_ref\") != \"16135\""
+    },
+    {
+      "classification": "observed",
+      "category": "identity_key",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 560,
+      "excerpt": "or not golden.get(\"receiver_url\", \"\").endswith(\"?repd_ref=16135\")"
+    },
+    {
+      "classification": "observed",
+      "category": "identity_key",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 565,
+      "excerpt": "if sorted(item.get(\"repd_ref\") for item in optionals) != [\"13599\", \"17494\"]:"
+    },
+    {
+      "classification": "observed",
+      "category": "identity_key",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 568,
+      "excerpt": "if optional.get(\"repd_ref\") not in {\"17494\", \"13599\"}:"
+    },
+    {
+      "classification": "observed",
+      "category": "identity_key",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 574,
+      "excerpt": "or optional.get(\"pipeline_visible_repd_refs\") != [optional[\"repd_ref\"]]"
+    },
+    {
+      "classification": "observed",
+      "category": "identity_key",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 575,
+      "excerpt": "or (optional[\"repd_ref\"] == \"13599\" and optional.get(\"related_repd_13600_excluded\") is not True)"
+    },
+    {
+      "classification": "observed",
+      "category": "identity_key",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 576,
+      "excerpt": "or not optional.get(\"receiver_url\", \"\").endswith(f\"?repd_ref={optional['repd_ref']}\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 608,
+      "excerpt": "--candidate \"https://ventusltd.github.io/pipelinenews/releases/$RELEASE_ID/\" \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 635,
+      "excerpt": "--candidate \"http://127.0.0.1:4173/releases/$RELEASE_ID/\" \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 767,
+      "excerpt": "--candidate \"https://ventusltd.github.io/pipelinenews/releases/$RELEASE_ID/\" \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 788,
+      "excerpt": "candidate=\"http://127.0.0.1:4173/releases/$RELEASE_ID/\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 789,
+      "excerpt": "for url in \"$baseline\" \"$candidate\"; do"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+      "line": 798,
+      "excerpt": "--candidate \"$candidate\" \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+      "line": 320,
+      "excerpt": "candidate=\"http://127.0.0.1:4173/releases/$RELEASE_ID/\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+      "line": 322,
+      "excerpt": "if curl --fail --silent --show-error \"$candidate\" >/dev/null; then break; fi"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+      "line": 325,
+      "excerpt": "curl --fail --silent --show-error \"$candidate\" >/dev/null"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+      "line": 327,
+      "excerpt": "--candidate \"$candidate\" \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+      "line": 349,
+      "excerpt": "candidate=\"http://127.0.0.1:4173/work/202608291504-ci/release-a/releases/$RELEASE_ID/\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+      "line": 350,
+      "excerpt": "for url in \"$baseline\" \"$candidate\"; do"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+      "line": 359,
+      "excerpt": "--candidate \"$candidate\" \\"
+    },
+    {
+      "classification": "observed",
+      "category": "identity_key",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+      "line": 544,
+      "excerpt": "golden.get(\"repd_ref\") != \"16135\""
+    },
+    {
+      "classification": "observed",
+      "category": "identity_key",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+      "line": 548,
+      "excerpt": "or not golden.get(\"receiver_url\", \"\").endswith(\"?repd_ref=16135\")"
+    },
+    {
+      "classification": "observed",
+      "category": "identity_key",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+      "line": 553,
+      "excerpt": "if optional.get(\"repd_ref\") not in {\"17494\", \"13599\"}:"
+    },
+    {
+      "classification": "observed",
+      "category": "identity_key",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+      "line": 557,
+      "excerpt": "or not optional.get(\"receiver_url\", \"\").endswith(f\"?repd_ref={optional['repd_ref']}\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+      "line": 583,
+      "excerpt": "--candidate \"https://ventusltd.github.io/pipelinenews/releases/$RELEASE_ID/\" \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+      "line": 610,
+      "excerpt": "--candidate \"http://127.0.0.1:4173/releases/$RELEASE_ID/\" \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+      "line": 742,
+      "excerpt": "--candidate \"https://ventusltd.github.io/pipelinenews/releases/$RELEASE_ID/\" \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+      "line": 763,
+      "excerpt": "candidate=\"http://127.0.0.1:4173/releases/$RELEASE_ID/\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+      "line": 764,
+      "excerpt": "for url in \"$baseline\" \"$candidate\"; do"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+      "line": 773,
+      "excerpt": "--candidate \"$candidate\" \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 47,
+      "excerpt": "# Candidate validation executes repository code. Do not expose a"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 108,
+      "excerpt": "# Nothing outside the already-green candidate commit may alter the"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 126,
+      "excerpt": "- name: Prove candidate bytes are unchanged from the green build"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 130,
+      "excerpt": "node --input-type=module <<'NODE' | tee \"$FAST_WORK_ROOT/evidence/candidate-immutability-proof.json\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 140,
+      "excerpt": "assert.equal(sha256(manifestBytes), process.env.FAST_CANDIDATE_MANIFEST_SHA256, \"candidate manifest hash changed\");"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 142,
+      "excerpt": "assert.equal(manifest.schema, \"pipelinenews.v8.fast-site-candidate.v1\");"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 144,
+      "excerpt": "assert.equal(manifest.deployment, \"not-authorised\", \"candidate manifest must remain immutable and not-authorised\");"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 148,
+      "excerpt": "assert.ok(Array.isArray(manifest.outputs) && manifest.outputs.length === 4, \"candidate must declare four direct outputs\");"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 151,
+      "excerpt": "assert.equal(new Set(paths).size, paths.length, \"candidate closure has duplicate paths\");"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 155,
+      "excerpt": "`unsafe candidate path: ${relative}`,"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 163,
+      "excerpt": "assert.ok(current.equals(built.stdout), `candidate bytes changed after ${candidateCommit}: ${relative}`);"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 167,
+      "excerpt": "assert.equal(bytes.length, record.bytes, `candidate byte count changed: ${record.path}`);"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 168,
+      "excerpt": "assert.equal(sha256(bytes), record.sha256, `candidate hash changed: ${record.path}`);"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 171,
+      "excerpt": "schema: \"pipelinenews.v8.fast-candidate-immutability-proof.v1\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 197,
+      "excerpt": "- name: Browser-proof desktop and mobile candidate"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 200,
+      "excerpt": "FAST_SITE_URL: http://127.0.0.1:4173/releases/202608271524-v8-fast-candidate.html"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 247,
+      "excerpt": "scope: \"github-pages-immutable-candidate\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 253,
+      "excerpt": "candidate: {"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 275,
+      "excerpt": "assert.equal(authorisation.candidate.source_commit, process.env.FAST_CANDIDATE_SOURCE_COMMIT);"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 276,
+      "excerpt": "assert.equal(authorisation.candidate.build_run, process.env.FAST_CANDIDATE_BUILD_RUN);"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 277,
+      "excerpt": "assert.equal(authorisation.candidate.cache_identity, process.env.FAST_CACHE_IDENTITY);"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 328,
+      "excerpt": "git commit -m \"v8: authorise fast Pages candidate ${FAST_GENERATION}\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 379,
+      "excerpt": "module.require(excluded == set(), \"progressive candidate chain still has excluded outputs\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 380,
+      "excerpt": "module.require(release[\"candidate_chain\"] == chain, \"progressive candidate chain changed\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 387,
+      "excerpt": "module.require(release[\"candidate_generation\"] == manifest[\"generation\"], \"candidate generation not bound\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 388,
+      "excerpt": "module.require(release[\"candidate_path\"] == \"releases/202608271524-v8-fast-candidate.html\", \"candidate route not bound\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 389,
+      "excerpt": "module.require(release[\"candidate_sha256\"] == manifest[\"outputs\"][0][\"sha256\"], \"candidate HTML hash not bound\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflow-archive/20260830-email-storm/authorise-v8-fast-pages.yml",
+      "line": 420,
+      "excerpt": "\"candidate-immutability-proof.json\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 88,
+      "excerpt": "\"releases/candidate.json\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 115,
+      "excerpt": "test ! -e \"releases/$LIVE_NEWS_GENERATION-v8-fast-candidate.html\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 150,
+      "excerpt": "node \"discovery/javascript/$LIVE_NEWS_GENERATION-live-news-runner.mjs\" --collect --provider \"$LIVE_NEWS_PROVIDER\" --health-out \"$LIVE_NEWS_WORK_ROOT/evidence/live-collector-health.json\" --ledger-out \"$LIVE_NEWS_WORK_ROOT/evidence/live-candidate-ledger.json\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 235,
+      "excerpt": "module.require(successor[\"schema\"] == module.FAST_CANDIDATE_SCHEMA, \"0844 candidate schema changed\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 236,
+      "excerpt": "module.require(successor[\"generation\"] == successor_generation, \"0844 candidate generation changed\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 237,
+      "excerpt": "module.require(successor[\"deployment\"] == \"not-authorised\", \"0844 candidate deployment state changed\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 238,
+      "excerpt": "module.require(successor[\"source_commit\"] == os.environ[\"LIVE_NEWS_SOURCE\"], \"0844 candidate source binding changed\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 239,
+      "excerpt": "module.require(str(successor[\"github_run_id\"]) == os.environ[\"GITHUB_RUN_ID\"], \"0844 candidate run binding changed\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 242,
+      "excerpt": "module.require(isinstance(outputs, list) and len(outputs) == 4, \"0844 candidate output closure changed\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 244,
+      "excerpt": "module.require(isinstance(record, dict), f\"0844 candidate output {index} is not an object\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 245,
+      "excerpt": "module.require(set(record) == {\"path\", \"bytes\", \"sha256\"}, f\"0844 candidate output {index} fields changed\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 246,
+      "excerpt": "module.require(type(record[\"bytes\"]) is int and record[\"bytes\"] >= 0, f\"0844 candidate output {index} bytes changed\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 247,
+      "excerpt": "module.require(isinstance(record[\"sha256\"], str) and module.SHA256_RE.fullmatch(record[\"sha256\"]), f\"0844 candidate output {index} SHA-256 changed\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 249,
+      "excerpt": "f\"releases/{successor_generation}-v8-fast-candidate.html\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 254,
+      "excerpt": "module.require({record[\"path\"] for record in outputs} == expected, \"0844 candidate path closure changed\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 256,
+      "excerpt": "relative = module.normalise_candidate_output_path(record[\"path\"], \"0844 candidate output\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 258,
+      "excerpt": "module.require_no_symlink_components(root, relative, \"0844 candidate output path\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 259,
+      "excerpt": "module.verify_record(root, record, \"0844 candidate output\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 261,
+      "excerpt": "module.require(not archived.exists() and not archived.is_symlink(), f\"0844 candidate overlaps historical public path: {relative}\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 266,
+      "excerpt": "governed = {\"releases/current.json\", \"releases/candidate.json\", governed_release_path}"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 269,
+      "excerpt": "module.require(expected.isdisjoint(governed), \"0844 candidate overlaps the governed release\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 296,
+      "excerpt": "module.require(not target.exists() and not target.is_symlink(), f\"0844 candidate entered quarantine probe: {relative}\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 331,
+      "excerpt": "- name: Browser-proof desktop and mobile candidate"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 334,
+      "excerpt": "FAST_SITE_URL: http://127.0.0.1:4173/releases/202608270844-v8-fast-candidate.html"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 405,
+      "excerpt": "test -z \"$(git diff --cached --name-only | grep -v \"^\\(build/$LIVE_NEWS_GENERATION-v8-fast-site-manifest.json\\|releases/$LIVE_NEWS_GENERATION-v8-fast-candidate.html\\|releases/javascript/$LIVE_NEWS_GENERATION-v8-fast-runtime.js\\|releases/data/$LIVE_NEWS_GENERATION-.*-v8-fast-news\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608270844-live-news-discovery.yml",
+      "line": 408,
+      "excerpt": "git commit -m \"v8: build Live News Discovery candidate $LIVE_NEWS_GENERATION\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 83,
+      "excerpt": "\"releases/candidate.json\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 100,
+      "excerpt": "git diff --quiet \"$ATLAS_SOURCE_PARENT\" HEAD -- \"build/202608270844-v8-fast-site-manifest.json\" \"releases/202608270844-v8-fast-candidate.html\" \"releases/javascript/202608270844-v8-fast-runtime.js\" \"releases/data/202608270844-v8-fast-registry.json\" \"build/202608270055-v8-fast-sit\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 107,
+      "excerpt": "test ! -e \"releases/$ATLAS_GENERATION-v8-fast-candidate.html\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 136,
+      "excerpt": "- name: Prove deterministic bytes and materialise the candidate"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 201,
+      "excerpt": "- name: Prove the cartridge and candidate cannot enter Pages"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 219,
+      "excerpt": "candidate = json.loads(manifest_path.read_text())"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 220,
+      "excerpt": "expected = {record[\"path\"] for record in candidate[\"outputs\"]}"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 221,
+      "excerpt": "module.require(candidate[\"schema\"] == module.FAST_CANDIDATE_SCHEMA, \"candidate schema changed\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 222,
+      "excerpt": "module.require(candidate[\"generation\"] == generation, \"candidate generation changed\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 223,
+      "excerpt": "module.require(candidate[\"source_commit\"] == os.environ[\"ATLAS_SOURCE\"], \"candidate source binding changed\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 224,
+      "excerpt": "module.require(candidate[\"deployment\"] == \"not-authorised\", \"candidate deployment state changed\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 225,
+      "excerpt": "module.require(len(expected) == 4, \"candidate output closure changed\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 226,
+      "excerpt": "for record in candidate[\"outputs\"]:"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 227,
+      "excerpt": "relative = module.normalise_candidate_output_path(record[\"path\"], \"13:29 candidate output\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 229,
+      "excerpt": "module.require_no_symlink_components(root, relative, \"13:29 candidate output path\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 230,
+      "excerpt": "module.verify_record(root, record, \"13:29 candidate output\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 236,
+      "excerpt": "\"releases/candidate.json\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 241,
+      "excerpt": "module.require(expected.isdisjoint(governed), \"candidate overlaps the governed release\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 269,
+      "excerpt": "module.require(not (probe / relative).exists(), f\"candidate leaked into quarantine probe: {relative}\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 278,
+      "excerpt": "\"deployment\": candidate[\"deployment\"],"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 302,
+      "excerpt": "FAST_SITE_URL: http://127.0.0.1:4173/releases/202608271329-v8-fast-candidate.html"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+      "line": 425,
+      "excerpt": "git commit -m \"v8: build Atlas V8 deep-link candidate $ATLAS_GENERATION\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271329-audit-atlas-v8-deep-link-quarantine.yml",
+      "line": 72,
+      "excerpt": "\"releases/202608271329-v8-fast-candidate.html\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271457-mobile-ui-comparator.yml",
+      "line": 32,
+      "excerpt": "name: Measure candidate baseline and original"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608271457-mobile-ui-comparator.yml",
+      "line": 99,
+      "excerpt": "\"releases/candidate.json\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "docs/doctrine/SPIDER_DNA.md",
+      "line": 49,
+      "excerpt": "Derived means a scanner, workflow or model inferred the fact from observable structure."
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "docs/os/PRESENTATION_RULES.md",
+      "line": 46,
+      "excerpt": "Derived means it was inferred by a scanner, workflow or analysis."
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "docs/os/SPIDER_OS_RULES.md",
+      "line": 55,
+      "excerpt": "Derived means a scanner, workflow, model or human analysis inferred the fact from observed material."
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "docs/os/SPIDER_OS_RULES.md",
+      "line": 73,
+      "excerpt": "It must not change provenance or confidence."
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "docs/sources/github_api.md",
+      "line": 31,
+      "excerpt": "Derived-only fields: classifications inferred from file paths, code structure, dependency mentions or scanner joins"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "docs/sources/github_pages.md",
+      "line": 31,
+      "excerpt": "Derived-only fields: health, latency, redirect behaviour, cache state and live status inferred by probing"
+    },
+    {
+      "classification": "observed",
+      "category": "procurement_fact",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "docs/sources/neso.md",
+      "line": 23,
+      "excerpt": "Data type: energy scenarios, network planning material, operational publications and data releases"
+    },
+    {
+      "classification": "observed",
+      "category": "procurement_fact",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "docs/sources/repd.md",
+      "line": 5,
+      "excerpt": "Source name: Renewable Energy Planning Database"
+    },
+    {
+      "classification": "observed",
+      "category": "procurement_fact",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "docs/sources/repd.md",
+      "line": 23,
+      "excerpt": "Data type: renewable energy planning and project records"
+    },
+    {
+      "classification": "observed",
+      "category": "procurement_fact",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "docs/sources/repd.md",
+      "line": 31,
+      "excerpt": "Not-allowed Spider use: treating derived project status inference as official planning decision"
+    },
+    {
+      "classification": "observed",
+      "category": "procurement_fact",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "docs/sources/repd.md",
+      "line": 33,
+      "excerpt": "Screening boundary: Spider outputs using this source are screening-grade and not planning advice."
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "spider_maya/v1/index.html",
+      "line": 32,
+      "excerpt": "function openNode(id){const n=CART.nodes.find(x=>x.id===id);const t=target(n);if(t) window.open(t,\"_blank\",\"noopener\")}function draw(){const stage=document.getElementById(\"stage\"), root=CART.nodes[0], apps=CART.nodes.slice(1);if(view===\"column\"){stage.innerHTML=card(root,\"focus\"\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "procurement_fact",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "spider_maya/v1/data/derived/edges.json",
+      "line": 136,
+      "excerpt": "\"id\": \"e:contains:area:globalgrid2050-planning-requirements->app:globalgrid2050-data-grid-studies-public\","
+    },
+    {
+      "classification": "observed",
+      "category": "procurement_fact",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "spider_maya/v1/data/derived/edges.json",
+      "line": 142,
+      "excerpt": "\"source\": \"area:globalgrid2050-planning-requirements\","
+    },
+    {
+      "classification": "observed",
+      "category": "procurement_fact",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "spider_maya/v1/data/derived/edges.json",
+      "line": 148,
+      "excerpt": "\"id\": \"e:contains:area:globalgrid2050-planning-requirements->app:globalgrid2050-employers-requirements-bess\","
+    },
+    {
+      "classification": "observed",
+      "category": "procurement_fact",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "spider_maya/v1/data/derived/edges.json",
+      "line": 154,
+      "excerpt": "\"source\": \"area:globalgrid2050-planning-requirements\","
+    },
+    {
+      "classification": "observed",
+      "category": "procurement_fact",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "spider_maya/v1/data/derived/edges.json",
+      "line": 160,
+      "excerpt": "\"id\": \"e:contains:area:globalgrid2050-planning-requirements->app:globalgrid2050-employers-requirments-large-scale-solar\","
+    },
+    {
+      "classification": "observed",
+      "category": "procurement_fact",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "spider_maya/v1/data/derived/edges.json",
+      "line": 166,
+      "excerpt": "\"source\": \"area:globalgrid2050-planning-requirements\","
+    },
+    {
+      "classification": "observed",
+      "category": "procurement_fact",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "spider_maya/v1/data/derived/edges.json",
+      "line": 172,
+      "excerpt": "\"id\": \"e:contains:area:globalgrid2050-planning-requirements->app:globalgrid2050-nsip-solar-farms\","
+    },
+    {
+      "classification": "observed",
+      "category": "procurement_fact",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "spider_maya/v1/data/derived/edges.json",
+      "line": 178,
+      "excerpt": "\"source\": \"area:globalgrid2050-planning-requirements\","
+    },
+    {
+      "classification": "observed",
+      "category": "procurement_fact",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "spider_maya/v1/data/derived/edges.json",
+      "line": 544,
+      "excerpt": "\"id\": \"e:contains:repo:globalgrid2050->area:globalgrid2050-planning-requirements\","
+    },
+    {
+      "classification": "observed",
+      "category": "procurement_fact",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "spider_maya/v1/data/derived/edges.json",
+      "line": 552,
+      "excerpt": "\"target\": \"area:globalgrid2050-planning-requirements\""
+    },
+    {
+      "classification": "observed",
+      "category": "procurement_fact",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "spider_maya/v1/data/derived/nodes.json",
+      "line": 763,
+      "excerpt": "\"id\": \"area:globalgrid2050-planning-requirements\","
+    },
+    {
+      "classification": "observed",
+      "category": "procurement_fact",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "spider_maya/v1/data/derived/nodes.json",
+      "line": 765,
+      "excerpt": "\"label\": \"Planning & Requirements\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "spider_printer_v1/index.html",
+      "line": 30,
+      "excerpt": "function vp(){const v=window.visualViewport;return{w:v?v.width:window.innerWidth,h:v?v.height:window.innerHeight,ox:v?v.offsetLeft:0,oy:v?v.offsetTop:0}}"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "spider_printer_v1/index.html",
+      "line": 38,
+      "excerpt": "viewer.addEventListener('wheel',e=>{e.preventDefault();zoom(e.deltaY<0?1.08:.92,e.clientX,e.clientY)},{passive:false});viewer.addEventListener('pointerdown',e=>{drag=true;sx=e.clientX-tx;sy=e.clientY-ty;viewer.setPointerCapture?.(e.pointerId)});window.addEventListener('pointermo\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "path": "spider_printer_v1/index.html",
+      "line": 40,
+      "excerpt": "document.getElementById('home').onclick=fit;document.getElementById('fitBtn').onclick=fit;document.getElementById('zIn').onclick=()=>zoom(1.22);document.getElementById('zOut').onclick=()=>zoom(.82);document.getElementById('printBtn').onclick=document.getElementById('print2').onc\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".gitignore",
+      "line": 6,
+      "excerpt": "candidate/"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "README.md",
+      "line": 29,
+      "excerpt": "## Full V8 parity candidate"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "README.md",
+      "line": 39,
+      "excerpt": "This remains a parity candidate, not V9 truth. Estimated 11 kV/UKPN identity,"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608290904-bootstrap-verify-data-gridatlas.yml",
+      "line": 115,
+      "excerpt": "name: data-gridatlas-202608290904-bootstrap-candidate"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608290904-bootstrap-verify-data-gridatlas.yml",
+      "line": 128,
+      "excerpt": "- name: Enforce verified bootstrap candidate classification"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608290904-bootstrap-verify-data-gridatlas.yml",
+      "line": 138,
+      "excerpt": "raise SystemExit(f\"bootstrap candidate rejected: {proof}\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291015-build-v8-transplant-candidate.yml",
+      "line": 1,
+      "excerpt": "name: 202608291015 Build full V8 transplant candidate"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291015-build-v8-transplant-candidate.yml",
+      "line": 7,
+      "excerpt": "- '.github/workflows/202608291015-build-v8-transplant-candidate.yml'"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291015-build-v8-transplant-candidate.yml",
+      "line": 135,
+      "excerpt": "key: v8-transplant-202608291015-py31213-ubuntu24-${{ steps.runtime.outputs.fingerprint }}-${{ matrix.phase }}-${{ hashFiles('.github/workflows/202608291015-build-v8-transplant-candidate.yml', 'contracts/202608291015-v8-transplant-plan.json', 'contracts/202608291015-v8-layer-conf\u2026"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291015-build-v8-transplant-candidate.yml",
+      "line": 195,
+      "excerpt": "name: Merge and independently verify full V8 candidate"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291015-build-v8-transplant-candidate.yml",
+      "line": 289,
+      "excerpt": "- name: Deterministically merge full candidate"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291015-build-v8-transplant-candidate.yml",
+      "line": 294,
+      "excerpt": "--output candidate"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291015-build-v8-transplant-candidate.yml",
+      "line": 304,
+      "excerpt": "--candidate candidate \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291015-build-v8-transplant-candidate.yml",
+      "line": 306,
+      "excerpt": "--output work/full-candidate-verification.json \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291015-build-v8-transplant-candidate.yml",
+      "line": 307,
+      "excerpt": "2>&1 | tee work/full-candidate-verification.log"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291015-build-v8-transplant-candidate.yml",
+      "line": 322,
+      "excerpt": "- name: Upload full V8 transplant candidate and proof"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291015-build-v8-transplant-candidate.yml",
+      "line": 326,
+      "excerpt": "name: data-gridatlas-202608291015-verified-candidate-${{ inputs.expected_source_sha || github.sha }}-run-${{ github.run_id }}-attempt-${{ github.run_attempt }}"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291015-build-v8-transplant-candidate.yml",
+      "line": 328,
+      "excerpt": "candidate/"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291015-build-v8-transplant-candidate.yml",
+      "line": 329,
+      "excerpt": "work/full-candidate-verification.json"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291015-build-v8-transplant-candidate.yml",
+      "line": 330,
+      "excerpt": "work/full-candidate-verification.log"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291015-build-v8-transplant-candidate.yml",
+      "line": 343,
+      "excerpt": "work/full-candidate-verification.json"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291015-build-v8-transplant-candidate.yml",
+      "line": 344,
+      "excerpt": "work/full-candidate-verification.log"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291015-build-v8-transplant-candidate.yml",
+      "line": 363,
+      "excerpt": "- name: Enforce full candidate classification"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291015-build-v8-transplant-candidate.yml",
+      "line": 373,
+      "excerpt": "proof = json.loads(Path('work/full-candidate-verification.json').read_text(encoding='utf-8'))"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291015-build-v8-transplant-candidate.yml",
+      "line": 375,
+      "excerpt": "raise SystemExit(f\"full V8 transplant candidate rejected: {proof}\")"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 92,
+      "excerpt": "- name: Resolve completed candidate contract"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 93,
+      "excerpt": "id: candidate"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 99,
+      "excerpt": "candidate = contract['candidate']"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 101,
+      "excerpt": "def walk(value, path='candidate'):"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 110,
+      "excerpt": "walk(candidate)"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 112,
+      "excerpt": "raise SystemExit('candidate run is not yet receipted: ' + ', '.join(unresolved))"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 113,
+      "excerpt": "if candidate['workflow_run_id'] != 33250896568:"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 114,
+      "excerpt": "raise SystemExit('unexpected candidate workflow run')"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 116,
+      "excerpt": "'run_id': candidate['workflow_run_id'],"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 117,
+      "excerpt": "'artifact_id': candidate['artifact_id'],"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 118,
+      "excerpt": "'artifact_name': candidate['artifact_name'],"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 119,
+      "excerpt": "'artifact_digest': candidate['artifact_digest'],"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 120,
+      "excerpt": "'artifact_archive_bytes': candidate['artifact_archive_bytes'],"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 121,
+      "excerpt": "'source_commit': candidate['source_commit'],"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 128,
+      "excerpt": "- name: Verify exact immutable candidate receipt"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 131,
+      "excerpt": "EXPECTED_RUN_ID: ${{ steps.candidate.outputs.run_id }}"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 132,
+      "excerpt": "EXPECTED_ARTIFACT_ID: ${{ steps.candidate.outputs.artifact_id }}"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 133,
+      "excerpt": "EXPECTED_ARTIFACT_NAME: ${{ steps.candidate.outputs.artifact_name }}"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 134,
+      "excerpt": "EXPECTED_ARTIFACT_DIGEST: ${{ steps.candidate.outputs.artifact_digest }}"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 135,
+      "excerpt": "EXPECTED_ARTIFACT_BYTES: ${{ steps.candidate.outputs.artifact_archive_bytes }}"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 136,
+      "excerpt": "EXPECTED_SOURCE_COMMIT: ${{ steps.candidate.outputs.source_commit }}"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 143,
+      "excerpt": "--output work/candidate-artifact-receipt.json"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 148,
+      "excerpt": "--output work/candidate-workflow-run-receipt.json"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 152,
+      "excerpt": "item = json.loads(Path('work/candidate-artifact-receipt.json').read_text(encoding='utf-8'))"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 168,
+      "excerpt": "workflow = json.loads(Path('work/candidate-workflow-run-receipt.json').read_text(encoding='utf-8'))"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 171,
+      "excerpt": "'path': '.github/workflows/202608291015-build-v8-transplant-candidate.yml',"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 181,
+      "excerpt": "raise SystemExit(f'candidate workflow provenance mismatch: {key}')"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 184,
+      "excerpt": "- name: Download exact candidate by immutable artifact ID"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 187,
+      "excerpt": "artifact-ids: ${{ steps.candidate.outputs.artifact_id }}"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 188,
+      "excerpt": "path: work/verified-candidate"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 191,
+      "excerpt": "run-id: ${{ steps.candidate.outputs.run_id }}"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 197,
+      "excerpt": "--candidate work/verified-candidate/candidate \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 198,
+      "excerpt": "--proof work/verified-candidate/work/full-candidate-verification.json \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 203,
+      "excerpt": "--candidate work/verified-candidate/candidate \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 204,
+      "excerpt": "--proof work/verified-candidate/work/full-candidate-verification.json \\"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 314,
+      "excerpt": "work/candidate-artifact-receipt.json"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291237-publish-live-data-gridatlas.yml",
+      "line": 315,
+      "excerpt": "work/candidate-workflow-run-receipt.json"
+    },
+    {
+      "classification": "observed",
+      "category": "identity_key",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291239-verify-live-pointer.yml",
+      "line": 271,
+      "excerpt": "deep_link_index = fetch(app_release + '?repd_ref=16135', cors=True)"
+    },
+    {
+      "classification": "observed",
+      "category": "privacy_boundary",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608291507-current-integrity.yml",
+      "line": 115,
+      "excerpt": "- name: Verify local Parquet, DuckDB, privacy, CORS and ranges"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608301102-repair-consumer-pointer-semantics.yml",
+      "line": 143,
+      "excerpt": "for candidate in candidates:"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608301102-repair-consumer-pointer-semantics.yml",
+      "line": 145,
+      "excerpt": "parsed = json.loads(candidate)"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608301115-repair-consumer-pointer-semantics-v2.yml",
+      "line": 66,
+      "excerpt": "candidate = value.strip()"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608301115-repair-consumer-pointer-semantics-v2.yml",
+      "line": 67,
+      "excerpt": "candidates = [candidate]"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608301115-repair-consumer-pointer-semantics-v2.yml",
+      "line": 68,
+      "excerpt": "if \"{\" in candidate and \"}\" in candidate:"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608301115-repair-consumer-pointer-semantics-v2.yml",
+      "line": 69,
+      "excerpt": "candidates.append(candidate[candidate.find(\"{\"):candidate.rfind(\"}\") + 1])"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608301931-layer-fidelity.yml",
+      "line": 323,
+      "excerpt": "await page.waitForFunction(() => window.__GRIDATLAS_V9_MAP__ && document.querySelectorAll('#scada-ui-container input[data-layer-id]').length > 0, null, { timeout: 120000 });"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608301931-layer-fidelity.yml",
+      "line": 334,
+      "excerpt": "const map = window.__GRIDATLAS_V9_MAP__;"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608301931-layer-fidelity.yml",
+      "line": 349,
+      "excerpt": "const map = window.__GRIDATLAS_V9_MAP__;"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": ".github/workflows/202608301931-layer-fidelity.yml",
+      "line": 357,
+      "excerpt": "const map = window.__GRIDATLAS_V9_MAP__;"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-repository-boundary.json",
+      "line": 6,
+      "excerpt": "\".github/workflows/202608291015-build-v8-transplant-candidate.yml\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-repository-boundary.json",
+      "line": 45,
+      "excerpt": "\"candidate_rule\": \"Generation 202608291015 remains immutable candidate evidence. A separately verified 202608291237 timestamp folder may publish its exact Parquet closure; movable pointers require an exact live gridatlas consumer receipt.\""
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 232,
+      "excerpt": "\"provenance_note\": \"OSM-derived foundation candidate; reacquire with OSM identifiers and attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 270,
+      "excerpt": "\"provenance_note\": \"OSM-derived foundation candidate; reacquire with OSM identifiers and attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 308,
+      "excerpt": "\"provenance_note\": \"OSM-derived foundation candidate; reacquire with OSM identifiers and attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 346,
+      "excerpt": "\"provenance_note\": \"OSM-derived foundation candidate; reacquire with OSM identifiers and attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 384,
+      "excerpt": "\"provenance_note\": \"OSM-derived foundation candidate; reacquire with OSM identifiers and attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 422,
+      "excerpt": "\"provenance_note\": \"OSM-derived foundation candidate; reacquire with OSM identifiers and attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 460,
+      "excerpt": "\"provenance_note\": \"OSM-derived foundation candidate; reacquire with OSM identifiers and attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 498,
+      "excerpt": "\"provenance_note\": \"OSM-derived foundation candidate; reacquire with OSM identifiers and attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 537,
+      "excerpt": "\"provenance_note\": \"OSM-derived foundation candidate; reacquire with OSM identifiers and attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 575,
+      "excerpt": "\"provenance_note\": \"OSM-derived foundation candidate; reacquire with OSM identifiers and attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 613,
+      "excerpt": "\"provenance_note\": \"Small lazy context candidate; reacquire from declared upstream with attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 651,
+      "excerpt": "\"provenance_note\": \"Small lazy context candidate; reacquire from declared upstream with attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 689,
+      "excerpt": "\"provenance_note\": \"Small lazy context candidate; reacquire from declared upstream with attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 727,
+      "excerpt": "\"provenance_note\": \"Small lazy context candidate; reacquire from declared upstream with attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 765,
+      "excerpt": "\"provenance_note\": \"Small lazy context candidate; reacquire from declared upstream with attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 803,
+      "excerpt": "\"provenance_note\": \"Small lazy context candidate; reacquire from declared upstream with attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 841,
+      "excerpt": "\"provenance_note\": \"Small lazy context candidate; reacquire from declared upstream with attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 879,
+      "excerpt": "\"provenance_note\": \"Small lazy context candidate; reacquire from declared upstream with attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 917,
+      "excerpt": "\"provenance_note\": \"Small lazy context candidate; reacquire from declared upstream with attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 955,
+      "excerpt": "\"provenance_note\": \"Small lazy context candidate; reacquire from declared upstream with attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 993,
+      "excerpt": "\"provenance_note\": \"Small lazy context candidate; reacquire from declared upstream with attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 1031,
+      "excerpt": "\"provenance_note\": \"Small lazy context candidate; reacquire from declared upstream with attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 1069,
+      "excerpt": "\"provenance_note\": \"Small lazy context candidate; reacquire from declared upstream with attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 1107,
+      "excerpt": "\"provenance_note\": \"Small lazy context candidate; reacquire from declared upstream with attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 1145,
+      "excerpt": "\"provenance_note\": \"Small lazy context candidate; reacquire from declared upstream with attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291015-v8-transplant-plan.json",
+      "line": 1183,
+      "excerpt": "\"provenance_note\": \"Small lazy context candidate; reacquire from declared upstream with attribution before promotion.\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291237-live-data-release.json",
+      "line": 6,
+      "excerpt": "\"candidate\": {"
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291237-live-data-release.json",
+      "line": 9,
+      "excerpt": "\"artifact_name\": \"data-gridatlas-202608291015-verified-candidate-61096ee84570fd78f7c87b7b4abe25cb521eeba6-run-33250896568-attempt-1\","
+    },
+    {
+      "classification": "observed",
+      "category": "inference_term",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291410-repository-boundary.json",
+      "line": 6,
+      "excerpt": "\".github/workflows/202608291015-build-v8-transplant-candidate.yml\","
+    },
+    {
+      "classification": "observed",
+      "category": "identity_key",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "contracts/202608291507-automation.json",
+      "line": 41,
+      "excerpt": "\"parameter\": \"repd_ref\","
+    },
+    {
+      "classification": "observed",
+      "category": "privacy_boundary",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "schemas/202608291015-v8-transplant-parquet.json",
+      "line": 46,
+      "excerpt": "\"privacy\": {"
+    },
+    {
+      "classification": "observed",
+      "category": "identity_key",
+      "repository": "data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "path": "state/live-set.json",
+      "line": 18,
+      "excerpt": "\"parameter\": \"repd_ref\","
+    }
+  ]
+}
