@@ -1,0 +1,27 @@
+{
+  "schema": "chatgpt-audits.hourly-logic-manifest.v1",
+  "generation": "202608310209",
+  "review_status": "UNREVIEWED",
+  "files": [
+    {
+      "path": "CHATGPT-PROMPT.md",
+      "bytes": 7597,
+      "sha256": "3399e35753a5df2b0c8b162a3b5a04d5ff2c1ec8e77fa2eccf25d56c4b5a68c8"
+    },
+    {
+      "path": "REVIEW.json",
+      "bytes": 90985,
+      "sha256": "e6350bbb61fa0f843b5e0c719e83bae36d5860c22114c6d1be717ff47682fc19"
+    },
+    {
+      "path": "REVIEW.md",
+      "bytes": 2900,
+      "sha256": "c8a38ca5f1f51d5e598e8b1177c74172220916b03b6118aa219697353c42b33d"
+    },
+    {
+      "path": "candidate/identity_conflict_gate.py",
+      "bytes": 1164,
+      "sha256": "c1e409c9f995d0af87cb3d918f74c018a4f2c7e74e4913d5924e3d1424889b3a"
+    }
+  ]
+}
