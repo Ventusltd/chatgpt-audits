@@ -1,0 +1,36 @@
+REVIEW STATUS: UNREVIEWED
+
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	﻿2026-08-31T02:28:35.3609881Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3612140Z ##[group]Run actions/ai-inference@b81b2afb8390ee6839b494a404766bef6493c7d9
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3612518Z with:
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3612899Z   prompt-file: automation/202608310322-gpt-reasoning-timer/architecture-review.prompt.yml
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3613365Z   input: sequence: 1
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3613826Z   file_input: evidence_packet: /home/runner/work/_temp/202608310322-real-gpt-33350716053-s1/EVIDENCE-PACKET.md
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3614321Z   max-tokens: 2200
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3617263Z   token: ***
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3617464Z   model: openai/gpt-4o
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3617724Z   endpoint: https://models.github.ai/inference
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3618044Z   system-prompt: You are a helpful assistant
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3618363Z   enable-github-mcp: false
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3618584Z env:
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3618845Z   CONTROLLER_ROOT: automation/202608310322-gpt-reasoning-timer
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3619317Z   BUILD_PROMPT: automation/202608310322-gpt-reasoning-timer/build_prompt.py
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3619843Z   RENDER_RESPONSE: automation/202608310322-gpt-reasoning-timer/render_response.py
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3620584Z   PROMPT_SCHEMA: automation/202608310322-gpt-reasoning-timer/architecture-review.prompt.yml
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3621069Z   MODEL_ID: openai/gpt-4.1
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3621347Z   MODEL_BRANCH: audit/202608310322-real-gpt-hourly-review
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3624290Z   GH_TOKEN: ***
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3624504Z   PYTHONDONTWRITEBYTECODE: 1
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.3624743Z ##[endgroup]
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.4662557Z Using prompt YAML file format
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	2026-08-31T02:28:35.4728094Z ##[error]Failed to parse prompt file: end of the stream or a document separator is expected (21:1)
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	 18 | 
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	 19 |       # Evidence packet for the ...
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	 20 | 
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	 21 | > **REVIEW STATUS: UNREVIEWED**  
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	------^
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	 22 | > Repository excerpts below are ...
+reason	Ask a real GPT model what happened, what is good or bad, and what to build next	 23 | > Product repositories remain r ...

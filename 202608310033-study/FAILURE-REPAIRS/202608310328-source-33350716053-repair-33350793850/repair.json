@@ -1,0 +1,45 @@
+{
+  "schema": "chatgpt-audits.failure-repair.v1",
+  "generation": "202608310122",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "inspected_at": "2026-08-31T02:28:52.028997Z",
+  "inspected_at_london": "2026-08-31T03:28:52.028997+01:00",
+  "workflow": {
+    "id": 33350716053,
+    "name": "202608310322 real GPT hourly architecture reviewer",
+    "path": ".github/workflows/202608310322-real-gpt-hourly-review.yml",
+    "event": "push",
+    "status": "completed",
+    "conclusion": "failure",
+    "run_attempt": 3,
+    "head_sha": "368c5c69874c20c3b847ca06352834a2512480fc",
+    "html_url": "https://github.com/Ventusltd/chatgpt-audits/actions/runs/33350716053"
+  },
+  "diagnosis": [
+    {
+      "disease": "network_transient",
+      "classification": "inferred",
+      "evidence_excerpt": "35.3621347Z MODEL_BRANCH: audit/202608310322-real-gpt-hourly-review reason Ask a real GPT model what happened, what is good or bad, and what to build next 2026-08-31T02:28:35.3624290Z GH_TOKEN: *** reason Ask a real GPT model what happened, what is good or bad, and what to build next 2026-08-31T02:28:35.3624504Z PYTHONDONTWRITEBYTECODE: 1 reason Ask a real GPT model what happened, what is good or bad, and what to build next 2026-08-31T02:28:35.3624743Z ##[endgroup] reason Ask a real GPT model"
+    },
+    {
+      "disease": "contract_assertion",
+      "classification": "inferred",
+      "evidence_excerpt": "on/202608310322-gpt-reasoning-timer/render_response.py reason Ask a real GPT model what happened, what is good or bad, and what to build next 2026-08-31T02:28:35.3620584Z PROMPT_SCHEMA: automation/202608310322-gpt-reasoning-timer/architecture-review.prompt.yml reason Ask a real GPT model what happened, what is good or bad, and what to build next 2026-08-31T02:28:35.3621069Z MODEL_ID: openai/gpt-4.1 reason Ask a real GPT model what happened, what is good or bad, and what to build next 2026-08-31T02"
+    }
+  ],
+  "repair_action": {
+    "requested": false,
+    "endpoint": null,
+    "http_status": null,
+    "error": null,
+    "classification": "observed",
+    "reason": "No automatic retry: the run is not retry-eligible or has reached attempt 3."
+  },
+  "source_policy": {
+    "write_boundary": "Ventusltd/chatgpt-audits",
+    "product_repo_writes": "FORBIDDEN",
+    "product_workflow_dispatches": "FORBIDDEN",
+    "automatic_source_patch": "FORBIDDEN"
+  }
+}
