@@ -1,0 +1,161 @@
+{
+  "schema": "chatgpt-audits.overnight-swarm-plan.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "inferred",
+  "mission": "Run a source-pinned parallel audit swarm with PipelineNews timing intelligence as the first priority, retain every output in chatgpt-audits quarantine, and never mutate a product repository.",
+  "source_policy": {
+    "write_boundary": "Ventusltd/chatgpt-audits only",
+    "product_repo_writes": "FORBIDDEN",
+    "product_workflow_dispatches": "FORBIDDEN",
+    "allowed_network": "read-only Git transport to explicitly whitelisted public Ventusltd repositories",
+    "forbidden_network": "live Companies House, planning, news, RSS, map, scraper and product APIs",
+    "package_installation": "FORBIDDEN",
+    "absence_is_evidence": false
+  },
+  "limits": {
+    "max_text_file_bytes": 750000,
+    "max_evidence_rows_per_lane": 1200,
+    "max_excerpt_chars": 420,
+    "max_lane_output_bytes": 2097152,
+    "adversarial_sequences": 100000,
+    "artifact_retention_days": 90,
+    "maximum_parallel_lanes": 12
+  },
+  "repositories": {
+    "pipelinenews": {
+      "repository": "Ventusltd/pipelinenews",
+      "sparse_paths": [
+        "/README.md", "/.github/", "/automation/", "/atman/", "/build/", "/contracts/", "/data/", "/discovery/", "/index/", "/manifests/", "/orchestration/", "/state/", "/tests/", "/ui/", "/releases/current-v3.json", "/releases/202608300309-pipelinenews/"
+      ]
+    },
+    "companies": {
+      "repository": "Ventusltd/companies",
+      "sparse_paths": [
+        "/README.md", "/.github/", "/build/", "/contracts/", "/manifests/", "/scripts/", "/state/", "/tests/"
+      ]
+    },
+    "gridatlas": {
+      "repository": "Ventusltd/gridatlas",
+      "sparse_paths": [
+        "/README.md", "/STATE.md", "/.github/", "/atlas/current.json", "/atlas/modules.json", "/atlas/cartridges/", "/atlas/manifests/", "/atman/", "/contracts/", "/docs/", "/governance/", "/machine-learning/schemas/", "/releases/current-v5.json", "/state/", "/scope-of-works/", "/tools/scope/", "/ui/"
+      ]
+    },
+    "cvaa": {
+      "repository": "Ventusltd/cvaa",
+      "sparse_paths": ["."]
+    },
+    "spiders": {
+      "repository": "Ventusltd/spiders",
+      "sparse_paths": ["."]
+    },
+    "data-gridatlas": {
+      "repository": "Ventusltd/data-gridatlas",
+      "sparse_paths": [
+        "/README.md", "/.github/", "/contracts/", "/manifests/", "/scripts/", "/schemas/", "/state/", "/tests/"
+      ]
+    },
+    "globalgrid2050": {
+      "repository": "Ventusltd/globalgrid2050",
+      "sparse_paths": [
+        "/README.md", "/.github/", "/scripts/", "/*.md", "/*.json", "/data_federation_map/"
+      ]
+    },
+    "data-centres-gb": {
+      "repository": "Ventusltd/data-centres-gb",
+      "sparse_paths": ["."]
+    },
+    "data-gb-electricity": {
+      "repository": "Ventusltd/data-gb-electricity",
+      "sparse_paths": ["."]
+    }
+  },
+  "lanes": [
+    {
+      "id": "pipelinenews-collectors",
+      "priority": 1,
+      "repositories": ["pipelinenews"],
+      "purpose": "Map every current collector, source closure, acquisition bound and retention rule."
+    },
+    {
+      "id": "pipelinenews-identity",
+      "priority": 1,
+      "repositories": ["pipelinenews"],
+      "purpose": "Prove project identity, abstention, related-context and eligibility semantics."
+    },
+    {
+      "id": "pipelinenews-timing-engine",
+      "priority": 1,
+      "repositories": ["pipelinenews", "companies", "spiders"],
+      "purpose": "Build and adversarially test the dual-register funding plus procurement timing state machine."
+    },
+    {
+      "id": "companies-binding-forensics",
+      "priority": 1,
+      "repositories": ["companies", "pipelinenews", "gridatlas"],
+      "purpose": "Cross-check collision order, historical spine closure, top-level repd_ref extraction and upper-bound binding claims."
+    },
+    {
+      "id": "gridatlas-seam-contracts",
+      "priority": 2,
+      "repositories": ["gridatlas", "pipelinenews", "companies", "globalgrid2050"],
+      "purpose": "Compare exact producer and consumer routes, pointer contracts and golden REPD sentinels."
+    },
+    {
+      "id": "claude-claim-crosscheck",
+      "priority": 2,
+      "repositories": ["gridatlas", "pipelinenews", "companies"],
+      "purpose": "Score high-impact Claude claims as supported, partial, contradicted or still unverified against pinned source."
+    },
+    {
+      "id": "federated-data-contracts",
+      "priority": 2,
+      "repositories": ["data-gridatlas", "data-centres-gb", "data-gb-electricity", "companies", "pipelinenews"],
+      "purpose": "Inventory Parquet, DuckDB, manifest, schema, ownership and compact-consumer boundaries."
+    },
+    {
+      "id": "datacentre-demand-intelligence",
+      "priority": 3,
+      "repositories": ["data-centres-gb", "pipelinenews", "globalgrid2050"],
+      "purpose": "Map the demand-side intelligence chain using the same evidence and identity discipline."
+    },
+    {
+      "id": "globalgrid-federation-topology",
+      "priority": 3,
+      "repositories": ["globalgrid2050", "pipelinenews", "gridatlas", "companies"],
+      "purpose": "Measure app-to-data and repo-to-repo seams without treating the transitional monolith as a product failure."
+    },
+    {
+      "id": "workflow-governance",
+      "priority": 3,
+      "repositories": ["pipelinenews", "companies", "gridatlas", "cvaa", "spiders", "data-gridatlas", "globalgrid2050", "data-centres-gb", "data-gb-electricity"],
+      "purpose": "Record workflow permissions, schedules, write paths and network commands as evidence, not assumptions."
+    },
+    {
+      "id": "cvaa-vaccine-coverage",
+      "priority": 3,
+      "repositories": ["cvaa", "pipelinenews", "companies", "gridatlas"],
+      "purpose": "Run CVAA self-tests where possible and map vaccines to the observed federation failure modes."
+    },
+    {
+      "id": "adversarial-invariants",
+      "priority": 1,
+      "repositories": ["pipelinenews", "companies"],
+      "purpose": "Execute deterministic adversarial sequences proving one-signal silence, review gates and unambiguous binding extraction."
+    }
+  ],
+  "required_lanes": [
+    "pipelinenews-collectors",
+    "pipelinenews-identity",
+    "pipelinenews-timing-engine",
+    "companies-binding-forensics",
+    "gridatlas-seam-contracts",
+    "claude-claim-crosscheck",
+    "adversarial-invariants"
+  ],
+  "schedule_window": {
+    "timezone": "Europe/London",
+    "not_before": "2026-08-31T01:00:00+01:00",
+    "not_after": "2026-08-31T08:00:00+01:00"
+  }
+}
