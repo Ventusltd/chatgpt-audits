@@ -1,0 +1,11 @@
+{
+  "schema": "chatgpt-audits.study-checkpoint.v1",
+  "generation": "202608310052",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "phase": 1,
+  "slug": "source-inventory-and-repository-topology",
+  "goal": "Pin exact source commits, inventory code/contracts/workflows and map cross-repository references.",
+  "completed_at": "2026-08-31T00:09:49.127371Z",
+  "completed_at_london": "2026-08-31T01:09:49.127506+01:00"
+}
