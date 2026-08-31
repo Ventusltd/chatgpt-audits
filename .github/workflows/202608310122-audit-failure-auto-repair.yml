@@ -1,0 +1,120 @@
+name: 202608310122 audit failure auto-repair
+
+on:
+  workflow_run:
+    workflows:
+      - 202608310052 five-hour quarantined cross-repo study
+      - 202608310116 overnight audit swarm
+      - 202608310121 hourly audit watchdog
+    types:
+      - completed
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: Failed chatgpt-audits workflow run ID
+        required: true
+        type: string
+
+permissions:
+  actions: write
+  contents: write
+
+concurrency:
+  group: 202608310122-audit-failure-auto-repair-${{ github.event.workflow_run.id || inputs.run_id || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  diagnose-and-repair:
+    if: github.repository == 'Ventusltd/chatgpt-audits' && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion != 'success')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      CONTROLLER: automation/202608310122-failure-repair/repair.py
+      SOURCE_RUN_ID: ${{ github.event.workflow_run.id || inputs.run_id }}
+      GH_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+
+    steps:
+      - name: Checkout current audit main
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+          token: ${{ github.token }}
+
+      - name: Validate bounded repair controller
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SOURCE_RUN_ID"
+          python3 -m py_compile "$CONTROLLER"
+          rm -rf automation/202608310122-failure-repair/__pycache__
+
+      - name: Retain failed evidence and request bounded GitHub-native retry
+        id: diagnose
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAMP=$(TZ=Europe/London date +%Y%m%d%H%M)
+          TEMP_OUTPUT="$RUNNER_TEMP/202608310122-repair-${SOURCE_RUN_ID}-${GITHUB_RUN_ID}"
+          TARGET_PATH="202608310033-study/FAILURE-REPAIRS/${STAMP}-source-${SOURCE_RUN_ID}-repair-${GITHUB_RUN_ID}"
+          REPAIR_BRANCH="audit/repair-${SOURCE_RUN_ID}-run-${GITHUB_RUN_ID}"
+          rm -rf "$TEMP_OUTPUT"
+          mkdir -p "$TEMP_OUTPUT"
+          python3 "$CONTROLLER" \
+            --run-id "$SOURCE_RUN_ID" \
+            --output "$TEMP_OUTPUT"
+          {
+            echo "stamp=$STAMP"
+            echo "temp_output=$TEMP_OUTPUT"
+            echo "target_path=$TARGET_PATH"
+            echo "repair_branch=$REPAIR_BRANCH"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Commit only the timestamped diagnosis to a quarantine branch
+        env:
+          STAMP: ${{ steps.diagnose.outputs.stamp }}
+          TEMP_OUTPUT: ${{ steps.diagnose.outputs.temp_output }}
+          TARGET_PATH: ${{ steps.diagnose.outputs.target_path }}
+          REPAIR_BRANCH: ${{ steps.diagnose.outputs.repair_branch }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "chatgpt-audits-failure-repair"
+          git config user.email "actions@users.noreply.github.com"
+          git switch -c "$REPAIR_BRANCH"
+          mkdir -p "$TARGET_PATH"
+          cp -a "$TEMP_OUTPUT"/. "$TARGET_PATH"/
+          git add -- "$TARGET_PATH"
+          ESCAPED=$(git diff --cached --name-only | grep -v "^${TARGET_PATH}/" || true)
+          if [ -n "$ESCAPED" ]; then
+            echo "Staged path escaped failure-repair quarantine:" >&2
+            echo "$ESCAPED" >&2
+            exit 1
+          fi
+          git commit -m "${STAMP}-audit: UNREVIEWED diagnosis for failed run ${SOURCE_RUN_ID}"
+          git push --set-upstream origin "HEAD:${REPAIR_BRANCH}"
+
+      - name: Publish repair summary
+        if: always()
+        env:
+          TEMP_OUTPUT: ${{ steps.diagnose.outputs.temp_output }}
+          TARGET_PATH: ${{ steps.diagnose.outputs.target_path }}
+          REPAIR_BRANCH: ${{ steps.diagnose.outputs.repair_branch }}
+        shell: bash
+        run: |
+          {
+            echo "# Audit failure auto-repair"
+            echo
+            echo "- Source run: \`${SOURCE_RUN_ID}\`"
+            echo "- Review status: **UNREVIEWED**"
+            echo "- Diagnosis branch: \`${REPAIR_BRANCH:-not-created}\`"
+            echo "- Diagnosis path: \`${TARGET_PATH:-not-created}\`"
+            echo "- Maximum automatic source-run attempt: 3"
+            echo "- Product repository actions: **none**"
+            echo
+            if [ -f "${TEMP_OUTPUT:-}/REPAIR.md" ]; then
+              cat "$TEMP_OUTPUT/REPAIR.md"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
