@@ -1,0 +1,414 @@
+{
+  "schema": "chatgpt-audits.swarm-lane.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "mixed",
+  "lane_id": "globalgrid-federation-topology",
+  "priority": 3,
+  "purpose": "Measure app-to-data and repo-to-repo seams without treating the transitional monolith as a product failure.",
+  "created_at": "2026-08-31T00:44:19.859661Z",
+  "created_at_london": "2026-08-31T01:44:19.860167+01:00",
+  "github_run_id": "33345421184",
+  "github_job": "lanes",
+  "plan_sha256": "2b4d434191311d30a71812b0fee8b8ca6221c5cc93e4a0db760d2f24d70b15cb",
+  "manifest_sha256": "5f74429403377b28d17a08eaf113c3fdb35aff861783476c3c9d106e95c23d4d",
+  "snapshots": [
+    {
+      "repository": "Ventusltd/globalgrid2050",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/scripts/",
+        "/*.md",
+        "/*.json",
+        "/data_federation_map/"
+      ],
+      "tree_sha256": "a34558d25dbfce63a6cf8db6c51aed245de765f81a925bbcf200c3e2d926dcbd",
+      "files": 2465,
+      "bytes": 546141474,
+      "classification": "observed",
+      "name": "globalgrid2050"
+    },
+    {
+      "repository": "Ventusltd/pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/automation/",
+        "/atman/",
+        "/build/",
+        "/contracts/",
+        "/data/",
+        "/discovery/",
+        "/index/",
+        "/manifests/",
+        "/orchestration/",
+        "/state/",
+        "/tests/",
+        "/ui/",
+        "/releases/current-v3.json",
+        "/releases/202608300309-pipelinenews/"
+      ],
+      "tree_sha256": "ba85f1072f396029a4428f0793bda8257f9793fc13a89b813234e0023c0cef32",
+      "files": 734,
+      "bytes": 98692242,
+      "classification": "observed",
+      "name": "pipelinenews"
+    },
+    {
+      "repository": "Ventusltd/gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "paths": [
+        "/README.md",
+        "/STATE.md",
+        "/.github/",
+        "/atlas/current.json",
+        "/atlas/modules.json",
+        "/atlas/cartridges/",
+        "/atlas/manifests/",
+        "/atman/",
+        "/contracts/",
+        "/docs/",
+        "/governance/",
+        "/machine-learning/schemas/",
+        "/releases/current-v5.json",
+        "/state/",
+        "/scope-of-works/",
+        "/tools/scope/",
+        "/ui/"
+      ],
+      "tree_sha256": "fcda77549e8e787182d5cbe08a101e8c13d216bb2aca4a0e08b9b3eeda1fb29e",
+      "files": 111,
+      "bytes": 805194,
+      "classification": "observed",
+      "name": "gridatlas"
+    },
+    {
+      "repository": "Ventusltd/companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/build/",
+        "/contracts/",
+        "/manifests/",
+        "/scripts/",
+        "/state/",
+        "/tests/"
+      ],
+      "tree_sha256": "9144869fa2b5b996bc7622b8db2b8f2d258798cf37b77d070eefe8d3abefeca7",
+      "files": 75,
+      "bytes": 950259,
+      "classification": "observed",
+      "name": "companies"
+    }
+  ],
+  "snapshot_failures": [],
+  "findings": [
+    {
+      "id": "TOPOLOGY-SEAMS",
+      "severity": "HIGH",
+      "classification": "inferred",
+      "title": "Cross-repository seams are the highest transition risk",
+      "detail": "Observed 25 directed repository-reference edges in the selected source surface. These references should have executable producer/consumer contract tests.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "app-solar-bess-topology-v8",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "Infinite GitHub Repositories_ Federated Architecture and Migration Plan for a Free Static Grid-Intelligence Platform.md",
+          "line": 118,
+          "excerpt": "\"repoUrl\": \"https://github.com/ventusltd/app-solar-bess-topology-v8\","
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "data-grid-networks",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "Infinite GitHub Repositories_ Federated Architecture and Migration Plan for a Free Static Grid-Intelligence Platform.md",
+          "line": 141,
+          "excerpt": "\"repoUrl\": \"https://github.com/ventusltd/data-grid-networks\","
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "app-",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "Infinite GitHub Repositories_ Federated Architecture and Migration Plan for a Free Static Grid-Intelligence Platform.md",
+          "line": 180,
+          "excerpt": "Spin-up is one command: `gh repo create ventusltd/app-<slug>-v<n> --template ventusltd/template-app --public`, or the “Use this template” button. Because a template generates a fresh single-commit history (not a fork), each app is independent with no parent link. The vendored `vendor/` directory is what makes the repo “self-contained with all dependencies pre-installed.” Dependabot handles the one downside of vendor…"
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "template-app",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "Infinite GitHub Repositories_ Federated Architecture and Migration Plan for a Free Static Grid-Intelligence Platform.md",
+          "line": 180,
+          "excerpt": "Spin-up is one command: `gh repo create ventusltd/app-<slug>-v<n> --template ventusltd/template-app --public`, or the “Use this template” button. Because a template generates a fresh single-commit history (not a fork), each app is independent with no parent link. The vendored `vendor/` directory is what makes the repo “self-contained with all dependencies pre-installed.” Dependabot handles the one downside of vendor…"
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "gridatlas",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": ".github/workflows/catalogue-gridatlas-v9.yml",
+          "line": 28,
+          "excerpt": "GRIDATLAS_REPOSITORY: Ventusltd/gridatlas"
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "pv-arc-protection-circuit",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "dc_cables_knowledge/index.md",
+          "line": 7,
+          "excerpt": "[Open Hardware Disclosure – Module Level DC Arc Suppression And Insulation Fault Disconnection Circuit](https://raw.githubusercontent.com/Ventusltd/pv-arc-protection-circuit/main/Open-Hardware-Disclosure.md)"
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "gridatlas",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "homepage_versions/202608291526-globalgrid2050/manifest.json",
+          "line": 14,
+          "excerpt": "\"repository\": \"Ventusltd/gridatlas\","
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "gridatlas",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "scripts/202608300232-sync-promoted-gridatlas-v9.py",
+          "line": 245,
+          "excerpt": "\"source_repository\": \"Ventusltd/gridatlas\","
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "gridatlas",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "scripts/catalogue_gridatlas_v9.py",
+          "line": 27,
+          "excerpt": "GRIDATLAS_REPOSITORY = \"Ventusltd/gridatlas\""
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "gridatlas",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "state/current-gridatlas-v9.json",
+          "line": 19,
+          "excerpt": "\"source_repository\": \"Ventusltd/gridatlas\","
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "gridatlas",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "state/gridatlas-v9-current.json",
+          "line": 13,
+          "excerpt": "\"source_repository\": \"Ventusltd/gridatlas\","
+        },
+        {
+          "classification": "observed",
+          "source": "pipelinenews",
+          "target": "companies",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "README.md",
+          "line": 26,
+          "excerpt": "- [Annual Companies data refresh](https://github.com/Ventusltd/companies/actions/workflows/annual-companies-house-refresh.yml)"
+        },
+        {
+          "classification": "observed",
+          "source": "pipelinenews",
+          "target": "companies",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "README.md",
+          "line": 28,
+          "excerpt": "Companies House processing and the stable annual dataset live in [Ventusltd/companies](https://github.com/Ventusltd/companies). PipelineNews consumes only a pinned compact manifest and cartridges. No workflow above authorises deployment."
+        },
+        {
+          "classification": "observed",
+          "source": "pipelinenews",
+          "target": "companies",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "README.md",
+          "line": 28,
+          "excerpt": "Companies House processing and the stable annual dataset live in [Ventusltd/companies](https://github.com/Ventusltd/companies). PipelineNews consumes only a pinned compact manifest and cartridges. No workflow above authorises deployment."
+        },
+        {
+          "classification": "observed",
+          "source": "pipelinenews",
+          "target": "gridatlas",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+          "line": 186,
+          "excerpt": "--repository Ventusltd/gridatlas \\"
+        },
+        {
+          "classification": "observed",
+          "source": "pipelinenews",
+          "target": "gridatlas",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+          "line": 199,
+          "excerpt": "--repository Ventusltd/gridatlas \\"
+        },
+        {
+          "classification": "observed",
+          "source": "pipelinenews",
+          "target": "gridatlas",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+          "line": 846,
+          "excerpt": "--repository Ventusltd/gridatlas \\"
+        },
+        {
+          "classification": "observed",
+          "source": "pipelinenews",
+          "target": "gridatlas",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+          "line": 182,
+          "excerpt": "--repository Ventusltd/gridatlas \\"
+        },
+        {
+          "classification": "observed",
+          "source": "pipelinenews",
+          "target": "gridatlas",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+          "line": 194,
+          "excerpt": "--repository Ventusltd/gridatlas \\"
+        },
+        {
+          "classification": "observed",
+          "source": "pipelinenews",
+          "target": "gridatlas",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+          "line": 821,
+          "excerpt": "--repository Ventusltd/gridatlas \\"
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "edge_count": 25,
+    "top_edges": [
+      {
+        "source": "pipelinenews",
+        "target": "data-centres-gb",
+        "occurrences": 58
+      },
+      {
+        "source": "pipelinenews",
+        "target": "globalgrid2050",
+        "occurrences": 56
+      },
+      {
+        "source": "pipelinenews",
+        "target": "companies",
+        "occurrences": 39
+      },
+      {
+        "source": "companies",
+        "target": "pipelinenews",
+        "occurrences": 35
+      },
+      {
+        "source": "gridatlas",
+        "target": "globalgrid2050",
+        "occurrences": 16
+      },
+      {
+        "source": "pipelinenews",
+        "target": "gridatlas",
+        "occurrences": 14
+      },
+      {
+        "source": "gridatlas",
+        "target": "pipelinenews",
+        "occurrences": 12
+      },
+      {
+        "source": "gridatlas",
+        "target": "data-gridatlas",
+        "occurrences": 10
+      },
+      {
+        "source": "gridatlas",
+        "target": "cvaa",
+        "occurrences": 8
+      },
+      {
+        "source": "globalgrid2050",
+        "target": "gridatlas",
+        "occurrences": 6
+      },
+      {
+        "source": "companies",
+        "target": "data-gb-electricity",
+        "occurrences": 6
+      },
+      {
+        "source": "pipelinenews",
+        "target": "gridatlas.git",
+        "occurrences": 3
+      },
+      {
+        "source": "gridatlas",
+        "target": "companies",
+        "occurrences": 3
+      },
+      {
+        "source": "pipelinenews",
+        "target": "globalgrid2050.git",
+        "occurrences": 2
+      },
+      {
+        "source": "companies",
+        "target": "globalgrid2050-hompage",
+        "occurrences": 2
+      },
+      {
+        "source": "globalgrid2050",
+        "target": "app-solar-bess-topology-v8",
+        "occurrences": 1
+      },
+      {
+        "source": "globalgrid2050",
+        "target": "data-grid-networks",
+        "occurrences": 1
+      },
+      {
+        "source": "globalgrid2050",
+        "target": "app-",
+        "occurrences": 1
+      },
+      {
+        "source": "globalgrid2050",
+        "target": "template-app",
+        "occurrences": 1
+      },
+      {
+        "source": "globalgrid2050",
+        "target": "pv-arc-protection-circuit",
+        "occurrences": 1
+      }
+    ],
+    "category_counts": {
+      "application_reference": 132,
+      "parquet": 731,
+      "pointer": 162,
+      "repo_reference": 56,
+      "workflow": 119
+    }
+  },
+  "evidence_rows": 1200,
+  "evidence_sha256": "9c94937c85259a532069f60c771a7bbcc4d7803307310ab17b506a37cb534c2b"
+}

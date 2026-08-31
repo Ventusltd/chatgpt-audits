@@ -1,0 +1,499 @@
+{
+  "schema": "chatgpt-audits.swarm-lane.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "mixed",
+  "lane_id": "federated-data-contracts",
+  "priority": 2,
+  "purpose": "Inventory Parquet, DuckDB, manifest, schema, ownership and compact-consumer boundaries.",
+  "created_at": "2026-08-31T00:44:09.572296Z",
+  "created_at_london": "2026-08-31T01:44:09.572820+01:00",
+  "github_run_id": "33345421184",
+  "github_job": "lanes",
+  "plan_sha256": "2b4d434191311d30a71812b0fee8b8ca6221c5cc93e4a0db760d2f24d70b15cb",
+  "manifest_sha256": "5f74429403377b28d17a08eaf113c3fdb35aff861783476c3c9d106e95c23d4d",
+  "snapshots": [
+    {
+      "repository": "Ventusltd/data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/contracts/",
+        "/manifests/",
+        "/scripts/",
+        "/schemas/",
+        "/state/",
+        "/tests/"
+      ],
+      "tree_sha256": "6ceabb01cb11f85278c0888f851d4f0cfc0da01defb76f9d1e6b88db00ba8513",
+      "files": 32,
+      "bytes": 485659,
+      "classification": "observed",
+      "name": "data-gridatlas"
+    },
+    {
+      "repository": "Ventusltd/data-centres-gb",
+      "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+      "paths": [
+        "."
+      ],
+      "tree_sha256": "9653d538c62cd3eb4249e1b32bebe4bcdf9d562e77e16291a6dbd323c0ff79e3",
+      "files": 32,
+      "bytes": 228929,
+      "classification": "observed",
+      "name": "data-centres-gb"
+    },
+    {
+      "repository": "Ventusltd/data-gb-electricity",
+      "commit": "7c492745c974f6b8610cb1209f996b1553abb498",
+      "paths": [
+        "."
+      ],
+      "tree_sha256": "fec8a4c5eb8ac2cc554f1149155b67067a3de9f92a723fe317e3d5d2250ba44b",
+      "files": 472,
+      "bytes": 98041589,
+      "classification": "observed",
+      "name": "data-gb-electricity"
+    },
+    {
+      "repository": "Ventusltd/companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/build/",
+        "/contracts/",
+        "/manifests/",
+        "/scripts/",
+        "/state/",
+        "/tests/"
+      ],
+      "tree_sha256": "9144869fa2b5b996bc7622b8db2b8f2d258798cf37b77d070eefe8d3abefeca7",
+      "files": 75,
+      "bytes": 950259,
+      "classification": "observed",
+      "name": "companies"
+    },
+    {
+      "repository": "Ventusltd/pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/automation/",
+        "/atman/",
+        "/build/",
+        "/contracts/",
+        "/data/",
+        "/discovery/",
+        "/index/",
+        "/manifests/",
+        "/orchestration/",
+        "/state/",
+        "/tests/",
+        "/ui/",
+        "/releases/current-v3.json",
+        "/releases/202608300309-pipelinenews/"
+      ],
+      "tree_sha256": "ba85f1072f396029a4428f0793bda8257f9793fc13a89b813234e0023c0cef32",
+      "files": 734,
+      "bytes": 98692242,
+      "classification": "observed",
+      "name": "pipelinenews"
+    }
+  ],
+  "snapshot_failures": [],
+  "findings": [
+    {
+      "id": "DATA-COMPACT-CONSUMERS",
+      "severity": "HIGH",
+      "classification": "observed",
+      "title": "Compact Parquet/DuckDB consumer boundaries are repeatedly stated",
+      "detail": "The repositories contain explicit compactness, hashing and ownership language. The vNext intelligence engine should consume only reviewed relationship/event tables, never a company-master dump.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 7,
+          "excerpt": "## Compact relationship candidate"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 13,
+          "excerpt": "- a compact aggregate report, bounded manifest, DuckDB audit and source evidence."
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 15,
+          "excerpt": "Parquet is written with DuckDB 1.3.2 and ZSTD compression, then independently read back against an exact three-column schema, composite keys, a dataset-level semantic digest and whole-file SHA receipts. Each file is hard-capped at 20 MB and the durable closure at 30 MB total. Descriptive fields, technology, row-level repository provenance and per-row digests are forbidden from the bridges; exact source commits and p…"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 7,
+          "excerpt": "- .github/workflows/202608281337-compact-parquet-companies-candidate.yml"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 9,
+          "excerpt": "- build/python/202608281337-compact-parquet-companies.py"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 10,
+          "excerpt": "- contracts/202608281337-compact-parquet-companies.json"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 11,
+          "excerpt": "- tests/test_202608281337_compact_parquet_companies.py"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 14,
+          "excerpt": "group: companies-house-compact-candidate-202608272155"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 27,
+          "excerpt": "CONTRACT: contracts/202608281337-compact-parquet-companies.json"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 28,
+          "excerpt": "CANDIDATE_BRANCH: candidate/202608272155-compact"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 29,
+          "excerpt": "CANDIDATE_PATH: data/candidates/202608272155-compact"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 63,
+          "excerpt": "'A .github/workflow-history/202608281112-compact-parquet-companies-candidate.yml' \\"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 64,
+          "excerpt": "'A .github/workflows/202608281337-compact-parquet-companies-candidate.yml' \\"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 65,
+          "excerpt": "'A build/python/202608281337-compact-parquet-companies.py' \\"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 66,
+          "excerpt": "'A contracts/202608281337-compact-parquet-companies.json' \\"
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 12,
+          "excerpt": "- `solar-company-repd-relationships-v1.parquet`, containing the exact three-key Solar-to-Company-to-REPD subset derived transiently from pinned REPD technology;"
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 15,
+          "excerpt": "Parquet is written with DuckDB 1.3.2 and ZSTD compression, then independently read back against an exact three-column schema, composite keys, a dataset-level semantic digest and whole-file SHA receipts. Each file is hard-capped at 20 MB and the durable closure at 30 MB total. Descriptive fields, technology, row-level repository provenance and per-row digests are forbidden from the bridges; exact source commits and p…"
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 179,
+          "excerpt": "- name: Install the pinned DuckDB engine"
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 318,
+          "excerpt": "- name: Install the independently pinned DuckDB readback engine"
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 414,
+          "excerpt": "test \"$(jq -r '.datasets.solar_company_repd_relationships.predicate' \"$manifest\")\" = \"pinned_repd.technology = 'solar'\""
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271507-verify-companies-house-candidate.py",
+          "line": 313,
+          "excerpt": "raise RuntimeError(\"Generation source commit is not an exact SHA\")"
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271547-download-planned-archive.py",
+          "line": 14,
+          "excerpt": "raise RuntimeError(\"Unable to load the pinned 202608271507 downloader\")"
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271547-extract-bounded-accounts.py",
+          "line": 16,
+          "excerpt": "raise RuntimeError(\"Unable to load the pinned 202608271507 extractor\")"
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271547-freeze-companies-house-plan.py",
+          "line": 14,
+          "excerpt": "raise RuntimeError(\"Unable to load the pinned 202608271507 planner\")"
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271547-verify-companies-house-candidate.py",
+          "line": 49,
+          "excerpt": "raise RuntimeError(\"Unable to load the pinned 202608271507 verifier\")"
+        }
+      ]
+    },
+    {
+      "id": "DATA-MANIFEST-CLOSURE",
+      "severity": "MEDIUM",
+      "classification": "observed",
+      "title": "Manifests and hashes are common but seam-level closure still matters",
+      "detail": "A file hash proves bytes, not that producer and consumer agree on identifiers, schema and validity windows.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 13,
+          "excerpt": "- a compact aggregate report, bounded manifest, DuckDB audit and source evidence."
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 15,
+          "excerpt": "Parquet is written with DuckDB 1.3.2 and ZSTD compression, then independently read back against an exact three-column schema, composite keys, a dataset-level semantic digest and whole-file SHA receipts. Each file is hard-capped at 20 MB and the durable closure at 30 MB total. Descriptive fields, technology, row-level repository provenance and per-row digests are forbidden from the bridges; exact source commits and p…"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 74,
+          "excerpt": "test \"$(sha256sum .github/workflow-history/202608281112-compact-parquet-companies-candidate.yml | cut -d' ' -f1)\" = 0cf0be7d09137a71e77be455966d2f1b342a3540c147867edeee9eab2013aafa"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 103,
+          "excerpt": "test \"$(jq -r '.outputs.manifest' \"$CONTRACT\")\" = manifest-compact-v1.json"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 111,
+          "excerpt": "test \"$(jq '[.relationship_schema[].name] | map(select(. == \"technology\" or . == \"relationship_json\" or . == \"relationship_sha256\" or contains(\"repository\") or contains(\"commit\") or contains(\"name\") or contains(\"url\"))) | length' \"$CONTRACT\")\" -eq 0"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 131,
+          "excerpt": "{\"name\":\"companies-plan-202608272155-33123064395\",\"digest\":\"sha256:5458cb47d45107be3468472da15d02f18e0b5c0992f10c594af6897f2aea8aaa\"},"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 132,
+          "excerpt": "{\"name\":\"accounts-202608272155-33123064395-0\",\"digest\":\"sha256:73cfb68813a6524b23eee4ae45504d3a2bed2f0035116cc0efa049c2b62d2b1c\"},"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 133,
+          "excerpt": "{\"name\":\"accounts-202608272155-33123064395-1\",\"digest\":\"sha256:3da269b26136b8ca6b32e8200ae19527d8fb83f7836a661685fab78662047682\"},"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 134,
+          "excerpt": "{\"name\":\"accounts-202608272155-33123064395-2\",\"digest\":\"sha256:4f37aa9ef85a32270d297cfbcd37606c5cad04b25af3db0c881a8324a0ccaf03\"}"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 173,
+          "excerpt": "/data/manifests/202608261927-build-manifest-v9-1.json"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 208,
+          "excerpt": "test \"$(sha256sum work/plan/plan.json | cut -d' ' -f1)\" = 4451ed5da8cc2f9246f2e6cc06f120faec8efeb8e19c3bac3919975073e7025e"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 209,
+          "excerpt": "test \"$(sha256sum work/plan/rest-evidence.json | cut -d' ' -f1)\" = a6f6334f4d878644183cd2261caa258a16c8bbdd9f5bf547b75cfc44b77dac6f"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 214,
+          "excerpt": "--receipt work/months/receipt-3.json"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 228,
+          "excerpt": "--receipts work/months \\"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 253,
+          "excerpt": "test -f work/candidate/manifest-compact-v1.json"
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "category_counts": {
+      "compact_boundary": 43,
+      "duckdb": 77,
+      "manifest": 577,
+      "ownership": 41,
+      "parquet": 273,
+      "schema": 189
+    }
+  },
+  "evidence_rows": 1200,
+  "evidence_sha256": "2e24f691e9008bb0432619dc91b0da54232c1c203974392e9c55e276345a648b"
+}

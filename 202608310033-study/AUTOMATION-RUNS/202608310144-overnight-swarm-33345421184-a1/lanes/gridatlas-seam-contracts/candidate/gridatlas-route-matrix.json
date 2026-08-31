@@ -1,0 +1,255 @@
+{
+  "schema": "chatgpt-audits.gridatlas-route-matrix.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "counts": {
+    "OTHER_GRIDATLAS_ROUTE": 15,
+    "STALE_ROOT_RELEASE_SHAPE": 12
+  },
+  "rows": [
+    {
+      "classification": "observed",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+      "line": 20,
+      "url": "https://ventusltd.github.io/gridatlas/state/live-set.json",
+      "route_class": "OTHER_GRIDATLAS_ROUTE"
+    },
+    {
+      "classification": "observed",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+      "line": 96,
+      "url": "https://ventusltd.github.io/gridatlas/$release_id/",
+      "route_class": "OTHER_GRIDATLAS_ROUTE"
+    },
+    {
+      "classification": "observed",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflows/202608300418-dispatch-exact-atlas-link-contract.yml",
+      "line": 20,
+      "url": "https://ventusltd.github.io/gridatlas/state/live-set.json",
+      "route_class": "OTHER_GRIDATLAS_ROUTE"
+    },
+    {
+      "classification": "observed",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflows/202608300435-five-hour-key-only-atlas-watchdog.yml",
+      "line": 24,
+      "url": "https://ventusltd.github.io/gridatlas/state/live-set.json",
+      "route_class": "OTHER_GRIDATLAS_ROUTE"
+    },
+    {
+      "classification": "observed",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": ".github/workflows/202608300435-five-hour-key-only-atlas-watchdog.yml",
+      "line": 78,
+      "url": "https://ventusltd.github.io/gridatlas/$release_id/",
+      "route_class": "OTHER_GRIDATLAS_ROUTE"
+    },
+    {
+      "classification": "observed",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "scripts/202608300232-build-atlas-v9-company-repd-links.py",
+      "line": 32,
+      "url": "https://ventusltd\\.github\\.io/gridatlas/\\d{12}-atlas-v9/?",
+      "route_class": "OTHER_GRIDATLAS_ROUTE"
+    },
+    {
+      "classification": "observed",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "state/atlas-v9-link-audit.json",
+      "line": 9,
+      "url": "https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref=13599",
+      "route_class": "STALE_ROOT_RELEASE_SHAPE"
+    },
+    {
+      "classification": "observed",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "state/atlas-v9-link-contract.json",
+      "line": 3,
+      "url": "https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/",
+      "route_class": "STALE_ROOT_RELEASE_SHAPE"
+    },
+    {
+      "classification": "observed",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "state/atlas-v9-link-contract.json",
+      "line": 8,
+      "url": "https://ventusltd.github.io/gridatlas/state/live-set.json",
+      "route_class": "OTHER_GRIDATLAS_ROUTE"
+    },
+    {
+      "classification": "observed",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "state/atlas-v9-link-contract.json",
+      "line": 14,
+      "url": "https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref=13599",
+      "route_class": "STALE_ROOT_RELEASE_SHAPE"
+    },
+    {
+      "classification": "observed",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "state/atlas-v9-link-contract.json",
+      "line": 18,
+      "url": "https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref={repd_ref",
+      "route_class": "STALE_ROOT_RELEASE_SHAPE"
+    },
+    {
+      "classification": "observed",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "state/atlas-v9-link-contract.json",
+      "line": 40,
+      "url": "https://ventusltd.github.io/gridatlas/202608292311-atlas-v9/",
+      "route_class": "STALE_ROOT_RELEASE_SHAPE"
+    },
+    {
+      "classification": "observed",
+      "repository": "globalgrid2050",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "path": ".github/workflows/202608300232-sync-promoted-gridatlas-v9.yml",
+      "line": 14,
+      "url": "https://ventusltd.github.io/gridatlas/",
+      "route_class": "OTHER_GRIDATLAS_ROUTE"
+    },
+    {
+      "classification": "observed",
+      "repository": "globalgrid2050",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "path": ".github/workflows/202608300310-sync-current-gridatlas-v9.yml",
+      "line": 14,
+      "url": "https://ventusltd.github.io/gridatlas/",
+      "route_class": "OTHER_GRIDATLAS_ROUTE"
+    },
+    {
+      "classification": "observed",
+      "repository": "globalgrid2050",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "path": ".github/workflows/202608301102-repair-atlas-v9-catalogue-sync.yml",
+      "line": 12,
+      "url": "https://ventusltd.github.io/gridatlas/",
+      "route_class": "OTHER_GRIDATLAS_ROUTE"
+    },
+    {
+      "classification": "observed",
+      "repository": "globalgrid2050",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "path": ".github/workflows/catalogue-gridatlas-v9.yml",
+      "line": 86,
+      "url": "https://ventusltd.github.io/gridatlas/${atlas_release_id}/",
+      "route_class": "OTHER_GRIDATLAS_ROUTE"
+    },
+    {
+      "classification": "observed",
+      "repository": "globalgrid2050",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "path": "homepage_versions/202608291526-globalgrid2050/manifest.json",
+      "line": 5,
+      "url": "https://ventusltd.github.io/gridatlas/202608291239-atlas-v9/?repd_ref=16135",
+      "route_class": "STALE_ROOT_RELEASE_SHAPE"
+    },
+    {
+      "classification": "observed",
+      "repository": "globalgrid2050",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "path": "homepage_versions/202608291526-globalgrid2050/manifest.json",
+      "line": 7,
+      "url": "https://ventusltd.github.io/gridatlas/202608291239-atlas-v9/",
+      "route_class": "STALE_ROOT_RELEASE_SHAPE"
+    },
+    {
+      "classification": "observed",
+      "repository": "globalgrid2050",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "path": "homepage_versions/202608291526-globalgrid2050/manifest.json",
+      "line": 24,
+      "url": "https://ventusltd.github.io/gridatlas/202608291239-atlas-v9/",
+      "route_class": "STALE_ROOT_RELEASE_SHAPE"
+    },
+    {
+      "classification": "observed",
+      "repository": "globalgrid2050",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "path": "homepage_versions/202608291526-globalgrid2050/manifest.json",
+      "line": 50,
+      "url": "https://ventusltd.github.io/gridatlas/202608291239-atlas-v9/",
+      "route_class": "STALE_ROOT_RELEASE_SHAPE"
+    },
+    {
+      "classification": "observed",
+      "repository": "globalgrid2050",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "path": "homepage_versions/202608291526-globalgrid2050/manifest.json",
+      "line": 51,
+      "url": "https://ventusltd.github.io/gridatlas/202608291239-atlas-v9/?repd_ref=16135",
+      "route_class": "STALE_ROOT_RELEASE_SHAPE"
+    },
+    {
+      "classification": "observed",
+      "repository": "globalgrid2050",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "path": "scripts/catalogue_gridatlas_v9.py",
+      "line": 120,
+      "url": "https://ventusltd.github.io/gridatlas/{release_id}/",
+      "route_class": "OTHER_GRIDATLAS_ROUTE"
+    },
+    {
+      "classification": "observed",
+      "repository": "globalgrid2050",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "path": "state/current-gridatlas-v9.json",
+      "line": 7,
+      "url": "https://ventusltd.github.io/gridatlas/",
+      "route_class": "OTHER_GRIDATLAS_ROUTE"
+    },
+    {
+      "classification": "observed",
+      "repository": "globalgrid2050",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "path": "state/current-gridatlas-v9.json",
+      "line": 16,
+      "url": "https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/",
+      "route_class": "STALE_ROOT_RELEASE_SHAPE"
+    },
+    {
+      "classification": "observed",
+      "repository": "globalgrid2050",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "path": "state/current-gridatlas-v9.json",
+      "line": 20,
+      "url": "https://ventusltd.github.io/gridatlas/state/live-set.json",
+      "route_class": "OTHER_GRIDATLAS_ROUTE"
+    },
+    {
+      "classification": "observed",
+      "repository": "globalgrid2050",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "path": "state/gridatlas-v9-current.json",
+      "line": 2,
+      "url": "https://ventusltd.github.io/gridatlas/",
+      "route_class": "OTHER_GRIDATLAS_ROUTE"
+    },
+    {
+      "classification": "observed",
+      "repository": "globalgrid2050",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "path": "state/gridatlas-v9-current.json",
+      "line": 9,
+      "url": "https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/",
+      "route_class": "STALE_ROOT_RELEASE_SHAPE"
+    }
+  ]
+}

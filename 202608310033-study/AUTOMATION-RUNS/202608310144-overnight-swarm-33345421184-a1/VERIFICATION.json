@@ -1,0 +1,25 @@
+{
+  "schema": "chatgpt-audits.overnight-swarm-verification.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "source_manifest_sha256": "5f74429403377b28d17a08eaf113c3fdb35aff861783476c3c9d106e95c23d4d",
+  "output_root": "/home/runner/work/chatgpt-audits/chatgpt-audits/202608310033-study/AUTOMATION-RUNS/202608310144-overnight-swarm-33345421184-a1",
+  "total_bytes": 5727264,
+  "checks": [
+    {
+      "name": "adversarial_state_machine",
+      "exit_code": 0,
+      "stdout": "{\"review_status\": \"UNREVIEWED\", \"classification\": \"observed\", \"sequences\": 100000, \"transitions\": 1551382, \"failures\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "name": "top_level_repd_extractor",
+      "exit_code": 0,
+      "stdout": "{\"review_status\": \"UNREVIEWED\", \"tests\": 3, \"passed\": 3, \"classification\": \"observed\"}\n",
+      "stderr": ""
+    }
+  ],
+  "findings": [],
+  "status": "PASS"
+}

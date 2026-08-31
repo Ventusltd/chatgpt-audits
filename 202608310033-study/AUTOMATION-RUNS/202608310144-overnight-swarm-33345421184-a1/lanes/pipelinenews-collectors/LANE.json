@@ -1,0 +1,430 @@
+{
+  "schema": "chatgpt-audits.swarm-lane.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "mixed",
+  "lane_id": "pipelinenews-collectors",
+  "priority": 1,
+  "purpose": "Map every current collector, source closure, acquisition bound and retention rule.",
+  "created_at": "2026-08-31T00:44:00.336663Z",
+  "created_at_london": "2026-08-31T01:44:00.337079+01:00",
+  "github_run_id": "33345421184",
+  "github_job": "lanes",
+  "plan_sha256": "2b4d434191311d30a71812b0fee8b8ca6221c5cc93e4a0db760d2f24d70b15cb",
+  "manifest_sha256": "5f74429403377b28d17a08eaf113c3fdb35aff861783476c3c9d106e95c23d4d",
+  "snapshots": [
+    {
+      "repository": "Ventusltd/pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/automation/",
+        "/atman/",
+        "/build/",
+        "/contracts/",
+        "/data/",
+        "/discovery/",
+        "/index/",
+        "/manifests/",
+        "/orchestration/",
+        "/state/",
+        "/tests/",
+        "/ui/",
+        "/releases/current-v3.json",
+        "/releases/202608300309-pipelinenews/"
+      ],
+      "tree_sha256": "ba85f1072f396029a4428f0793bda8257f9793fc13a89b813234e0023c0cef32",
+      "files": 734,
+      "bytes": 98692242,
+      "classification": "observed",
+      "name": "pipelinenews"
+    }
+  ],
+  "snapshot_failures": [],
+  "findings": [
+    {
+      "id": "COLLECTOR-MONOLITH",
+      "severity": "MEDIUM",
+      "classification": "observed",
+      "title": "Current discovery runners are large orchestration units",
+      "detail": "Observed 2 discovery runners above 30 kB. Extraction should preserve behaviour while separating acquisition, evidence and identity.",
+      "evidence": [
+        {
+          "path": "discovery/javascript/202608270844-live-news-runner.mjs",
+          "bytes": 54293
+        },
+        {
+          "path": "discovery/javascript/202608272130-sector-intelligence-runner.mjs",
+          "bytes": 45523
+        }
+      ]
+    },
+    {
+      "id": "COLLECTOR-BOUNDS",
+      "severity": "INFO",
+      "classification": "observed",
+      "title": "Network and retention limits are explicitly encoded",
+      "detail": "Request counts, response-byte bounds, timeouts and zero/full-body retention rules appear in the current source evidence.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271600-mobile-ui-comparator.yml",
+          "line": 173,
+          "excerpt": "assert.equal(manifest.execution.cell_record_max_bytes, 262144);"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271620-mobile-ui-comparator.yml",
+          "line": 178,
+          "excerpt": "assert.equal(manifest.execution.cell_record_max_bytes, 262144);"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271631-mobile-ui-comparator.yml",
+          "line": 178,
+          "excerpt": "assert.equal(manifest.execution.cell_record_max_bytes, 262144);"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271638-mobile-ui-comparator.yml",
+          "line": 178,
+          "excerpt": "assert.equal(manifest.execution.cell_record_max_bytes, 262144);"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271656-mobile-ui-comparator.yml",
+          "line": 178,
+          "excerpt": "assert.equal(manifest.execution.cell_record_max_bytes, 262144);"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608282044-federated-relationship-candidate.yml",
+          "line": 186,
+          "excerpt": "maximum_contract_bytes: 16384,"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608282200-federated-relationship-candidate.yml",
+          "line": 186,
+          "excerpt": "maximum_contract_bytes: 16384,"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "build/202608270055-v8-fast-site-manifest.json",
+          "line": 119,
+          "excerpt": "\"maximum_initial_decoded_bytes\": 2000000,"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "build/202608270844-v8-fast-site-manifest.json",
+          "line": 136,
+          "excerpt": "\"maximum_initial_decoded_bytes\": 2000000,"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "build/202608271329-v8-fast-site-manifest.json",
+          "line": 202,
+          "excerpt": "\"maximum_initial_decoded_bytes\": 2000000,"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "build/202608271524-v8-fast-site-manifest.json",
+          "line": 219,
+          "excerpt": "\"maximum_initial_decoded_bytes\": 2000000,"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "build/202608272048-v8-fast-site-manifest.json",
+          "line": 439,
+          "excerpt": "\"maximum_initial_decoded_bytes\": 2000000,"
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271620-mobile-ui-comparator.yml",
+          "line": 153,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271620-mobile-ui-comparator.yml",
+          "line": 359,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271620-mobile-ui-comparator.yml",
+          "line": 452,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271620-mobile-ui-comparator.yml",
+          "line": 507,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271620-mobile-ui-comparator.yml",
+          "line": 672,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271631-mobile-ui-comparator.yml",
+          "line": 153,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271631-mobile-ui-comparator.yml",
+          "line": 398,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271631-mobile-ui-comparator.yml",
+          "line": 491,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271631-mobile-ui-comparator.yml",
+          "line": 546,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271631-mobile-ui-comparator.yml",
+          "line": 711,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271638-mobile-ui-comparator.yml",
+          "line": 153,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271638-mobile-ui-comparator.yml",
+          "line": 511,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        }
+      ]
+    },
+    {
+      "id": "COLLECTOR-STATIC-EVIDENCE",
+      "severity": "MEDIUM",
+      "classification": "observed",
+      "title": "Frozen and approved evidence is mixed with runner code",
+      "detail": "Hard-coded articles, gazetteers or frozen generic feeds are present. They should become separately hashed fixtures or reviewed ledgers, not disappear.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/discoveryv1/data/discovery_mentions.json",
+          "line": 52,
+          "excerpt": "\"reason\": \"CLOSED_GAZETTEER_GATES_PASSED\","
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "build/javascript/202608272130-verify-v8-fast-browser.mjs",
+          "line": 384,
+          "excerpt": "assert.equal(sha256(genericBytes), contract.frozen_generic_news.sha256);"
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "build/javascript/202608272130-verify-v8-fast-browser.mjs",
+          "line": 387,
+          "excerpt": "assert.equal(manifest.outputs.some(({ path: relative }) => relative === contract.frozen_generic_news.path), false);"
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "discovery/javascript/202608270844-bbc-enrichment.mjs",
+          "line": 454,
+          "excerpt": "return Object.freeze({ outcome: 'ABSTAIN', reason: matches.length ? 'AMBIGUOUS_IDENTITY' : 'NO_CLOSED_GAZETTEER_MATCH', repd_ref: null });"
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "discovery/javascript/202608270844-live-news-runner.mjs",
+          "line": 40,
+          "excerpt": "const APPROVED_ARTICLES = Object.freeze(["
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "discovery/javascript/202608270844-live-news-runner.mjs",
+          "line": 292,
+          "excerpt": "'closed_gazetteer',"
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "discovery/javascript/202608270844-live-news-runner.mjs",
+          "line": 358,
+          "excerpt": "'primary_match_requires_closed_gazetteer',"
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "discovery/javascript/202608270844-live-news-runner.mjs",
+          "line": 367,
+          "excerpt": "primary_match_requires_closed_gazetteer: true,"
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "discovery/javascript/202608270844-live-news-runner.mjs",
+          "line": 397,
+          "excerpt": "if (!Array.isArray(contract.closed_gazetteer) || contract.closed_gazetteer.length !== 4) fail('CONTRACT_GAZETTEER_INVALID');"
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "discovery/javascript/202608270844-live-news-runner.mjs",
+          "line": 399,
+          "excerpt": "for (const entry of contract.closed_gazetteer) {"
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "discovery/javascript/202608270844-live-news-runner.mjs",
+          "line": 429,
+          "excerpt": "const primaryGazetteer = contract.closed_gazetteer"
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "discovery/javascript/202608270844-live-news-runner.mjs",
+          "line": 462,
+          "excerpt": "articles: APPROVED_ARTICLES.map((article) => ({ ...article, related_components: article.related_components.map((item) => ({ ...item })) })),"
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "large_runner_count": 2,
+    "large_runners": [
+      {
+        "path": "discovery/javascript/202608270844-live-news-runner.mjs",
+        "bytes": 54293
+      },
+      {
+        "path": "discovery/javascript/202608272130-sector-intelligence-runner.mjs",
+        "bytes": 45523
+      }
+    ],
+    "category_counts": {
+      "contract_schema": 156,
+      "deployment_gate": 305,
+      "hardcoded_evidence": 28,
+      "network_call": 120,
+      "request_bound": 101,
+      "retention_rule": 128,
+      "source_closure": 59
+    }
+  },
+  "evidence_rows": 897,
+  "evidence_sha256": "cd2143615d89eb5d0281342001c1a4cf3894c3ac1b6e3b881f453ce06183fc56"
+}

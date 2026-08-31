@@ -1,0 +1,10 @@
+{
+  "schema": "chatgpt-audits.swarm-lane-manifest.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "lane_id": "datacentre-demand-intelligence",
+  "tree_sha256": "8f72f6b2fe091403819f4b55f4f52bb7e95f26312fd380109513c23949c40917",
+  "files": 4,
+  "bytes": 442752
+}

@@ -1,0 +1,10 @@
+{
+  "schema": "chatgpt-audits.swarm-lane-manifest.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "lane_id": "adversarial-invariants",
+  "tree_sha256": "c6166a75727fad81d010b2f8c59a6c3bd2222fe6a209390b5312a2f571325146",
+  "files": 6,
+  "bytes": 451466
+}

@@ -1,0 +1,10 @@
+{
+  "schema": "chatgpt-audits.swarm-lane-manifest.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "lane_id": "gridatlas-seam-contracts",
+  "tree_sha256": "122edf62e10c2e247ba0dae3d4eea7ca3f572c2ed66793ca2a1467a552754bf5",
+  "files": 4,
+  "bytes": 505606
+}

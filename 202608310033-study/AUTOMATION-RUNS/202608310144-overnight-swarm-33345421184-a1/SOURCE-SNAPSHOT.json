@@ -1,0 +1,166 @@
+{
+  "schema": "chatgpt-audits.overnight-source-manifest.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "created_at": "2026-08-31T00:43:47.967199Z",
+  "created_at_london": "2026-08-31T01:43:47.967656+01:00",
+  "github_repository": "Ventusltd/chatgpt-audits",
+  "github_run_id": "33345421184",
+  "github_run_attempt": "1",
+  "audit_commit": "7b8ed24cacb6413ac047eae61534ded79825e853",
+  "plan_sha256": "2b4d434191311d30a71812b0fee8b8ca6221c5cc93e4a0db760d2f24d70b15cb",
+  "plan_semantic_sha256": "4abd2a4eca435bfaf214a743fa0b4d809bf09eb5ef876e9ab05e05befa6b9af4",
+  "pin_failures": [],
+  "repositories": [
+    {
+      "name": "pipelinenews",
+      "repository": "Ventusltd/pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "status": "PINNED",
+      "classification": "observed",
+      "sparse_paths": [
+        "/README.md",
+        "/.github/",
+        "/automation/",
+        "/atman/",
+        "/build/",
+        "/contracts/",
+        "/data/",
+        "/discovery/",
+        "/index/",
+        "/manifests/",
+        "/orchestration/",
+        "/state/",
+        "/tests/",
+        "/ui/",
+        "/releases/current-v3.json",
+        "/releases/202608300309-pipelinenews/"
+      ],
+      "error": null
+    },
+    {
+      "name": "companies",
+      "repository": "Ventusltd/companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "status": "PINNED",
+      "classification": "observed",
+      "sparse_paths": [
+        "/README.md",
+        "/.github/",
+        "/build/",
+        "/contracts/",
+        "/manifests/",
+        "/scripts/",
+        "/state/",
+        "/tests/"
+      ],
+      "error": null
+    },
+    {
+      "name": "gridatlas",
+      "repository": "Ventusltd/gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "status": "PINNED",
+      "classification": "observed",
+      "sparse_paths": [
+        "/README.md",
+        "/STATE.md",
+        "/.github/",
+        "/atlas/current.json",
+        "/atlas/modules.json",
+        "/atlas/cartridges/",
+        "/atlas/manifests/",
+        "/atman/",
+        "/contracts/",
+        "/docs/",
+        "/governance/",
+        "/machine-learning/schemas/",
+        "/releases/current-v5.json",
+        "/state/",
+        "/scope-of-works/",
+        "/tools/scope/",
+        "/ui/"
+      ],
+      "error": null
+    },
+    {
+      "name": "cvaa",
+      "repository": "Ventusltd/cvaa",
+      "commit": "d2ebc01f6eab41f2a84b0c53c4cfae0d2625ec5e",
+      "status": "PINNED",
+      "classification": "observed",
+      "sparse_paths": [
+        "."
+      ],
+      "error": null
+    },
+    {
+      "name": "spiders",
+      "repository": "Ventusltd/spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "status": "PINNED",
+      "classification": "observed",
+      "sparse_paths": [
+        "."
+      ],
+      "error": null
+    },
+    {
+      "name": "data-gridatlas",
+      "repository": "Ventusltd/data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "status": "PINNED",
+      "classification": "observed",
+      "sparse_paths": [
+        "/README.md",
+        "/.github/",
+        "/contracts/",
+        "/manifests/",
+        "/scripts/",
+        "/schemas/",
+        "/state/",
+        "/tests/"
+      ],
+      "error": null
+    },
+    {
+      "name": "globalgrid2050",
+      "repository": "Ventusltd/globalgrid2050",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "status": "PINNED",
+      "classification": "observed",
+      "sparse_paths": [
+        "/README.md",
+        "/.github/",
+        "/scripts/",
+        "/*.md",
+        "/*.json",
+        "/data_federation_map/"
+      ],
+      "error": null
+    },
+    {
+      "name": "data-centres-gb",
+      "repository": "Ventusltd/data-centres-gb",
+      "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+      "status": "PINNED",
+      "classification": "observed",
+      "sparse_paths": [
+        "."
+      ],
+      "error": null
+    },
+    {
+      "name": "data-gb-electricity",
+      "repository": "Ventusltd/data-gb-electricity",
+      "commit": "7c492745c974f6b8610cb1209f996b1553abb498",
+      "status": "PINNED",
+      "classification": "observed",
+      "sparse_paths": [
+        "."
+      ],
+      "error": null
+    }
+  ]
+}

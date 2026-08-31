@@ -1,0 +1,36 @@
+{
+  "schema": "pipelinenews.identity-binding.draft.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "inferred",
+  "required_fields": [
+    "binding_id",
+    "subject_id",
+    "object_id",
+    "binding_role",
+    "decision",
+    "evidence_event_ids",
+    "review_status",
+    "valid_from",
+    "valid_to"
+  ],
+  "binding_roles": [
+    "PRIMARY_MATCH",
+    "RELATED_DEVELOPMENT",
+    "RELATED_CONTEXT",
+    "NO_BINDING"
+  ],
+  "decisions": [
+    "ACCEPT",
+    "ABSTAIN",
+    "REJECT",
+    "RETRACT"
+  ],
+  "rules": {
+    "query_context_establishes_identity": false,
+    "name_alone_establishes_identity": false,
+    "related_context_drives_project_signal": false,
+    "primary_match_requires_returned_evidence": true,
+    "ambiguity": "ABSTAIN"
+  }
+}

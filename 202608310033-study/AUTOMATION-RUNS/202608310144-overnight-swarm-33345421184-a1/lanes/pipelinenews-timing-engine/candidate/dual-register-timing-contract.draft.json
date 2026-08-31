@@ -1,0 +1,36 @@
+{
+  "schema": "pipelinenews.dual-register-timing.draft.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "inferred",
+  "states": [
+    "DISCOVERED",
+    "IDENTITY_CANDIDATE",
+    "IDENTITY_REVIEWED",
+    "FUNDING_OBSERVED",
+    "PROCUREMENT_OBSERVED",
+    "CORROBORATED_WINDOW",
+    "HUMAN_REVIEWED",
+    "RELEASE_CANDIDATE",
+    "WITHHELD",
+    "CONFLICTED",
+    "STALE"
+  ],
+  "authoritative_lanes": {
+    "funding": "reviewed organisation-level Companies House event",
+    "procurement": "reviewed local planning or procurement-register event"
+  },
+  "non_authoritative": [
+    "news",
+    "search query",
+    "project name similarity",
+    "map geometry"
+  ],
+  "hard_invariants": [
+    "one authoritative lane remains silent",
+    "CORROBORATED_WINDOW requires reviewed identity plus both authoritative lanes",
+    "RELEASE_CANDIDATE additionally requires human review and no unresolved conflict or staleness",
+    "news can corroborate or explain but cannot create either lane",
+    "retractions and contradictions are append-only events and can withdraw eligibility"
+  ]
+}

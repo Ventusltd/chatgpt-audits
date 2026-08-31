@@ -1,0 +1,115 @@
+{
+  "schema": "chatgpt-audits.swarm-lane.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "mixed",
+  "lane_id": "adversarial-invariants",
+  "priority": 1,
+  "purpose": "Execute deterministic adversarial sequences proving one-signal silence, review gates and unambiguous binding extraction.",
+  "created_at": "2026-08-31T00:44:01.819055Z",
+  "created_at_london": "2026-08-31T01:44:01.819508+01:00",
+  "github_run_id": "33345421184",
+  "github_job": "lanes",
+  "plan_sha256": "2b4d434191311d30a71812b0fee8b8ca6221c5cc93e4a0db760d2f24d70b15cb",
+  "manifest_sha256": "5f74429403377b28d17a08eaf113c3fdb35aff861783476c3c9d106e95c23d4d",
+  "snapshots": [
+    {
+      "repository": "Ventusltd/pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/automation/",
+        "/atman/",
+        "/build/",
+        "/contracts/",
+        "/data/",
+        "/discovery/",
+        "/index/",
+        "/manifests/",
+        "/orchestration/",
+        "/state/",
+        "/tests/",
+        "/ui/",
+        "/releases/current-v3.json",
+        "/releases/202608300309-pipelinenews/"
+      ],
+      "tree_sha256": "ba85f1072f396029a4428f0793bda8257f9793fc13a89b813234e0023c0cef32",
+      "files": 734,
+      "bytes": 98692242,
+      "classification": "observed",
+      "name": "pipelinenews"
+    },
+    {
+      "repository": "Ventusltd/companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/build/",
+        "/contracts/",
+        "/manifests/",
+        "/scripts/",
+        "/state/",
+        "/tests/"
+      ],
+      "tree_sha256": "9144869fa2b5b996bc7622b8db2b8f2d258798cf37b77d070eefe8d3abefeca7",
+      "files": 75,
+      "bytes": 950259,
+      "classification": "observed",
+      "name": "companies"
+    }
+  ],
+  "snapshot_failures": [],
+  "findings": [
+    {
+      "id": "ADVERSARIAL-100K",
+      "severity": "INFO",
+      "classification": "observed",
+      "title": "The dual-register reference engine survived 100,000 deterministic adversarial sequences",
+      "detail": "Executed 1,551,382 transitions with zero invariant failures. This proves the reference logic only; it does not prove current PipelineNews implements it.",
+      "evidence": [
+        {
+          "review_status": "UNREVIEWED",
+          "classification": "observed",
+          "sequences": 100000,
+          "transitions": 1551382,
+          "failures": 0
+        }
+      ]
+    },
+    {
+      "id": "ADVERSARIAL-NEWS-SILENCE",
+      "severity": "HIGH",
+      "classification": "observed",
+      "title": "News-only events cannot create funding or procurement state",
+      "detail": "The property test applies 1,000 news events after identity review and remains IDENTITY_REVIEWED.",
+      "evidence": [
+        {
+          "review_status": "UNREVIEWED",
+          "classification": "observed",
+          "sequences": 100000,
+          "transitions": 1551382,
+          "failures": 0
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "adversarial": {
+      "review_status": "UNREVIEWED",
+      "classification": "observed",
+      "sequences": 100000,
+      "transitions": 1551382,
+      "failures": 0
+    },
+    "category_counts": {
+      "conflict": 22,
+      "news": 1150,
+      "procurement": 21,
+      "review": 7
+    }
+  },
+  "evidence_rows": 1200,
+  "evidence_sha256": "9334c05ac4a56e139b06682fe302919352f90353b1cd6c6f796c05ec63160702"
+}

@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://globalgrid2050.com/schemas/pipelinenews-timing-state-v1.json",
+  "title": "Dual-register timing state",
+  "type": "object",
+  "additionalProperties": false,
+  "x-review-status": "UNREVIEWED",
+  "x-classification": "inferred",
+  "required": [
+    "gg_project_id",
+    "state",
+    "identity_binding_id",
+    "funding_event_ids",
+    "procurement_event_ids",
+    "computed_at",
+    "review_status"
+  ],
+  "properties": {
+    "gg_project_id": {
+      "type": "string",
+      "pattern": "^GG2050-REPD-[0-9]+$"
+    },
+    "state": {
+      "enum": [
+        "DISCOVERED",
+        "IDENTITY_CANDIDATE",
+        "IDENTITY_REVIEWED",
+        "FUNDING_OBSERVED",
+        "PROCUREMENT_OBSERVED",
+        "CORROBORATED_WINDOW",
+        "HUMAN_REVIEWED",
+        "RELEASE_CANDIDATE",
+        "WITHHELD",
+        "CONFLICTED",
+        "STALE"
+      ]
+    },
+    "identity_binding_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "funding_event_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "procurement_event_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "news_event_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "computed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "review_status": {
+      "enum": [
+        "UNREVIEWED",
+        "REVIEWED",
+        "REJECTED",
+        "RETRACTED"
+      ]
+    },
+    "withheld_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

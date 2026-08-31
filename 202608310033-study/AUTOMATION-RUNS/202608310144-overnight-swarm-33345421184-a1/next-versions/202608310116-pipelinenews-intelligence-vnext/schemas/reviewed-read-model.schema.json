@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://globalgrid2050.com/schemas/pipelinenews-reviewed-read-model-v1.json",
+  "title": "Minimum reviewed PipelineNews consumer record",
+  "type": "object",
+  "additionalProperties": false,
+  "x-review-status": "UNREVIEWED",
+  "x-classification": "inferred",
+  "required": [
+    "gg_project_id",
+    "repd_ref",
+    "window_state",
+    "as_of",
+    "evidence_summary",
+    "review_receipt"
+  ],
+  "properties": {
+    "gg_project_id": {
+      "type": "string",
+      "pattern": "^GG2050-REPD-[0-9]+$"
+    },
+    "repd_ref": {
+      "type": "string",
+      "pattern": "^[0-9]+$"
+    },
+    "window_state": {
+      "enum": [
+        "FUNDING_OBSERVED",
+        "PROCUREMENT_OBSERVED",
+        "CORROBORATED_WINDOW",
+        "WITHHELD",
+        "CONFLICTED",
+        "STALE"
+      ]
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "evidence_summary": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "review_receipt": {
+      "type": "object"
+    },
+    "atlas_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

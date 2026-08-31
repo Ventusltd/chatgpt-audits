@@ -1,0 +1,30 @@
+{
+  "schema": "chatgpt-audits.federated-table-contract.draft.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "inferred",
+  "required_receipt": [
+    "owner_repository",
+    "owner_commit",
+    "path",
+    "sha256",
+    "semantic_digest",
+    "schema_id",
+    "row_count",
+    "created_at"
+  ],
+  "consumer_gate": [
+    "schema exact",
+    "foreign-key closure",
+    "validity interval",
+    "no forbidden PII",
+    "bounded bytes",
+    "independent readback"
+  ],
+  "forbidden": [
+    "raw Companies House archive",
+    "individual director/PSC payload",
+    "unbounded JSON cartridge",
+    "inferred score without evidence IDs"
+  ]
+}

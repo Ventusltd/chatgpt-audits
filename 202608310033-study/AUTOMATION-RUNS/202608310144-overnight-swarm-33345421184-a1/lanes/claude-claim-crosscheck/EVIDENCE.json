@@ -1,0 +1,531 @@
+{
+  "schema": "chatgpt-audits.swarm-lane-evidence.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "lane_id": "claude-claim-crosscheck",
+  "rows": [
+    {
+      "classification": "observed",
+      "category": "unknown_repd_refs",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "build/python/202608281337-compact-parquet-companies.py",
+      "line": 707,
+      "excerpt": "\"unknown_repd_refs\": unknown_refs,"
+    },
+    {
+      "classification": "observed",
+      "category": "binding_counts",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "contracts/202608281846-federated-company-repd-relationship-contract-v1.json",
+      "line": 25,
+      "excerpt": "\"company_repd_candidate_rows\": 482030,"
+    },
+    {
+      "classification": "observed",
+      "category": "unknown_repd_refs",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "contracts/202608281846-federated-company-repd-relationship-contract-v1.json",
+      "line": 91,
+      "excerpt": "\"unknown_repd_refs\": 0,"
+    },
+    {
+      "classification": "observed",
+      "category": "binding_counts",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "contracts/202608281846-federated-company-repd-relationship-contract-v1.json",
+      "line": 98,
+      "excerpt": "\"rows\": 482030,"
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "state/atlas-v9-link-audit.json",
+      "line": 9,
+      "excerpt": "\"golden_url\": \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref=13599\","
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "state/atlas-v9-link-contract.json",
+      "line": 3,
+      "excerpt": "\"base_url\": \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/\","
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "state/atlas-v9-link-contract.json",
+      "line": 14,
+      "excerpt": "\"golden_url\": \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref=13599\","
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "state/atlas-v9-link-contract.json",
+      "line": 18,
+      "excerpt": "\"url_template\": \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref={repd_ref}\""
+    },
+    {
+      "classification": "observed",
+      "category": "unknown_repd_refs",
+      "repository": "companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "path": "tests/test_202608281337_compact_parquet_companies.py",
+      "line": 238,
+      "excerpt": "\"unknown_repd_refs\": 0,"
+    },
+    {
+      "classification": "observed",
+      "category": "scope_gate",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": ".github/workflows/202608301321-scope-loop.yml",
+      "line": 31,
+      "excerpt": "- name: Materialise the timestamped scope ledger once"
+    },
+    {
+      "classification": "observed",
+      "category": "scope_gate",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": ".github/workflows/202608301321-scope-loop.yml",
+      "line": 66,
+      "excerpt": "COMMIT_MESSAGE=\"202608301321-gridatlas: establish durable scope ledger and antibodies\""
+    },
+    {
+      "classification": "observed",
+      "category": "stable_atlas_route",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": ".github/workflows/202608301321-verify-live.yml",
+      "line": 138,
+      "excerpt": "curl --fail --silent http://127.0.0.1:4173/gridatlas/atlas/current.json >/dev/null && exit 0"
+    },
+    {
+      "classification": "observed",
+      "category": "stable_atlas_route",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": ".github/workflows/202608301321-verify-live.yml",
+      "line": 145,
+      "excerpt": "GRIDATLAS_URL: http://127.0.0.1:4173/gridatlas/atlas/"
+    },
+    {
+      "classification": "observed",
+      "category": "stable_atlas_route",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": ".github/workflows/202608301321-verify-live.yml",
+      "line": 152,
+      "excerpt": "GRIDATLAS_URL: http://127.0.0.1:4173/gridatlas/atlas/"
+    },
+    {
+      "classification": "observed",
+      "category": "stable_atlas_route",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": ".github/workflows/202608301321-verify-live.yml",
+      "line": 198,
+      "excerpt": "GRIDATLAS_URL: https://ventusltd.github.io/gridatlas/atlas/"
+    },
+    {
+      "classification": "observed",
+      "category": "stable_atlas_route",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": ".github/workflows/202608301321-verify-live.yml",
+      "line": 205,
+      "excerpt": "GRIDATLAS_URL: https://ventusltd.github.io/gridatlas/atlas/"
+    },
+    {
+      "classification": "observed",
+      "category": "scope_gate",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": ".github/workflows/202608310015-gridatlas-overnight-next-versions.yml",
+      "line": 56,
+      "excerpt": "node -e \"const p=require('./${PROGRAMME_CONFIG}'); if(p.generation!=='202608310015'||p.minimum_study_seconds<3600||p.expected_scope_words<43000) process.exit(1)\""
+    },
+    {
+      "classification": "observed",
+      "category": "scope_gate",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": ".github/workflows/202608310015-gridatlas-overnight-next-versions.yml",
+      "line": 90,
+      "excerpt": "required_words = int(os.environ.get('REQUIRED_WORDS', '43000'))"
+    },
+    {
+      "classification": "observed",
+      "category": "scope_gate",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": ".github/workflows/202608310015-gridatlas-overnight-next-versions.yml",
+      "line": 249,
+      "excerpt": "echo \"- Visible corpus words: ${WORDS:-0} / ${REQUIRED_WORDS:-43000}\""
+    },
+    {
+      "classification": "observed",
+      "category": "scope_gate",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": ".github/workflows/202608310050-gridatlas-next-version-builders.yml",
+      "line": 66,
+      "excerpt": "echo \"- visible words: ${{ steps.plan.outputs.source_words }} / 43000\""
+    },
+    {
+      "classification": "observed",
+      "category": "scope_gate",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": "202608310050-gridatlas-next-version-builders/README.md",
+      "line": 19,
+      "excerpt": "- the best `_build-plan` visible on any fetched branch contains at least 43,000 words;"
+    },
+    {
+      "classification": "observed",
+      "category": "stable_atlas_route",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": "atlas/state/live-set.json",
+      "line": 4,
+      "excerpt": "\"live_route\": \"/gridatlas/atlas/\","
+    },
+    {
+      "classification": "observed",
+      "category": "stable_atlas_route",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": "atlas/state/live-set.json",
+      "line": 17,
+      "excerpt": "\"route\": \"/gridatlas/atlas/releases/202608300453-atlas-v9/\""
+    },
+    {
+      "classification": "observed",
+      "category": "stable_atlas_route",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": "scope-of-works/202608301321-01-move-atlas-into-atlas-folder.md",
+      "line": 32,
+      "excerpt": "- Root resolves through `/gridatlas/atlas/` to the same last-known-green application."
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": "scope-of-works/202608301321-scope-of-works.md",
+      "line": 38,
+      "excerpt": "- Last known green route before migration: `/gridatlas/202608300453-atlas-v9/`"
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": "state/cross-repo-atlas-v9-milestones.json",
+      "line": 79,
+      "excerpt": "\"base_url\": \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/\","
+    },
+    {
+      "classification": "observed",
+      "category": "stable_atlas_route",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": "state/live-set.json",
+      "line": 16,
+      "excerpt": "\"live_url\": \"https://ventusltd.github.io/gridatlas/atlas/\","
+    },
+    {
+      "classification": "observed",
+      "category": "stable_atlas_route",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": "state/live-set.json",
+      "line": 28,
+      "excerpt": "\"route\": \"/gridatlas/atlas/\","
+    },
+    {
+      "classification": "observed",
+      "category": "stable_atlas_route",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": "state/live-set.json",
+      "line": 36,
+      "excerpt": "\"release_route\": \"/gridatlas/atlas/releases/202608300453-atlas-v9/\","
+    },
+    {
+      "classification": "observed",
+      "category": "stable_atlas_route",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": "state/live-set.json",
+      "line": 41,
+      "excerpt": "\"route\": \"/gridatlas/atlas/\","
+    },
+    {
+      "classification": "observed",
+      "category": "stable_atlas_route",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": "state/live-set.json",
+      "line": 51,
+      "excerpt": "\"live_url\": \"https://ventusltd.github.io/gridatlas/atlas/releases/202608292311-atlas-v9/\","
+    },
+    {
+      "classification": "observed",
+      "category": "stable_atlas_route",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": "state/live-set.json",
+      "line": 53,
+      "excerpt": "\"route\": \"/gridatlas/atlas/releases/202608292311-atlas-v9/\""
+    },
+    {
+      "classification": "observed",
+      "category": "stable_atlas_route",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": "state/live-set.json",
+      "line": 57,
+      "excerpt": "\"route\": \"/gridatlas/atlas/releases/202608292311-atlas-v9/\""
+    },
+    {
+      "classification": "observed",
+      "category": "stable_atlas_route",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": "state/live-set.json",
+      "line": 91,
+      "excerpt": "\"stable_route\": \"/gridatlas/atlas/\","
+    },
+    {
+      "classification": "observed",
+      "category": "stable_atlas_route",
+      "repository": "gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "path": "state/live-set.json",
+      "line": 92,
+      "excerpt": "\"immutable_release_route\": \"/gridatlas/atlas/releases/202608300453-atlas-v9/\","
+    },
+    {
+      "classification": "observed",
+      "category": "binding_counts",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608282044-federated-relationship-candidate.yml",
+      "line": 222,
+      "excerpt": "(\"COMPANY_REPD\", \"ALL_CANDIDATES\", 482030, \"UNKNOWN\", \"ABSTAIN\", False),"
+    },
+    {
+      "classification": "observed",
+      "category": "binding_counts",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608282200-federated-relationship-candidate.yml",
+      "line": 222,
+      "excerpt": "(\"COMPANY_REPD\", \"ALL_CANDIDATES\", 482030, \"UNKNOWN\", \"ABSTAIN\", False),"
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": ".github/workflows/202608300522-resume-exact-atlas-pages-promotion.yml",
+      "line": 109,
+      "excerpt": "test \"$atlas_url\" = https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/"
+    },
+    {
+      "classification": "observed",
+      "category": "binding_counts",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "archive/202608261547-pipelinenews/state/repd-source.json",
+      "line": 5262,
+      "excerpt": "\"10898\": \"8c1fd1342525adeff52b9482030f61f2f7bfcdb3b05bd7ad155170e4bb452c26\","
+    },
+    {
+      "classification": "observed",
+      "category": "scope_gate",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "archive/202608261547-pipelinenews/state/repd-source.json",
+      "line": 6065,
+      "excerpt": "\"13928\": \"f888bbf43b7cdb93b51d7c4fc7efb5780d14dc71f724467c164f8c7e3430006b\","
+    },
+    {
+      "classification": "observed",
+      "category": "scope_gate",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "archive/202608261547-pipelinenews/state/repd-source.json",
+      "line": 6969,
+      "excerpt": "\"17227\": \"89103cc2d2546d573d414430007be8855483a9c4f1f102a507e30295493db606\","
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "automation/202608301200-extend-pages-atlas-link-v2.py",
+      "line": 78,
+      "excerpt": "== \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/\","
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "automation/202608301200-extend-pages-atlas-link-v2.py",
+      "line": 116,
+      "excerpt": "== \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref=13599\","
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "automation/202608301200-extend-pages-atlas-link-v2.py",
+      "line": 233,
+      "excerpt": "and receiver.get(\"base_url\") == \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/\""
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "automation/202608301200-extend-pages-atlas-link-v2.py",
+      "line": 243,
+      "excerpt": "== \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref=13599\""
+    },
+    {
+      "classification": "observed",
+      "category": "binding_counts",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "build/python/202608282044-build-relationship-status-parquet.py",
+      "line": 47,
+      "excerpt": "require(companies[\"verified_candidate\"][\"company_repd_candidate_rows\"] == 482030, \"companies rows\")"
+    },
+    {
+      "classification": "observed",
+      "category": "binding_counts",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "build/python/202608282200-build-relationship-status-parquet.py",
+      "line": 47,
+      "excerpt": "require(companies[\"verified_candidate\"][\"company_repd_candidate_rows\"] == 482030, \"companies rows\")"
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "state/atlas-v9-current.json",
+      "line": 2,
+      "excerpt": "\"base_url\": \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/\","
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "ui/atlas-v9-deep-links.js",
+      "line": 4,
+      "excerpt": "const BASE_URL = \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/\";"
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "ui/cartridges/202608271329-atlas-v8-deep-link.mjs",
+      "line": 14,
+      "excerpt": "base_url: \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/\","
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "ui/cartridges/202608271329-atlas-v8-deep-link.mjs",
+      "line": 50,
+      "excerpt": "expected_url: \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref=17494&project=East+Pye+Solar+Farm&technology=solar&capacity_mw=500&latitude=52.4733298&longitude=1.2432764&zoom=12\","
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "ui/cartridges/202608271329-atlas-v8-deep-link.mjs",
+      "line": 54,
+      "excerpt": "expected_url: \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref=13599&project=Beacon+Fen+Energy+Park&technology=solar&capacity_mw=400&latitude=52.9989987&longitude=-0.4092339&zoom=12\","
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "ui/cartridges/202608291310-atlas-v9-deep-link.mjs",
+      "line": 18,
+      "excerpt": "base_url: \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/\","
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "ui/cartridges/202608291310-atlas-v9-deep-link.mjs",
+      "line": 37,
+      "excerpt": "expected_url: \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref=17494\","
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "ui/cartridges/202608291310-atlas-v9-deep-link.mjs",
+      "line": 42,
+      "excerpt": "expected_url: \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref=13599\","
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "ui/javascript/202608261804-projects-v9-5-1.js",
+      "line": 44,
+      "excerpt": "const url = new URL(\"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/\");"
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "ui/javascript/202608270055-v8-fast-runtime.js",
+      "line": 294,
+      "excerpt": "const url = new URL(\"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/\");"
+    },
+    {
+      "classification": "observed",
+      "category": "old_root_route",
+      "repository": "pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "path": "ui/javascript/202608270844-v8-live-news-runtime.js",
+      "line": 308,
+      "excerpt": "const url = new URL(\"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/\");"
+    }
+  ]
+}

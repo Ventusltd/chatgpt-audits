@@ -1,0 +1,9 @@
+{
+  "schema": "chatgpt-audits.adversarial-proof.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "sequences": 100000,
+  "transitions": 1551382,
+  "failures": 0
+}

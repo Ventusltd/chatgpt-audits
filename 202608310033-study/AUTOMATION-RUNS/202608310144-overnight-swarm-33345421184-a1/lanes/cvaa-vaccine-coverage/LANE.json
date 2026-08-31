@@ -1,0 +1,352 @@
+{
+  "schema": "chatgpt-audits.swarm-lane.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "mixed",
+  "lane_id": "cvaa-vaccine-coverage",
+  "priority": 3,
+  "purpose": "Run CVAA self-tests where possible and map vaccines to the observed federation failure modes.",
+  "created_at": "2026-08-31T00:44:30.628646Z",
+  "created_at_london": "2026-08-31T01:44:30.629156+01:00",
+  "github_run_id": "33345421184",
+  "github_job": "lanes",
+  "plan_sha256": "2b4d434191311d30a71812b0fee8b8ca6221c5cc93e4a0db760d2f24d70b15cb",
+  "manifest_sha256": "5f74429403377b28d17a08eaf113c3fdb35aff861783476c3c9d106e95c23d4d",
+  "snapshots": [
+    {
+      "repository": "Ventusltd/cvaa",
+      "commit": "d2ebc01f6eab41f2a84b0c53c4cfae0d2625ec5e",
+      "paths": [
+        "."
+      ],
+      "tree_sha256": "4cc4edbe076e770cac6acb1ae5af0603a7a0b08716694a0846434df692607885",
+      "files": 47,
+      "bytes": 205030,
+      "classification": "observed",
+      "name": "cvaa"
+    },
+    {
+      "repository": "Ventusltd/pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/automation/",
+        "/atman/",
+        "/build/",
+        "/contracts/",
+        "/data/",
+        "/discovery/",
+        "/index/",
+        "/manifests/",
+        "/orchestration/",
+        "/state/",
+        "/tests/",
+        "/ui/",
+        "/releases/current-v3.json",
+        "/releases/202608300309-pipelinenews/"
+      ],
+      "tree_sha256": "ba85f1072f396029a4428f0793bda8257f9793fc13a89b813234e0023c0cef32",
+      "files": 734,
+      "bytes": 98692242,
+      "classification": "observed",
+      "name": "pipelinenews"
+    },
+    {
+      "repository": "Ventusltd/companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/build/",
+        "/contracts/",
+        "/manifests/",
+        "/scripts/",
+        "/state/",
+        "/tests/"
+      ],
+      "tree_sha256": "9144869fa2b5b996bc7622b8db2b8f2d258798cf37b77d070eefe8d3abefeca7",
+      "files": 75,
+      "bytes": 950259,
+      "classification": "observed",
+      "name": "companies"
+    },
+    {
+      "repository": "Ventusltd/gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "paths": [
+        "/README.md",
+        "/STATE.md",
+        "/.github/",
+        "/atlas/current.json",
+        "/atlas/modules.json",
+        "/atlas/cartridges/",
+        "/atlas/manifests/",
+        "/atman/",
+        "/contracts/",
+        "/docs/",
+        "/governance/",
+        "/machine-learning/schemas/",
+        "/releases/current-v5.json",
+        "/state/",
+        "/scope-of-works/",
+        "/tools/scope/",
+        "/ui/"
+      ],
+      "tree_sha256": "fcda77549e8e787182d5cbe08a101e8c13d216bb2aca4a0e08b9b3eeda1fb29e",
+      "files": 111,
+      "bytes": 805194,
+      "classification": "observed",
+      "name": "gridatlas"
+    }
+  ],
+  "snapshot_failures": [],
+  "findings": [
+    {
+      "id": "CVAA-EXECUTION",
+      "severity": "INFO",
+      "classification": "observed",
+      "title": "CVAA registry and consumer snapshots were executed read-only where possible",
+      "detail": "A non-zero consumer result is retained as a finding, not silently baselined. The audit swarm does not mutate CVAA or consumer repositories.",
+      "evidence": [
+        {
+          "name": "self_inoculation",
+          "exit_code": 1,
+          "stdout_tail": "ror\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"no-app-copies\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"no-per-release-workflows\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"self-terminating-loops\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"chaining-token\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"pointer-verifies\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"derived-state-not-authored\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"context-diet\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"rollback-exists\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"registry-integrity\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"no-dangerous-apis\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"pinned-actions\",\"intrinsic_level\":\"warning\",\"level\":\"warning\",\"state\":\"warn\",\"findings\":[\"202608301446-inoculate.yml: actions/checkout@v4 is not pinned to a 40-character commit SHA\",\"202608301446-inoculate.yml: actions/checkout@v4 is not pinned to a 40-character commit SHA\",\"202608301446-inoculate.yml: actions/setup-node@v4 is not pinned to a 40-character commit SHA\",\"202608301446-inoculate.yml: github/codeql-action/upload-sarif@v3 is not pinned to a 40-character commit SHA\"]},{\"vaccine\":\"least-permissions\",\"intrinsic_level\":\"warning\",\"level\":\"warning\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"agent-quarantine\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"vocabulary\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"monotonic-utc-generations\",\"intrinsic_level\":\"error\",\"level\":\"warning\",\"state\":\"warn\",\"findings\":[\"generation 202608310116 is 33 minutes off its UTC commit time 202608310043; generations are read from date -u at commit time, never chosen\"]},{\"vaccine\":\"on-ledger-commits\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"executor-declared\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"loop-exists\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"rollback-exercised\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"attestation-freshness\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"full-history-checkout\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"this checkout is shallow; history vaccines are blind. Use fetch-depth: 0\"]},{\"vaccine\":\"no-time-based-gates\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]}]}\n\n1 finding(s); repo is not immune\n",
+          "stderr_tail": "warning: unshare -rn unavailable; antibodies run without a network namespace\n",
+          "classification": "observed"
+        },
+        {
+          "name": "selftest",
+          "exit_code": 0,
+          "stdout_tail": "fires  one-active-scope\nfires  no-app-copies\nfires  no-per-release-workflows\nskip   no-expiry-windows (registry-level, history-level or superseded)\nfires  self-terminating-loops\nfires  chaining-token\nfires  pointer-verifies\nfires  derived-state-not-authored\nfires  context-diet\nfires  rollback-exists\nfires  pinned-actions\nfires  least-permissions\nfires  agent-quarantine\nfires  vocabulary\nskip   registry-integrity (registry-level, history-level or superseded)\nskip   no-dangerous-apis (registry-level, history-level or superseded)\nskip   monotonic-utc-generations (registry-level, history-level or superseded)\nskip   on-ledger-commits (registry-level, history-level or superseded)\nskip   rollback-exercised (registry-level, history-level or superseded)\nskip   attestation-freshness (registry-level, history-level or superseded)\nfires  no-time-based-gates\nfires  executor-declared\nfires  loop-exists\nfires  full-history-checkout\n\nall antibodies fire on disease and stay silent on health\n",
+          "stderr_tail": "",
+          "classification": "observed"
+        },
+        {
+          "name": "consumer_pipelinenews",
+          "exit_code": 1,
+          "stdout_tail": "arning\",\"level\":\"warning\",\"state\":\"warn\",\"findings\":[\"pages.yml: no timeout-minutes; runaway jobs run six hours\"]},{\"vaccine\":\"agent-quarantine\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"vocabulary\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"monotonic-utc-generations\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"generation 202608310116 is 33 minutes off its UTC commit time 202608310043; generations are read from date -u at commit time, never chosen\"]},{\"vaccine\":\"on-ledger-commits\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"executor-declared\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"loop-exists\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"rollback-exercised\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"attestation-freshness\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"full-history-checkout\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"this checkout is shallow; history vaccines are blind. Use fetch-depth: 0\"]},{\"vaccine\":\"no-time-based-gates\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"202608300232-sync-atlas-v9-deep-links.yml carries a wall-clock gate; loops must be perpetual with an exit-0 path\",\"202608300232-sync-atlas-v9-deep-links.yml cron \\\"20 4-8 30 8 *\\\" is pinned to one calendar day\",\"202608300309-current-gridatlas-v9-deep-link-successor.yml carries a wall-clock gate; loops must be perpetual with an exit-0 path\",\"202608300309-current-gridatlas-v9-deep-link-successor.yml cron \\\"30 4-8 30 8 *\\\" is pinned to one calendar day\",\"202608300327-bound-hourly-atlas-v9-mission.yml carries a wall-clock gate; loops must be perpetual with an exit-0 path\",\"202608300327-bound-hourly-atlas-v9-mission.yml cron \\\"20 3-5 30 8 *\\\" is pinned to one calendar day\",\"202608300327-bound-hourly-atlas-v9-mission.yml cron \\\"20 3-5 30 8 \\\\*\\\" is pinned to one calendar day\",\"202608300430-bootstrap-five-hour-atlas-integration.yml carries a wall-clock gate; loops must be perpetual with an exit-0 path\",\"202608300430-bootstrap-five-hour-atlas-integration.yml cron \\\"20 4-8 30 8 *\\\" is pinned to one calendar day\",\"202608300430-bootstrap-five-hour-atlas-integration.yml cron \\\"30 4-8 30 8 *\\\" is pinned to one calendar day\",\"202608300430-bootstrap-five-hour-atlas-integration.yml cron \\\"20 4-8 30 8 \\\\*\\\" is pinned to one calendar day\",\"202608300430-bootstrap-five-hour-atlas-integration.yml cron \\\"30 4-8 30 8 \\\\*\\\" is pinned to one calendar day\",\"202608300522-resume-exact-atlas-pages-promotion.yml carries a wall-clock gate; loops must be perpetual with an exit-0 path\",\"202608300522-resume-exact-atlas-pages-promotion.yml cron \\\"35 4-8 30 8 *\\\" is pinned to one calendar day\"]}]}\n\n45 finding(s); repo is not immune\n",
+          "stderr_tail": "warning: unshare -rn unavailable; antibodies run without a network namespace\n",
+          "classification": "observed"
+        },
+        {
+          "name": "consumer_companies",
+          "exit_code": 1,
+          "stdout_tail": "_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"context-diet\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"rollback-exists\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"registry-integrity\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"no-dangerous-apis\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"pinned-actions\",\"intrinsic_level\":\"warning\",\"level\":\"warning\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"least-permissions\",\"intrinsic_level\":\"warning\",\"level\":\"warning\",\"state\":\"warn\",\"findings\":[\"202608300232-build-atlas-v9-company-repd-links.yml: no timeout-minutes; runaway jobs run six hours\",\"202608300430-bootstrap-five-hour-key-only-atlas-mission.yml: no timeout-minutes; runaway jobs run six hours\"]},{\"vaccine\":\"agent-quarantine\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"vocabulary\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"monotonic-utc-generations\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"generation 202608310116 is 33 minutes off its UTC commit time 202608310043; generations are read from date -u at commit time, never chosen\"]},{\"vaccine\":\"on-ledger-commits\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"executor-declared\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"loop-exists\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"rollback-exercised\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"attestation-freshness\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"full-history-checkout\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"this checkout is shallow; history vaccines are blind. Use fetch-depth: 0\"]},{\"vaccine\":\"no-time-based-gates\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"202608300312-sync-gridatlas-v9-link-contract.yml carries a wall-clock gate; loops must be perpetual with an exit-0 path\",\"202608300312-sync-gridatlas-v9-link-contract.yml cron \\\"25 4-8 30 8 *\\\" is pinned to one calendar day\",\"202608300327-bound-hourly-gridatlas-link-mission.yml carries a wall-clock gate; loops must be perpetual with an exit-0 path\",\"202608300327-bound-hourly-gridatlas-link-mission.yml cron \\\"25 3-5 30 8 *\\\" is pinned to one calendar day\",\"202608300327-bound-hourly-gridatlas-link-mission.yml cron \\\"25 3-5 30 8 \\\\*\\\" is pinned to one calendar day\",\"202608300435-five-hour-key-only-atlas-watchdog.yml carries a wall-clock gate; loops must be perpetual with an exit-0 path\",\"202608300435-five-hour-key-only-atlas-watchdog.yml cron \\\"30 4-8 30 8 *\\\" is pinned to one calendar day\"]}]}\n\n13 finding(s); repo is not immune\n",
+          "stderr_tail": "warning: unshare -rn unavailable; antibodies run without a network namespace\n",
+          "classification": "observed"
+        },
+        {
+          "name": "consumer_gridatlas",
+          "exit_code": 1,
+          "stdout_tail": "vel\":\"error\",\"state\":\"fail\",\"findings\":[\"something writes atlas/current.json but no workflow can roll it back\"]},{\"vaccine\":\"registry-integrity\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"no-dangerous-apis\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"pinned-actions\",\"intrinsic_level\":\"warning\",\"level\":\"warning\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"least-permissions\",\"intrinsic_level\":\"warning\",\"level\":\"warning\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"agent-quarantine\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"vocabulary\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"monotonic-utc-generations\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"generation 202608310116 is 33 minutes off its UTC commit time 202608310043; generations are read from date -u at commit time, never chosen\"]},{\"vaccine\":\"on-ledger-commits\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"7b8ed24 202608310116 cites no scope file in scope-of-works\"]},{\"vaccine\":\"executor-declared\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"202608301321-01-move-atlas-into-atlas-folder.md: no executor field (agent|script|human)\",\"202608301518-02-modularise-immutable-shell-and-cartridges.md: no executor field (agent|script|human)\",\"202608301520-03-apply-pipelinenews-lessons.md: no executor field (agent|script|human)\",\"202608301521-04-add-uk-location-search-cartridge.md: no executor field (agent|script|human)\",\"202608301522-05-compile-and-attest-cartridge-composition.md: no executor field (agent|script|human)\",\"202608301524-06-close-and-harden-cicd-loop.md: no executor field (agent|script|human)\",\"202608301525-closure.md: no executor field (agent|script|human)\"]},{\"vaccine\":\"loop-exists\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"202608301321-scope-loop.yml has no schedule; the loop is not perpetual\"]},{\"vaccine\":\"rollback-exercised\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"no rollback has ever been exercised; dispatch a rollback drill and commit its record\"]},{\"vaccine\":\"attestation-freshness\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"full-history-checkout\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"this checkout is shallow; history vaccines are blind. Use fetch-depth: 0\"]},{\"vaccine\":\"no-time-based-gates\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"202608310015-gridatlas-overnight-next-versions.yml cron \\\"30,45 23 30 8 *\\\" is pinned to one calendar day\",\"202608310015-gridatlas-overnight-next-versions.yml cron \\\"*/15 0-7 31 8 *\\\" is pinned to one calendar day\",\"202608310050-gridatlas-next-version-builders.yml cron \\\"7,37 0-7 31 8 *\\\" is pinned to one calendar day\"]}]}\n\n22 finding(s); repo is not immune\n",
+          "stderr_tail": "warning: unshare -rn unavailable; antibodies run without a network namespace\n",
+          "classification": "observed"
+        }
+      ]
+    },
+    {
+      "id": "CVAA-SEAM-VACCINES",
+      "severity": "MEDIUM",
+      "classification": "inferred",
+      "title": "Federation pointer drift and nested-identity ambiguity deserve executable vaccines",
+      "detail": "The strongest overnight candidates are a consumer-pointer-current vaccine and a top-level-identity-only vaccine.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 5,
+          "excerpt": "The repository retains reviewed acquisition and accounts-extraction code. The current recovery checkpoint, `202608281337`, builds a key-only relationship-and-report candidate; it does not publish or overwrite a stable dataset."
+        },
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 17,
+          "excerpt": "Publication is restricted to an immutable candidate branch. `main`, `data/current/`, Pages and releases remain unchanged. Historical workflows live under `.github/workflow-history/` as inert audit evidence; checkpoint `202608281337` is the sole active publication path."
+        },
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 387,
+          "excerpt": "test ! -e data/current"
+        },
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 453,
+          "excerpt": "if git diff --cached --name-only | grep -Eq '(^|/)current/|(^|/)pages/|(^|/)releases/'; then"
+        },
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+          "line": 81,
+          "excerpt": "release_id=\"$(jq -r '.current.release_id // empty' /tmp/atlas-state.json)\""
+        },
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+          "line": 82,
+          "excerpt": "live_url=\"$(jq -r '.current.live_url // empty' /tmp/atlas-state.json)\""
+        },
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+          "line": 83,
+          "excerpt": "source_commit=\"$(jq -r '.current.source_commit // empty' /tmp/atlas-state.json)\""
+        },
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+          "line": 84,
+          "excerpt": "publication_commit=\"$(jq -r '.current.publication_commit // empty' /tmp/atlas-state.json)\""
+        },
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+          "line": 93,
+          "excerpt": "test \"$(jq -r '.current.deep_link_receiver.identity_rule // empty' /tmp/atlas-state.json)\" = EXACT_REPD_REF_ONLY"
+        },
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+          "line": 94,
+          "excerpt": "jq -e '.current.deep_link_receiver.synthetic_receiver == false' /tmp/atlas-state.json >/dev/null"
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 5,
+          "excerpt": "The repository retains reviewed acquisition and accounts-extraction code. The current recovery checkpoint, `202608281337`, builds a key-only relationship-and-report candidate; it does not publish or overwrite a stable dataset."
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 9,
+          "excerpt": "GitHub Actions provides the transient compute, while the GitHub REST API verifies run and retained-artifact provenance. The planned Companies House bulk archive is downloaded once into temporary runner storage; the Companies House REST API is not used. The expected 294,904-company selected-union closure is a validation measure, not a durable company dataset; the aggregate report separately records the full number of…"
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 17,
+          "excerpt": "Publication is restricted to an immutable candidate branch. `main`, `data/current/`, Pages and releases remain unchanged. Historical workflows live under `.github/workflow-history/` as inert audit evidence; checkpoint `202608281337` is the sole active publication path."
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 32,
+          "excerpt": "source-boundary:"
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 39,
+          "excerpt": "source_sha: ${{ steps.boundary.outputs.source_sha }}"
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 46,
+          "excerpt": "- id: boundary"
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 155,
+          "excerpt": "needs: source-boundary"
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 164,
+          "excerpt": "ref: ${{ needs.source-boundary.outputs.source_sha }}"
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 235,
+          "excerpt": "--source-commit \"${{ needs.source-boundary.outputs.source_sha }}\" \\"
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 282,
+          "excerpt": "--expected-source-commit \"${{ needs.source-boundary.outputs.source_sha }}\" \\"
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "execution_count": 5,
+    "nonzero": 4,
+    "category_counts": {
+      "amnesia": 44,
+      "boundary": 389,
+      "determinism": 482,
+      "pointer": 104,
+      "vaccine": 181
+    }
+  },
+  "evidence_rows": 1200,
+  "evidence_sha256": "7cedf6e53a4a8a7082c37b6eb7a9f5a0188cb7dba9bb9517a6d9f22063202f39"
+}

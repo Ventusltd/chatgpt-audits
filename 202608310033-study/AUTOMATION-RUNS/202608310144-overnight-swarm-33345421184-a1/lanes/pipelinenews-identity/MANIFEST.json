@@ -1,0 +1,10 @@
+{
+  "schema": "chatgpt-audits.swarm-lane-manifest.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "lane_id": "pipelinenews-identity",
+  "tree_sha256": "7dd3aebe01892a3d34d49a38d7016c0ef5168a9c579836436b2b2aac48a3e352",
+  "files": 4,
+  "bytes": 529714
+}

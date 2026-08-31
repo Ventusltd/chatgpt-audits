@@ -1,0 +1,3413 @@
+{
+  "schema": "chatgpt-audits.swarm-findings.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "mixed",
+  "severity_counts": {
+    "HIGH": 12,
+    "MEDIUM": 10,
+    "INFO": 5
+  },
+  "findings": [
+    {
+      "id": "ADVERSARIAL-NEWS-SILENCE",
+      "severity": "HIGH",
+      "classification": "observed",
+      "title": "News-only events cannot create funding or procurement state",
+      "detail": "The property test applies 1,000 news events after identity review and remains IDENTITY_REVIEWED.",
+      "evidence": [
+        {
+          "review_status": "UNREVIEWED",
+          "classification": "observed",
+          "sequences": 100000,
+          "transitions": 1551382,
+          "failures": 0
+        }
+      ],
+      "lane_id": "adversarial-invariants"
+    },
+    {
+      "id": "CLAUDE-CROSSCHECK",
+      "severity": "HIGH",
+      "classification": "observed",
+      "title": "High-impact Claude claims now have explicit support states",
+      "detail": "Route drift is source-supported; the 604 binding count remains handoff-only; the unknown-ref mismatch requires exact historical-spine reproduction; exact-ref performance is design-only until browser proof exists.",
+      "evidence": [
+        {
+          "claim_id": "CLAUDE-DEEP-LINK-DRIFT",
+          "claim": "PipelineNews/Companies retained an old root release route while GridAtlas moved to the stable atlas route.",
+          "status": "SUPPORTED_BY_PINNED_SOURCE",
+          "classification": "observed",
+          "evidence": [
+            {
+              "classification": "observed",
+              "category": "old_root_route",
+              "repository": "companies",
+              "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+              "path": "state/atlas-v9-link-audit.json",
+              "line": 9,
+              "excerpt": "\"golden_url\": \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref=13599\","
+            },
+            {
+              "classification": "observed",
+              "category": "old_root_route",
+              "repository": "companies",
+              "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+              "path": "state/atlas-v9-link-contract.json",
+              "line": 3,
+              "excerpt": "\"base_url\": \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/\","
+            },
+            {
+              "classification": "observed",
+              "category": "old_root_route",
+              "repository": "companies",
+              "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+              "path": "state/atlas-v9-link-contract.json",
+              "line": 14,
+              "excerpt": "\"golden_url\": \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref=13599\","
+            },
+            {
+              "classification": "observed",
+              "category": "old_root_route",
+              "repository": "companies",
+              "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+              "path": "state/atlas-v9-link-contract.json",
+              "line": 18,
+              "excerpt": "\"url_template\": \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref={repd_ref}\""
+            },
+            {
+              "classification": "observed",
+              "category": "old_root_route",
+              "repository": "gridatlas",
+              "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+              "path": "scope-of-works/202608301321-scope-of-works.md",
+              "line": 38,
+              "excerpt": "- Last known green route before migration: `/gridatlas/202608300453-atlas-v9/`"
+            },
+            {
+              "classification": "observed",
+              "category": "old_root_route",
+              "repository": "gridatlas",
+              "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+              "path": "state/cross-repo-atlas-v9-milestones.json",
+              "line": 79,
+              "excerpt": "\"base_url\": \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/\","
+            },
+            {
+              "classification": "observed",
+              "category": "old_root_route",
+              "repository": "pipelinenews",
+              "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+              "path": ".github/workflows/202608300522-resume-exact-atlas-pages-promotion.yml",
+              "line": 109,
+              "excerpt": "test \"$atlas_url\" = https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/"
+            },
+            {
+              "classification": "observed",
+              "category": "old_root_route",
+              "repository": "pipelinenews",
+              "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+              "path": "automation/202608301200-extend-pages-atlas-link-v2.py",
+              "line": 78,
+              "excerpt": "== \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/\","
+            },
+            {
+              "classification": "observed",
+              "category": "old_root_route",
+              "repository": "pipelinenews",
+              "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+              "path": "automation/202608301200-extend-pages-atlas-link-v2.py",
+              "line": 116,
+              "excerpt": "== \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref=13599\","
+            },
+            {
+              "classification": "observed",
+              "category": "old_root_route",
+              "repository": "pipelinenews",
+              "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+              "path": "automation/202608301200-extend-pages-atlas-link-v2.py",
+              "line": 233,
+              "excerpt": "and receiver.get(\"base_url\") == \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/\""
+            },
+            {
+              "classification": "observed",
+              "category": "stable_atlas_route",
+              "repository": "gridatlas",
+              "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+              "path": ".github/workflows/202608301321-verify-live.yml",
+              "line": 138,
+              "excerpt": "curl --fail --silent http://127.0.0.1:4173/gridatlas/atlas/current.json >/dev/null && exit 0"
+            },
+            {
+              "classification": "observed",
+              "category": "stable_atlas_route",
+              "repository": "gridatlas",
+              "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+              "path": ".github/workflows/202608301321-verify-live.yml",
+              "line": 145,
+              "excerpt": "GRIDATLAS_URL: http://127.0.0.1:4173/gridatlas/atlas/"
+            },
+            {
+              "classification": "observed",
+              "category": "stable_atlas_route",
+              "repository": "gridatlas",
+              "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+              "path": ".github/workflows/202608301321-verify-live.yml",
+              "line": 152,
+              "excerpt": "GRIDATLAS_URL: http://127.0.0.1:4173/gridatlas/atlas/"
+            },
+            {
+              "classification": "observed",
+              "category": "stable_atlas_route",
+              "repository": "gridatlas",
+              "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+              "path": ".github/workflows/202608301321-verify-live.yml",
+              "line": 198,
+              "excerpt": "GRIDATLAS_URL: https://ventusltd.github.io/gridatlas/atlas/"
+            },
+            {
+              "classification": "observed",
+              "category": "stable_atlas_route",
+              "repository": "gridatlas",
+              "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+              "path": ".github/workflows/202608301321-verify-live.yml",
+              "line": 205,
+              "excerpt": "GRIDATLAS_URL: https://ventusltd.github.io/gridatlas/atlas/"
+            },
+            {
+              "classification": "observed",
+              "category": "stable_atlas_route",
+              "repository": "gridatlas",
+              "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+              "path": "atlas/state/live-set.json",
+              "line": 4,
+              "excerpt": "\"live_route\": \"/gridatlas/atlas/\","
+            },
+            {
+              "classification": "observed",
+              "category": "stable_atlas_route",
+              "repository": "gridatlas",
+              "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+              "path": "atlas/state/live-set.json",
+              "line": 17,
+              "excerpt": "\"route\": \"/gridatlas/atlas/releases/202608300453-atlas-v9/\""
+            },
+            {
+              "classification": "observed",
+              "category": "stable_atlas_route",
+              "repository": "gridatlas",
+              "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+              "path": "scope-of-works/202608301321-01-move-atlas-into-atlas-folder.md",
+              "line": 32,
+              "excerpt": "- Root resolves through `/gridatlas/atlas/` to the same last-known-green application."
+            },
+            {
+              "classification": "observed",
+              "category": "stable_atlas_route",
+              "repository": "gridatlas",
+              "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+              "path": "state/live-set.json",
+              "line": 16,
+              "excerpt": "\"live_url\": \"https://ventusltd.github.io/gridatlas/atlas/\","
+            },
+            {
+              "classification": "observed",
+              "category": "stable_atlas_route",
+              "repository": "gridatlas",
+              "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+              "path": "state/live-set.json",
+              "line": 28,
+              "excerpt": "\"route\": \"/gridatlas/atlas/\","
+            }
+          ]
+        },
+        {
+          "claim_id": "CLAUDE-604-UPPER-BOUND",
+          "claim": "482,030 edges reduce to 604 upper-bound bindings.",
+          "status": "HANDOFF_ONLY_PROVISIONAL",
+          "classification": "inferred",
+          "evidence": [
+            {
+              "source": "202608310033-study/HANDOFFS/202608310116-claude-company-repd-progress.md"
+            }
+          ]
+        },
+        {
+          "claim_id": "CLAUDE-UNKNOWN-REF-MISMATCH",
+          "claim": "A contract asserting zero unknown REPD refs conflicts with a first measurement of 2,128.",
+          "status": "CONTRACT_SIDE_SUPPORTED_MEASUREMENT_UNREPRODUCED",
+          "classification": "contradicted",
+          "evidence": [
+            {
+              "classification": "observed",
+              "category": "unknown_repd_refs",
+              "repository": "companies",
+              "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+              "path": "build/python/202608281337-compact-parquet-companies.py",
+              "line": 707,
+              "excerpt": "\"unknown_repd_refs\": unknown_refs,"
+            },
+            {
+              "classification": "observed",
+              "category": "unknown_repd_refs",
+              "repository": "companies",
+              "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+              "path": "contracts/202608281846-federated-company-repd-relationship-contract-v1.json",
+              "line": 91,
+              "excerpt": "\"unknown_repd_refs\": 0,"
+            },
+            {
+              "classification": "observed",
+              "category": "unknown_repd_refs",
+              "repository": "companies",
+              "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+              "path": "tests/test_202608281337_compact_parquet_companies.py",
+              "line": 238,
+              "excerpt": "\"unknown_repd_refs\": 0,"
+            },
+            {
+              "source": "202608310033-study/HANDOFFS/202608310116-claude-company-repd-progress.md"
+            }
+          ]
+        },
+        {
+          "claim_id": "CLAUDE-EXACT-REF-PERFORMANCE",
+          "claim": "An exact-ref index can avoid DuckDB boot for deep links and resolve under three seconds.",
+          "status": "NOT_OBSERVED",
+          "classification": "inferred",
+          "evidence": []
+        }
+      ],
+      "lane_id": "claude-claim-crosscheck"
+    },
+    {
+      "id": "BINDING-FK-CONTRACT",
+      "severity": "HIGH",
+      "classification": "contradicted",
+      "title": "The provisional decode conflicts with the zero-unknown-REPD contract",
+      "detail": "Claude reported 2,128 unknown REPD references against a contract asserting zero. This may be path/pin mismatch, but it is a failed closure until reproduced against the exact producer spine.",
+      "evidence": [],
+      "lane_id": "companies-binding-forensics"
+    },
+    {
+      "id": "BINDING-NESTED-DECOY",
+      "severity": "HIGH",
+      "classification": "inferred",
+      "title": "A nested relationship reference must never replace the top-level project identity",
+      "detail": "The generated regression fixture proves the safe rule: read only the top-level repd_ref and reject a nested-only record.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "test_result": {
+            "review_status": "UNREVIEWED",
+            "tests": 3,
+            "passed": 3,
+            "classification": "observed"
+          }
+        }
+      ],
+      "lane_id": "companies-binding-forensics"
+    },
+    {
+      "id": "BINDING-UPPER-BOUND",
+      "severity": "HIGH",
+      "classification": "inferred",
+      "title": "The reported 604 bindings remain an upper bound",
+      "detail": "The handoff reports 482,030 candidate edges reduced to 604, but incorporation dates are absent and historical-spine/FK closure is still being checked. The number must not enter a product read model yet.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "source": "202608310033-study/HANDOFFS/202608310116-claude-company-repd-progress.md",
+          "excerpt": "# Claude Company↔REPD progress handoff — 202608310116 > **REVIEW STATUS: UNREVIEWED** > Classification: mixed `observed` / `inferred` > Source: user-supplied Claude progress report. This is audit evidence, not a product finding. ## Reported execution boundary Claude reports a read-only DuckDB 1.3.2 decode of the frozen Company↔REPD candidate Parquet. The stated task order is: 1. verify the contract; 2. run the collision check first; 3. apply the binding rule clause by clause and count survivors; 4. state clause 4 as an upper bound because incorporation dates are absent. No product-repository write or live network request is claimed. ## Reported provisional result - Candidate edges: **482,03…"
+        }
+      ],
+      "lane_id": "companies-binding-forensics"
+    },
+    {
+      "id": "DC-PRIVACY",
+      "severity": "HIGH",
+      "classification": "observed",
+      "title": "Privacy exclusions are present and must remain hard gates",
+      "detail": "No individual director/PSC or residential data is needed to infer demand-side procurement timing.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": ".github/workflows/202608281626-osm-data-centres-candidate.yml",
+          "line": 9,
+          "excerpt": "- \"contracts/202608281626-osm-overpass-retry-privacy.json\""
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": ".github/workflows/202608281626-osm-data-centres-candidate.yml",
+          "line": 62,
+          "excerpt": "$'A\\tcontracts/202608281626-osm-overpass-retry-privacy.json' \\"
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": ".github/workflows/202608281702-osm-data-centres-candidate.yml",
+          "line": 68,
+          "excerpt": "test \"$(git rev-parse HEAD:contracts/202608281626-osm-overpass-retry-privacy.json)\" = \"d1952c80aed8e3407731bfe859c74f3ee15c9812\""
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": ".github/workflows/202608281702-osm-data-centres-candidate.yml",
+          "line": 107,
+          "excerpt": "- name: Run offline hostile fixture, privacy and indexed-query suites"
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "build/python/202608271727-build-data-centres-intelligence.py",
+          "line": 479,
+          "excerpt": "with tempfile.TemporaryDirectory(prefix=f\"dcgb-{GENERATION}-\", dir=output_root) as temporary_name:"
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "build/python/202608281626-osm-overpass-retry.py",
+          "line": 18,
+          "excerpt": "REPAIR_CONTRACT_REL = Path(\"contracts/202608281626-osm-overpass-retry-privacy.json\")"
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "build/python/202608281626-osm-overpass-retry.py",
+          "line": 86,
+          "excerpt": "\"privacy\": privacy_receipt(),"
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "build/python/202608281626-osm-overpass-retry.py",
+          "line": 97,
+          "excerpt": "def privacy_normalise("
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "build/python/202608281626-osm-overpass-retry.py",
+          "line": 128,
+          "excerpt": "values[relationship_index[\"evidence_status\"]] = \"SOURCE_PARTY_WITHHELD_PRIVACY\""
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "build/python/202608281626-osm-overpass-retry.py",
+          "line": 134,
+          "excerpt": "def privacy_receipt() -> dict[str, Any]:"
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "build/python/202608281626-osm-overpass-retry.py",
+          "line": 146,
+          "excerpt": "\"relationship_evidence_status\": \"SOURCE_PARTY_WITHHELD_PRIVACY\","
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "build/python/202608281626-osm-overpass-retry.py",
+          "line": 159,
+          "excerpt": "\"privacy\": privacy_receipt(),"
+        }
+      ],
+      "lane_id": "datacentre-demand-intelligence"
+    },
+    {
+      "id": "DATA-COMPACT-CONSUMERS",
+      "severity": "HIGH",
+      "classification": "observed",
+      "title": "Compact Parquet/DuckDB consumer boundaries are repeatedly stated",
+      "detail": "The repositories contain explicit compactness, hashing and ownership language. The vNext intelligence engine should consume only reviewed relationship/event tables, never a company-master dump.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 7,
+          "excerpt": "## Compact relationship candidate"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 13,
+          "excerpt": "- a compact aggregate report, bounded manifest, DuckDB audit and source evidence."
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 15,
+          "excerpt": "Parquet is written with DuckDB 1.3.2 and ZSTD compression, then independently read back against an exact three-column schema, composite keys, a dataset-level semantic digest and whole-file SHA receipts. Each file is hard-capped at 20 MB and the durable closure at 30 MB total. Descriptive fields, technology, row-level repository provenance and per-row digests are forbidden from the bridges; exact source commits and p…"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 7,
+          "excerpt": "- .github/workflows/202608281337-compact-parquet-companies-candidate.yml"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 9,
+          "excerpt": "- build/python/202608281337-compact-parquet-companies.py"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 10,
+          "excerpt": "- contracts/202608281337-compact-parquet-companies.json"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 11,
+          "excerpt": "- tests/test_202608281337_compact_parquet_companies.py"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 14,
+          "excerpt": "group: companies-house-compact-candidate-202608272155"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 27,
+          "excerpt": "CONTRACT: contracts/202608281337-compact-parquet-companies.json"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 28,
+          "excerpt": "CANDIDATE_BRANCH: candidate/202608272155-compact"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 29,
+          "excerpt": "CANDIDATE_PATH: data/candidates/202608272155-compact"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 63,
+          "excerpt": "'A .github/workflow-history/202608281112-compact-parquet-companies-candidate.yml' \\"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 64,
+          "excerpt": "'A .github/workflows/202608281337-compact-parquet-companies-candidate.yml' \\"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 65,
+          "excerpt": "'A build/python/202608281337-compact-parquet-companies.py' \\"
+        },
+        {
+          "classification": "observed",
+          "category": "compact_boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 66,
+          "excerpt": "'A contracts/202608281337-compact-parquet-companies.json' \\"
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 12,
+          "excerpt": "- `solar-company-repd-relationships-v1.parquet`, containing the exact three-key Solar-to-Company-to-REPD subset derived transiently from pinned REPD technology;"
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 15,
+          "excerpt": "Parquet is written with DuckDB 1.3.2 and ZSTD compression, then independently read back against an exact three-column schema, composite keys, a dataset-level semantic digest and whole-file SHA receipts. Each file is hard-capped at 20 MB and the durable closure at 30 MB total. Descriptive fields, technology, row-level repository provenance and per-row digests are forbidden from the bridges; exact source commits and p…"
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 179,
+          "excerpt": "- name: Install the pinned DuckDB engine"
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 318,
+          "excerpt": "- name: Install the independently pinned DuckDB readback engine"
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 414,
+          "excerpt": "test \"$(jq -r '.datasets.solar_company_repd_relationships.predicate' \"$manifest\")\" = \"pinned_repd.technology = 'solar'\""
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271507-verify-companies-house-candidate.py",
+          "line": 313,
+          "excerpt": "raise RuntimeError(\"Generation source commit is not an exact SHA\")"
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271547-download-planned-archive.py",
+          "line": 14,
+          "excerpt": "raise RuntimeError(\"Unable to load the pinned 202608271507 downloader\")"
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271547-extract-bounded-accounts.py",
+          "line": 16,
+          "excerpt": "raise RuntimeError(\"Unable to load the pinned 202608271507 extractor\")"
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271547-freeze-companies-house-plan.py",
+          "line": 14,
+          "excerpt": "raise RuntimeError(\"Unable to load the pinned 202608271507 planner\")"
+        },
+        {
+          "classification": "observed",
+          "category": "ownership",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271547-verify-companies-house-candidate.py",
+          "line": 49,
+          "excerpt": "raise RuntimeError(\"Unable to load the pinned 202608271507 verifier\")"
+        }
+      ],
+      "lane_id": "federated-data-contracts"
+    },
+    {
+      "id": "TOPOLOGY-SEAMS",
+      "severity": "HIGH",
+      "classification": "inferred",
+      "title": "Cross-repository seams are the highest transition risk",
+      "detail": "Observed 25 directed repository-reference edges in the selected source surface. These references should have executable producer/consumer contract tests.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "app-solar-bess-topology-v8",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "Infinite GitHub Repositories_ Federated Architecture and Migration Plan for a Free Static Grid-Intelligence Platform.md",
+          "line": 118,
+          "excerpt": "\"repoUrl\": \"https://github.com/ventusltd/app-solar-bess-topology-v8\","
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "data-grid-networks",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "Infinite GitHub Repositories_ Federated Architecture and Migration Plan for a Free Static Grid-Intelligence Platform.md",
+          "line": 141,
+          "excerpt": "\"repoUrl\": \"https://github.com/ventusltd/data-grid-networks\","
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "app-",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "Infinite GitHub Repositories_ Federated Architecture and Migration Plan for a Free Static Grid-Intelligence Platform.md",
+          "line": 180,
+          "excerpt": "Spin-up is one command: `gh repo create ventusltd/app-<slug>-v<n> --template ventusltd/template-app --public`, or the “Use this template” button. Because a template generates a fresh single-commit history (not a fork), each app is independent with no parent link. The vendored `vendor/` directory is what makes the repo “self-contained with all dependencies pre-installed.” Dependabot handles the one downside of vendor…"
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "template-app",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "Infinite GitHub Repositories_ Federated Architecture and Migration Plan for a Free Static Grid-Intelligence Platform.md",
+          "line": 180,
+          "excerpt": "Spin-up is one command: `gh repo create ventusltd/app-<slug>-v<n> --template ventusltd/template-app --public`, or the “Use this template” button. Because a template generates a fresh single-commit history (not a fork), each app is independent with no parent link. The vendored `vendor/` directory is what makes the repo “self-contained with all dependencies pre-installed.” Dependabot handles the one downside of vendor…"
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "gridatlas",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": ".github/workflows/catalogue-gridatlas-v9.yml",
+          "line": 28,
+          "excerpt": "GRIDATLAS_REPOSITORY: Ventusltd/gridatlas"
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "pv-arc-protection-circuit",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "dc_cables_knowledge/index.md",
+          "line": 7,
+          "excerpt": "[Open Hardware Disclosure – Module Level DC Arc Suppression And Insulation Fault Disconnection Circuit](https://raw.githubusercontent.com/Ventusltd/pv-arc-protection-circuit/main/Open-Hardware-Disclosure.md)"
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "gridatlas",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "homepage_versions/202608291526-globalgrid2050/manifest.json",
+          "line": 14,
+          "excerpt": "\"repository\": \"Ventusltd/gridatlas\","
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "gridatlas",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "scripts/202608300232-sync-promoted-gridatlas-v9.py",
+          "line": 245,
+          "excerpt": "\"source_repository\": \"Ventusltd/gridatlas\","
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "gridatlas",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "scripts/catalogue_gridatlas_v9.py",
+          "line": 27,
+          "excerpt": "GRIDATLAS_REPOSITORY = \"Ventusltd/gridatlas\""
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "gridatlas",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "state/current-gridatlas-v9.json",
+          "line": 19,
+          "excerpt": "\"source_repository\": \"Ventusltd/gridatlas\","
+        },
+        {
+          "classification": "observed",
+          "source": "globalgrid2050",
+          "target": "gridatlas",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "state/gridatlas-v9-current.json",
+          "line": 13,
+          "excerpt": "\"source_repository\": \"Ventusltd/gridatlas\","
+        },
+        {
+          "classification": "observed",
+          "source": "pipelinenews",
+          "target": "companies",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "README.md",
+          "line": 26,
+          "excerpt": "- [Annual Companies data refresh](https://github.com/Ventusltd/companies/actions/workflows/annual-companies-house-refresh.yml)"
+        },
+        {
+          "classification": "observed",
+          "source": "pipelinenews",
+          "target": "companies",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "README.md",
+          "line": 28,
+          "excerpt": "Companies House processing and the stable annual dataset live in [Ventusltd/companies](https://github.com/Ventusltd/companies). PipelineNews consumes only a pinned compact manifest and cartridges. No workflow above authorises deployment."
+        },
+        {
+          "classification": "observed",
+          "source": "pipelinenews",
+          "target": "companies",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "README.md",
+          "line": 28,
+          "excerpt": "Companies House processing and the stable annual dataset live in [Ventusltd/companies](https://github.com/Ventusltd/companies). PipelineNews consumes only a pinned compact manifest and cartridges. No workflow above authorises deployment."
+        },
+        {
+          "classification": "observed",
+          "source": "pipelinenews",
+          "target": "gridatlas",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+          "line": 186,
+          "excerpt": "--repository Ventusltd/gridatlas \\"
+        },
+        {
+          "classification": "observed",
+          "source": "pipelinenews",
+          "target": "gridatlas",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+          "line": 199,
+          "excerpt": "--repository Ventusltd/gridatlas \\"
+        },
+        {
+          "classification": "observed",
+          "source": "pipelinenews",
+          "target": "gridatlas",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflow-archive/20260830-email-storm/202608291447-atlas-pointer-deep-link-successor.yml",
+          "line": 846,
+          "excerpt": "--repository Ventusltd/gridatlas \\"
+        },
+        {
+          "classification": "observed",
+          "source": "pipelinenews",
+          "target": "gridatlas",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+          "line": 182,
+          "excerpt": "--repository Ventusltd/gridatlas \\"
+        },
+        {
+          "classification": "observed",
+          "source": "pipelinenews",
+          "target": "gridatlas",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+          "line": 194,
+          "excerpt": "--repository Ventusltd/gridatlas \\"
+        },
+        {
+          "classification": "observed",
+          "source": "pipelinenews",
+          "target": "gridatlas",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflow-archive/20260830-email-storm/202608291504-atlas-pointer-deep-link-successor.yml",
+          "line": 821,
+          "excerpt": "--repository Ventusltd/gridatlas \\"
+        }
+      ],
+      "lane_id": "globalgrid-federation-topology"
+    },
+    {
+      "id": "SEAM-ROUTE-DRIFT",
+      "severity": "HIGH",
+      "classification": "observed",
+      "title": "Consumers and producer evidence contain different GridAtlas route generations",
+      "detail": "Observed 12 stale-root-shaped URL occurrence(s) and 0 stable `/gridatlas/atlas/` occurrence(s). Runtime 404 is not asserted by this offline lane; the source-level route drift is proven.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "state/atlas-v9-link-audit.json",
+          "line": 9,
+          "url": "https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref=13599",
+          "route_class": "STALE_ROOT_RELEASE_SHAPE"
+        },
+        {
+          "classification": "observed",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "state/atlas-v9-link-contract.json",
+          "line": 3,
+          "url": "https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/",
+          "route_class": "STALE_ROOT_RELEASE_SHAPE"
+        },
+        {
+          "classification": "observed",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "state/atlas-v9-link-contract.json",
+          "line": 14,
+          "url": "https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref=13599",
+          "route_class": "STALE_ROOT_RELEASE_SHAPE"
+        },
+        {
+          "classification": "observed",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "state/atlas-v9-link-contract.json",
+          "line": 18,
+          "url": "https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref={repd_ref",
+          "route_class": "STALE_ROOT_RELEASE_SHAPE"
+        },
+        {
+          "classification": "observed",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "state/atlas-v9-link-contract.json",
+          "line": 40,
+          "url": "https://ventusltd.github.io/gridatlas/202608292311-atlas-v9/",
+          "route_class": "STALE_ROOT_RELEASE_SHAPE"
+        },
+        {
+          "classification": "observed",
+          "repository": "globalgrid2050",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "homepage_versions/202608291526-globalgrid2050/manifest.json",
+          "line": 5,
+          "url": "https://ventusltd.github.io/gridatlas/202608291239-atlas-v9/?repd_ref=16135",
+          "route_class": "STALE_ROOT_RELEASE_SHAPE"
+        },
+        {
+          "classification": "observed",
+          "repository": "globalgrid2050",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "homepage_versions/202608291526-globalgrid2050/manifest.json",
+          "line": 7,
+          "url": "https://ventusltd.github.io/gridatlas/202608291239-atlas-v9/",
+          "route_class": "STALE_ROOT_RELEASE_SHAPE"
+        },
+        {
+          "classification": "observed",
+          "repository": "globalgrid2050",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "homepage_versions/202608291526-globalgrid2050/manifest.json",
+          "line": 24,
+          "url": "https://ventusltd.github.io/gridatlas/202608291239-atlas-v9/",
+          "route_class": "STALE_ROOT_RELEASE_SHAPE"
+        },
+        {
+          "classification": "observed",
+          "repository": "globalgrid2050",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "homepage_versions/202608291526-globalgrid2050/manifest.json",
+          "line": 50,
+          "url": "https://ventusltd.github.io/gridatlas/202608291239-atlas-v9/",
+          "route_class": "STALE_ROOT_RELEASE_SHAPE"
+        },
+        {
+          "classification": "observed",
+          "repository": "globalgrid2050",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "homepage_versions/202608291526-globalgrid2050/manifest.json",
+          "line": 51,
+          "url": "https://ventusltd.github.io/gridatlas/202608291239-atlas-v9/?repd_ref=16135",
+          "route_class": "STALE_ROOT_RELEASE_SHAPE"
+        },
+        {
+          "classification": "observed",
+          "repository": "globalgrid2050",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "state/current-gridatlas-v9.json",
+          "line": 16,
+          "url": "https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/",
+          "route_class": "STALE_ROOT_RELEASE_SHAPE"
+        },
+        {
+          "classification": "observed",
+          "repository": "globalgrid2050",
+          "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+          "path": "state/gridatlas-v9-current.json",
+          "line": 9,
+          "url": "https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/",
+          "route_class": "STALE_ROOT_RELEASE_SHAPE"
+        }
+      ],
+      "lane_id": "gridatlas-seam-contracts"
+    },
+    {
+      "id": "IDENTITY-NEWS-GATE",
+      "severity": "HIGH",
+      "classification": "observed",
+      "title": "News eligibility is explicitly separate from relationship context",
+      "detail": "Several paths encode eligible_for_news_signal. A related mention must never become project identity or a register fact.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608272130-sector-intelligence-candidate.yml",
+          "line": 255,
+          "excerpt": "assert.ok(ledger.datasets.sector_items.rows.every(({ eligible_for_news_signal }) => eligible_for_news_signal === false));"
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 805,
+          "excerpt": "- Project-table news signals come only from canonical PRIMARY_MATCH items."
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 839,
+          "excerpt": "- PRIMARY_MATCH and eligible_for_news_signal true on every canonical item."
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 903,
+          "excerpt": "- Eligible for news signal: true"
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/202608260159-pipelinenews/contracts/release.v9.5.1.json",
+          "line": 36,
+          "excerpt": "\"related_development_drives_news_signal\": false,"
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/consumer_v1/tests/verify_consumer.py",
+          "line": 57,
+          "excerpt": "forbidden = {\"repd_ref\", \"gg_project_id\", \"project_id\", \"project_signal_eligible\", \"eligible_for_news_signal\"}"
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/newsv1/tests/check_newsv1.mjs",
+          "line": 182,
+          "excerpt": "&& item.eligible_for_news_signal === true"
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/newsv2/tests/check_newsv2.mjs",
+          "line": 83,
+          "excerpt": "assert.equal(assertion.identity.eligible_for_news_signal, true);"
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/v1-9-legacy-lessons/uk_renewables_pipeline/v7/README.md",
+          "line": 82,
+          "excerpt": "These decisions refine V7.3 and later releases. They do not alter the approved V7.2 interface checkpoints, the live V7.1 product or the inherited V5 NEWS SIGNAL."
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/v1-9-legacy-lessons/uk_renewables_pipeline/v7/README.md",
+          "line": 135,
+          "excerpt": "The inherited V5 NEWS SIGNAL is part of the MVP. It works for some projects and fails for others. It must remain visibly external and unverified, must never overwrite REPD status, and must not be silently repaired during V7.1 or V7.2. Its discovery, identity and event behaviour is refined only in V7.3 under the labelled North Star corpus."
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/v1-9-legacy-lessons/uk_renewables_pipeline/v7/README.md",
+          "line": 152,
+          "excerpt": "Extract the live V5-derived MVP into small modules without changing visible behaviour, data, matching or NEWS SIGNAL decisions."
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/v1-9-legacy-lessons/uk_renewables_pipeline/v7/README.md",
+          "line": 166,
+          "excerpt": "Replace the legacy V5 project dependency with the strongest V6 engineering without changing the inherited V5 NEWS SIGNAL engine."
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/v1-9-legacy-lessons/uk_renewables_pipeline/v7/README.md",
+          "line": 178,
+          "excerpt": "- V5 NEWS SIGNAL remains external legacy intelligence and cannot alter canonical facts."
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/v1-9-legacy-lessons/uk_renewables_pipeline/v7/README.md",
+          "line": 180,
+          "excerpt": "Exit gate: every displayed utility project has canonical identity and provenance while the separately labelled legacy NEWS SIGNAL remains behaviourally unchanged; a fresh checkout of the exact committed SHA reproduces every file hash, count and validation result."
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/v1-9-legacy-lessons/uk_renewables_pipeline/v7/README.md",
+          "line": 186,
+          "excerpt": "Replace the inherited V5 NEWS SIGNAL bindings only after V7.1 and V7.2 are proven."
+        }
+      ],
+      "lane_id": "pipelinenews-identity"
+    },
+    {
+      "id": "TIMING-NEWS-NONAUTHORITY",
+      "severity": "HIGH",
+      "classification": "inferred",
+      "title": "News is corroboration, not a register fact",
+      "detail": "Current news code is rich enough to explain events, but allowing headlines to create a lane would collapse the stated commercial discipline.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 25,
+          "excerpt": "PIPELINENEWS_COMMIT: \"35f35ada161223fb3ee19e525664ee7f17df1ddd\""
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 89,
+          "excerpt": "test \"$(jq -r '.inputs.pipelinenews_commit' \"$CONTRACT\")\" = \"$PIPELINENEWS_COMMIT\""
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 168,
+          "excerpt": "repository: Ventusltd/pipelinenews"
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 169,
+          "excerpt": "ref: ${{ env.PIPELINENEWS_COMMIT }}"
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 188,
+          "excerpt": "test \"$(git -C work/repd-source rev-parse HEAD)\" = \"$PIPELINENEWS_COMMIT\""
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 307,
+          "excerpt": "repository: Ventusltd/pipelinenews"
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 308,
+          "excerpt": "ref: ${{ env.PIPELINENEWS_COMMIT }}"
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608262245-companies-house-source.py",
+          "line": 12,
+          "excerpt": "UA = \"Ventus-PipelineNews/1.0 (+https://github.com/Ventusltd/pipelinenews)\""
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608262245-compile-companies-house.py",
+          "line": 2,
+          "excerpt": "\"\"\"Compile public Companies House facts into bounded PipelineNews cartridges.\"\"\""
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271507-verify-companies-house-candidate.py",
+          "line": 17,
+          "excerpt": "PIPELINENEWS_COMMIT = \"35f35ada161223fb3ee19e525664ee7f17df1ddd\""
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271507-verify-companies-house-candidate.py",
+          "line": 294,
+          "excerpt": "result[\"news_identity_policy\"] = \"NEWS_MAY_ANNOTATE_BUT_NEVER_ESTABLISH_IDENTITY\""
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271507-verify-companies-house-candidate.py",
+          "line": 425,
+          "excerpt": "\"pipelinenews_commit\": PIPELINENEWS_COMMIT,"
+        }
+      ],
+      "lane_id": "pipelinenews-timing-engine"
+    },
+    {
+      "id": "TIMING-TWO-LANES",
+      "severity": "HIGH",
+      "classification": "inferred",
+      "title": "Funding and procurement must remain separate authoritative lanes",
+      "detail": "The scanned repositories contain funding/account and planning/procurement language, but the commercial window must only emerge after reviewed identity and both observed lanes.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 3,
+          "excerpt": "Companies House public-data processing for Deploy Net Zero."
+        },
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 5,
+          "excerpt": "The repository retains reviewed acquisition and accounts-extraction code. The current recovery checkpoint, `202608281337`, builds a key-only relationship-and-report candidate; it does not publish or overwrite a stable dataset."
+        },
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 9,
+          "excerpt": "GitHub Actions provides the transient compute, while the GitHub REST API verifies run and retained-artifact provenance. The planned Companies House bulk archive is downloaded once into temporary runner storage; the Companies House REST API is not used. The expected 294,904-company selected-union closure is a validation measure, not a durable company dataset; the aggregate report separately records the full number of…"
+        },
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 21,
+          "excerpt": "The retained annual workflow documents the earlier rolling electronic-accounts process. It is audit history only and must not be dispatched as a publication route. Checkpoint `202608281112` is the sole authorised Companies recovery path."
+        },
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 25,
+          "excerpt": "- Companies House is credited as the public-register source."
+        },
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 31,
+          "excerpt": "- Raw Companies House archives are processed in temporary Actions storage and are not committed."
+        },
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 33,
+          "excerpt": "Source: Companies House. Public-register information retrieved and processed by Deploy Net Zero."
+        },
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 132,
+          "excerpt": "{\"name\":\"accounts-202608272155-33123064395-0\",\"digest\":\"sha256:73cfb68813a6524b23eee4ae45504d3a2bed2f0035116cc0efa049c2b62d2b1c\"},"
+        },
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 133,
+          "excerpt": "{\"name\":\"accounts-202608272155-33123064395-1\",\"digest\":\"sha256:3da269b26136b8ca6b32e8200ae19527d8fb83f7836a661685fab78662047682\"},"
+        },
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 134,
+          "excerpt": "{\"name\":\"accounts-202608272155-33123064395-2\",\"digest\":\"sha256:4f37aa9ef85a32270d297cfbcd37606c5cad04b25af3db0c881a8324a0ccaf03\"}"
+        },
+        {
+          "classification": "observed",
+          "category": "procurement",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608272035-verify-companies-house-candidate.py",
+          "line": 63,
+          "excerpt": "\"Renewable Energy Planning Database source: Department for Energy Security and Net Zero; \""
+        },
+        {
+          "classification": "observed",
+          "category": "procurement",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608272035-verify-companies-house-candidate.py",
+          "line": 66,
+          "excerpt": "\"source_page\": \"https://www.gov.uk/government/publications/renewable-energy-planning-database-quarterly-extract\","
+        },
+        {
+          "classification": "observed",
+          "category": "procurement",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608272035-verify-companies-house-candidate.py",
+          "line": 82,
+          "excerpt": "\"dataset\": \"DESNZ Renewable Energy Planning Database Q2 2026\","
+        },
+        {
+          "classification": "observed",
+          "category": "procurement",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "contracts/202608281846-federated-company-repd-relationship-contract-v1.json",
+          "line": 46,
+          "excerpt": "\"authority\": \"DESNZ Renewable Energy Planning Database Ref ID\","
+        },
+        {
+          "classification": "observed",
+          "category": "procurement",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 32,
+          "excerpt": "- The current official-source frontier is 60 of 6,870 reference groups with 174 observations: 29 authority-safe primary matches and 145 abstentions. The planning source is degraded, so degradation is not treated as authority proof."
+        },
+        {
+          "classification": "observed",
+          "category": "procurement",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 40,
+          "excerpt": "- Every release must state how it advances market intelligence for the fastest possible path to net zero; report the official REPD progress state of Solar and BESS; and answer when and how projects connect. Missing grid-connection evidence is published as `UNKNOWN` or `ABSTAIN`, never inferred from planning, capacity, proximity or headlines."
+        },
+        {
+          "classification": "observed",
+          "category": "procurement",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 42,
+          "excerpt": "- The current manual-recovery release retains 3,563 Solar projects and 1,609 BESS projects, restores the full newspaper/table workflow, and keeps verified grid-connection dates and methods `UNKNOWN` pending exact network-owner, connection-agreement, register, energisation or planning-document evidence."
+        }
+      ],
+      "lane_id": "pipelinenews-timing-engine"
+    },
+    {
+      "id": "CVAA-SEAM-VACCINES",
+      "severity": "MEDIUM",
+      "classification": "inferred",
+      "title": "Federation pointer drift and nested-identity ambiguity deserve executable vaccines",
+      "detail": "The strongest overnight candidates are a consumer-pointer-current vaccine and a top-level-identity-only vaccine.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 5,
+          "excerpt": "The repository retains reviewed acquisition and accounts-extraction code. The current recovery checkpoint, `202608281337`, builds a key-only relationship-and-report candidate; it does not publish or overwrite a stable dataset."
+        },
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 17,
+          "excerpt": "Publication is restricted to an immutable candidate branch. `main`, `data/current/`, Pages and releases remain unchanged. Historical workflows live under `.github/workflow-history/` as inert audit evidence; checkpoint `202608281337` is the sole active publication path."
+        },
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 387,
+          "excerpt": "test ! -e data/current"
+        },
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 453,
+          "excerpt": "if git diff --cached --name-only | grep -Eq '(^|/)current/|(^|/)pages/|(^|/)releases/'; then"
+        },
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+          "line": 81,
+          "excerpt": "release_id=\"$(jq -r '.current.release_id // empty' /tmp/atlas-state.json)\""
+        },
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+          "line": 82,
+          "excerpt": "live_url=\"$(jq -r '.current.live_url // empty' /tmp/atlas-state.json)\""
+        },
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+          "line": 83,
+          "excerpt": "source_commit=\"$(jq -r '.current.source_commit // empty' /tmp/atlas-state.json)\""
+        },
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+          "line": 84,
+          "excerpt": "publication_commit=\"$(jq -r '.current.publication_commit // empty' /tmp/atlas-state.json)\""
+        },
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+          "line": 93,
+          "excerpt": "test \"$(jq -r '.current.deep_link_receiver.identity_rule // empty' /tmp/atlas-state.json)\" = EXACT_REPD_REF_ONLY"
+        },
+        {
+          "classification": "observed",
+          "category": "pointer",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+          "line": 94,
+          "excerpt": "jq -e '.current.deep_link_receiver.synthetic_receiver == false' /tmp/atlas-state.json >/dev/null"
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 5,
+          "excerpt": "The repository retains reviewed acquisition and accounts-extraction code. The current recovery checkpoint, `202608281337`, builds a key-only relationship-and-report candidate; it does not publish or overwrite a stable dataset."
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 9,
+          "excerpt": "GitHub Actions provides the transient compute, while the GitHub REST API verifies run and retained-artifact provenance. The planned Companies House bulk archive is downloaded once into temporary runner storage; the Companies House REST API is not used. The expected 294,904-company selected-union closure is a validation measure, not a durable company dataset; the aggregate report separately records the full number of…"
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 17,
+          "excerpt": "Publication is restricted to an immutable candidate branch. `main`, `data/current/`, Pages and releases remain unchanged. Historical workflows live under `.github/workflow-history/` as inert audit evidence; checkpoint `202608281337` is the sole active publication path."
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 32,
+          "excerpt": "source-boundary:"
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 39,
+          "excerpt": "source_sha: ${{ steps.boundary.outputs.source_sha }}"
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 46,
+          "excerpt": "- id: boundary"
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 155,
+          "excerpt": "needs: source-boundary"
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 164,
+          "excerpt": "ref: ${{ needs.source-boundary.outputs.source_sha }}"
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 235,
+          "excerpt": "--source-commit \"${{ needs.source-boundary.outputs.source_sha }}\" \\"
+        },
+        {
+          "classification": "observed",
+          "category": "boundary",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 282,
+          "excerpt": "--expected-source-commit \"${{ needs.source-boundary.outputs.source_sha }}\" \\"
+        }
+      ],
+      "lane_id": "cvaa-vaccine-coverage"
+    },
+    {
+      "id": "DC-SAME-CONTRACTS",
+      "severity": "MEDIUM",
+      "classification": "inferred",
+      "title": "Demand-side intelligence can reuse evidence and identity contracts",
+      "detail": "Data-centre evidence should use source receipts, site identity, company bindings, abstention and compact Parquet outputs just like generation-side intelligence.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "datacentre",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 1,
+          "excerpt": "# Data Centres GB"
+        },
+        {
+          "classification": "observed",
+          "category": "datacentre",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 3,
+          "excerpt": "Open-source, provenance-first tooling for compiling United Kingdom data-centre source records into compact Parquet, DuckDB-readable relationship tables and a small map export."
+        },
+        {
+          "classification": "observed",
+          "category": "datacentre",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 21,
+          "excerpt": "data/facilities/generation=202608281053/source=OPENSTREETMAP/osm-data-centre-elements-v1.parquet"
+        },
+        {
+          "classification": "observed",
+          "category": "datacentre",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 22,
+          "excerpt": "data/relationships/generation=202608281053/data-centre-company-relationships-v1.parquet"
+        },
+        {
+          "classification": "observed",
+          "category": "datacentre",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 23,
+          "excerpt": "exports/202608281053-osm-data-centres.geojson"
+        },
+        {
+          "classification": "observed",
+          "category": "datacentre",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 24,
+          "excerpt": "reports/202608281053-osm-data-centres-audit.json"
+        },
+        {
+          "classification": "observed",
+          "category": "datacentre",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 55,
+          "excerpt": "GET /v1/data-centres/sources"
+        },
+        {
+          "classification": "observed",
+          "category": "datacentre",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 56,
+          "excerpt": "GET /v1/data-centres"
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 3,
+          "excerpt": "Open-source, provenance-first tooling for compiling United Kingdom data-centre source records into compact Parquet, DuckDB-readable relationship tables and a small map export."
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 22,
+          "excerpt": "data/relationships/generation=202608281053/data-centre-company-relationships-v1.parquet"
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 29,
+          "excerpt": "The company relationship Parquet is deliberately conservative. It retains raw OSM operator/owner strings, but asserts no company number, computes no score and marks every row `ABSTAIN` / `eligible_for_join=false`. A later resolver must use a pinned Companies Parquet generation and verified Companies House numbers; this producer makes zero Companies requests."
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 64,
+          "excerpt": "The BBC report [“Data centres could pay hundreds of millions in deposits for power demands”](https://www.bbc.co.uk/news/articles/c9q90q9qnn2o) is news context, not facility data. PipelineNews already carries its link behind three quarantined `DATA_CENTRES` context cards. This repository also defines a one-row link-only owner evidence record for a future pinned `SOURCE_METADATA` projection; it stores no article body,…"
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 71,
+          "excerpt": "- OSM-derived Parquet, relationships and GeoJSON: ODbL 1.0."
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": ".github/workflows/202608281053-osm-data-centres-candidate.yml",
+          "line": 153,
+          "excerpt": "\"data/relationships/generation=202608281053/data-centre-company-relationships-v1.parquet\""
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": ".github/workflows/202608281053-osm-data-centres-candidate.yml",
+          "line": 167,
+          "excerpt": "data/relationships/generation=202608281053/data-centre-company-relationships-v1.parquet \\"
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": ".github/workflows/202608281053-osm-data-centres-candidate.yml",
+          "line": 172,
+          "excerpt": "\"data/relationships/generation=202608281053/data-centre-company-relationships-v1.parquet\""
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": ".github/workflows/202608281626-osm-data-centres-candidate.yml",
+          "line": 188,
+          "excerpt": "\"data/relationships/generation=202608281053/data-centre-company-relationships-v1.parquet\""
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": ".github/workflows/202608281626-osm-data-centres-candidate.yml",
+          "line": 202,
+          "excerpt": "data/relationships/generation=202608281053/data-centre-company-relationships-v1.parquet \\"
+        }
+      ],
+      "lane_id": "datacentre-demand-intelligence"
+    },
+    {
+      "id": "DATA-MANIFEST-CLOSURE",
+      "severity": "MEDIUM",
+      "classification": "observed",
+      "title": "Manifests and hashes are common but seam-level closure still matters",
+      "detail": "A file hash proves bytes, not that producer and consumer agree on identifiers, schema and validity windows.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 13,
+          "excerpt": "- a compact aggregate report, bounded manifest, DuckDB audit and source evidence."
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 15,
+          "excerpt": "Parquet is written with DuckDB 1.3.2 and ZSTD compression, then independently read back against an exact three-column schema, composite keys, a dataset-level semantic digest and whole-file SHA receipts. Each file is hard-capped at 20 MB and the durable closure at 30 MB total. Descriptive fields, technology, row-level repository provenance and per-row digests are forbidden from the bridges; exact source commits and p…"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 74,
+          "excerpt": "test \"$(sha256sum .github/workflow-history/202608281112-compact-parquet-companies-candidate.yml | cut -d' ' -f1)\" = 0cf0be7d09137a71e77be455966d2f1b342a3540c147867edeee9eab2013aafa"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 103,
+          "excerpt": "test \"$(jq -r '.outputs.manifest' \"$CONTRACT\")\" = manifest-compact-v1.json"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 111,
+          "excerpt": "test \"$(jq '[.relationship_schema[].name] | map(select(. == \"technology\" or . == \"relationship_json\" or . == \"relationship_sha256\" or contains(\"repository\") or contains(\"commit\") or contains(\"name\") or contains(\"url\"))) | length' \"$CONTRACT\")\" -eq 0"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 131,
+          "excerpt": "{\"name\":\"companies-plan-202608272155-33123064395\",\"digest\":\"sha256:5458cb47d45107be3468472da15d02f18e0b5c0992f10c594af6897f2aea8aaa\"},"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 132,
+          "excerpt": "{\"name\":\"accounts-202608272155-33123064395-0\",\"digest\":\"sha256:73cfb68813a6524b23eee4ae45504d3a2bed2f0035116cc0efa049c2b62d2b1c\"},"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 133,
+          "excerpt": "{\"name\":\"accounts-202608272155-33123064395-1\",\"digest\":\"sha256:3da269b26136b8ca6b32e8200ae19527d8fb83f7836a661685fab78662047682\"},"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 134,
+          "excerpt": "{\"name\":\"accounts-202608272155-33123064395-2\",\"digest\":\"sha256:4f37aa9ef85a32270d297cfbcd37606c5cad04b25af3db0c881a8324a0ccaf03\"}"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 173,
+          "excerpt": "/data/manifests/202608261927-build-manifest-v9-1.json"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 208,
+          "excerpt": "test \"$(sha256sum work/plan/plan.json | cut -d' ' -f1)\" = 4451ed5da8cc2f9246f2e6cc06f120faec8efeb8e19c3bac3919975073e7025e"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 209,
+          "excerpt": "test \"$(sha256sum work/plan/rest-evidence.json | cut -d' ' -f1)\" = a6f6334f4d878644183cd2261caa258a16c8bbdd9f5bf547b75cfc44b77dac6f"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 214,
+          "excerpt": "--receipt work/months/receipt-3.json"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 228,
+          "excerpt": "--receipts work/months \\"
+        },
+        {
+          "classification": "observed",
+          "category": "manifest",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 253,
+          "excerpt": "test -f work/candidate/manifest-compact-v1.json"
+        }
+      ],
+      "lane_id": "federated-data-contracts"
+    },
+    {
+      "id": "SEAM-IDENTITY-PARAMETERS",
+      "severity": "MEDIUM",
+      "classification": "observed",
+      "title": "Producer and receiver contracts discuss repd_ref and technology differently",
+      "detail": "The lane records exact references to both parameters so a human can decide whether technology is identity or corroborating metadata.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "repd_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 104,
+          "excerpt": "test \"$(jq -c '[.relationship_schema[].name]' \"$CONTRACT\")\" = '[\"company_number\",\"repd_ref\",\"evidence_type\"]'"
+        },
+        {
+          "classification": "observed",
+          "category": "repd_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 105,
+          "excerpt": "test \"$(jq -c '[.solar_relationship_schema[].name]' \"$CONTRACT\")\" = '[\"company_number\",\"repd_ref\",\"evidence_type\"]'"
+        },
+        {
+          "classification": "observed",
+          "category": "repd_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 411,
+          "excerpt": "test \"$(jq -c '.datasets.company_repd_candidates.schema_readback | map(.name)' \"$manifest\")\" = '[\"company_number\",\"repd_ref\",\"evidence_type\"]'"
+        },
+        {
+          "classification": "observed",
+          "category": "repd_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 412,
+          "excerpt": "test \"$(jq -c '.datasets.solar_company_repd_relationships.schema_readback | map(.name)' \"$manifest\")\" = '[\"company_number\",\"repd_ref\",\"evidence_type\"]'"
+        },
+        {
+          "classification": "observed",
+          "category": "repd_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+          "line": 46,
+          "excerpt": "test \"$(jq -c '[.relationship_schema[].name]' \"$COMPANIES_CONTRACT\")\" = '[\"company_number\",\"repd_ref\",\"evidence_type\"]'"
+        },
+        {
+          "classification": "observed",
+          "category": "repd_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+          "line": 47,
+          "excerpt": "test \"$(jq -c '[.solar_relationship_schema[].name]' \"$COMPANIES_CONTRACT\")\" = '[\"company_number\",\"repd_ref\",\"evidence_type\"]'"
+        },
+        {
+          "classification": "observed",
+          "category": "repd_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+          "line": 105,
+          "excerpt": "\"${live_url}?repd_ref=${GOLDEN_REPD_REF}\")\""
+        },
+        {
+          "classification": "observed",
+          "category": "repd_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+          "line": 106,
+          "excerpt": "test \"$effective\" = \"${live_url}?repd_ref=${GOLDEN_REPD_REF}\""
+        },
+        {
+          "classification": "observed",
+          "category": "repd_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+          "line": 152,
+          "excerpt": "template = f'{atlas_url}?repd_ref={{repd_ref}}'"
+        },
+        {
+          "classification": "observed",
+          "category": "repd_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+          "line": 153,
+          "excerpt": "golden = f'{atlas_url}?repd_ref={os.environ[\"GOLDEN_REPD_REF\"]}'"
+        },
+        {
+          "classification": "observed",
+          "category": "technology_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 12,
+          "excerpt": "- `solar-company-repd-relationships-v1.parquet`, containing the exact three-key Solar-to-Company-to-REPD subset derived transiently from pinned REPD technology;"
+        },
+        {
+          "classification": "observed",
+          "category": "technology_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 15,
+          "excerpt": "Parquet is written with DuckDB 1.3.2 and ZSTD compression, then independently read back against an exact three-column schema, composite keys, a dataset-level semantic digest and whole-file SHA receipts. Each file is hard-capped at 20 MB and the durable closure at 30 MB total. Descriptive fields, technology, row-level repository provenance and per-row digests are forbidden from the bridges; exact source commits and p…"
+        },
+        {
+          "classification": "observed",
+          "category": "technology_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 111,
+          "excerpt": "test \"$(jq '[.relationship_schema[].name] | map(select(. == \"technology\" or . == \"relationship_json\" or . == \"relationship_sha256\" or contains(\"repository\") or contains(\"commit\") or contains(\"name\") or contains(\"url\"))) | length' \"$CONTRACT\")\" -eq 0"
+        },
+        {
+          "classification": "observed",
+          "category": "technology_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 414,
+          "excerpt": "test \"$(jq -r '.datasets.solar_company_repd_relationships.predicate' \"$manifest\")\" = \"pinned_repd.technology = 'solar'\""
+        },
+        {
+          "classification": "observed",
+          "category": "technology_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271507-verify-companies-house-candidate.py",
+          "line": 251,
+          "excerpt": "\"technology\": project.get(\"technology\", \"\"),"
+        },
+        {
+          "classification": "observed",
+          "category": "technology_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271507-verify-companies-house-candidate.py",
+          "line": 275,
+          "excerpt": "\"technology\": project.get(\"technology\"),"
+        },
+        {
+          "classification": "observed",
+          "category": "technology_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608272035-verify-companies-house-candidate.py",
+          "line": 49,
+          "excerpt": "(\"technology\", \"VARCHAR\", True),"
+        },
+        {
+          "classification": "observed",
+          "category": "technology_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608272035-verify-companies-house-candidate.py",
+          "line": 110,
+          "excerpt": "\"repd_name_candidates[].technology\","
+        },
+        {
+          "classification": "observed",
+          "category": "technology_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608272035-verify-companies-house-candidate.py",
+          "line": 265,
+          "excerpt": "relationship.get(\"technology\") or None,"
+        },
+        {
+          "classification": "observed",
+          "category": "technology_parameter",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608281112-compact-parquet-companies.py",
+          "line": 161,
+          "excerpt": "(\"technology\", \"VARCHAR\", False),"
+        }
+      ],
+      "lane_id": "gridatlas-seam-contracts"
+    },
+    {
+      "id": "COLLECTOR-MONOLITH",
+      "severity": "MEDIUM",
+      "classification": "observed",
+      "title": "Current discovery runners are large orchestration units",
+      "detail": "Observed 2 discovery runners above 30 kB. Extraction should preserve behaviour while separating acquisition, evidence and identity.",
+      "evidence": [
+        {
+          "path": "discovery/javascript/202608270844-live-news-runner.mjs",
+          "bytes": 54293
+        },
+        {
+          "path": "discovery/javascript/202608272130-sector-intelligence-runner.mjs",
+          "bytes": 45523
+        }
+      ],
+      "lane_id": "pipelinenews-collectors"
+    },
+    {
+      "id": "COLLECTOR-STATIC-EVIDENCE",
+      "severity": "MEDIUM",
+      "classification": "observed",
+      "title": "Frozen and approved evidence is mixed with runner code",
+      "detail": "Hard-coded articles, gazetteers or frozen generic feeds are present. They should become separately hashed fixtures or reviewed ledgers, not disappear.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/discoveryv1/data/discovery_mentions.json",
+          "line": 52,
+          "excerpt": "\"reason\": \"CLOSED_GAZETTEER_GATES_PASSED\","
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "build/javascript/202608272130-verify-v8-fast-browser.mjs",
+          "line": 384,
+          "excerpt": "assert.equal(sha256(genericBytes), contract.frozen_generic_news.sha256);"
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "build/javascript/202608272130-verify-v8-fast-browser.mjs",
+          "line": 387,
+          "excerpt": "assert.equal(manifest.outputs.some(({ path: relative }) => relative === contract.frozen_generic_news.path), false);"
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "discovery/javascript/202608270844-bbc-enrichment.mjs",
+          "line": 454,
+          "excerpt": "return Object.freeze({ outcome: 'ABSTAIN', reason: matches.length ? 'AMBIGUOUS_IDENTITY' : 'NO_CLOSED_GAZETTEER_MATCH', repd_ref: null });"
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "discovery/javascript/202608270844-live-news-runner.mjs",
+          "line": 40,
+          "excerpt": "const APPROVED_ARTICLES = Object.freeze(["
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "discovery/javascript/202608270844-live-news-runner.mjs",
+          "line": 292,
+          "excerpt": "'closed_gazetteer',"
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "discovery/javascript/202608270844-live-news-runner.mjs",
+          "line": 358,
+          "excerpt": "'primary_match_requires_closed_gazetteer',"
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "discovery/javascript/202608270844-live-news-runner.mjs",
+          "line": 367,
+          "excerpt": "primary_match_requires_closed_gazetteer: true,"
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "discovery/javascript/202608270844-live-news-runner.mjs",
+          "line": 397,
+          "excerpt": "if (!Array.isArray(contract.closed_gazetteer) || contract.closed_gazetteer.length !== 4) fail('CONTRACT_GAZETTEER_INVALID');"
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "discovery/javascript/202608270844-live-news-runner.mjs",
+          "line": 399,
+          "excerpt": "for (const entry of contract.closed_gazetteer) {"
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "discovery/javascript/202608270844-live-news-runner.mjs",
+          "line": 429,
+          "excerpt": "const primaryGazetteer = contract.closed_gazetteer"
+        },
+        {
+          "classification": "observed",
+          "category": "hardcoded_evidence",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "discovery/javascript/202608270844-live-news-runner.mjs",
+          "line": 462,
+          "excerpt": "articles: APPROVED_ARTICLES.map((article) => ({ ...article, related_components: article.related_components.map((item) => ({ ...item })) })),"
+        }
+      ],
+      "lane_id": "pipelinenews-collectors"
+    },
+    {
+      "id": "IDENTITY-QUERY-CONTEXT",
+      "severity": "MEDIUM",
+      "classification": "observed",
+      "title": "Query context is discussed as a non-identity signal",
+      "detail": "The current contract contains a query-context rule. The binder should enforce evidence returned by the source rather than trust the search query that found it.",
+      "evidence": [],
+      "lane_id": "pipelinenews-identity"
+    },
+    {
+      "id": "TIMING-RETRACTIONS",
+      "severity": "MEDIUM",
+      "classification": "inferred",
+      "title": "Retractions, contradictions and staleness require explicit transitions",
+      "detail": "The vNext state machine must preserve negative changes rather than overwrite the latest state.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300327-bound-hourly-gridatlas-link-mission.yml",
+          "line": 74,
+          "excerpt": "'mission window guard',"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300435-five-hour-key-only-atlas-watchdog.yml",
+          "line": 36,
+          "excerpt": "- name: Enforce bounded five-hour mission window"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300435-five-hour-key-only-atlas-watchdog.yml",
+          "line": 37,
+          "excerpt": "id: window"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300435-five-hour-key-only-atlas-watchdog.yml",
+          "line": 51,
+          "excerpt": "if: steps.window.outputs.active == 'true'"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300435-five-hour-key-only-atlas-watchdog.yml",
+          "line": 59,
+          "excerpt": "if: steps.window.outputs.active == 'true'"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300435-five-hour-key-only-atlas-watchdog.yml",
+          "line": 86,
+          "excerpt": "if: steps.window.outputs.active == 'true'"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300435-five-hour-key-only-atlas-watchdog.yml",
+          "line": 155,
+          "excerpt": "if: always() && steps.window.outputs.active == 'true'"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271507-freeze-companies-house-plan.py",
+          "line": 255,
+          "excerpt": "window = headers.get(\"x-ratelimit-window\", \"\")"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271507-freeze-companies-house-plan.py",
+          "line": 264,
+          "excerpt": "\"rate_window\": window,"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271524-news-chronology-candidate.yml",
+          "line": 139,
+          "excerpt": "assert.deepEqual(manifest.first_window_bbc_article_ids, ["
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608272015-mobile-orientation-candidate.yml",
+          "line": 596,
+          "excerpt": ".sidebar,.header,.meta,.news-tools,.news-pager,.filters,.tablewrap,.project-window-controls{display:none!important}"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608272015-mobile-orientation-candidate.yml",
+          "line": 666,
+          "excerpt": "\".project-window-controls\","
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608272048-mobile-orientation-candidate.yml",
+          "line": 597,
+          "excerpt": ".sidebar,.header,.meta,.news-tools,.news-pager,.filters,.tablewrap,.project-window-controls{display:none!important}"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608272048-mobile-orientation-candidate.yml",
+          "line": 667,
+          "excerpt": "\".project-window-controls\","
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608282200-federated-relationship-candidate.yml",
+          "line": 314,
+          "excerpt": "assert.ok(runtime.includes(\"const WINDOW_SIZE = 100;\"));"
+        }
+      ],
+      "lane_id": "pipelinenews-timing-engine"
+    },
+    {
+      "id": "WORKFLOW-CONCURRENCY",
+      "severity": "MEDIUM",
+      "classification": "inferred",
+      "title": "Long-running automation needs explicit overlap control and recovery",
+      "detail": "The overnight audit uses source pinning, lane artifacts, a single aggregator and a same-repository watchdog to avoid competing pushes.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 16,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 16,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+          "line": 6,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+          "line": 16,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+          "line": 15,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608272120-bounded-companies-house-candidate.yml",
+          "line": 15,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608272155-bounded-companies-house-candidate.yml",
+          "line": 15,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608280327-resume-bounded-companies-house-candidate.yml",
+          "line": 9,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608280630-resume-compressed-companies-house-candidate.yml",
+          "line": 10,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608280744-resume-compressed-companies-house-candidate.yml",
+          "line": 9,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 29,
+          "excerpt": "timeout-minutes: 5"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 64,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 83,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 130,
+          "excerpt": "timeout-minutes: 180"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 191,
+          "excerpt": "timeout-minutes: 180"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 266,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 29,
+          "excerpt": "timeout-minutes: 5"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 64,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 87,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 134,
+          "excerpt": "timeout-minutes: 180"
+        }
+      ],
+      "lane_id": "workflow-governance"
+    },
+    {
+      "id": "WORKFLOW-WRITE-SURFACE",
+      "severity": "MEDIUM",
+      "classification": "observed",
+      "title": "Write-capable and network-capable workflow lines are widespread",
+      "detail": "These are evidence-line counts, not a claim that every workflow is active or unsafe. Every product workflow still needs bounded output and promotion gates.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "workflow_dispatch",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 14,
+          "excerpt": "workflow_dispatch:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 16,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 29,
+          "excerpt": "timeout-minutes: 5"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 64,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 83,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 130,
+          "excerpt": "timeout-minutes: 180"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 191,
+          "excerpt": "timeout-minutes: 180"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 266,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "contents_write",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 268,
+          "excerpt": "contents: write"
+        },
+        {
+          "classification": "observed",
+          "category": "git_push",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 301,
+          "excerpt": "git push origin \"HEAD:refs/heads/candidate/$GENERATION\""
+        },
+        {
+          "classification": "observed",
+          "category": "workflow_dispatch",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 14,
+          "excerpt": "workflow_dispatch:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 16,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 29,
+          "excerpt": "timeout-minutes: 5"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 64,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 87,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 134,
+          "excerpt": "timeout-minutes: 180"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 189,
+          "excerpt": "timeout-minutes: 180"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 262,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "contents_write",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 264,
+          "excerpt": "contents: write"
+        },
+        {
+          "classification": "observed",
+          "category": "git_push",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 296,
+          "excerpt": "git push origin \"HEAD:refs/heads/candidate/$GENERATION\""
+        },
+        {
+          "classification": "observed",
+          "category": "workflow_dispatch",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+          "line": 4,
+          "excerpt": "workflow_dispatch:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+          "line": 6,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+          "line": 19,
+          "excerpt": "timeout-minutes: 5"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+          "line": 59,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+          "line": 80,
+          "excerpt": "timeout-minutes: 30"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+          "line": 166,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "contents_write",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+          "line": 168,
+          "excerpt": "contents: write"
+        },
+        {
+          "classification": "observed",
+          "category": "git_push",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+          "line": 201,
+          "excerpt": "git push origin \"HEAD:refs/heads/candidate/$GENERATION\""
+        },
+        {
+          "classification": "observed",
+          "category": "workflow_dispatch",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+          "line": 14,
+          "excerpt": "workflow_dispatch:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+          "line": 16,
+          "excerpt": "concurrency:"
+        }
+      ],
+      "lane_id": "workflow-governance"
+    },
+    {
+      "id": "ADVERSARIAL-100K",
+      "severity": "INFO",
+      "classification": "observed",
+      "title": "The dual-register reference engine survived 100,000 deterministic adversarial sequences",
+      "detail": "Executed 1,551,382 transitions with zero invariant failures. This proves the reference logic only; it does not prove current PipelineNews implements it.",
+      "evidence": [
+        {
+          "review_status": "UNREVIEWED",
+          "classification": "observed",
+          "sequences": 100000,
+          "transitions": 1551382,
+          "failures": 0
+        }
+      ],
+      "lane_id": "adversarial-invariants"
+    },
+    {
+      "id": "CVAA-EXECUTION",
+      "severity": "INFO",
+      "classification": "observed",
+      "title": "CVAA registry and consumer snapshots were executed read-only where possible",
+      "detail": "A non-zero consumer result is retained as a finding, not silently baselined. The audit swarm does not mutate CVAA or consumer repositories.",
+      "evidence": [
+        {
+          "name": "self_inoculation",
+          "exit_code": 1,
+          "stdout_tail": "ror\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"no-app-copies\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"no-per-release-workflows\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"self-terminating-loops\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"chaining-token\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"pointer-verifies\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"derived-state-not-authored\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"context-diet\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"rollback-exists\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"registry-integrity\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"no-dangerous-apis\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"pinned-actions\",\"intrinsic_level\":\"warning\",\"level\":\"warning\",\"state\":\"warn\",\"findings\":[\"202608301446-inoculate.yml: actions/checkout@v4 is not pinned to a 40-character commit SHA\",\"202608301446-inoculate.yml: actions/checkout@v4 is not pinned to a 40-character commit SHA\",\"202608301446-inoculate.yml: actions/setup-node@v4 is not pinned to a 40-character commit SHA\",\"202608301446-inoculate.yml: github/codeql-action/upload-sarif@v3 is not pinned to a 40-character commit SHA\"]},{\"vaccine\":\"least-permissions\",\"intrinsic_level\":\"warning\",\"level\":\"warning\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"agent-quarantine\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"vocabulary\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"monotonic-utc-generations\",\"intrinsic_level\":\"error\",\"level\":\"warning\",\"state\":\"warn\",\"findings\":[\"generation 202608310116 is 33 minutes off its UTC commit time 202608310043; generations are read from date -u at commit time, never chosen\"]},{\"vaccine\":\"on-ledger-commits\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"executor-declared\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"loop-exists\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"rollback-exercised\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"attestation-freshness\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"full-history-checkout\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"this checkout is shallow; history vaccines are blind. Use fetch-depth: 0\"]},{\"vaccine\":\"no-time-based-gates\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]}]}\n\n1 finding(s); repo is not immune\n",
+          "stderr_tail": "warning: unshare -rn unavailable; antibodies run without a network namespace\n",
+          "classification": "observed"
+        },
+        {
+          "name": "selftest",
+          "exit_code": 0,
+          "stdout_tail": "fires  one-active-scope\nfires  no-app-copies\nfires  no-per-release-workflows\nskip   no-expiry-windows (registry-level, history-level or superseded)\nfires  self-terminating-loops\nfires  chaining-token\nfires  pointer-verifies\nfires  derived-state-not-authored\nfires  context-diet\nfires  rollback-exists\nfires  pinned-actions\nfires  least-permissions\nfires  agent-quarantine\nfires  vocabulary\nskip   registry-integrity (registry-level, history-level or superseded)\nskip   no-dangerous-apis (registry-level, history-level or superseded)\nskip   monotonic-utc-generations (registry-level, history-level or superseded)\nskip   on-ledger-commits (registry-level, history-level or superseded)\nskip   rollback-exercised (registry-level, history-level or superseded)\nskip   attestation-freshness (registry-level, history-level or superseded)\nfires  no-time-based-gates\nfires  executor-declared\nfires  loop-exists\nfires  full-history-checkout\n\nall antibodies fire on disease and stay silent on health\n",
+          "stderr_tail": "",
+          "classification": "observed"
+        },
+        {
+          "name": "consumer_pipelinenews",
+          "exit_code": 1,
+          "stdout_tail": "arning\",\"level\":\"warning\",\"state\":\"warn\",\"findings\":[\"pages.yml: no timeout-minutes; runaway jobs run six hours\"]},{\"vaccine\":\"agent-quarantine\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"vocabulary\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"monotonic-utc-generations\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"generation 202608310116 is 33 minutes off its UTC commit time 202608310043; generations are read from date -u at commit time, never chosen\"]},{\"vaccine\":\"on-ledger-commits\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"executor-declared\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"loop-exists\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"rollback-exercised\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"attestation-freshness\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"full-history-checkout\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"this checkout is shallow; history vaccines are blind. Use fetch-depth: 0\"]},{\"vaccine\":\"no-time-based-gates\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"202608300232-sync-atlas-v9-deep-links.yml carries a wall-clock gate; loops must be perpetual with an exit-0 path\",\"202608300232-sync-atlas-v9-deep-links.yml cron \\\"20 4-8 30 8 *\\\" is pinned to one calendar day\",\"202608300309-current-gridatlas-v9-deep-link-successor.yml carries a wall-clock gate; loops must be perpetual with an exit-0 path\",\"202608300309-current-gridatlas-v9-deep-link-successor.yml cron \\\"30 4-8 30 8 *\\\" is pinned to one calendar day\",\"202608300327-bound-hourly-atlas-v9-mission.yml carries a wall-clock gate; loops must be perpetual with an exit-0 path\",\"202608300327-bound-hourly-atlas-v9-mission.yml cron \\\"20 3-5 30 8 *\\\" is pinned to one calendar day\",\"202608300327-bound-hourly-atlas-v9-mission.yml cron \\\"20 3-5 30 8 \\\\*\\\" is pinned to one calendar day\",\"202608300430-bootstrap-five-hour-atlas-integration.yml carries a wall-clock gate; loops must be perpetual with an exit-0 path\",\"202608300430-bootstrap-five-hour-atlas-integration.yml cron \\\"20 4-8 30 8 *\\\" is pinned to one calendar day\",\"202608300430-bootstrap-five-hour-atlas-integration.yml cron \\\"30 4-8 30 8 *\\\" is pinned to one calendar day\",\"202608300430-bootstrap-five-hour-atlas-integration.yml cron \\\"20 4-8 30 8 \\\\*\\\" is pinned to one calendar day\",\"202608300430-bootstrap-five-hour-atlas-integration.yml cron \\\"30 4-8 30 8 \\\\*\\\" is pinned to one calendar day\",\"202608300522-resume-exact-atlas-pages-promotion.yml carries a wall-clock gate; loops must be perpetual with an exit-0 path\",\"202608300522-resume-exact-atlas-pages-promotion.yml cron \\\"35 4-8 30 8 *\\\" is pinned to one calendar day\"]}]}\n\n45 finding(s); repo is not immune\n",
+          "stderr_tail": "warning: unshare -rn unavailable; antibodies run without a network namespace\n",
+          "classification": "observed"
+        },
+        {
+          "name": "consumer_companies",
+          "exit_code": 1,
+          "stdout_tail": "_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"context-diet\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"rollback-exists\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"registry-integrity\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"no-dangerous-apis\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"pinned-actions\",\"intrinsic_level\":\"warning\",\"level\":\"warning\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"least-permissions\",\"intrinsic_level\":\"warning\",\"level\":\"warning\",\"state\":\"warn\",\"findings\":[\"202608300232-build-atlas-v9-company-repd-links.yml: no timeout-minutes; runaway jobs run six hours\",\"202608300430-bootstrap-five-hour-key-only-atlas-mission.yml: no timeout-minutes; runaway jobs run six hours\"]},{\"vaccine\":\"agent-quarantine\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"vocabulary\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"monotonic-utc-generations\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"generation 202608310116 is 33 minutes off its UTC commit time 202608310043; generations are read from date -u at commit time, never chosen\"]},{\"vaccine\":\"on-ledger-commits\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"executor-declared\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"loop-exists\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"rollback-exercised\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"attestation-freshness\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"full-history-checkout\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"this checkout is shallow; history vaccines are blind. Use fetch-depth: 0\"]},{\"vaccine\":\"no-time-based-gates\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"202608300312-sync-gridatlas-v9-link-contract.yml carries a wall-clock gate; loops must be perpetual with an exit-0 path\",\"202608300312-sync-gridatlas-v9-link-contract.yml cron \\\"25 4-8 30 8 *\\\" is pinned to one calendar day\",\"202608300327-bound-hourly-gridatlas-link-mission.yml carries a wall-clock gate; loops must be perpetual with an exit-0 path\",\"202608300327-bound-hourly-gridatlas-link-mission.yml cron \\\"25 3-5 30 8 *\\\" is pinned to one calendar day\",\"202608300327-bound-hourly-gridatlas-link-mission.yml cron \\\"25 3-5 30 8 \\\\*\\\" is pinned to one calendar day\",\"202608300435-five-hour-key-only-atlas-watchdog.yml carries a wall-clock gate; loops must be perpetual with an exit-0 path\",\"202608300435-five-hour-key-only-atlas-watchdog.yml cron \\\"30 4-8 30 8 *\\\" is pinned to one calendar day\"]}]}\n\n13 finding(s); repo is not immune\n",
+          "stderr_tail": "warning: unshare -rn unavailable; antibodies run without a network namespace\n",
+          "classification": "observed"
+        },
+        {
+          "name": "consumer_gridatlas",
+          "exit_code": 1,
+          "stdout_tail": "vel\":\"error\",\"state\":\"fail\",\"findings\":[\"something writes atlas/current.json but no workflow can roll it back\"]},{\"vaccine\":\"registry-integrity\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"no-dangerous-apis\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"pinned-actions\",\"intrinsic_level\":\"warning\",\"level\":\"warning\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"least-permissions\",\"intrinsic_level\":\"warning\",\"level\":\"warning\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"agent-quarantine\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"vocabulary\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"monotonic-utc-generations\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"generation 202608310116 is 33 minutes off its UTC commit time 202608310043; generations are read from date -u at commit time, never chosen\"]},{\"vaccine\":\"on-ledger-commits\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"7b8ed24 202608310116 cites no scope file in scope-of-works\"]},{\"vaccine\":\"executor-declared\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"202608301321-01-move-atlas-into-atlas-folder.md: no executor field (agent|script|human)\",\"202608301518-02-modularise-immutable-shell-and-cartridges.md: no executor field (agent|script|human)\",\"202608301520-03-apply-pipelinenews-lessons.md: no executor field (agent|script|human)\",\"202608301521-04-add-uk-location-search-cartridge.md: no executor field (agent|script|human)\",\"202608301522-05-compile-and-attest-cartridge-composition.md: no executor field (agent|script|human)\",\"202608301524-06-close-and-harden-cicd-loop.md: no executor field (agent|script|human)\",\"202608301525-closure.md: no executor field (agent|script|human)\"]},{\"vaccine\":\"loop-exists\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"202608301321-scope-loop.yml has no schedule; the loop is not perpetual\"]},{\"vaccine\":\"rollback-exercised\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"no rollback has ever been exercised; dispatch a rollback drill and commit its record\"]},{\"vaccine\":\"attestation-freshness\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"immune\",\"findings\":[]},{\"vaccine\":\"full-history-checkout\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"this checkout is shallow; history vaccines are blind. Use fetch-depth: 0\"]},{\"vaccine\":\"no-time-based-gates\",\"intrinsic_level\":\"error\",\"level\":\"error\",\"state\":\"fail\",\"findings\":[\"202608310015-gridatlas-overnight-next-versions.yml cron \\\"30,45 23 30 8 *\\\" is pinned to one calendar day\",\"202608310015-gridatlas-overnight-next-versions.yml cron \\\"*/15 0-7 31 8 *\\\" is pinned to one calendar day\",\"202608310050-gridatlas-next-version-builders.yml cron \\\"7,37 0-7 31 8 *\\\" is pinned to one calendar day\"]}]}\n\n22 finding(s); repo is not immune\n",
+          "stderr_tail": "warning: unshare -rn unavailable; antibodies run without a network namespace\n",
+          "classification": "observed"
+        }
+      ],
+      "lane_id": "cvaa-vaccine-coverage"
+    },
+    {
+      "id": "SEAM-GOLDEN-SENTINELS",
+      "severity": "INFO",
+      "classification": "observed",
+      "title": "Beacon Fen and East Pye are available as federation sentinels",
+      "detail": "The exact source evidence contains 13599/Beacon Fen and 17494/East Pye. A graduated fix should prove both through the real producer and stable receiver.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "beacon_fen",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300312-sync-gridatlas-v9-link-contract.yml",
+          "line": 22,
+          "excerpt": "GOLDEN_REPD_REF: '13599'"
+        },
+        {
+          "classification": "observed",
+          "category": "beacon_fen",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "state/atlas-v9-link-audit.json",
+          "line": 9,
+          "excerpt": "\"golden_url\": \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref=13599\","
+        },
+        {
+          "classification": "observed",
+          "category": "beacon_fen",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "state/atlas-v9-link-contract.json",
+          "line": 13,
+          "excerpt": "\"golden_repd_ref\": \"13599\","
+        },
+        {
+          "classification": "observed",
+          "category": "beacon_fen",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "state/atlas-v9-link-contract.json",
+          "line": 14,
+          "excerpt": "\"golden_url\": \"https://ventusltd.github.io/gridatlas/202608300453-atlas-v9/?repd_ref=13599\","
+        },
+        {
+          "classification": "observed",
+          "category": "beacon_fen",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "tests/test_202608271507_bounded_companies_house.py",
+          "line": 321,
+          "excerpt": "\"repd_ref\": \"13599\","
+        },
+        {
+          "classification": "observed",
+          "category": "beacon_fen",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "tests/test_202608271507_bounded_companies_house.py",
+          "line": 322,
+          "excerpt": "\"gg_project_id\": \"GG2050-REPD-13599\","
+        },
+        {
+          "classification": "observed",
+          "category": "beacon_fen",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "tests/test_202608271507_bounded_companies_house.py",
+          "line": 323,
+          "excerpt": "\"name\": \"Beacon Fen Energy Park\","
+        },
+        {
+          "classification": "observed",
+          "category": "beacon_fen",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "tests/test_202608271507_bounded_companies_house.py",
+          "line": 351,
+          "excerpt": "\"repd_ref\": \"13599\","
+        }
+      ],
+      "lane_id": "gridatlas-seam-contracts"
+    },
+    {
+      "id": "COLLECTOR-BOUNDS",
+      "severity": "INFO",
+      "classification": "observed",
+      "title": "Network and retention limits are explicitly encoded",
+      "detail": "Request counts, response-byte bounds, timeouts and zero/full-body retention rules appear in the current source evidence.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271600-mobile-ui-comparator.yml",
+          "line": 173,
+          "excerpt": "assert.equal(manifest.execution.cell_record_max_bytes, 262144);"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271620-mobile-ui-comparator.yml",
+          "line": 178,
+          "excerpt": "assert.equal(manifest.execution.cell_record_max_bytes, 262144);"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271631-mobile-ui-comparator.yml",
+          "line": 178,
+          "excerpt": "assert.equal(manifest.execution.cell_record_max_bytes, 262144);"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271638-mobile-ui-comparator.yml",
+          "line": 178,
+          "excerpt": "assert.equal(manifest.execution.cell_record_max_bytes, 262144);"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271656-mobile-ui-comparator.yml",
+          "line": 178,
+          "excerpt": "assert.equal(manifest.execution.cell_record_max_bytes, 262144);"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608282044-federated-relationship-candidate.yml",
+          "line": 186,
+          "excerpt": "maximum_contract_bytes: 16384,"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608282200-federated-relationship-candidate.yml",
+          "line": 186,
+          "excerpt": "maximum_contract_bytes: 16384,"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "build/202608270055-v8-fast-site-manifest.json",
+          "line": 119,
+          "excerpt": "\"maximum_initial_decoded_bytes\": 2000000,"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "build/202608270844-v8-fast-site-manifest.json",
+          "line": 136,
+          "excerpt": "\"maximum_initial_decoded_bytes\": 2000000,"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "build/202608271329-v8-fast-site-manifest.json",
+          "line": 202,
+          "excerpt": "\"maximum_initial_decoded_bytes\": 2000000,"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "build/202608271524-v8-fast-site-manifest.json",
+          "line": 219,
+          "excerpt": "\"maximum_initial_decoded_bytes\": 2000000,"
+        },
+        {
+          "classification": "observed",
+          "category": "request_bound",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "build/202608272048-v8-fast-site-manifest.json",
+          "line": 439,
+          "excerpt": "\"maximum_initial_decoded_bytes\": 2000000,"
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271620-mobile-ui-comparator.yml",
+          "line": 153,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271620-mobile-ui-comparator.yml",
+          "line": 359,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271620-mobile-ui-comparator.yml",
+          "line": 452,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271620-mobile-ui-comparator.yml",
+          "line": 507,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271620-mobile-ui-comparator.yml",
+          "line": 672,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271631-mobile-ui-comparator.yml",
+          "line": 153,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271631-mobile-ui-comparator.yml",
+          "line": 398,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271631-mobile-ui-comparator.yml",
+          "line": 491,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271631-mobile-ui-comparator.yml",
+          "line": 546,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271631-mobile-ui-comparator.yml",
+          "line": 711,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271638-mobile-ui-comparator.yml",
+          "line": 153,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        },
+        {
+          "classification": "observed",
+          "category": "retention_rule",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271638-mobile-ui-comparator.yml",
+          "line": 511,
+          "excerpt": "publisher_redistribution_rights: \"source-specific-not-inferred\","
+        }
+      ],
+      "lane_id": "pipelinenews-collectors"
+    },
+    {
+      "id": "IDENTITY-SEPARATION",
+      "severity": "INFO",
+      "classification": "observed",
+      "title": "Primary, related and abstaining roles already exist",
+      "detail": "The current source distinguishes PRIMARY_MATCH, related context/development and abstention/rejection. vNext should retain these semantics as a standalone binder.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "primary_match",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 81,
+          "excerpt": "- Preserve Beacon Fen as PRIMARY_MATCH to REPD 13599 and never 13600."
+        },
+        {
+          "classification": "observed",
+          "category": "primary_match",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 693,
+          "excerpt": "- PRIMARY_MATCH"
+        },
+        {
+          "classification": "observed",
+          "category": "primary_match",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 805,
+          "excerpt": "- Project-table news signals come only from canonical PRIMARY_MATCH items."
+        },
+        {
+          "classification": "observed",
+          "category": "primary_match",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 809,
+          "excerpt": "- Canonical: RELEVANT confidence percentage, PRIMARY_MATCH and REPD reference."
+        },
+        {
+          "classification": "observed",
+          "category": "primary_match",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 839,
+          "excerpt": "- PRIMARY_MATCH and eligible_for_news_signal true on every canonical item."
+        },
+        {
+          "classification": "observed",
+          "category": "primary_match",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 869,
+          "excerpt": "- One article may have only one PRIMARY_MATCH."
+        },
+        {
+          "classification": "observed",
+          "category": "primary_match",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 902,
+          "excerpt": "- Role: PRIMARY_MATCH"
+        },
+        {
+          "classification": "observed",
+          "category": "primary_match",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 1075,
+          "excerpt": "- One or zero PRIMARY_MATCH decisions per article."
+        },
+        {
+          "classification": "observed",
+          "category": "related_context",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 694,
+          "excerpt": "- RELATED_DEVELOPMENT"
+        },
+        {
+          "classification": "observed",
+          "category": "related_context",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 870,
+          "excerpt": "- RELATED_DEVELOPMENT cannot drive the primary project signal."
+        },
+        {
+          "classification": "observed",
+          "category": "abstention",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/DEPLOYMENT_POLICY.md",
+          "line": 13,
+          "excerpt": "The `202608271524` release is progressive. Its owner-authorisation permits the production gate to publish the complete hash-bound predecessor chain `202608270055` → `202608270844` → `202608271329` → `202608271524`. A predecessor may enter that chain only when a newer candidate input record exactly matches one of its immutable output records. The gate must reject forward, circular or hash-divergent dependencies. This…"
+        },
+        {
+          "classification": "observed",
+          "category": "abstention",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608270844-live-news-discovery.yml",
+          "line": 110,
+          "excerpt": "- name: Reject an existing immutable generation"
+        },
+        {
+          "classification": "observed",
+          "category": "abstention",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+          "line": 102,
+          "excerpt": "- name: Reject an existing immutable generation"
+        },
+        {
+          "classification": "observed",
+          "category": "abstention",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271524-news-chronology-candidate.yml",
+          "line": 151,
+          "excerpt": "- name: Reject an existing immutable generation"
+        },
+        {
+          "classification": "observed",
+          "category": "abstention",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608272015-mobile-orientation-candidate.yml",
+          "line": 203,
+          "excerpt": "- name: Reject existing immutable output and syntax-check source"
+        },
+        {
+          "classification": "observed",
+          "category": "abstention",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608272048-mobile-orientation-candidate.yml",
+          "line": 203,
+          "excerpt": "- name: Reject existing immutable output and syntax-check source"
+        },
+        {
+          "classification": "observed",
+          "category": "abstention",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608272130-sector-intelligence-candidate.yml",
+          "line": 368,
+          "excerpt": "assert.equal(metadata.isSymbolicLink(), false, `overlay source symlink rejected: ${filename}`);"
+        },
+        {
+          "classification": "observed",
+          "category": "abstention",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608272130-sector-intelligence-candidate.yml",
+          "line": 511,
+          "excerpt": "assert.equal(metadata.isSymbolicLink(), false, `artifact symlink rejected: ${filename}`);"
+        }
+      ],
+      "lane_id": "pipelinenews-identity"
+    }
+  ]
+}

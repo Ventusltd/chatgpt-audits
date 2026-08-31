@@ -1,0 +1,38 @@
+{
+  "schema": "chatgpt-audits.overnight-swarm-synthesis.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "mixed",
+  "created_at": "2026-08-31T00:44:42.777904Z",
+  "created_at_london": "2026-08-31T01:44:42.777912+01:00",
+  "github_run_id": "33345421184",
+  "github_run_attempt": "1",
+  "plan_sha256": "2b4d434191311d30a71812b0fee8b8ca6221c5cc93e4a0db760d2f24d70b15cb",
+  "source_manifest_sha256": "5f74429403377b28d17a08eaf113c3fdb35aff861783476c3c9d106e95c23d4d",
+  "source_manifest_semantic_sha256": "b44ab2b629283e83159873c43a0f20a55ae28092297b82e6ad6958573e375e2b",
+  "completed_lanes": [
+    "adversarial-invariants",
+    "claude-claim-crosscheck",
+    "companies-binding-forensics",
+    "cvaa-vaccine-coverage",
+    "datacentre-demand-intelligence",
+    "federated-data-contracts",
+    "globalgrid-federation-topology",
+    "gridatlas-seam-contracts",
+    "pipelinenews-collectors",
+    "pipelinenews-identity",
+    "pipelinenews-timing-engine",
+    "workflow-governance"
+  ],
+  "missing_required_lanes": [],
+  "severity_counts": {
+    "HIGH": 12,
+    "MEDIUM": 10,
+    "INFO": 5
+  },
+  "finding_count": 27,
+  "human_review_items": 10,
+  "product_repo_writes": 0,
+  "product_workflow_dispatches": 0,
+  "publish_authorised": false
+}

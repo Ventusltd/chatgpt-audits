@@ -1,0 +1,382 @@
+{
+  "schema": "chatgpt-audits.swarm-lane.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "mixed",
+  "lane_id": "pipelinenews-identity",
+  "priority": 1,
+  "purpose": "Prove project identity, abstention, related-context and eligibility semantics.",
+  "created_at": "2026-08-31T00:43:59.121199Z",
+  "created_at_london": "2026-08-31T01:43:59.121556+01:00",
+  "github_run_id": "33345421184",
+  "github_job": "lanes",
+  "plan_sha256": "2b4d434191311d30a71812b0fee8b8ca6221c5cc93e4a0db760d2f24d70b15cb",
+  "manifest_sha256": "5f74429403377b28d17a08eaf113c3fdb35aff861783476c3c9d106e95c23d4d",
+  "snapshots": [
+    {
+      "repository": "Ventusltd/pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/automation/",
+        "/atman/",
+        "/build/",
+        "/contracts/",
+        "/data/",
+        "/discovery/",
+        "/index/",
+        "/manifests/",
+        "/orchestration/",
+        "/state/",
+        "/tests/",
+        "/ui/",
+        "/releases/current-v3.json",
+        "/releases/202608300309-pipelinenews/"
+      ],
+      "tree_sha256": "ba85f1072f396029a4428f0793bda8257f9793fc13a89b813234e0023c0cef32",
+      "files": 734,
+      "bytes": 98692242,
+      "classification": "observed",
+      "name": "pipelinenews"
+    }
+  ],
+  "snapshot_failures": [],
+  "findings": [
+    {
+      "id": "IDENTITY-SEPARATION",
+      "severity": "INFO",
+      "classification": "observed",
+      "title": "Primary, related and abstaining roles already exist",
+      "detail": "The current source distinguishes PRIMARY_MATCH, related context/development and abstention/rejection. vNext should retain these semantics as a standalone binder.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "primary_match",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 81,
+          "excerpt": "- Preserve Beacon Fen as PRIMARY_MATCH to REPD 13599 and never 13600."
+        },
+        {
+          "classification": "observed",
+          "category": "primary_match",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 693,
+          "excerpt": "- PRIMARY_MATCH"
+        },
+        {
+          "classification": "observed",
+          "category": "primary_match",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 805,
+          "excerpt": "- Project-table news signals come only from canonical PRIMARY_MATCH items."
+        },
+        {
+          "classification": "observed",
+          "category": "primary_match",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 809,
+          "excerpt": "- Canonical: RELEVANT confidence percentage, PRIMARY_MATCH and REPD reference."
+        },
+        {
+          "classification": "observed",
+          "category": "primary_match",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 839,
+          "excerpt": "- PRIMARY_MATCH and eligible_for_news_signal true on every canonical item."
+        },
+        {
+          "classification": "observed",
+          "category": "primary_match",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 869,
+          "excerpt": "- One article may have only one PRIMARY_MATCH."
+        },
+        {
+          "classification": "observed",
+          "category": "primary_match",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 902,
+          "excerpt": "- Role: PRIMARY_MATCH"
+        },
+        {
+          "classification": "observed",
+          "category": "primary_match",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 1075,
+          "excerpt": "- One or zero PRIMARY_MATCH decisions per article."
+        },
+        {
+          "classification": "observed",
+          "category": "related_context",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 694,
+          "excerpt": "- RELATED_DEVELOPMENT"
+        },
+        {
+          "classification": "observed",
+          "category": "related_context",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 870,
+          "excerpt": "- RELATED_DEVELOPMENT cannot drive the primary project signal."
+        },
+        {
+          "classification": "observed",
+          "category": "abstention",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/DEPLOYMENT_POLICY.md",
+          "line": 13,
+          "excerpt": "The `202608271524` release is progressive. Its owner-authorisation permits the production gate to publish the complete hash-bound predecessor chain `202608270055` → `202608270844` → `202608271329` → `202608271524`. A predecessor may enter that chain only when a newer candidate input record exactly matches one of its immutable output records. The gate must reject forward, circular or hash-divergent dependencies. This…"
+        },
+        {
+          "classification": "observed",
+          "category": "abstention",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608270844-live-news-discovery.yml",
+          "line": 110,
+          "excerpt": "- name: Reject an existing immutable generation"
+        },
+        {
+          "classification": "observed",
+          "category": "abstention",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271329-atlas-v8-deep-link.yml",
+          "line": 102,
+          "excerpt": "- name: Reject an existing immutable generation"
+        },
+        {
+          "classification": "observed",
+          "category": "abstention",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271524-news-chronology-candidate.yml",
+          "line": 151,
+          "excerpt": "- name: Reject an existing immutable generation"
+        },
+        {
+          "classification": "observed",
+          "category": "abstention",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608272015-mobile-orientation-candidate.yml",
+          "line": 203,
+          "excerpt": "- name: Reject existing immutable output and syntax-check source"
+        },
+        {
+          "classification": "observed",
+          "category": "abstention",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608272048-mobile-orientation-candidate.yml",
+          "line": 203,
+          "excerpt": "- name: Reject existing immutable output and syntax-check source"
+        },
+        {
+          "classification": "observed",
+          "category": "abstention",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608272130-sector-intelligence-candidate.yml",
+          "line": 368,
+          "excerpt": "assert.equal(metadata.isSymbolicLink(), false, `overlay source symlink rejected: ${filename}`);"
+        },
+        {
+          "classification": "observed",
+          "category": "abstention",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608272130-sector-intelligence-candidate.yml",
+          "line": 511,
+          "excerpt": "assert.equal(metadata.isSymbolicLink(), false, `artifact symlink rejected: ${filename}`);"
+        }
+      ]
+    },
+    {
+      "id": "IDENTITY-NEWS-GATE",
+      "severity": "HIGH",
+      "classification": "observed",
+      "title": "News eligibility is explicitly separate from relationship context",
+      "detail": "Several paths encode eligible_for_news_signal. A related mention must never become project identity or a register fact.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608272130-sector-intelligence-candidate.yml",
+          "line": 255,
+          "excerpt": "assert.ok(ledger.datasets.sector_items.rows.every(({ eligible_for_news_signal }) => eligible_for_news_signal === false));"
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 805,
+          "excerpt": "- Project-table news signals come only from canonical PRIMARY_MATCH items."
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 839,
+          "excerpt": "- PRIMARY_MATCH and eligible_for_news_signal true on every canonical item."
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 903,
+          "excerpt": "- Eligible for news signal: true"
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/202608260159-pipelinenews/contracts/release.v9.5.1.json",
+          "line": 36,
+          "excerpt": "\"related_development_drives_news_signal\": false,"
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/consumer_v1/tests/verify_consumer.py",
+          "line": 57,
+          "excerpt": "forbidden = {\"repd_ref\", \"gg_project_id\", \"project_id\", \"project_signal_eligible\", \"eligible_for_news_signal\"}"
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/newsv1/tests/check_newsv1.mjs",
+          "line": 182,
+          "excerpt": "&& item.eligible_for_news_signal === true"
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/newsv2/tests/check_newsv2.mjs",
+          "line": 83,
+          "excerpt": "assert.equal(assertion.identity.eligible_for_news_signal, true);"
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/v1-9-legacy-lessons/uk_renewables_pipeline/v7/README.md",
+          "line": 82,
+          "excerpt": "These decisions refine V7.3 and later releases. They do not alter the approved V7.2 interface checkpoints, the live V7.1 product or the inherited V5 NEWS SIGNAL."
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/v1-9-legacy-lessons/uk_renewables_pipeline/v7/README.md",
+          "line": 135,
+          "excerpt": "The inherited V5 NEWS SIGNAL is part of the MVP. It works for some projects and fails for others. It must remain visibly external and unverified, must never overwrite REPD status, and must not be silently repaired during V7.1 or V7.2. Its discovery, identity and event behaviour is refined only in V7.3 under the labelled North Star corpus."
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/v1-9-legacy-lessons/uk_renewables_pipeline/v7/README.md",
+          "line": 152,
+          "excerpt": "Extract the live V5-derived MVP into small modules without changing visible behaviour, data, matching or NEWS SIGNAL decisions."
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/v1-9-legacy-lessons/uk_renewables_pipeline/v7/README.md",
+          "line": 166,
+          "excerpt": "Replace the legacy V5 project dependency with the strongest V6 engineering without changing the inherited V5 NEWS SIGNAL engine."
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/v1-9-legacy-lessons/uk_renewables_pipeline/v7/README.md",
+          "line": 178,
+          "excerpt": "- V5 NEWS SIGNAL remains external legacy intelligence and cannot alter canonical facts."
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/v1-9-legacy-lessons/uk_renewables_pipeline/v7/README.md",
+          "line": 180,
+          "excerpt": "Exit gate: every displayed utility project has canonical identity and provenance while the separately labelled legacy NEWS SIGNAL remains behaviourally unchanged; a fresh checkout of the exact committed SHA reproduces every file hash, count and validation result."
+        },
+        {
+          "classification": "observed",
+          "category": "news_signal",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/v1-9-legacy-lessons/uk_renewables_pipeline/v7/README.md",
+          "line": 186,
+          "excerpt": "Replace the inherited V5 NEWS SIGNAL bindings only after V7.1 and V7.2 are proven."
+        }
+      ]
+    },
+    {
+      "id": "IDENTITY-QUERY-CONTEXT",
+      "severity": "MEDIUM",
+      "classification": "observed",
+      "title": "Query context is discussed as a non-identity signal",
+      "detail": "The current contract contains a query-context rule. The binder should enforce evidence returned by the source rather than trust the search query that found it.",
+      "evidence": []
+    }
+  ],
+  "metrics": {
+    "category_counts": {
+      "abstention": 165,
+      "news_signal": 50,
+      "primary_match": 30,
+      "project_identity": 953,
+      "related_context": 2
+    },
+    "primary_match_lines": 30
+  },
+  "evidence_rows": 1200,
+  "evidence_sha256": "9b37e7feeb20b3489f014f8309bc2a8062d47d1e9af67ce836f64becde1a1668"
+}

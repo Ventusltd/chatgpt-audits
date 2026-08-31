@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://globalgrid2050.com/schemas/pipelinenews-evidence-event-v1.json",
+  "title": "PipelineNews observed evidence event",
+  "type": "object",
+  "additionalProperties": false,
+  "x-review-status": "UNREVIEWED",
+  "x-classification": "inferred",
+  "required": [
+    "event_id",
+    "source_id",
+    "source_item_id",
+    "event_type",
+    "observed_at",
+    "receipt_sha256",
+    "review_status"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_item_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "event_type": {
+      "enum": [
+        "REGISTER_EVENT",
+        "NEWS_CORROBORATION",
+        "REVISION",
+        "RETRACTION",
+        "CONTRADICTION",
+        "ACQUISITION_FAILURE"
+      ]
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "effective_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "canonical_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "receipt_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "source_card_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "review_status": {
+      "enum": [
+        "UNREVIEWED",
+        "REVIEWED",
+        "REJECTED",
+        "RETRACTED"
+      ]
+    }
+  }
+}

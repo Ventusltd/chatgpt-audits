@@ -1,0 +1,715 @@
+{
+  "schema": "chatgpt-audits.swarm-lane.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "mixed",
+  "lane_id": "workflow-governance",
+  "priority": 3,
+  "purpose": "Record workflow permissions, schedules, write paths and network commands as evidence, not assumptions.",
+  "created_at": "2026-08-31T00:44:25.094047Z",
+  "created_at_london": "2026-08-31T01:44:25.094580+01:00",
+  "github_run_id": "33345421184",
+  "github_job": "lanes",
+  "plan_sha256": "2b4d434191311d30a71812b0fee8b8ca6221c5cc93e4a0db760d2f24d70b15cb",
+  "manifest_sha256": "5f74429403377b28d17a08eaf113c3fdb35aff861783476c3c9d106e95c23d4d",
+  "snapshots": [
+    {
+      "repository": "Ventusltd/pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/automation/",
+        "/atman/",
+        "/build/",
+        "/contracts/",
+        "/data/",
+        "/discovery/",
+        "/index/",
+        "/manifests/",
+        "/orchestration/",
+        "/state/",
+        "/tests/",
+        "/ui/",
+        "/releases/current-v3.json",
+        "/releases/202608300309-pipelinenews/"
+      ],
+      "tree_sha256": "ba85f1072f396029a4428f0793bda8257f9793fc13a89b813234e0023c0cef32",
+      "files": 734,
+      "bytes": 98692242,
+      "classification": "observed",
+      "name": "pipelinenews"
+    },
+    {
+      "repository": "Ventusltd/companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/build/",
+        "/contracts/",
+        "/manifests/",
+        "/scripts/",
+        "/state/",
+        "/tests/"
+      ],
+      "tree_sha256": "9144869fa2b5b996bc7622b8db2b8f2d258798cf37b77d070eefe8d3abefeca7",
+      "files": 75,
+      "bytes": 950259,
+      "classification": "observed",
+      "name": "companies"
+    },
+    {
+      "repository": "Ventusltd/gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "paths": [
+        "/README.md",
+        "/STATE.md",
+        "/.github/",
+        "/atlas/current.json",
+        "/atlas/modules.json",
+        "/atlas/cartridges/",
+        "/atlas/manifests/",
+        "/atman/",
+        "/contracts/",
+        "/docs/",
+        "/governance/",
+        "/machine-learning/schemas/",
+        "/releases/current-v5.json",
+        "/state/",
+        "/scope-of-works/",
+        "/tools/scope/",
+        "/ui/"
+      ],
+      "tree_sha256": "fcda77549e8e787182d5cbe08a101e8c13d216bb2aca4a0e08b9b3eeda1fb29e",
+      "files": 111,
+      "bytes": 805194,
+      "classification": "observed",
+      "name": "gridatlas"
+    },
+    {
+      "repository": "Ventusltd/cvaa",
+      "commit": "d2ebc01f6eab41f2a84b0c53c4cfae0d2625ec5e",
+      "paths": [
+        "."
+      ],
+      "tree_sha256": "4cc4edbe076e770cac6acb1ae5af0603a7a0b08716694a0846434df692607885",
+      "files": 47,
+      "bytes": 205030,
+      "classification": "observed",
+      "name": "cvaa"
+    },
+    {
+      "repository": "Ventusltd/spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "paths": [
+        "."
+      ],
+      "tree_sha256": "c81cc39efdc1542b5005e3dfa1d9b9674435e79651d150e11c5972981337f318",
+      "files": 51,
+      "bytes": 213357,
+      "classification": "observed",
+      "name": "spiders"
+    },
+    {
+      "repository": "Ventusltd/data-gridatlas",
+      "commit": "b335aca6c9c6b028b358c419410e4cf5b2035c2e",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/contracts/",
+        "/manifests/",
+        "/scripts/",
+        "/schemas/",
+        "/state/",
+        "/tests/"
+      ],
+      "tree_sha256": "6ceabb01cb11f85278c0888f851d4f0cfc0da01defb76f9d1e6b88db00ba8513",
+      "files": 32,
+      "bytes": 485659,
+      "classification": "observed",
+      "name": "data-gridatlas"
+    },
+    {
+      "repository": "Ventusltd/globalgrid2050",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/scripts/",
+        "/*.md",
+        "/*.json",
+        "/data_federation_map/"
+      ],
+      "tree_sha256": "a34558d25dbfce63a6cf8db6c51aed245de765f81a925bbcf200c3e2d926dcbd",
+      "files": 2465,
+      "bytes": 546141474,
+      "classification": "observed",
+      "name": "globalgrid2050"
+    },
+    {
+      "repository": "Ventusltd/data-centres-gb",
+      "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+      "paths": [
+        "."
+      ],
+      "tree_sha256": "9653d538c62cd3eb4249e1b32bebe4bcdf9d562e77e16291a6dbd323c0ff79e3",
+      "files": 32,
+      "bytes": 228929,
+      "classification": "observed",
+      "name": "data-centres-gb"
+    },
+    {
+      "repository": "Ventusltd/data-gb-electricity",
+      "commit": "7c492745c974f6b8610cb1209f996b1553abb498",
+      "paths": [
+        "."
+      ],
+      "tree_sha256": "fec8a4c5eb8ac2cc554f1149155b67067a3de9f92a723fe317e3d5d2250ba44b",
+      "files": 472,
+      "bytes": 98041589,
+      "classification": "observed",
+      "name": "data-gb-electricity"
+    }
+  ],
+  "snapshot_failures": [],
+  "findings": [
+    {
+      "id": "WORKFLOW-WRITE-SURFACE",
+      "severity": "MEDIUM",
+      "classification": "observed",
+      "title": "Write-capable and network-capable workflow lines are widespread",
+      "detail": "These are evidence-line counts, not a claim that every workflow is active or unsafe. Every product workflow still needs bounded output and promotion gates.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "workflow_dispatch",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 14,
+          "excerpt": "workflow_dispatch:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 16,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 29,
+          "excerpt": "timeout-minutes: 5"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 64,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 83,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 130,
+          "excerpt": "timeout-minutes: 180"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 191,
+          "excerpt": "timeout-minutes: 180"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 266,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "contents_write",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 268,
+          "excerpt": "contents: write"
+        },
+        {
+          "classification": "observed",
+          "category": "git_push",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 301,
+          "excerpt": "git push origin \"HEAD:refs/heads/candidate/$GENERATION\""
+        },
+        {
+          "classification": "observed",
+          "category": "workflow_dispatch",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 14,
+          "excerpt": "workflow_dispatch:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 16,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 29,
+          "excerpt": "timeout-minutes: 5"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 64,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 87,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 134,
+          "excerpt": "timeout-minutes: 180"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 189,
+          "excerpt": "timeout-minutes: 180"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 262,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "contents_write",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 264,
+          "excerpt": "contents: write"
+        },
+        {
+          "classification": "observed",
+          "category": "git_push",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 296,
+          "excerpt": "git push origin \"HEAD:refs/heads/candidate/$GENERATION\""
+        },
+        {
+          "classification": "observed",
+          "category": "workflow_dispatch",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+          "line": 4,
+          "excerpt": "workflow_dispatch:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+          "line": 6,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+          "line": 19,
+          "excerpt": "timeout-minutes: 5"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+          "line": 59,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+          "line": 80,
+          "excerpt": "timeout-minutes: 30"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+          "line": 166,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "contents_write",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+          "line": 168,
+          "excerpt": "contents: write"
+        },
+        {
+          "classification": "observed",
+          "category": "git_push",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+          "line": 201,
+          "excerpt": "git push origin \"HEAD:refs/heads/candidate/$GENERATION\""
+        },
+        {
+          "classification": "observed",
+          "category": "workflow_dispatch",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+          "line": 14,
+          "excerpt": "workflow_dispatch:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+          "line": 16,
+          "excerpt": "concurrency:"
+        }
+      ]
+    },
+    {
+      "id": "WORKFLOW-CONCURRENCY",
+      "severity": "MEDIUM",
+      "classification": "inferred",
+      "title": "Long-running automation needs explicit overlap control and recovery",
+      "detail": "The overnight audit uses source pinning, lane artifacts, a single aggregator and a same-repository watchdog to avoid competing pushes.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 16,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 16,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271634-normalise-companies-candidate.yml",
+          "line": 6,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608272016-bounded-companies-house-candidate.yml",
+          "line": 16,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608272035-bounded-companies-house-candidate.yml",
+          "line": 15,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608272120-bounded-companies-house-candidate.yml",
+          "line": 15,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608272155-bounded-companies-house-candidate.yml",
+          "line": 15,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608280327-resume-bounded-companies-house-candidate.yml",
+          "line": 9,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608280630-resume-compressed-companies-house-candidate.yml",
+          "line": 10,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "concurrency",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608280744-resume-compressed-companies-house-candidate.yml",
+          "line": 9,
+          "excerpt": "concurrency:"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 29,
+          "excerpt": "timeout-minutes: 5"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 64,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 83,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 130,
+          "excerpt": "timeout-minutes: 180"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 191,
+          "excerpt": "timeout-minutes: 180"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271507-bounded-companies-house-candidate.yml",
+          "line": 266,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 29,
+          "excerpt": "timeout-minutes: 5"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 64,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 87,
+          "excerpt": "timeout-minutes: 10"
+        },
+        {
+          "classification": "observed",
+          "category": "timeout",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflow-history/202608271547-bounded-companies-house-candidate.yml",
+          "line": 134,
+          "excerpt": "timeout-minutes: 180"
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "category_counts": {
+      "actions_write": 8,
+      "concurrency": 134,
+      "contents_write": 244,
+      "git_push": 264,
+      "network_command": 77,
+      "pages_write": 5,
+      "schedule": 16,
+      "timeout": 172,
+      "workflow_dispatch": 280
+    },
+    "repository_matrix": {
+      "companies": {
+        "actions_write": 1,
+        "concurrency": 17,
+        "contents_write": 15,
+        "git_push": 15,
+        "network_command": 26,
+        "schedule": 2,
+        "timeout": 67,
+        "workflow_dispatch": 11
+      },
+      "cvaa": {
+        "timeout": 3,
+        "workflow_dispatch": 1
+      },
+      "data-centres-gb": {
+        "concurrency": 5,
+        "contents_write": 4,
+        "git_push": 4,
+        "network_command": 4,
+        "timeout": 5,
+        "workflow_dispatch": 2
+      },
+      "data-gb-electricity": {
+        "concurrency": 1,
+        "contents_write": 2,
+        "git_push": 4,
+        "network_command": 1,
+        "schedule": 1,
+        "timeout": 2,
+        "workflow_dispatch": 2
+      },
+      "data-gridatlas": {
+        "actions_write": 3,
+        "concurrency": 11,
+        "contents_write": 4,
+        "git_push": 4,
+        "network_command": 8,
+        "schedule": 2,
+        "timeout": 23,
+        "workflow_dispatch": 9
+      },
+      "globalgrid2050": {
+        "actions_write": 4,
+        "concurrency": 100,
+        "contents_write": 219,
+        "git_push": 237,
+        "network_command": 38,
+        "pages_write": 5,
+        "schedule": 11,
+        "timeout": 72,
+        "workflow_dispatch": 255
+      }
+    }
+  },
+  "evidence_rows": 1200,
+  "evidence_sha256": "61ee93d29f3bb077fb5f0f7c2de4e11ac1137aae5cade0b2a121fb2e6f74f627"
+}

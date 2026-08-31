@@ -1,0 +1,10 @@
+{
+  "schema": "chatgpt-audits.overnight-swarm-manifest.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "tree_sha256_before_manifest": "d7ba3299d2340f395a3de17eef4bbbf788fb2cafc83db127dadf88c3350623c2",
+  "files_before_manifest": 84,
+  "bytes_before_manifest": 5726906,
+  "missing_required_lanes": []
+}

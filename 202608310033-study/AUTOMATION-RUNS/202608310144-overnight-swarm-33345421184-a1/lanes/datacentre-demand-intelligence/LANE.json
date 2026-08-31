@@ -1,0 +1,376 @@
+{
+  "schema": "chatgpt-audits.swarm-lane.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "mixed",
+  "lane_id": "datacentre-demand-intelligence",
+  "priority": 3,
+  "purpose": "Map the demand-side intelligence chain using the same evidence and identity discipline.",
+  "created_at": "2026-08-31T00:44:16.571529Z",
+  "created_at_london": "2026-08-31T01:44:16.571899+01:00",
+  "github_run_id": "33345421184",
+  "github_job": "lanes",
+  "plan_sha256": "2b4d434191311d30a71812b0fee8b8ca6221c5cc93e4a0db760d2f24d70b15cb",
+  "manifest_sha256": "5f74429403377b28d17a08eaf113c3fdb35aff861783476c3c9d106e95c23d4d",
+  "snapshots": [
+    {
+      "repository": "Ventusltd/data-centres-gb",
+      "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+      "paths": [
+        "."
+      ],
+      "tree_sha256": "9653d538c62cd3eb4249e1b32bebe4bcdf9d562e77e16291a6dbd323c0ff79e3",
+      "files": 32,
+      "bytes": 228929,
+      "classification": "observed",
+      "name": "data-centres-gb"
+    },
+    {
+      "repository": "Ventusltd/pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/automation/",
+        "/atman/",
+        "/build/",
+        "/contracts/",
+        "/data/",
+        "/discovery/",
+        "/index/",
+        "/manifests/",
+        "/orchestration/",
+        "/state/",
+        "/tests/",
+        "/ui/",
+        "/releases/current-v3.json",
+        "/releases/202608300309-pipelinenews/"
+      ],
+      "tree_sha256": "ba85f1072f396029a4428f0793bda8257f9793fc13a89b813234e0023c0cef32",
+      "files": 734,
+      "bytes": 98692242,
+      "classification": "observed",
+      "name": "pipelinenews"
+    },
+    {
+      "repository": "Ventusltd/globalgrid2050",
+      "commit": "6afd5dea721648e3ef14d5705d9f2dc3589af100",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/scripts/",
+        "/*.md",
+        "/*.json",
+        "/data_federation_map/"
+      ],
+      "tree_sha256": "a34558d25dbfce63a6cf8db6c51aed245de765f81a925bbcf200c3e2d926dcbd",
+      "files": 2465,
+      "bytes": 546141474,
+      "classification": "observed",
+      "name": "globalgrid2050"
+    }
+  ],
+  "snapshot_failures": [],
+  "findings": [
+    {
+      "id": "DC-SAME-CONTRACTS",
+      "severity": "MEDIUM",
+      "classification": "inferred",
+      "title": "Demand-side intelligence can reuse evidence and identity contracts",
+      "detail": "Data-centre evidence should use source receipts, site identity, company bindings, abstention and compact Parquet outputs just like generation-side intelligence.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "datacentre",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 1,
+          "excerpt": "# Data Centres GB"
+        },
+        {
+          "classification": "observed",
+          "category": "datacentre",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 3,
+          "excerpt": "Open-source, provenance-first tooling for compiling United Kingdom data-centre source records into compact Parquet, DuckDB-readable relationship tables and a small map export."
+        },
+        {
+          "classification": "observed",
+          "category": "datacentre",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 21,
+          "excerpt": "data/facilities/generation=202608281053/source=OPENSTREETMAP/osm-data-centre-elements-v1.parquet"
+        },
+        {
+          "classification": "observed",
+          "category": "datacentre",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 22,
+          "excerpt": "data/relationships/generation=202608281053/data-centre-company-relationships-v1.parquet"
+        },
+        {
+          "classification": "observed",
+          "category": "datacentre",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 23,
+          "excerpt": "exports/202608281053-osm-data-centres.geojson"
+        },
+        {
+          "classification": "observed",
+          "category": "datacentre",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 24,
+          "excerpt": "reports/202608281053-osm-data-centres-audit.json"
+        },
+        {
+          "classification": "observed",
+          "category": "datacentre",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 55,
+          "excerpt": "GET /v1/data-centres/sources"
+        },
+        {
+          "classification": "observed",
+          "category": "datacentre",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 56,
+          "excerpt": "GET /v1/data-centres"
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 3,
+          "excerpt": "Open-source, provenance-first tooling for compiling United Kingdom data-centre source records into compact Parquet, DuckDB-readable relationship tables and a small map export."
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 22,
+          "excerpt": "data/relationships/generation=202608281053/data-centre-company-relationships-v1.parquet"
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 29,
+          "excerpt": "The company relationship Parquet is deliberately conservative. It retains raw OSM operator/owner strings, but asserts no company number, computes no score and marks every row `ABSTAIN` / `eligible_for_join=false`. A later resolver must use a pinned Companies Parquet generation and verified Companies House numbers; this producer makes zero Companies requests."
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 64,
+          "excerpt": "The BBC report [“Data centres could pay hundreds of millions in deposits for power demands”](https://www.bbc.co.uk/news/articles/c9q90q9qnn2o) is news context, not facility data. PipelineNews already carries its link behind three quarantined `DATA_CENTRES` context cards. This repository also defines a one-row link-only owner evidence record for a future pinned `SOURCE_METADATA` projection; it stores no article body,…"
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "README.md",
+          "line": 71,
+          "excerpt": "- OSM-derived Parquet, relationships and GeoJSON: ODbL 1.0."
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": ".github/workflows/202608281053-osm-data-centres-candidate.yml",
+          "line": 153,
+          "excerpt": "\"data/relationships/generation=202608281053/data-centre-company-relationships-v1.parquet\""
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": ".github/workflows/202608281053-osm-data-centres-candidate.yml",
+          "line": 167,
+          "excerpt": "data/relationships/generation=202608281053/data-centre-company-relationships-v1.parquet \\"
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": ".github/workflows/202608281053-osm-data-centres-candidate.yml",
+          "line": 172,
+          "excerpt": "\"data/relationships/generation=202608281053/data-centre-company-relationships-v1.parquet\""
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": ".github/workflows/202608281626-osm-data-centres-candidate.yml",
+          "line": 188,
+          "excerpt": "\"data/relationships/generation=202608281053/data-centre-company-relationships-v1.parquet\""
+        },
+        {
+          "classification": "observed",
+          "category": "identity",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": ".github/workflows/202608281626-osm-data-centres-candidate.yml",
+          "line": 202,
+          "excerpt": "data/relationships/generation=202608281053/data-centre-company-relationships-v1.parquet \\"
+        }
+      ]
+    },
+    {
+      "id": "DC-PRIVACY",
+      "severity": "HIGH",
+      "classification": "observed",
+      "title": "Privacy exclusions are present and must remain hard gates",
+      "detail": "No individual director/PSC or residential data is needed to infer demand-side procurement timing.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": ".github/workflows/202608281626-osm-data-centres-candidate.yml",
+          "line": 9,
+          "excerpt": "- \"contracts/202608281626-osm-overpass-retry-privacy.json\""
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": ".github/workflows/202608281626-osm-data-centres-candidate.yml",
+          "line": 62,
+          "excerpt": "$'A\\tcontracts/202608281626-osm-overpass-retry-privacy.json' \\"
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": ".github/workflows/202608281702-osm-data-centres-candidate.yml",
+          "line": 68,
+          "excerpt": "test \"$(git rev-parse HEAD:contracts/202608281626-osm-overpass-retry-privacy.json)\" = \"d1952c80aed8e3407731bfe859c74f3ee15c9812\""
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": ".github/workflows/202608281702-osm-data-centres-candidate.yml",
+          "line": 107,
+          "excerpt": "- name: Run offline hostile fixture, privacy and indexed-query suites"
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "build/python/202608271727-build-data-centres-intelligence.py",
+          "line": 479,
+          "excerpt": "with tempfile.TemporaryDirectory(prefix=f\"dcgb-{GENERATION}-\", dir=output_root) as temporary_name:"
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "build/python/202608281626-osm-overpass-retry.py",
+          "line": 18,
+          "excerpt": "REPAIR_CONTRACT_REL = Path(\"contracts/202608281626-osm-overpass-retry-privacy.json\")"
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "build/python/202608281626-osm-overpass-retry.py",
+          "line": 86,
+          "excerpt": "\"privacy\": privacy_receipt(),"
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "build/python/202608281626-osm-overpass-retry.py",
+          "line": 97,
+          "excerpt": "def privacy_normalise("
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "build/python/202608281626-osm-overpass-retry.py",
+          "line": 128,
+          "excerpt": "values[relationship_index[\"evidence_status\"]] = \"SOURCE_PARTY_WITHHELD_PRIVACY\""
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "build/python/202608281626-osm-overpass-retry.py",
+          "line": 134,
+          "excerpt": "def privacy_receipt() -> dict[str, Any]:"
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "build/python/202608281626-osm-overpass-retry.py",
+          "line": 146,
+          "excerpt": "\"relationship_evidence_status\": \"SOURCE_PARTY_WITHHELD_PRIVACY\","
+        },
+        {
+          "classification": "observed",
+          "category": "privacy",
+          "repository": "data-centres-gb",
+          "commit": "c5dfdee3ba5dbe94c1e29ec8cfa9d47431da9506",
+          "path": "build/python/202608281626-osm-overpass-retry.py",
+          "line": 159,
+          "excerpt": "\"privacy\": privacy_receipt(),"
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "category_counts": {
+      "datacentre": 187,
+      "demand": 155,
+      "identity": 98,
+      "parquet": 261,
+      "privacy": 18,
+      "source": 481
+    }
+  },
+  "evidence_rows": 1200,
+  "evidence_sha256": "56695db17e3f8d83f8d4697161aa071f15a35fef7fda85d0672147a7b1a73deb"
+}

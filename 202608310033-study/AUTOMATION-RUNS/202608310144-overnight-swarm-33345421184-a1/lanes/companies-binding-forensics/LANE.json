@@ -1,0 +1,156 @@
+{
+  "schema": "chatgpt-audits.swarm-lane.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "mixed",
+  "lane_id": "companies-binding-forensics",
+  "priority": 1,
+  "purpose": "Cross-check collision order, historical spine closure, top-level repd_ref extraction and upper-bound binding claims.",
+  "created_at": "2026-08-31T00:44:04.837535Z",
+  "created_at_london": "2026-08-31T01:44:04.838048+01:00",
+  "github_run_id": "33345421184",
+  "github_job": "lanes",
+  "plan_sha256": "2b4d434191311d30a71812b0fee8b8ca6221c5cc93e4a0db760d2f24d70b15cb",
+  "manifest_sha256": "5f74429403377b28d17a08eaf113c3fdb35aff861783476c3c9d106e95c23d4d",
+  "snapshots": [
+    {
+      "repository": "Ventusltd/companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/build/",
+        "/contracts/",
+        "/manifests/",
+        "/scripts/",
+        "/state/",
+        "/tests/"
+      ],
+      "tree_sha256": "9144869fa2b5b996bc7622b8db2b8f2d258798cf37b77d070eefe8d3abefeca7",
+      "files": 75,
+      "bytes": 950259,
+      "classification": "observed",
+      "name": "companies"
+    },
+    {
+      "repository": "Ventusltd/pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/automation/",
+        "/atman/",
+        "/build/",
+        "/contracts/",
+        "/data/",
+        "/discovery/",
+        "/index/",
+        "/manifests/",
+        "/orchestration/",
+        "/state/",
+        "/tests/",
+        "/ui/",
+        "/releases/current-v3.json",
+        "/releases/202608300309-pipelinenews/"
+      ],
+      "tree_sha256": "ba85f1072f396029a4428f0793bda8257f9793fc13a89b813234e0023c0cef32",
+      "files": 734,
+      "bytes": 98692242,
+      "classification": "observed",
+      "name": "pipelinenews"
+    },
+    {
+      "repository": "Ventusltd/gridatlas",
+      "commit": "cd4ef33430a3e989d9cd53f87498c40112b95504",
+      "paths": [
+        "/README.md",
+        "/STATE.md",
+        "/.github/",
+        "/atlas/current.json",
+        "/atlas/modules.json",
+        "/atlas/cartridges/",
+        "/atlas/manifests/",
+        "/atman/",
+        "/contracts/",
+        "/docs/",
+        "/governance/",
+        "/machine-learning/schemas/",
+        "/releases/current-v5.json",
+        "/state/",
+        "/scope-of-works/",
+        "/tools/scope/",
+        "/ui/"
+      ],
+      "tree_sha256": "fcda77549e8e787182d5cbe08a101e8c13d216bb2aca4a0e08b9b3eeda1fb29e",
+      "files": 111,
+      "bytes": 805194,
+      "classification": "observed",
+      "name": "gridatlas"
+    }
+  ],
+  "snapshot_failures": [],
+  "findings": [
+    {
+      "id": "BINDING-UPPER-BOUND",
+      "severity": "HIGH",
+      "classification": "inferred",
+      "title": "The reported 604 bindings remain an upper bound",
+      "detail": "The handoff reports 482,030 candidate edges reduced to 604, but incorporation dates are absent and historical-spine/FK closure is still being checked. The number must not enter a product read model yet.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "source": "202608310033-study/HANDOFFS/202608310116-claude-company-repd-progress.md",
+          "excerpt": "# Claude Company↔REPD progress handoff — 202608310116 > **REVIEW STATUS: UNREVIEWED** > Classification: mixed `observed` / `inferred` > Source: user-supplied Claude progress report. This is audit evidence, not a product finding. ## Reported execution boundary Claude reports a read-only DuckDB 1.3.2 decode of the frozen Company↔REPD candidate Parquet. The stated task order is: 1. verify the contract; 2. run the collision check first; 3. apply the binding rule clause by clause and count survivors; 4. state clause 4 as an upper bound because incorporation dates are absent. No product-repository write or live network request is claimed. ## Reported provisional result - Candidate edges: **482,03…"
+        }
+      ]
+    },
+    {
+      "id": "BINDING-FK-CONTRACT",
+      "severity": "HIGH",
+      "classification": "contradicted",
+      "title": "The provisional decode conflicts with the zero-unknown-REPD contract",
+      "detail": "Claude reported 2,128 unknown REPD references against a contract asserting zero. This may be path/pin mismatch, but it is a failed closure until reproduced against the exact producer spine.",
+      "evidence": []
+    },
+    {
+      "id": "BINDING-NESTED-DECOY",
+      "severity": "HIGH",
+      "classification": "inferred",
+      "title": "A nested relationship reference must never replace the top-level project identity",
+      "detail": "The generated regression fixture proves the safe rule: read only the top-level repd_ref and reject a nested-only record.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "test_result": {
+            "review_status": "UNREVIEWED",
+            "tests": 3,
+            "passed": 3,
+            "classification": "observed"
+          }
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "category_counts": {
+      "binding": 378,
+      "collision": 43,
+      "company_number": 179,
+      "historical_pin": 66,
+      "parquet_duckdb": 435,
+      "relationships": 43,
+      "repd_ref": 56
+    },
+    "handoff_present": true,
+    "extractor_tests": {
+      "review_status": "UNREVIEWED",
+      "tests": 3,
+      "passed": 3,
+      "classification": "observed"
+    },
+    "reported_candidate_edges": 482030,
+    "reported_upper_bound": 604
+  },
+  "evidence_rows": 1200,
+  "evidence_sha256": "fea041a69d0dd98315fe1d99cbaa7c1ab74ab74014365776fe3a27ae6b6a0ec7"
+}

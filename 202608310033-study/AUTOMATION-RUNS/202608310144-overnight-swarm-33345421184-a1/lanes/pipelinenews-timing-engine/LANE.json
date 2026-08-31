@@ -1,0 +1,514 @@
+{
+  "schema": "chatgpt-audits.swarm-lane.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "mixed",
+  "lane_id": "pipelinenews-timing-engine",
+  "priority": 1,
+  "purpose": "Build and adversarially test the dual-register funding plus procurement timing state machine.",
+  "created_at": "2026-08-31T00:44:02.810086Z",
+  "created_at_london": "2026-08-31T01:44:02.810789+01:00",
+  "github_run_id": "33345421184",
+  "github_job": "lanes",
+  "plan_sha256": "2b4d434191311d30a71812b0fee8b8ca6221c5cc93e4a0db760d2f24d70b15cb",
+  "manifest_sha256": "5f74429403377b28d17a08eaf113c3fdb35aff861783476c3c9d106e95c23d4d",
+  "snapshots": [
+    {
+      "repository": "Ventusltd/pipelinenews",
+      "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/automation/",
+        "/atman/",
+        "/build/",
+        "/contracts/",
+        "/data/",
+        "/discovery/",
+        "/index/",
+        "/manifests/",
+        "/orchestration/",
+        "/state/",
+        "/tests/",
+        "/ui/",
+        "/releases/current-v3.json",
+        "/releases/202608300309-pipelinenews/"
+      ],
+      "tree_sha256": "ba85f1072f396029a4428f0793bda8257f9793fc13a89b813234e0023c0cef32",
+      "files": 734,
+      "bytes": 98692242,
+      "classification": "observed",
+      "name": "pipelinenews"
+    },
+    {
+      "repository": "Ventusltd/companies",
+      "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+      "paths": [
+        "/README.md",
+        "/.github/",
+        "/build/",
+        "/contracts/",
+        "/manifests/",
+        "/scripts/",
+        "/state/",
+        "/tests/"
+      ],
+      "tree_sha256": "9144869fa2b5b996bc7622b8db2b8f2d258798cf37b77d070eefe8d3abefeca7",
+      "files": 75,
+      "bytes": 950259,
+      "classification": "observed",
+      "name": "companies"
+    },
+    {
+      "repository": "Ventusltd/spiders",
+      "commit": "5575e70a28205385d0d402c1cf4a4efeac7f5db4",
+      "paths": [
+        "."
+      ],
+      "tree_sha256": "c81cc39efdc1542b5005e3dfa1d9b9674435e79651d150e11c5972981337f318",
+      "files": 51,
+      "bytes": 213357,
+      "classification": "observed",
+      "name": "spiders"
+    }
+  ],
+  "snapshot_failures": [],
+  "findings": [
+    {
+      "id": "TIMING-TWO-LANES",
+      "severity": "HIGH",
+      "classification": "inferred",
+      "title": "Funding and procurement must remain separate authoritative lanes",
+      "detail": "The scanned repositories contain funding/account and planning/procurement language, but the commercial window must only emerge after reviewed identity and both observed lanes.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 3,
+          "excerpt": "Companies House public-data processing for Deploy Net Zero."
+        },
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 5,
+          "excerpt": "The repository retains reviewed acquisition and accounts-extraction code. The current recovery checkpoint, `202608281337`, builds a key-only relationship-and-report candidate; it does not publish or overwrite a stable dataset."
+        },
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 9,
+          "excerpt": "GitHub Actions provides the transient compute, while the GitHub REST API verifies run and retained-artifact provenance. The planned Companies House bulk archive is downloaded once into temporary runner storage; the Companies House REST API is not used. The expected 294,904-company selected-union closure is a validation measure, not a durable company dataset; the aggregate report separately records the full number of…"
+        },
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 21,
+          "excerpt": "The retained annual workflow documents the earlier rolling electronic-accounts process. It is audit history only and must not be dispatched as a publication route. Checkpoint `202608281112` is the sole authorised Companies recovery path."
+        },
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 25,
+          "excerpt": "- Companies House is credited as the public-register source."
+        },
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 31,
+          "excerpt": "- Raw Companies House archives are processed in temporary Actions storage and are not committed."
+        },
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "README.md",
+          "line": 33,
+          "excerpt": "Source: Companies House. Public-register information retrieved and processed by Deploy Net Zero."
+        },
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 132,
+          "excerpt": "{\"name\":\"accounts-202608272155-33123064395-0\",\"digest\":\"sha256:73cfb68813a6524b23eee4ae45504d3a2bed2f0035116cc0efa049c2b62d2b1c\"},"
+        },
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 133,
+          "excerpt": "{\"name\":\"accounts-202608272155-33123064395-1\",\"digest\":\"sha256:3da269b26136b8ca6b32e8200ae19527d8fb83f7836a661685fab78662047682\"},"
+        },
+        {
+          "classification": "observed",
+          "category": "funding",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 134,
+          "excerpt": "{\"name\":\"accounts-202608272155-33123064395-2\",\"digest\":\"sha256:4f37aa9ef85a32270d297cfbcd37606c5cad04b25af3db0c881a8324a0ccaf03\"}"
+        },
+        {
+          "classification": "observed",
+          "category": "procurement",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608272035-verify-companies-house-candidate.py",
+          "line": 63,
+          "excerpt": "\"Renewable Energy Planning Database source: Department for Energy Security and Net Zero; \""
+        },
+        {
+          "classification": "observed",
+          "category": "procurement",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608272035-verify-companies-house-candidate.py",
+          "line": 66,
+          "excerpt": "\"source_page\": \"https://www.gov.uk/government/publications/renewable-energy-planning-database-quarterly-extract\","
+        },
+        {
+          "classification": "observed",
+          "category": "procurement",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608272035-verify-companies-house-candidate.py",
+          "line": 82,
+          "excerpt": "\"dataset\": \"DESNZ Renewable Energy Planning Database Q2 2026\","
+        },
+        {
+          "classification": "observed",
+          "category": "procurement",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "contracts/202608281846-federated-company-repd-relationship-contract-v1.json",
+          "line": 46,
+          "excerpt": "\"authority\": \"DESNZ Renewable Energy Planning Database Ref ID\","
+        },
+        {
+          "classification": "observed",
+          "category": "procurement",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 32,
+          "excerpt": "- The current official-source frontier is 60 of 6,870 reference groups with 174 observations: 29 authority-safe primary matches and 145 abstentions. The planning source is degraded, so degradation is not treated as authority proof."
+        },
+        {
+          "classification": "observed",
+          "category": "procurement",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 40,
+          "excerpt": "- Every release must state how it advances market intelligence for the fastest possible path to net zero; report the official REPD progress state of Solar and BESS; and answer when and how projects connect. Missing grid-connection evidence is published as `UNKNOWN` or `ABSTAIN`, never inferred from planning, capacity, proximity or headlines."
+        },
+        {
+          "classification": "observed",
+          "category": "procurement",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": "archive/202608261547-pipelinenews/README.md",
+          "line": 42,
+          "excerpt": "- The current manual-recovery release retains 3,563 Solar projects and 1,609 BESS projects, restores the full newspaper/table workflow, and keeps verified grid-connection dates and methods `UNKNOWN` pending exact network-owner, connection-agreement, register, energisation or planning-document evidence."
+        }
+      ]
+    },
+    {
+      "id": "TIMING-NEWS-NONAUTHORITY",
+      "severity": "HIGH",
+      "classification": "inferred",
+      "title": "News is corroboration, not a register fact",
+      "detail": "Current news code is rich enough to explain events, but allowing headlines to create a lane would collapse the stated commercial discipline.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 25,
+          "excerpt": "PIPELINENEWS_COMMIT: \"35f35ada161223fb3ee19e525664ee7f17df1ddd\""
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 89,
+          "excerpt": "test \"$(jq -r '.inputs.pipelinenews_commit' \"$CONTRACT\")\" = \"$PIPELINENEWS_COMMIT\""
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 168,
+          "excerpt": "repository: Ventusltd/pipelinenews"
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 169,
+          "excerpt": "ref: ${{ env.PIPELINENEWS_COMMIT }}"
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 188,
+          "excerpt": "test \"$(git -C work/repd-source rev-parse HEAD)\" = \"$PIPELINENEWS_COMMIT\""
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 307,
+          "excerpt": "repository: Ventusltd/pipelinenews"
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608281337-compact-parquet-companies-candidate.yml",
+          "line": 308,
+          "excerpt": "ref: ${{ env.PIPELINENEWS_COMMIT }}"
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608262245-companies-house-source.py",
+          "line": 12,
+          "excerpt": "UA = \"Ventus-PipelineNews/1.0 (+https://github.com/Ventusltd/pipelinenews)\""
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608262245-compile-companies-house.py",
+          "line": 2,
+          "excerpt": "\"\"\"Compile public Companies House facts into bounded PipelineNews cartridges.\"\"\""
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271507-verify-companies-house-candidate.py",
+          "line": 17,
+          "excerpt": "PIPELINENEWS_COMMIT = \"35f35ada161223fb3ee19e525664ee7f17df1ddd\""
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271507-verify-companies-house-candidate.py",
+          "line": 294,
+          "excerpt": "result[\"news_identity_policy\"] = \"NEWS_MAY_ANNOTATE_BUT_NEVER_ESTABLISH_IDENTITY\""
+        },
+        {
+          "classification": "observed",
+          "category": "news",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271507-verify-companies-house-candidate.py",
+          "line": 425,
+          "excerpt": "\"pipelinenews_commit\": PIPELINENEWS_COMMIT,"
+        }
+      ]
+    },
+    {
+      "id": "TIMING-RETRACTIONS",
+      "severity": "MEDIUM",
+      "classification": "inferred",
+      "title": "Retractions, contradictions and staleness require explicit transitions",
+      "detail": "The vNext state machine must preserve negative changes rather than overwrite the latest state.",
+      "evidence": [
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300327-bound-hourly-gridatlas-link-mission.yml",
+          "line": 74,
+          "excerpt": "'mission window guard',"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300435-five-hour-key-only-atlas-watchdog.yml",
+          "line": 36,
+          "excerpt": "- name: Enforce bounded five-hour mission window"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300435-five-hour-key-only-atlas-watchdog.yml",
+          "line": 37,
+          "excerpt": "id: window"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300435-five-hour-key-only-atlas-watchdog.yml",
+          "line": 51,
+          "excerpt": "if: steps.window.outputs.active == 'true'"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300435-five-hour-key-only-atlas-watchdog.yml",
+          "line": 59,
+          "excerpt": "if: steps.window.outputs.active == 'true'"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300435-five-hour-key-only-atlas-watchdog.yml",
+          "line": 86,
+          "excerpt": "if: steps.window.outputs.active == 'true'"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": ".github/workflows/202608300435-five-hour-key-only-atlas-watchdog.yml",
+          "line": 155,
+          "excerpt": "if: always() && steps.window.outputs.active == 'true'"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271507-freeze-companies-house-plan.py",
+          "line": 255,
+          "excerpt": "window = headers.get(\"x-ratelimit-window\", \"\")"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "companies",
+          "commit": "200e9b3a5c2f687a12109aee7a5cf7635016b0fb",
+          "path": "build/python/202608271507-freeze-companies-house-plan.py",
+          "line": 264,
+          "excerpt": "\"rate_window\": window,"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608271524-news-chronology-candidate.yml",
+          "line": 139,
+          "excerpt": "assert.deepEqual(manifest.first_window_bbc_article_ids, ["
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608272015-mobile-orientation-candidate.yml",
+          "line": 596,
+          "excerpt": ".sidebar,.header,.meta,.news-tools,.news-pager,.filters,.tablewrap,.project-window-controls{display:none!important}"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608272015-mobile-orientation-candidate.yml",
+          "line": 666,
+          "excerpt": "\".project-window-controls\","
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608272048-mobile-orientation-candidate.yml",
+          "line": 597,
+          "excerpt": ".sidebar,.header,.meta,.news-tools,.news-pager,.filters,.tablewrap,.project-window-controls{display:none!important}"
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608272048-mobile-orientation-candidate.yml",
+          "line": 667,
+          "excerpt": "\".project-window-controls\","
+        },
+        {
+          "classification": "observed",
+          "category": "timing",
+          "repository": "pipelinenews",
+          "commit": "83d9c430b283f8beaa8c0a05e42b14d4a4784623",
+          "path": ".github/workflows/202608282200-federated-relationship-candidate.yml",
+          "line": 314,
+          "excerpt": "assert.ok(runtime.includes(\"const WINDOW_SIZE = 100;\"));"
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "category_counts": {
+      "funding": 302,
+      "news": 753,
+      "procurement": 7,
+      "review": 97,
+      "timing": 41
+    },
+    "funding_evidence_lines": 302,
+    "procurement_evidence_lines": 7
+  },
+  "evidence_rows": 1200,
+  "evidence_sha256": "c3c92e0b84eda0506912e7e46e1bda5bf0b6779296538b56f211eaaaf0bb8c59"
+}

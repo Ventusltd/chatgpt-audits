@@ -1,0 +1,98 @@
+{
+  "schema": "chatgpt-audits.human-review-queue.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "mixed",
+  "queue": [
+    {
+      "rank": 1,
+      "classification": "contradicted",
+      "priority": "HIGH",
+      "decision": "Resolve the 0-versus-2,128 unknown REPD reference contradiction",
+      "reason": "Claude reported 2,128 unknown REPD references against a contract asserting zero. This may be path/pin mismatch, but it is a failed closure until reproduced against the exact producer spine.",
+      "graduation_target": "companies contracts and exact spine receipt",
+      "source_finding": "BINDING-FK-CONTRACT"
+    },
+    {
+      "rank": 2,
+      "classification": "inferred",
+      "priority": "HIGH",
+      "decision": "Graduate the top-level-only REPD extractor regression test",
+      "reason": "The generated regression fixture proves the safe rule: read only the top-level repd_ref and reject a nested-only record.",
+      "graduation_target": "companies relationship builder",
+      "source_finding": "BINDING-NESTED-DECOY"
+    },
+    {
+      "rank": 3,
+      "classification": "inferred",
+      "priority": "HIGH",
+      "decision": "Reproduce the 482,030 → 604 binding reduction against the exact producer spine",
+      "reason": "The handoff reports 482,030 candidate edges reduced to 604, but incorporation dates are absent and historical-spine/FK closure is still being checked. The number must not enter a product read model yet.",
+      "graduation_target": "companies audit/candidate workflow",
+      "source_finding": "BINDING-UPPER-BOUND"
+    },
+    {
+      "rank": 4,
+      "classification": "observed",
+      "priority": "HIGH",
+      "decision": "Approve compact table ownership and consumer receipts",
+      "reason": "The repositories contain explicit compactness, hashing and ownership language. The vNext intelligence engine should consume only reviewed relationship/event tables, never a company-master dump.",
+      "graduation_target": "companies/data repos/pipelinenews",
+      "source_finding": "DATA-COMPACT-CONSUMERS"
+    },
+    {
+      "rank": 5,
+      "classification": "observed",
+      "priority": "HIGH",
+      "decision": "Separate the reviewed identity binder from news collection",
+      "reason": "Several paths encode eligible_for_news_signal. A related mention must never become project identity or a register fact.",
+      "graduation_target": "pipelinenews identity module",
+      "source_finding": "IDENTITY-NEWS-GATE"
+    },
+    {
+      "rank": 6,
+      "classification": "observed",
+      "priority": "HIGH",
+      "decision": "Repair and re-prove the PipelineNews/Companies → GridAtlas stable-route seam",
+      "reason": "Observed 12 stale-root-shaped URL occurrence(s) and 0 stable `/gridatlas/atlas/` occurrence(s). Runtime 404 is not asserted by this offline lane; the source-level route drift is proven.",
+      "graduation_target": "pipelinenews and companies, in separate reviewed changes",
+      "source_finding": "SEAM-ROUTE-DRIFT"
+    },
+    {
+      "rank": 7,
+      "classification": "inferred",
+      "priority": "HIGH",
+      "decision": "Freeze the dual-register timing contract and one-signal-silence tests",
+      "reason": "The scanned repositories contain funding/account and planning/procurement language, but the commercial window must only emerge after reviewed identity and both observed lanes.",
+      "graduation_target": "pipelinenews intelligence engine",
+      "source_finding": "TIMING-TWO-LANES"
+    },
+    {
+      "rank": 8,
+      "classification": "observed",
+      "priority": "MEDIUM",
+      "decision": "Extract collectors and append-only evidence ledger without behaviour change",
+      "reason": "Observed 2 discovery runners above 30 kB. Extraction should preserve behaviour while separating acquisition, evidence and identity.",
+      "graduation_target": "pipelinenews discovery modules",
+      "source_finding": "COLLECTOR-MONOLITH"
+    },
+    {
+      "rank": 9,
+      "classification": "inferred",
+      "priority": "MEDIUM",
+      "decision": "Review pointer-current and top-level-identity CVAA vaccine drafts",
+      "reason": "The strongest overnight candidates are a consumer-pointer-current vaccine and a top-level-identity-only vaccine.",
+      "graduation_target": "cvaa",
+      "source_finding": "CVAA-SEAM-VACCINES"
+    },
+    {
+      "rank": 10,
+      "classification": "observed",
+      "priority": "INFO",
+      "decision": "Review the reference state machine and adopt equivalent product tests",
+      "reason": "Executed 1,551,382 transitions with zero invariant failures. This proves the reference logic only; it does not prove current PipelineNews implements it.",
+      "graduation_target": "pipelinenews tests",
+      "source_finding": "ADVERSARIAL-100K"
+    }
+  ]
+}

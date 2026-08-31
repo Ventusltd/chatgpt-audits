@@ -1,0 +1,33 @@
+{
+  "schema": "chatgpt-audits.binding-extractor-fixture.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "inferred",
+  "top_level_and_nested": {
+    "relationships": [
+      {
+        "repd_ref": "13600",
+        "role": "RELATED_DEVELOPMENT"
+      }
+    ],
+    "repd_ref": "13599",
+    "company_number": "01234567"
+  },
+  "top_level_and_nested_reversed": {
+    "repd_ref": "17494",
+    "relationships": [
+      {
+        "repd_ref": "99999"
+      }
+    ],
+    "company_number": "07654321"
+  },
+  "nested_only": {
+    "relationships": [
+      {
+        "repd_ref": "13600"
+      }
+    ],
+    "company_number": "09999999"
+  }
+}

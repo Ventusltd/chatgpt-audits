@@ -1,0 +1,114 @@
+{
+  "schema": "chatgpt-audits.swarm-lane-index.v1",
+  "generation": "202608310116",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "required_lanes": [
+    "pipelinenews-collectors",
+    "pipelinenews-identity",
+    "pipelinenews-timing-engine",
+    "companies-binding-forensics",
+    "gridatlas-seam-contracts",
+    "claude-claim-crosscheck",
+    "adversarial-invariants"
+  ],
+  "missing_required_lanes": [],
+  "lanes": [
+    {
+      "lane_id": "adversarial-invariants",
+      "priority": 1,
+      "findings": 2,
+      "evidence_rows": 1200,
+      "snapshot_failures": [],
+      "lane_manifest_sha256": "28ab44d53ae4e88a2106f06037a747fa12cf144dfd7b292fe4e73af34fcc1a2f"
+    },
+    {
+      "lane_id": "companies-binding-forensics",
+      "priority": 1,
+      "findings": 3,
+      "evidence_rows": 1200,
+      "snapshot_failures": [],
+      "lane_manifest_sha256": "7545131d0ce2f18e77a88748d6823daa453ca397cddadadd26c381570312e357"
+    },
+    {
+      "lane_id": "pipelinenews-collectors",
+      "priority": 1,
+      "findings": 3,
+      "evidence_rows": 897,
+      "snapshot_failures": [],
+      "lane_manifest_sha256": "ebe86625247e096df6bc54b407e5a1812d64cf6f6bda85d21e3cd3f9308c1aad"
+    },
+    {
+      "lane_id": "pipelinenews-identity",
+      "priority": 1,
+      "findings": 3,
+      "evidence_rows": 1200,
+      "snapshot_failures": [],
+      "lane_manifest_sha256": "8f9a5e6c66fd301c25b39725986fb2c9d00cc063106b4cbcc91790448462689d"
+    },
+    {
+      "lane_id": "pipelinenews-timing-engine",
+      "priority": 1,
+      "findings": 3,
+      "evidence_rows": 1200,
+      "snapshot_failures": [],
+      "lane_manifest_sha256": "bb72df375e69e1bcf6e6e1e4b96da61eb926ae68bc31132af6271205c103bf26"
+    },
+    {
+      "lane_id": "claude-claim-crosscheck",
+      "priority": 2,
+      "findings": 1,
+      "evidence_rows": 58,
+      "snapshot_failures": [],
+      "lane_manifest_sha256": "c1dce3db8f9bd463c690624926b767ef412fd5bcdd0ba081aa004be0ee060569"
+    },
+    {
+      "lane_id": "federated-data-contracts",
+      "priority": 2,
+      "findings": 2,
+      "evidence_rows": 1200,
+      "snapshot_failures": [],
+      "lane_manifest_sha256": "62aaca97fffb6e825c0015ab80cae9c36c48bbb8dd512a5f1c5a89f276d45242"
+    },
+    {
+      "lane_id": "gridatlas-seam-contracts",
+      "priority": 2,
+      "findings": 3,
+      "evidence_rows": 1200,
+      "snapshot_failures": [],
+      "lane_manifest_sha256": "d97d814dca9272c1f2d37469d9bfaedb855a9fb01e1624da70210f3875517167"
+    },
+    {
+      "lane_id": "cvaa-vaccine-coverage",
+      "priority": 3,
+      "findings": 2,
+      "evidence_rows": 1200,
+      "snapshot_failures": [],
+      "lane_manifest_sha256": "bbb67cb3dd2e74cc03fd4298dc4b96cb76d2eba5da653295689019a24042a093"
+    },
+    {
+      "lane_id": "datacentre-demand-intelligence",
+      "priority": 3,
+      "findings": 2,
+      "evidence_rows": 1200,
+      "snapshot_failures": [],
+      "lane_manifest_sha256": "2dd785c62711f3e58f18a04484eac2d9ff2bd4863169a7c77b2e2bfb27ad4a4f"
+    },
+    {
+      "lane_id": "globalgrid-federation-topology",
+      "priority": 3,
+      "findings": 1,
+      "evidence_rows": 1200,
+      "snapshot_failures": [],
+      "lane_manifest_sha256": "d637a815c70b5616bbf9e7c64e7aeb77c1ea32dbe237ea7808fe3c3d2c297359"
+    },
+    {
+      "lane_id": "workflow-governance",
+      "priority": 3,
+      "findings": 2,
+      "evidence_rows": 1200,
+      "snapshot_failures": [],
+      "lane_manifest_sha256": "32c3986e1baa8993530b28a73baae2289522405060a994c46a40ac80a093a0ed"
+    }
+  ]
+}
