@@ -1,0 +1,54 @@
+{
+  "schema": "chatgpt-audits.actions-watchdog-repair-catalog.v1",
+  "generation": "202608310125",
+  "review_status": "UNREVIEWED",
+  "classification": "inferred",
+  "repository_boundary": "Ventusltd/chatgpt-audits",
+  "watched_workflows": [
+    "202608310052 five-hour quarantined cross-repo study",
+    "202608310116 overnight audit swarm"
+  ],
+  "rules": [
+    {
+      "id": "newer-run-already-active",
+      "condition": "a newer queued or running instance of the same workflow exists",
+      "action": "WAIT_NEWER_ACTIVE_RUN",
+      "maximum": "no mutation"
+    },
+    {
+      "id": "failed-stale-controller",
+      "condition": "failed run head_sha differs from current main",
+      "action": "DISPATCH_CURRENT_MAIN",
+      "maximum": "one current-main dispatch per watchdog observation, suppressed while a newer run is active"
+    },
+    {
+      "id": "same-controller-transient-failure",
+      "condition": "same main SHA, transient-only log classification and run_attempt < 2",
+      "action": "RERUN_FAILED_JOBS_ONCE",
+      "maximum": "one retry"
+    },
+    {
+      "id": "deterministic-or-repeated-failure",
+      "condition": "assertion, schema, integrity, test or repeated failure",
+      "action": "UNRESOLVED_REPAIR_REQUIRED",
+      "maximum": "retain timestamped incident evidence; never manufacture green status"
+    }
+  ],
+  "transient_families": [
+    "GitHub 5xx",
+    "rate limit",
+    "network and TLS interruption",
+    "hosted-runner loss",
+    "action download",
+    "artifact service",
+    "git reference race",
+    "cancelled operation"
+  ],
+  "forbidden_actions": [
+    "product repository mutation",
+    "product workflow dispatch",
+    "automatic deterministic source-code patch",
+    "publication",
+    "suppression of failed evidence"
+  ]
+}
