@@ -3,9 +3,10 @@
 
 REVIEW STATUS: UNREVIEWED.
 
-The supervisor may re-run recent failed jobs in Ventusltd/chatgpt-audits only.
-Every other Ventus repository is observed read-only. It never dispatches or
-mutates a product repository.
+The supervisor may re-run the latest failed audit workflow in
+Ventusltd/chatgpt-audits only. Every other Ventus repository is observed
+read-only. Product Pages noise and historical/cancelled runs are retained as
+evidence but are not described as unresolved audit failures.
 """
 
 from __future__ import annotations
@@ -26,6 +27,7 @@ from zoneinfo import ZoneInfo
 AUDIT_REPOSITORY = "Ventusltd/chatgpt-audits"
 REVIEW_STATUS = "UNREVIEWED"
 LONDON = ZoneInfo("Europe/London")
+ACTIVE_STATUSES = {"queued", "in_progress", "waiting", "requested", "pending"}
 FAILED_CONCLUSIONS = {
     "failure",
     "cancelled",
@@ -85,7 +87,7 @@ def github_request(
     body = None if payload is None else json.dumps(payload).encode("utf-8")
     headers = {
         "Accept": "application/vnd.github+json",
-        "User-Agent": "chatgpt-audits-hourly-watchdog/202608310121",
+        "User-Agent": "chatgpt-audits-hourly-watchdog/202608310121-v2",
         "X-GitHub-Api-Version": "2022-11-28",
     }
     if token:
@@ -124,6 +126,32 @@ def threshold_minutes(name: str) -> int:
     if "failure auto-repair" in lowered:
         return 25
     return 100
+
+
+def is_pages_noise(run: dict[str, Any]) -> bool:
+    name = str(run.get("name") or "").lower()
+    path = str(run.get("path") or "").lower()
+    return name == "pages build and deployment" or path.startswith("dynamic/pages/")
+
+
+def compact_run(run: dict[str, Any], now: datetime) -> dict[str, Any]:
+    created = parse_time(run.get("created_at")) or now
+    updated = parse_time(run.get("updated_at")) or created
+    return {
+        "run_id": run.get("id"),
+        "name": str(run.get("name") or run.get("path") or "unknown"),
+        "path": run.get("path"),
+        "event": run.get("event"),
+        "head_sha": run.get("head_sha"),
+        "status": run.get("status"),
+        "conclusion": run.get("conclusion"),
+        "run_attempt": run.get("run_attempt"),
+        "created_at": run.get("created_at"),
+        "updated_at": run.get("updated_at"),
+        "age_minutes": round((now - created).total_seconds() / 60, 1),
+        "quiet_minutes": round((now - updated).total_seconds() / 60, 1),
+        "html_url": run.get("html_url"),
+    }
 
 
 def job_evidence(repository: str, run_id: int, token: str) -> dict[str, Any]:
@@ -178,6 +206,19 @@ def request_rerun(repository: str, run: dict[str, Any], token: str) -> dict[str,
     }
 
 
+def classify_failure(repository: str, run: dict[str, Any], latest_for_name: bool) -> str:
+    if is_pages_noise(run):
+        return "pages_platform_observation"
+    if repository != AUDIT_REPOSITORY:
+        return "product_repository_observation"
+    name = str(run.get("name") or run.get("path") or "unknown")
+    if name in EXCLUDED_RERUN_WORKFLOWS:
+        return "audit_nonrepairable_observation"
+    if name in TARGET_AUDIT_WORKFLOWS and latest_for_name:
+        return "audit_actionable_failure"
+    return "audit_historical_failure"
+
+
 def summarise_repository(
     repository: str,
     token: str,
@@ -196,7 +237,9 @@ def summarise_repository(
         "classification": "observed",
         "api_error": None,
         "runs_examined": 0,
+        "recent": [],
         "active": [],
+        "successful": [],
         "failed": [],
         "stalled": [],
         "reruns": [],
@@ -211,55 +254,61 @@ def summarise_repository(
         updated = parse_time(run.get("updated_at"))
         if created is None:
             continue
-        if created >= since or (run.get("status") in {"queued", "in_progress"} and (updated or created) >= since):
+        if created >= since or (run.get("status") in ACTIVE_STATUSES and (updated or created) >= since):
             runs.append(run)
+    runs.sort(
+        key=lambda row: parse_time(row.get("created_at"))
+        or datetime.min.replace(tzinfo=timezone.utc),
+        reverse=True,
+    )
     summary["runs_examined"] = len(runs)
 
+    latest_ids_by_name: dict[str, Any] = {}
     for run in runs:
         name = str(run.get("name") or run.get("path") or "unknown")
-        created = parse_time(run.get("created_at")) or now
-        updated = parse_time(run.get("updated_at")) or created
-        age_minutes = round((now - created).total_seconds() / 60, 1)
-        quiet_minutes = round((now - updated).total_seconds() / 60, 1)
-        compact = {
-            "run_id": run.get("id"),
-            "name": name,
-            "path": run.get("path"),
-            "event": run.get("event"),
-            "head_sha": run.get("head_sha"),
-            "status": run.get("status"),
-            "conclusion": run.get("conclusion"),
-            "run_attempt": run.get("run_attempt"),
-            "created_at": run.get("created_at"),
-            "updated_at": run.get("updated_at"),
-            "age_minutes": age_minutes,
-            "quiet_minutes": quiet_minutes,
-            "html_url": run.get("html_url"),
-        }
-        if run.get("status") in {"queued", "in_progress", "waiting", "requested", "pending"}:
+        latest_ids_by_name.setdefault(name, run.get("id"))
+
+    for run in runs:
+        compact = compact_run(run, now)
+        name = compact["name"]
+        compact["latest_for_name"] = latest_ids_by_name.get(name) == compact["run_id"]
+        summary["recent"].append(compact)
+
+        if run.get("status") in ACTIVE_STATUSES:
             summary["active"].append(compact)
             threshold = threshold_minutes(name)
-            queued_stall = run.get("status") == "queued" and age_minutes > 35
-            running_stall = run.get("status") == "in_progress" and age_minutes > threshold
+            queued_stall = run.get("status") == "queued" and compact["age_minutes"] > 35
+            running_stall = run.get("status") == "in_progress" and compact["age_minutes"] > threshold
             if queued_stall or running_stall:
                 summary["stalled"].append(
                     {
                         **compact,
                         "classification": "inferred",
                         "threshold_minutes": 35 if queued_stall else threshold,
-                        "reason": "queued beyond threshold" if queued_stall else "running beyond workflow-specific threshold",
+                        "reason": "queued beyond threshold"
+                        if queued_stall
+                        else "running beyond workflow-specific threshold",
                     }
                 )
 
+        if run.get("conclusion") == "success":
+            summary["successful"].append(compact)
+
         if run.get("conclusion") in FAILED_CONCLUSIONS:
+            failure_class = classify_failure(repository, run, bool(compact["latest_for_name"]))
             failure = {
                 **compact,
-                "jobs": job_evidence(repository, int(run["id"]), token),
-                "product_repository_mutation_allowed": repository == AUDIT_REPOSITORY,
+                "failure_class": failure_class,
+                "jobs": (
+                    job_evidence(repository, int(run["id"]), token)
+                    if repository == AUDIT_REPOSITORY and not is_pages_noise(run)
+                    else {"api_error": None, "jobs": [], "detail_policy": "metadata-only"}
+                ),
+                "product_repository_mutation_allowed": False,
             }
             summary["failed"].append(failure)
             eligible = (
-                repository == AUDIT_REPOSITORY
+                failure_class == "audit_actionable_failure"
                 and name in TARGET_AUDIT_WORKFLOWS
                 and name not in EXCLUDED_RERUN_WORKFLOWS
                 and int(run.get("run_attempt") or 1) < 3
@@ -267,7 +316,13 @@ def summarise_repository(
             )
             if eligible:
                 rerun = request_rerun(repository, run, token)
-                rerun.update({"run_id": run["id"], "name": name, "previous_attempt": run.get("run_attempt")})
+                rerun.update(
+                    {
+                        "run_id": run["id"],
+                        "name": name,
+                        "previous_attempt": run.get("run_attempt"),
+                    }
+                )
                 summary["reruns"].append(rerun)
                 if rerun["requested"]:
                     max_reruns_remaining[0] -= 1
@@ -275,53 +330,96 @@ def summarise_repository(
     return summary
 
 
+def latest_workflow_state(audit_runs: dict[str, Any], name: str) -> dict[str, Any]:
+    rows = [row for row in audit_runs["recent"] if row["name"] == name]
+    if not rows:
+        return {"state": "NOT_SEEN_IN_LOOKBACK", "run": None, "classification": "unknown"}
+    latest = rows[0]
+    if latest["status"] in ACTIVE_STATUSES:
+        state = "RUNNING"
+    elif latest["conclusion"] == "success":
+        state = "COMPLETED_SUCCESS"
+    elif latest["conclusion"] in FAILED_CONCLUSIONS:
+        state = "FAILED"
+    else:
+        state = "COMPLETED_OTHER"
+    return {"state": state, "run": latest, "classification": "observed"}
+
+
 def markdown_report(report: dict[str, Any]) -> str:
     timer = report["timer_state"]
+    totals = report["totals"]
     lines = [
         "# Hourly audit watchdog",
         "",
         "> **REVIEW STATUS: UNREVIEWED**  ",
         "> Classification: mixed `observed` / `inferred`  ",
-        "> Product repositories were inspected read-only. Automatic re-runs are restricted to `Ventusltd/chatgpt-audits`.",
+        "> Product repositories were inspected read-only. Automatic re-runs are restricted to the latest failed `Ventusltd/chatgpt-audits` workflow.",
         "",
         f"Checked: `{report['checked_at_london']}` Europe/London  ",
-        f"Audit timer: **{timer['five_hour']}**  ",
-        f"Overnight swarm: **{timer['swarm']}**  ",
-        f"Automatic re-runs requested this check: **{report['totals']['reruns_requested']}**  ",
-        f"Unresolved recent failures observed: **{report['totals']['failed_runs']}**  ",
-        f"Potentially stalled runs: **{report['totals']['stalled_runs']}**",
+        f"Five-hour controller: **{timer['five_hour']['state']}**  ",
+        f"Overnight swarm: **{timer['swarm']['state']}**  ",
+        f"Actionable audit failures: **{totals['audit_actionable_failures']}**  ",
+        f"Automatic audit re-runs requested: **{totals['reruns_requested']}**  ",
+        f"Product failures observed read-only: **{totals['product_failures_observed']}**  ",
+        f"Pages/platform observations separated from actionable failures: **{totals['pages_platform_observations']}**  ",
+        f"Potentially stalled runs: **{totals['stalled_runs']}**",
         "",
         "## Repository status",
         "",
-        "| Repository | Active | Failed | Stalled | Re-runs | API |",
-        "|---|---:|---:|---:|---:|---|",
+        "| Repository | Active | Audit-actionable | Product observations | Pages noise | Stalled | Re-runs | API |",
+        "|---|---:|---:|---:|---:|---:|---:|---|",
     ]
     for repo in report["repositories"]:
+        classes = [row["failure_class"] for row in repo["failed"]]
         lines.append(
-            f"| `{repo['repository']}` | {len(repo['active'])} | {len(repo['failed'])} | "
-            f"{len(repo['stalled'])} | {sum(1 for row in repo['reruns'] if row['requested'])} | "
+            f"| `{repo['repository']}` | {len(repo['active'])} | "
+            f"{classes.count('audit_actionable_failure')} | "
+            f"{classes.count('product_repository_observation')} | "
+            f"{classes.count('pages_platform_observation')} | "
+            f"{len(repo['stalled'])} | "
+            f"{sum(1 for row in repo['reruns'] if row['requested'])} | "
             f"{'ERROR' if repo['api_error'] else 'OK'} |"
         )
 
-    failures = [
-        (repo["repository"], failure)
+    actionable = [
+        failure
         for repo in report["repositories"]
         for failure in repo["failed"]
+        if failure["failure_class"] == "audit_actionable_failure"
     ]
-    lines.extend(["", "## Recent failed actions"])
-    if not failures:
-        lines.append("")
-        lines.append("No failed, cancelled or timed-out runs were observed in the bounded lookback.")
+    lines.extend(["", "## Actionable audit failures"])
+    if not actionable:
+        lines.extend(["", "No latest audit workflow is presently in a repair-eligible failed state."])
     else:
-        for repository, failure in failures[:30]:
+        for failure in actionable:
             failed_jobs = failure["jobs"].get("jobs", [])
             job_text = ", ".join(job["name"] for job in failed_jobs) or "job detail unavailable"
             lines.extend(
                 [
                     "",
-                    f"- `{repository}` run `{failure['run_id']}` — **{failure['conclusion']}**, "
-                    f"attempt {failure['run_attempt']}: {failure['name']}; {job_text}.",
+                    f"- Run `{failure['run_id']}` — **{failure['conclusion']}**, attempt "
+                    f"{failure['run_attempt']}: {failure['name']}; {job_text}.",
                 ]
+            )
+
+    product_observations = [
+        (repo["repository"], failure)
+        for repo in report["repositories"]
+        for failure in repo["failed"]
+        if failure["failure_class"] == "product_repository_observation"
+    ]
+    lines.extend(["", "## Product-repository observations"])
+    if not product_observations:
+        lines.extend(["", "No non-Pages product failures were observed in the bounded lookback."])
+    else:
+        lines.append("")
+        lines.append(
+            f"Observed `{len(product_observations)}` non-Pages product failures/cancellations. They are evidence only; this audit controller has no mutation or dispatch authority there."
+        )
+        for repository, failure in product_observations[:12]:
+            lines.append(
+                f"- `{repository}` run `{failure['run_id']}` — {failure['conclusion']}: {failure['name']}."
             )
 
     lines.extend(
@@ -329,8 +427,10 @@ def markdown_report(report: dict[str, Any]) -> str:
             "",
             "## Repair boundary",
             "",
-            "- Failed audit jobs may be re-run up to attempt 3.",
+            "- Only the latest failed audit workflow may be re-run, up to attempt 3.",
+            "- A newer active or successful run suppresses repair of an older failed run with the same workflow name.",
             "- Product-repository runs are evidence only: no dispatch, re-run, commit, release or Pages mutation is allowed.",
+            "- Pages build/deployment noise is counted separately and is not labelled an unresolved audit failure.",
             "- Deterministic source defects are sent to the separate repair diagnosis workflow; this watchdog does not rewrite source from logs.",
             "- Absence from this bounded lookback is not evidence that no older failure exists.",
             "",
@@ -360,17 +460,16 @@ def main(argv: list[str] | None = None) -> int:
     ]
 
     audit_runs = next(row for row in repositories if row["repository"] == AUDIT_REPOSITORY)
-    five_hour = [
-        row for row in audit_runs["active"]
-        if row["name"] == "202608310052 five-hour quarantined cross-repo study"
-    ]
-    swarm = [
-        row for row in audit_runs["active"]
-        if row["name"] == "202608310116 overnight audit swarm"
-    ]
+    timer_state = {
+        "five_hour": latest_workflow_state(
+            audit_runs, "202608310052 five-hour quarantined cross-repo study"
+        ),
+        "swarm": latest_workflow_state(audit_runs, "202608310116 overnight audit swarm"),
+    }
 
+    failures = [failure for repo in repositories for failure in repo["failed"]]
     report = {
-        "schema": "chatgpt-audits.hourly-watchdog.v1",
+        "schema": "chatgpt-audits.hourly-watchdog.v2",
         "generation": "202608310121",
         "review_status": REVIEW_STATUS,
         "classification": "observed",
@@ -383,16 +482,26 @@ def main(argv: list[str] | None = None) -> int:
             "product_repository_actions": "READ_ONLY",
             "absence_is_evidence": False,
         },
-        "timer_state": {
-            "five_hour": "RUNNING" if five_hour else "NOT_CURRENTLY_ACTIVE",
-            "swarm": "RUNNING" if swarm else "NOT_CURRENTLY_ACTIVE",
-            "classification": "observed",
-        },
+        "timer_state": timer_state,
         "repositories": repositories,
     }
     report["totals"] = {
         "active_runs": sum(len(row["active"]) for row in repositories),
-        "failed_runs": sum(len(row["failed"]) for row in repositories),
+        "audit_actionable_failures": sum(
+            failure["failure_class"] == "audit_actionable_failure" for failure in failures
+        ),
+        "audit_historical_failures": sum(
+            failure["failure_class"] == "audit_historical_failure" for failure in failures
+        ),
+        "audit_nonrepairable_observations": sum(
+            failure["failure_class"] == "audit_nonrepairable_observation" for failure in failures
+        ),
+        "product_failures_observed": sum(
+            failure["failure_class"] == "product_repository_observation" for failure in failures
+        ),
+        "pages_platform_observations": sum(
+            failure["failure_class"] == "pages_platform_observation" for failure in failures
+        ),
         "stalled_runs": sum(len(row["stalled"]) for row in repositories),
         "reruns_requested": sum(
             1 for row in repositories for rerun in row["reruns"] if rerun["requested"]
