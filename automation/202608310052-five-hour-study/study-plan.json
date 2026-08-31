@@ -1,0 +1,263 @@
+{
+  "schema": "chatgpt-audits.five-hour-study-plan.v1",
+  "generation": "202608310052",
+  "review_status": "UNREVIEWED",
+  "purpose": "Read-only cross-repository study and quarantined preparation of PipelineNews intelligence-engine next-version artefacts.",
+  "priority_order": [
+    "pipelinenews-intelligence-engine",
+    "companies-funding-signal",
+    "planning-procurement-signal",
+    "gridatlas-consumer-seams",
+    "globalgrid2050-and-demand-side-context"
+  ],
+  "classifications": [
+    "observed",
+    "inferred",
+    "contradicted",
+    "unknown",
+    "not_checked",
+    "not_observed_in_snapshot"
+  ],
+  "source_policy": {
+    "allowed_network": [
+      "read-only Git clone of explicitly listed public Ventusltd repositories from github.com"
+    ],
+    "forbidden_network": [
+      "third-party websites",
+      "live APIs",
+      "scrapers",
+      "news feeds",
+      "planning portals",
+      "Companies House downloads",
+      "package registries"
+    ],
+    "write_boundary": "Ventusltd/chatgpt-audits only",
+    "product_repo_writes": "FORBIDDEN",
+    "output_status": "UNREVIEWED"
+  },
+  "limits": {
+    "max_text_file_bytes": 2097152,
+    "max_excerpt_chars": 280,
+    "max_output_file_bytes": 2097152,
+    "max_total_output_bytes": 25165824,
+    "max_evidence_rows_per_report": 500,
+    "max_repository_files_scanned": 25000
+  },
+  "repositories": [
+    {
+      "name": "pipelinenews",
+      "repository": "Ventusltd/pipelinenews",
+      "required": true,
+      "priority": 100,
+      "sparse_paths": [
+        ".github",
+        "atman",
+        "automation",
+        "build",
+        "contracts",
+        "discovery",
+        "docs",
+        "index",
+        "manifests",
+        "orchestration",
+        "state",
+        "tests",
+        "ui"
+      ],
+      "tree_probes": [
+        "ui/atlas-v9-deep-links.js",
+        "discovery/javascript/202608270844-live-news-runner.mjs",
+        "discovery/javascript/202608272130-sector-intelligence-runner.mjs"
+      ]
+    },
+    {
+      "name": "gridatlas",
+      "repository": "Ventusltd/gridatlas",
+      "required": true,
+      "priority": 90,
+      "sparse_paths": [
+        ".github",
+        "atlas/cartridges",
+        "atlas/manifests",
+        "atman",
+        "compiler",
+        "contracts",
+        "docs",
+        "governance",
+        "machine-learning/schemas",
+        "nightly",
+        "orchestration",
+        "reports",
+        "scope-of-works",
+        "state",
+        "tests",
+        "tools",
+        "ui"
+      ],
+      "tree_probes": [
+        "202608300453-atlas-v9/index.html",
+        "atlas/releases/202608300453-atlas-v9/index.html",
+        "_build-plan/summary.md",
+        ".github/workflows/202608310015-gridatlas-overnight-next-versions.yml",
+        "state/live-set.json",
+        "atlas/current.json"
+      ]
+    },
+    {
+      "name": "companies",
+      "repository": "Ventusltd/companies",
+      "required": true,
+      "priority": 95,
+      "sparse_paths": [
+        ".github",
+        "build",
+        "contracts",
+        "manifests",
+        "scripts",
+        "state",
+        "tests"
+      ],
+      "tree_probes": [
+        "README.md",
+        "state/atlas-v9-link-contract.json"
+      ]
+    },
+    {
+      "name": "globalgrid2050",
+      "repository": "Ventusltd/globalgrid2050",
+      "required": true,
+      "priority": 70,
+      "sparse_paths": [
+        ".github",
+        "docs",
+        "scripts",
+        "sources",
+        "tests",
+        "tools"
+      ],
+      "tree_probes": [
+        "index.html"
+      ]
+    },
+    {
+      "name": "data-gridatlas",
+      "repository": "Ventusltd/data-gridatlas",
+      "required": true,
+      "priority": 75,
+      "sparse_paths": [
+        ".github",
+        "contracts",
+        "docs",
+        "manifests",
+        "schemas",
+        "scripts",
+        "state",
+        "tests",
+        "tools"
+      ],
+      "tree_probes": [
+        "README.md"
+      ]
+    },
+    {
+      "name": "spiders",
+      "repository": "Ventusltd/spiders",
+      "required": false,
+      "priority": 80,
+      "sparse_paths": [
+        "."
+      ],
+      "tree_probes": [
+        "README.md"
+      ]
+    },
+    {
+      "name": "cvaa",
+      "repository": "Ventusltd/cvaa",
+      "required": false,
+      "priority": 80,
+      "sparse_paths": [
+        "."
+      ],
+      "tree_probes": [
+        "README.md"
+      ]
+    },
+    {
+      "name": "data-centres-gb",
+      "repository": "Ventusltd/data-centres-gb",
+      "required": false,
+      "priority": 65,
+      "sparse_paths": [
+        ".github",
+        "build",
+        "contracts",
+        "docs",
+        "manifests",
+        "scripts",
+        "state",
+        "tests"
+      ],
+      "tree_probes": [
+        "README.md"
+      ]
+    },
+    {
+      "name": "data-gb-electricity",
+      "repository": "Ventusltd/data-gb-electricity",
+      "required": false,
+      "priority": 55,
+      "sparse_paths": [
+        ".github",
+        "contracts",
+        "docs",
+        "manifests",
+        "scripts",
+        "state",
+        "tests",
+        "tools"
+      ],
+      "tree_probes": [
+        "README.md"
+      ]
+    }
+  ],
+  "phases": [
+    {
+      "number": 1,
+      "slug": "source-inventory-and-repository-topology",
+      "goal": "Pin exact source commits, inventory code/contracts/workflows and map cross-repository references."
+    },
+    {
+      "number": 2,
+      "slug": "pipelinenews-intelligence-engine",
+      "goal": "Decompose the current discovery runners, identity logic, evidence handling and publication gates."
+    },
+    {
+      "number": 3,
+      "slug": "funding-and-procurement-signals",
+      "goal": "Separate observed Companies House and planning facts from inferred commercial timing windows."
+    },
+    {
+      "number": 4,
+      "slug": "seam-and-claude-crosscheck",
+      "goal": "Re-prove high-impact claims from the copied Claude study against pinned product snapshots."
+    },
+    {
+      "number": 5,
+      "slug": "pipelinenews-vnext-quarantined-candidate",
+      "goal": "Generate an unreviewed modular architecture, schemas, reference state machine, tests and implementation backlog."
+    }
+  ],
+  "mandatory_gates": [
+    "Every product repository snapshot is content-hashed before and after study.",
+    "No tracked or untracked path outside the timestamped audit output root may change.",
+    "Every finding carries an explicit classification.",
+    "Absence is represented as not_observed_in_snapshot, never as a negative fact.",
+    "No inferred funding or procurement window may be represented as an observed fact.",
+    "A release candidate requires both observed funding evidence and observed procurement evidence plus human review.",
+    "Generated PUBLISHED transitions are forbidden inside the audit repository.",
+    "All generated Markdown, JSON and reference code is labelled UNREVIEWED.",
+    "No product pointer, release, Pages site or workflow is modified or dispatched."
+  ]
+}
