@@ -1,0 +1,232 @@
+name: 202608310125 overnight Actions watchdog
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/202608310125-actions-watchdog.yml
+      - automation/202608310125-actions-watchdog/**
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - 202608310052 five-hour quarantined cross-repo study
+      - 202608310116 overnight audit swarm
+    types:
+      - completed
+  schedule:
+    - cron: '*/20 0-7 31 8 *'
+
+permissions:
+  actions: write
+  contents: write
+
+concurrency:
+  group: 202608310125-overnight-actions-watchdog
+  cancel-in-progress: false
+
+jobs:
+  watchdog:
+    if: github.repository == 'Ventusltd/chatgpt-audits'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      WATCHDOG: automation/202608310125-actions-watchdog/watchdog.py
+      CATALOG: automation/202608310125-actions-watchdog/repair-catalog.json
+      WORK_ROOT: work/202608310125-actions-watchdog
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+
+    steps:
+      - name: Checkout current audit controller only
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+          token: ${{ github.token }}
+
+      - name: Enforce the bounded overnight window
+        id: guard
+        shell: bash
+        run: |
+          set -euo pipefail
+          NOW=$(TZ=Europe/London date +%Y%m%d%H%M)
+          EVENT="$GITHUB_EVENT_NAME"
+          ACTIVE=false
+
+          case "$EVENT" in
+            push|workflow_dispatch)
+              ACTIVE=true
+              ;;
+            schedule)
+              if [[ "$NOW" > "202608310059" && "$NOW" < "202608310901" ]]; then ACTIVE=true; fi
+              ;;
+            workflow_run)
+              if [[ "$NOW" > "202608310059" && "$NOW" < "202608310916" ]]; then ACTIVE=true; fi
+              ;;
+          esac
+
+          echo "active=$ACTIVE" >> "$GITHUB_OUTPUT"
+          echo "checked_london=$NOW" >> "$GITHUB_OUTPUT"
+          if [ "$ACTIVE" != "true" ]; then
+            echo "Outside the one-night repair window; watchdog is inert."
+          fi
+
+      - name: Validate watchdog source and repair catalogue
+        if: steps.guard.outputs.active == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m py_compile "$WATCHDOG"
+          python3 -m json.tool "$CATALOG" >/dev/null
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          catalog = json.loads(Path('automation/202608310125-actions-watchdog/repair-catalog.json').read_text())
+          assert catalog['review_status'] == 'UNREVIEWED'
+          assert catalog['repository_boundary'] == 'Ventusltd/chatgpt-audits'
+          assert 'product workflow dispatch' in catalog['forbidden_actions']
+          PY
+
+      - name: Inspect failures and apply bounded repairs
+        id: inspect
+        if: steps.guard.outputs.active == 'true'
+        shell: bash
+        run: |
+          set -u
+          rm -rf "$WORK_ROOT"
+          mkdir -p "$WORK_ROOT"
+
+          set +e
+          python3 "$WATCHDOG" \
+            --output "$WORK_ROOT" \
+            --event-path "$GITHUB_EVENT_PATH" \
+            >"$WORK_ROOT/execution.log" 2>&1
+          CODE=$?
+          set -e
+
+          if [ ! -f "$WORK_ROOT/WATCHDOG.json" ]; then
+            export CODE
+            python3 - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+
+          root = Path('work/202608310125-actions-watchdog')
+          log = (root / 'execution.log').read_text(encoding='utf-8', errors='replace') if (root / 'execution.log').exists() else ''
+          payload = {
+              'schema': 'chatgpt-audits.actions-watchdog-report.v1',
+              'generation': '202608310125',
+              'review_status': 'UNREVIEWED',
+              'classification': 'not_checked',
+              'checked_at': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+              'checked_at_london': datetime.now(ZoneInfo('Europe/London')).isoformat(),
+              'repository': 'Ventusltd/chatgpt-audits',
+              'actions_taken': 0,
+              'unresolved_failures': 1,
+              'mutation_or_incident': True,
+              'checks': [{
+                  'workflow': 'watchdog-runtime',
+                  'status': 'failure',
+                  'conclusion': 'failure',
+                  'classification': 'WATCHDOG_RUNTIME_FAILURE',
+                  'decision': 'UNRESOLVED_REPAIR_REQUIRED',
+                  'exit_code': int(os.environ.get('CODE', '1')),
+                  'excerpt': log[-4000:]
+              }]
+          }
+          (root / 'WATCHDOG.json').write_text(json.dumps(payload, indent=2) + '\n', encoding='utf-8')
+          (root / 'WATCHDOG.md').write_text(
+              '# Overnight GitHub Actions watchdog\n\n'
+              '> **REVIEW STATUS: UNREVIEWED**  \n'
+              '> Classification: `not_checked`  \n\n'
+              'The watchdog runtime itself failed before a normal report was emitted. See `execution.log`.\n',
+              encoding='utf-8'
+          )
+          PY
+          fi
+
+          ACTIONS_TAKEN=$(python3 -c "import json; print(json.load(open('$WORK_ROOT/WATCHDOG.json'))['actions_taken'])")
+          UNRESOLVED=$(python3 -c "import json; print(json.load(open('$WORK_ROOT/WATCHDOG.json'))['unresolved_failures'])")
+          MUTATION=$(python3 -c "import json; print(str(json.load(open('$WORK_ROOT/WATCHDOG.json'))['mutation_or_incident']).lower())")
+
+          {
+            echo "exit_code=$CODE"
+            echo "actions_taken=$ACTIONS_TAKEN"
+            echo "unresolved=$UNRESOLVED"
+            echo "mutation_or_incident=$MUTATION"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Commit repairs and unresolved incidents to a quarantine branch
+        id: evidence
+        if: steps.inspect.outputs.mutation_or_incident == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAMP=$(TZ=Europe/London date +%Y%m%d%H%M)
+          BRANCH="audit/${STAMP}-actions-watchdog-${GITHUB_RUN_ID}-a${GITHUB_RUN_ATTEMPT}"
+          OUTPUT_ROOT="202608310033-study/AUTOMATION-RUNS/${STAMP}-actions-watchdog-${GITHUB_RUN_ID}-a${GITHUB_RUN_ATTEMPT}"
+
+          mkdir -p "$OUTPUT_ROOT"
+          cp "$WORK_ROOT/WATCHDOG.json" "$OUTPUT_ROOT/WATCHDOG.json"
+          cp "$WORK_ROOT/WATCHDOG.md" "$OUTPUT_ROOT/WATCHDOG.md"
+          cp "$WORK_ROOT/execution.log" "$OUTPUT_ROOT/execution.log"
+          cp "$CATALOG" "$OUTPUT_ROOT/repair-catalog.json"
+
+          git config user.name "chatgpt-audits-actions-watchdog"
+          git config user.email "actions@users.noreply.github.com"
+          git switch -c "$BRANCH"
+          git add -- "$OUTPUT_ROOT"
+
+          ESCAPED=$(git diff --cached --name-only | grep -v "^${OUTPUT_ROOT}/" || true)
+          if [ -n "$ESCAPED" ]; then
+            echo "Watchdog evidence escaped quarantine:" >&2
+            echo "$ESCAPED" >&2
+            exit 1
+          fi
+
+          git commit -m "${STAMP}-audit: UNREVIEWED Actions watchdog repair evidence"
+          git push --set-upstream origin HEAD:"$BRANCH"
+
+          {
+            echo "branch=$BRANCH"
+            echo "output_root=$OUTPUT_ROOT"
+            echo "commit_sha=$(git rev-parse HEAD)"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Upload watchdog evidence
+        if: always() && steps.guard.outputs.active == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: actions-watchdog-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.WORK_ROOT }}
+          if-no-files-found: warn
+          retention-days: 30
+          compression-level: 9
+
+      - name: Publish watchdog summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "# Overnight Actions watchdog"
+            echo
+            echo "- Active: ${{ steps.guard.outputs.active || 'false' }}"
+            echo "- London check: ${{ steps.guard.outputs.checked_london || 'not-run' }}"
+            echo "- Actions taken: ${{ steps.inspect.outputs.actions_taken || '0' }}"
+            echo "- Unresolved failures: ${{ steps.inspect.outputs.unresolved || '0' }}"
+            echo "- Evidence branch: \`${{ steps.evidence.outputs.branch || 'none' }}\`"
+            echo "- Evidence commit: \`${{ steps.evidence.outputs.commit_sha || 'none' }}\`"
+            echo "- Product writes or dispatches: **none by construction**"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep deterministic or repeated failures visibly red
+        if: steps.inspect.outputs.unresolved != '0'
+        shell: bash
+        run: |
+          echo "Unresolved audit-workflow failure retained on the watchdog evidence branch." >&2
+          exit 1
