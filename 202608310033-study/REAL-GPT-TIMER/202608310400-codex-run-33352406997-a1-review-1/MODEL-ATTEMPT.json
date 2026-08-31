@@ -1,0 +1,20 @@
+{
+  "schema": "chatgpt-audits.model-attempt.v1",
+  "generation": "202608310322",
+  "review_status": "UNREVIEWED",
+  "classification": "observed",
+  "sequence": 1,
+  "provider": "openai-codex-action",
+  "model": "gpt-5.6-luna",
+  "runtime": "openai-codex-action/86365089-codex-0.151.0",
+  "inference_outcome": "skipped",
+  "validated_review_created": false,
+  "provider_blocked_or_response_rejected": true,
+  "reason": "OPENAI_API_KEY_NOT_CONFIGURED",
+  "checked_at": "2026-08-31T03:00:27.470329Z",
+  "checked_at_london": "2026-08-31T04:00:27.470329+01:00",
+  "workflow_run_id": "33352406997",
+  "workflow_run_attempt": "1",
+  "product_repository_writes": "FORBIDDEN",
+  "product_workflow_dispatches": "FORBIDDEN"
+}

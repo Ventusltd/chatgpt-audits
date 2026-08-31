@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ventus hourly architecture review",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "overall_assessment": {
+      "type": "string",
+      "minLength": 1
+    },
+    "what_happened": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "claim": { "type": "string", "minLength": 1 },
+          "evidence": { "type": "string", "minLength": 1 },
+          "classification": {
+            "type": "string",
+            "enum": [
+              "observed",
+              "inferred",
+              "contradicted",
+              "unknown",
+              "not_checked",
+              "not_observed_in_snapshot"
+            ]
+          }
+        },
+        "required": ["claim", "evidence", "classification"]
+      }
+    },
+    "good": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "claim": { "type": "string", "minLength": 1 },
+          "evidence": { "type": "string", "minLength": 1 },
+          "classification": {
+            "type": "string",
+            "enum": [
+              "observed",
+              "inferred",
+              "contradicted",
+              "unknown",
+              "not_checked",
+              "not_observed_in_snapshot"
+            ]
+          }
+        },
+        "required": ["claim", "evidence", "classification"]
+      }
+    },
+    "bad": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "issue": { "type": "string", "minLength": 1 },
+          "evidence": { "type": "string", "minLength": 1 },
+          "classification": {
+            "type": "string",
+            "enum": [
+              "observed",
+              "inferred",
+              "contradicted",
+              "unknown",
+              "not_checked",
+              "not_observed_in_snapshot"
+            ]
+          },
+          "impact": { "type": "string", "minLength": 1 }
+        },
+        "required": ["issue", "evidence", "classification", "impact"]
+      }
+    },
+    "recommended_improvement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "type": "string", "enum": ["workflow", "python"] },
+        "name": { "type": "string", "minLength": 1 },
+        "purpose": { "type": "string", "minLength": 1 },
+        "evidence_basis": { "type": "string", "minLength": 1 },
+        "algorithm": { "type": "string", "minLength": 1 },
+        "inputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "outputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "rejection_conditions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      },
+      "required": [
+        "kind",
+        "name",
+        "purpose",
+        "evidence_basis",
+        "algorithm",
+        "inputs",
+        "outputs",
+        "rejection_conditions"
+      ]
+    },
+    "deterministic_tests": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "fixture": { "type": "string", "minLength": 1 },
+          "assertion": { "type": "string", "minLength": 1 }
+        },
+        "required": ["name", "fixture", "assertion"]
+      }
+    },
+    "do_not_change": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "uncertainties": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "required": [
+    "overall_assessment",
+    "what_happened",
+    "good",
+    "bad",
+    "recommended_improvement",
+    "deterministic_tests",
+    "do_not_change",
+    "uncertainties"
+  ]
+}
